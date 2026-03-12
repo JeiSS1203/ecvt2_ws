@@ -1,0 +1,63 @@
+[33mCMake Warning at /opt/openrobots/lib/cmake/hpp-fcl/hpp-fclConfig.cmake:4 (message):
+  Please update your CMake from 'hpp-fcl' to 'coal', or define
+  COAL_DISABLE_HPP_FCL_WARNINGS
+Call Stack (most recent call first):
+  /usr/share/cmake-3.22/Modules/CMakeFindDependencyMacro.cmake:47 (find_package)
+  /opt/openrobots/lib/cmake/pinocchio/pinocchioConfig.cmake:161 (find_dependency)
+  CMakeLists.txt:20 (find_package)
+
+[0m
+In file included from [01m[K/opt/openrobots/include/hpp/fcl/config.hh:1[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/serialization/eigen.hpp:20[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/serialization/fwd.hpp:11[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/model.hpp:17[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/parsers/urdf.hpp:9[m[K,
+                 from [01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/kdl_utils.cpp:4[m[K:
+[01m[K/opt/openrobots/include/hpp/fcl/coal.hpp:12:99:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS[m[K’
+   12 | udes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS"[01;36m[K)[m[K
+      |                                                                       [01;36m[K^[m[K
+
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/kdl_utils.cpp:[m[K In function ‘[01m[Kecvt2_controller::FKJacobianResult ecvt2_controller::computeFKAllAndJacobian(const Eigen::Ref<const Eigen::Matrix<double, 3, 1> >&, const Eigen::Ref<const Eigen::Matrix<double, 4, 1> >&, const Eigen::Ref<const Eigen::Matrix<double, -1, 1> >&)[m[K’:
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/kdl_utils.cpp:1370:29:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[KT_world_TOOL[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+ 1370 |       const Eigen::Matrix4d [01;35m[KT_world_TOOL[m[K = T_world_UP6 * T_UP6_TOOL;
+      |                             [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/base_arm_task_controller.cpp:[m[K In member function ‘[01m[Kvoid EcvtController::controlLoop()[m[K’:
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/base_arm_task_controller.cpp:570:25:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kxdot_FR[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  570 |         Eigen::Vector3d [01;35m[Kxdot_FR[m[K = Kp_foot * e_FR;
+      |                         [01;35m[K^~~~~~~[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/base_arm_task_controller.cpp:571:25:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kxdot_FL[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  571 |         Eigen::Vector3d [01;35m[Kxdot_FL[m[K = Kp_foot * e_FL;
+      |                         [01;35m[K^~~~~~~[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/base_arm_task_controller.cpp:572:25:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kxdot_RR[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  572 |         Eigen::Vector3d [01;35m[Kxdot_RR[m[K = Kp_foot * e_RR;
+      |                         [01;35m[K^~~~~~~[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/base_arm_task_controller.cpp:573:25:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kxdot_RL[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  573 |         Eigen::Vector3d [01;35m[Kxdot_RL[m[K = Kp_foot * e_RL;
+      |                         [01;35m[K^~~~~~~[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/wbc_hqp.cpp:[m[K In member function ‘[01m[Kvoid EcvtController::controlLoop()[m[K’:
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/wbc_hqp.cpp:698:25:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kcom2[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  698 |         Eigen::Vector3d [01;35m[Kcom2[m[K = result.com;
+      |                         [01;35m[K^~~~[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/wbc_hqp.cpp:699:38:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[KJcom2[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+  699 |         Eigen::Matrix<double, 3, 30> [01;35m[KJcom2[m[K = result.com_jacobian;
+      |                                      [01;35m[K^~~~~[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/wbc_hqp.cpp:941:22:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Keps[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+  941 |         const double [01;35m[Keps[m[K = 1e-4;
+      |                      [01;35m[K^~~[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/base_opt_controller.cpp:[m[K In member function ‘[01m[Kvoid EcvtController::controlLoop()[m[K’:
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/base_opt_controller.cpp:620:16:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdt[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+  620 |         double [01;35m[Kdt[m[K = 0.01;
+      |                [01;35m[K^~[m[K
+In file included from [01m[K/opt/openrobots/include/hpp/fcl/config.hh:1[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/serialization/eigen.hpp:20[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/serialization/fwd.hpp:11[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/model.hpp:17[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/parsers/urdf.hpp:9[m[K,
+                 from [01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/pin_test.cpp:8[m[K:
+[01m[K/opt/openrobots/include/hpp/fcl/coal.hpp:12:99:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS[m[K’
+   12 |     "Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS"[01;36m[K)[m[K
+      |                                                                                                   [01;36m[K^[m[K

@@ -1,0 +1,111 @@
+<mujoco model="forestry_robot scene">
+  <include file="ecvt_v2.xml"/>
+  <option timestep="0.002"
+        cone="elliptic"
+        iterations="100"
+        tolerance="1e-8"
+        integrator="implicit"/>
+
+  <statistic center="0 0 0.1" extent="20"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="-130" elevation="-20"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    <material name="target_red" rgba="0.9 0.15 0.15 1" shininess="0.8" specular="0.4"/>
+  </asset>
+
+  <worldbody>
+    <camera name="cam_main" pos="1.5 -17 6" euler="1.5708 0 0" fovy="45"/>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane" euler="0 0 0"
+          condim="3"
+          friction="1.0 0.04 0.004"
+          solref="0.002 1.0"
+          solimp="0.9 0.95 0.005 0.5 2"/>
+
+    <!-- <body name="target" pos="6.5 0.0 4.3" mocap="true">
+      <geom name="target_sphere" type="sphere" size="0.1"
+            material="target_red" contype="0" conaffinity="0"/>
+      <site name="target_site" pos="0 0 0" size="0.005" type="sphere" rgba="0 0 0 0"/>
+    </body> -->
+
+    <body name="FL_box" pos="2.8 2.2 1.7">
+      <geom name="FL_box_geom" type="box" size="1.0 1.0 0.5"
+            rgba="0.2 0.6 1.0 0.7"  mass="1.0"
+            contype="1" conaffinity="1"
+            friction="0.8 0.1 0.01"/>
+    </body>
+
+    <body name="FR_box" pos="2.5 -2.2 1.35">
+      <geom name="FR_box_geom" type="box" size="1.0 1.0 0.15"
+            rgba="0.2 0.6 1.0 0.7"  mass="1.0"
+            contype="1" conaffinity="1"
+            friction="0.8 0.1 0.01"/>
+    </body>
+
+    <body name="RL_box" pos="-2.9 2.2 1.45">
+      <geom name="RL_box_geom" type="box" size="1.0 1.0 0.25"
+            rgba="0.2 0.6 1.0 0.7"  mass="1.0"
+            contype="1" conaffinity="1"
+            friction="0.8 0.1 0.01"/>
+    </body>
+
+    <body name="RR_box" pos="-2.6 -2.2 1.6">
+      <geom name="RR_box_geom" type="box" size="1.0 1.0 0.4"
+            rgba="0.2 0.6 1.0 0.7"  mass="1.0"
+            contype="1" conaffinity="1"
+            friction="0.8 0.1 0.01"/>
+    </body>
+
+    <body name="trajectory_waypoints" user="1">
+      <geom type="box" fromto="6.8000 0.0000 4.0000   6.7999 -0.9486 4.0000" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.7999 -0.9486 4.0000   6.7331 -1.8945 4.0000" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.7331 -1.8945 4.0000   6.5448 -2.8230 4.0013" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.5448 -2.8230 4.0013   6.1465 -3.6615 4.1692" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.1465 -3.6615 4.1692   5.5216 -4.3061 4.4509" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="5.5216 -4.3061 4.4509   4.7839 -4.8999 4.4833" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="4.7839 -4.8999 4.4833   3.9908 -5.4146 4.4092" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="3.9908 -5.4146 4.4092   3.1490 -5.8376 4.3560" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="3.1490 -5.8376 4.3560   2.5903 -6.0000 4.8327" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="2.5903 -6.0000 4.8327   2.9054 -5.9979 5.6447" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="2.9054 -5.9979 5.6447   3.7912 -5.8605 5.8874" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="3.7912 -5.8605 5.8874   4.5293 -5.2743 5.9697" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="4.5293 -5.2743 5.9697   5.2005 -4.6053 5.9857" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="5.2005 -4.6053 5.9857   5.8873 -3.9677 5.8787" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="5.8873 -3.9677 5.8787   6.5226 -3.3224 5.5977" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.5226 -3.3224 5.5977   7.1132 -2.5984 5.4512" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="7.1132 -2.5984 5.4512   7.5986 -1.7915 5.3563" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="7.5986 -1.7915 5.3563   8.2721 -1.2220 5.1098" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="8.2721 -1.2220 5.1098   9.0006 -0.8290 4.6771" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="9.0006 -0.8290 4.6771   9.2000 -0.0000 4.3000" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="9.2000 -0.0000 4.3000   9.0006 0.8290 4.6771" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="9.0006 0.8290 4.6771   8.2721 1.2220 5.1098" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="8.2721 1.2220 5.1098   7.5986 1.7915 5.3563" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="7.5986 1.7915 5.3563   7.1132 2.5984 5.4512" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="7.1132 2.5984 5.4512   6.5226 3.3224 5.5977" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.5226 3.3224 5.5977   5.8873 3.9677 5.8787" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="5.8873 3.9677 5.8787   5.2005 4.6053 5.9857" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="5.2005 4.6053 5.9857   4.5293 5.2743 5.9697" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="4.5293 5.2743 5.9697   3.7912 5.8605 5.8874" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="3.7912 5.8605 5.8874   2.9054 5.9979 5.6447" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="2.9054 5.9979 5.6447   2.5903 6.0000 4.8327" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="2.5903 6.0000 4.8327   3.1490 5.8376 4.3560" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="3.1490 5.8376 4.3560   3.9908 5.4146 4.4092" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="3.9908 5.4146 4.4092   4.7839 4.8999 4.4833" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="4.7839 4.8999 4.4833   5.5216 4.3061 4.4509" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="5.5216 4.3061 4.4509   6.1465 3.6615 4.1692" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.1465 3.6615 4.1692   6.5448 2.8230 4.0013" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.5448 2.8230 4.0013   6.7331 1.8945 4.0000" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.7331 1.8945 4.0000   6.7999 0.9486 4.0000" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+      <geom type="box" fromto="6.7999 0.9486 4.0000   6.8000 0.0000 4.0000" size="0.01 0.01 0.08" rgba="1 0 0 0.55" contype="0" conaffinity="0"/>
+  </body>
+  </worldbody>
+</mujoco>

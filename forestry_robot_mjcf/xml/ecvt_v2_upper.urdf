@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="simple_model_for_urdf.SLDASM">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.15979 0.0032587 0.016482"
+        rpy="0 0 0" />
+      <mass
+        value="5233.6" />
+      <inertia
+        ixx="922.83"
+        ixy="0.004429"
+        ixz="-0.33231"
+        iyy="979.83"
+        iyz="-0.29594"
+        izz="1749.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.65098 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="UP1">
+    <inertial>
+      <origin
+        xyz="-0.15979 0.0032587 0.016482"
+        rpy="0 0 0" />
+      <mass
+        value="5233.6" />
+      <inertia
+        ixx="922.83"
+        ixy="0.004429"
+        ixz="-0.33231"
+        iyy="979.83"
+        iyz="-0.29594"
+        izz="1749.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.65098 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ1"
+    type="continuous">
+    <origin
+      xyz="0.370195054411909 0.0020001696392424 0.345303190455213"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="UP1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="UP2">
+    <inertial>
+      <origin
+        xyz="1.96227534393603 -0.0530702106917522 0.000513501612987154"
+        rpy="0 0 0" />
+      <mass
+        value="69.6789604825383" />
+      <inertia
+        ixx="0.652439617318437"
+        ixy="0.0680367157414575"
+        ixz="-2.39167375866424E-05"
+        iyy="59.1754248270674"
+        iyz="9.54076113619403E-05"
+        izz="59.4322381407244" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ2"
+    type="revolute">
+    <origin
+      xyz="-0.35 0.006485 1.402"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="UP1" />
+    <child
+      link="UP2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="1.05"
+      effort="0"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="UP3">
+    <inertial>
+      <origin
+        xyz="1.36179424392989 -0.0333440521133341 -0.000208761316828136"
+        rpy="0 0 0" />
+      <mass
+        value="329.692051923496" />
+      <inertia
+        ixx="3.57129998443318"
+        ixy="0.429726947602865"
+        ixz="0.000640529654781326"
+        iyy="187.710878467417"
+        iyz="1.95950230647683E-08"
+        izz="186.602050284318" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ3"
+    type="revolute">
+    <origin
+      xyz="4 -0.0650000000000002 0.00192735026919154"
+      rpy="0 0 0" />
+    <parent
+      link="UP2" />
+    <child
+      link="UP3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.01"
+      upper="0"
+      effort="0"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="UP4">
+    <inertial>
+      <origin
+        xyz="0.00042417809001896 -0.00518709635527026 1.65538452919323"
+        rpy="0 0 0" />
+      <mass
+        value="195.721254726004" />
+      <inertia
+        ixx="106.033298755099"
+        ixy="7.97512492950988E-09"
+        ixz="-2.0161609437832E-09"
+        iyy="106.592792050442"
+        iyz="0.0221634887810824"
+        izz="1.36368093803689" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ4"
+    type="prismatic">
+    <origin
+      xyz="0.199999999999998 -0.0200000000000005 -0.000942350269189911"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="UP3" />
+    <child
+      link="UP4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="1.65"
+      effort="0"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="UP5">
+    <inertial>
+      <origin
+        xyz="-0.00652049427867318 0.0924986974123165 0.00226760591283452"
+        rpy="0 0 0" />
+      <mass
+        value="13.9596633124947" />
+      <inertia
+        ixx="0.0456007064587492"
+        ixy="-0.000349046790785124"
+        ixz="0.000241802037076265"
+        iyy="0.0207497946363521"
+        iyz="1.25588612124981E-06"
+        izz="0.0484245720379488" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ5"
+    type="revolute">
+    <origin
+      xyz="-0.00226999999999946 -0.0658088570286148 3.158"
+      rpy="3.14159265358979 1.5707963267949 0" />
+    <parent
+      link="UP4" />
+    <child
+      link="UP5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="3.14159265358979"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="UP6">
+    <inertial>
+      <origin
+        xyz="-5.85809048839203E-11 0.173367207108309 3.5527136788005E-15"
+        rpy="0 0 0" />
+      <mass
+        value="71.3673205582859" />
+      <inertia
+        ixx="0.743252381753498"
+        ixy="-3.3314685829178E-10"
+        ixz="1.66455964251951E-14"
+        iyy="0.377291141871478"
+        iyz="4.90976608979241E-15"
+        izz="0.716572471046431" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/UP6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ6"
+    type="revolute">
+    <origin
+      xyz="0 0.160000000000002 -0.00227000000000289"
+      rpy="0 -1.5707963267949 0" />
+    <parent
+      link="UP5" />
+    <child
+      link="UP6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="TOOL1">
+    <inertial>
+      <origin
+        xyz="-0.22834569487616 0.001025336586052 -0.336559356075617"
+        rpy="0 0 0" />
+      <mass
+        value="467.870425947015" />
+      <inertia
+        ixx="11.2705562342386"
+        ixy="-0.118019197279568"
+        ixz="-0.450536238886994"
+        iyy="8.46982559174913"
+        iyz="0.000245195720043511"
+        izz="7.00603021512078" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/TOOL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forestry_robot_mjcf/asset/TOOL1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="TOOLJ1"
+    type="revolute">
+    <origin
+      xyz="0 0.342999999999996 0"
+      rpy="1.5707963267949 1.5707963267949 0" />
+    <parent
+      link="UP6" />
+    <child
+      link="TOOL1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

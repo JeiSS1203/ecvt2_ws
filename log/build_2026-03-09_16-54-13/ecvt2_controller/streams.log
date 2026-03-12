@@ -1,0 +1,33 @@
+[0.010s] Invoking command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble /usr/bin/cmake --build /home/jin/harco/ecvt2_ws/build/ecvt2_controller -- -j20 -l20
+[0.133s] [35m[1mConsolidate compiler generated dependencies of target live_upper_dynamics_node[0m
+[0.133s] [  8%] Built target teleop_goal_publisher
+[0.133s] [ 16%] Built target wbc_hqp_lib
+[0.133s] [ 25%] Built target com_trajectory_publisher
+[0.133s] [ 33%] Built target kdl_utils
+[0.134s] [ 37%] [32mBuilding CXX object CMakeFiles/live_upper_dynamics_node.dir/src/live_upper_dynamics_node.cpp.o[0m
+[0.134s] [ 62%] Built target wbc_hqp_v3
+[0.134s] [ 62%] Built target wbc_hqp_v2
+[0.134s] [ 62%] Built target base_opt_controller
+[0.134s] [ 70%] Built target base_arm_task_controller
+[0.134s] [ 79%] Built target base_arm_task_controller_v2
+[0.134s] [ 87%] Built target wbc_hqp
+[0.134s] [ 95%] Built target pin_test
+[3.087s] In file included from [01m[K/opt/openrobots/include/hpp/fcl/config.hh:1[m[K,
+[3.087s]                  from [01m[K/opt/openrobots/include/pinocchio/serialization/eigen.hpp:20[m[K,
+[3.087s]                  from [01m[K/opt/openrobots/include/pinocchio/serialization/fwd.hpp:11[m[K,
+[3.087s]                  from [01m[K/opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14[m[K,
+[3.087s]                  from [01m[K/opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9[m[K,
+[3.087s]                  from [01m[K/opt/openrobots/include/pinocchio/multibody/model.hpp:17[m[K,
+[3.087s]                  from [01m[K/opt/openrobots/include/pinocchio/parsers/urdf.hpp:9[m[K,
+[3.087s]                  from [01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/live_upper_dynamics_node.cpp:5[m[K:
+[3.088s] [01m[K/opt/openrobots/include/hpp/fcl/coal.hpp:12:99:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS[m[K’
+[3.088s]    12 |     "Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS"[01;36m[K)[m[K
+[3.088s]       |                                                                                                   [01;36m[K^[m[K
+[4.301s] [01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/live_upper_dynamics_node.cpp:[m[K In member function ‘[01m[Kvoid LiveUpperDynamicsNode::jointStateCallback(sensor_msgs::msg::JointState_<std::allocator<void> >::SharedPtr)[m[K’:
+[4.301s] [01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/live_upper_dynamics_node.cpp:304:70:[m[K [01;31m[Kerror: [m[K‘[01m[Kqdd_full[m[K’ was not declared in this scope
+[4.301s]   304 |     Eigen::VectorXd tau_rnea = pinocchio::rnea(model_, *data_, q, v, [01;31m[Kqdd_full[m[K);
+[4.301s]       |                                                                      [01;31m[K^~~~~~~~[m[K
+[17.439s] gmake[2]: *** [CMakeFiles/live_upper_dynamics_node.dir/build.make:76: CMakeFiles/live_upper_dynamics_node.dir/src/live_upper_dynamics_node.cpp.o] Error 1
+[17.439s] gmake[1]: *** [CMakeFiles/Makefile2:448: CMakeFiles/live_upper_dynamics_node.dir/all] Error 2
+[17.440s] gmake: *** [Makefile:146: all] Error 2
+[17.441s] Invoked command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble /usr/bin/cmake --build /home/jin/harco/ecvt2_ws/build/ecvt2_controller -- -j20 -l20

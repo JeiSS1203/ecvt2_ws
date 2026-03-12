@@ -1,0 +1,69 @@
+<mujoco model="forestry_robot scene">
+  <include file="ecvt_v2.xml"/>
+  <option timestep="0.002"
+        cone="elliptic"
+        iterations="100"
+        tolerance="1e-8"
+        integrator="implicit"/>
+
+  <statistic center="0 0 0.1" extent="20"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="-130" elevation="-20"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    <material name="target_red" rgba="0.9 0.15 0.15 1" shininess="0.8" specular="0.4"/>
+  </asset>
+
+  <worldbody>
+    <camera name="cam_main" pos="1.5 -17 6" euler="1.5708 0 0" fovy="45"/>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane" euler="0 0 0"
+          condim="3"
+          friction="1.0 0.04 0.004"
+          solref="0.002 1.0"
+          solimp="0.9 0.95 0.005 0.5 2"/>
+
+    <!-- <body name="target" pos="2.03 6.211 3.037" mocap="true">
+      <geom name="target_sphere" type="sphere" size="0.1"
+            material="target_red" contype="0" conaffinity="0"/>
+      <site name="target_site" pos="0 0 0" size="0.005" type="sphere" rgba="0 0 0 0"/>
+    </body> -->
+
+    <body name="FL_box" pos="2.8 2.2 1.7">
+      <geom name="FL_box_geom" type="box" size="1.0 1.0 0.5"
+            rgba="0.2 0.6 1.0 0.7"  mass="1.0"
+            contype="1" conaffinity="1"
+            friction="0.8 0.1 0.01"/>
+    </body>
+
+    <body name="FR_box" pos="2.5 -2.2 1.35">
+      <geom name="FR_box_geom" type="box" size="1.0 1.0 0.15"
+            rgba="0.2 0.6 1.0 0.7"  mass="1.0"
+            contype="1" conaffinity="1"
+            friction="0.8 0.1 0.01"/>
+    </body>
+
+    <body name="RL_box" pos="-2.9 2.2 1.45">
+      <geom name="RL_box_geom" type="box" size="1.0 1.0 0.25"
+            rgba="0.2 0.6 1.0 0.7"  mass="1.0"
+            contype="1" conaffinity="1"
+            friction="0.8 0.1 0.01"/>
+    </body>
+
+    <body name="RR_box" pos="-2.6 -2.2 1.6">
+      <geom name="RR_box_geom" type="box" size="1.0 1.0 0.4"
+            rgba="0.2 0.6 1.0 0.7"  mass="1.0"
+            contype="1" conaffinity="1"
+            friction="0.8 0.1 0.01"/>
+    </body>
+
+  </worldbody>
+</mujoco>

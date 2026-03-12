@@ -1,0 +1,1 @@
+/home/jin/harco/ecvt2_ws/build/ecvt2_controller/ament_cmake_environment_hooks/local_setup.sh

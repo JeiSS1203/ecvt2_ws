@@ -1,0 +1,3101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="simple_model_for_urdf.SLDASM">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.159789321065817 -0.00325874078575712 0.0164823311093963"
+        rpy="0 0 0" />
+      <mass
+        value="5233.5858073096" />
+      <inertia
+        ixx="922.83227588664"
+        ixy="0.00442898236247392"
+        ixz="0.332311037731463"
+        iyy="979.828076421376"
+        iyz="0.295935657729714"
+        izz="1749.10791681459" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="FR1">
+    <inertial>
+      <origin
+        xyz="0.152686462572755 0.0133901096510269 0.0152396265573788"
+        rpy="0 0 0" />
+      <mass
+        value="195.80111686527" />
+      <inertia
+        ixx="8.9550019140874"
+        ixy="-0.249959048951572"
+        ixz="-0.232017782828255"
+        iyy="6.05011153631521"
+        iyz="-0.178320706467393"
+        izz="9.30186157065792" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRJ1"
+    type="revolute">
+    <origin
+      xyz="-1.28319505441055 0.910499830360735 -0.180696809544843"
+      rpy="0 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="FR1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.855385688"
+      upper="0.504225516"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="FR2">
+    <inertial>
+      <origin
+        xyz="0.721597940461164 0.0715237778894795 0.00726563239533451"
+        rpy="0 0 0" />
+      <mass
+        value="369.433498958061" />
+      <inertia
+        ixx="4.72980371893781"
+        ixy="-0.527111827394125"
+        ixz="0.389656702861381"
+        iyy="39.8229530183077"
+        iyz="-0.00219033922427251"
+        izz="38.9659994429663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRJ2"
+    type="revolute">
+    <origin
+      xyz="0.337000000001364 0 -0.0850000000000007"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="FR1" />
+    <child
+      link="FR2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.01857394"
+      upper="0.992394006"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="FR3">
+    <inertial>
+      <origin
+        xyz="0.00884450082498267 -0.4038492830274 0.0202591920294278"
+        rpy="0 0 0" />
+      <mass
+        value="206.927499974538" />
+      <inertia
+        ixx="16.5407632570303"
+        ixy="-0.237455532714299"
+        ixz="-2.08101188256884E-09"
+        iyy="1.89460606906682"
+        iyz="-0.224713275975804"
+        izz="15.346345414616" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRJ3"
+    type="revolute">
+    <origin
+      xyz="1.4 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="FR2" />
+    <child
+      link="FR3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.975289783"
+      upper="0.982445632"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="FRD4">
+    <inertial>
+      <origin
+        xyz="3.37244010495397E-09 -1.60238791124812E-08 -0.250941161143142"
+        rpy="0 0 0" />
+      <mass
+        value="0.0484065203426577" />
+      <inertia
+        ixx="3.11595408077795E-05"
+        ixy="5.84551250820309E-12"
+        ixz="6.33739097132963E-12"
+        iyy="3.11595282819069E-05"
+        iyz="9.95022076887613E-12"
+        izz="5.843431168602E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRDJ4"
+    type="revolute">
+    <origin
+      xyz="0 -1.00000000000014 0"
+      rpy="0 0 0" />
+    <parent
+      link="FR3" />
+    <child
+      link="FRD4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FRJ2"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="FR4">
+    <inertial>
+      <origin
+        xyz="0.00633119902047907 -0.161878312814177 -0.0100516528390618"
+        rpy="0 0 0" />
+      <mass
+        value="187.864815784747" />
+      <inertia
+        ixx="5.05383682373786"
+        ixy="-0.1297326505946"
+        ixz="0.00849924527133936"
+        iyy="8.23516850074924"
+        iyz="0.0299203686172326"
+        izz="4.00703028913274" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRJ4"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="FRD4" />
+    <child
+      link="FR4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FRJ3"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="FR5">
+    <inertial>
+      <origin
+        xyz="-8.15523204522606E-10 -0.41728441010573 -0.161549721989125"
+        rpy="0 0 0" />
+      <mass
+        value="326.115437835974" />
+      <inertia
+        ixx="14.1813876510716"
+        ixy="-6.2706400779276E-05"
+        ixz="-4.14127323111711E-09"
+        iyy="8.78135622437334"
+        iyz="-0.237891556920386"
+        izz="17.0328532648538" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FR5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRJ5"
+    type="revolute">
+    <origin
+      xyz="0.0150000000000987 -0.287999999999994 0"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="FR4" />
+    <child
+      link="FR5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="FRW">
+    <inertial>
+      <origin
+        xyz="0 0 2.849162731966E-06"
+        rpy="0 0 0" />
+      <mass
+        value="475.923535529741" />
+      <inertia
+        ixx="72.7913659579209"
+        ixy="-5.35469744708037E-15"
+        ixz="-8.35047209274152E-14"
+        iyy="72.7913659579209"
+        iyz="6.44162292871886E-14"
+        izz="129.608494595731" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRW.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRJW"
+    type="continuous">
+    <origin
+      xyz="0 -0.665060000000002 -0.170999999999798"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="FR5" />
+    <child
+      link="FRW" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="3" />
+  </joint>
+  <link
+    name="FRD12">
+    <inertial>
+      <origin
+        xyz="-0.0386746768091557 0.0386746768091215 0.0108410042624965"
+        rpy="0 0 0" />
+      <mass
+        value="45.6419136301799" />
+      <inertia
+        ixx="0.900744401608996"
+        ixy="-0.0647672905166522"
+        ixz="0.0232789906177389"
+        iyy="0.900744401606924"
+        iyz="-0.0232789906173695"
+        izz="0.409620752958472" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRDJ12"
+    type="revolute">
+    <origin
+      xyz="1.39999999999999 0 0"
+      rpy="0 0 -1.5707963267949" />
+    <parent
+      link="FR2" />
+    <child
+      link="FRD12" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FRJ2"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="FRD02">
+    <inertial>
+      <origin
+        xyz="-9.74909042383842E-12 -1.99307237380708E-12 0.246231808128307"
+        rpy="0 0 0" />
+      <mass
+        value="0.00902947914144023" />
+      <inertia
+        ixx="2.13279094226574E-06"
+        ixy="5.33585083302039E-21"
+        ixz="-5.44773266438192E-16"
+        iyy="2.13279094226569E-06"
+        iyz="-1.10491410508051E-16"
+        izz="4.17724891907246E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD02.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD02.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRDJ02"
+    type="revolute">
+    <origin
+      xyz="0 0.210000000000008 0"
+      rpy="0 0 0" />
+    <parent
+      link="FRD12" />
+    <child
+      link="FRD02" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FRJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="FRD2">
+    <inertial>
+      <origin
+        xyz="0.511713919410215 0.0219455809875839 -0.000357629054547504"
+        rpy="0 0 0" />
+      <mass
+        value="48.8026848925808" />
+      <inertia
+        ixx="0.470038432115318"
+        ixy="1.57175096214947E-15"
+        ixz="-4.34527419317037E-16"
+        iyy="3.43904251824678"
+        iyz="9.57806815478147E-15"
+        izz="3.02264101226901" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRDJ2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="FRD02" />
+    <child
+      link="FRD2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FRJ3"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="FRD1">
+    <inertial>
+      <origin
+        xyz="0.697878663223252 -1.67608982248879E-13 0.000844984157025719"
+        rpy="0 0 0" />
+      <mass
+        value="50.3137878010324" />
+      <inertia
+        ixx="0.0331656803161507"
+        ixy="1.16167029058195E-07"
+        ixz="-4.03263262328181E-16"
+        iyy="7.962455581849"
+        iyz="2.56644183575773E-15"
+        izz="7.99148945338519" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FRD1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FRDJ1"
+    type="revolute">
+    <origin
+      xyz="0.337000000001383 0 0.124999999999967"
+      rpy="1.57079632679489 0 0" />
+    <parent
+      link="FR1" />
+    <child
+      link="FRD1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FRJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="FL1">
+    <inertial>
+      <origin
+        xyz="0.152686462572633 0.0133901096510273 0.0152396265586009"
+        rpy="0 0 0" />
+      <mass
+        value="195.80111686527" />
+      <inertia
+        ixx="8.95500191409112"
+        ixy="-0.249959048950135"
+        ixz="-0.232017782831035"
+        iyy="6.05011153631521"
+        iyz="-0.178320706469394"
+        izz="9.30186157065421" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLJ1"
+    type="revolute">
+    <origin
+      xyz="-1.28319505441055 -0.914500169639269 -0.180696809544843"
+      rpy="0 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="FL1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.504225516"
+      upper="0.855385688"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="FL2">
+    <inertial>
+      <origin
+        xyz="0.721597940461165 0.0715237778894798 0.00726563239533473"
+        rpy="0 0 0" />
+      <mass
+        value="369.433498958061" />
+      <inertia
+        ixx="4.72980371893782"
+        ixy="-0.527111827394127"
+        ixz="0.38965670286138"
+        iyy="39.8229530183076"
+        iyz="-0.00219033922427252"
+        izz="38.9659994429663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLJ2"
+    type="revolute">
+    <origin
+      xyz="0.337000000002041 0 -0.0849999999973033"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="FL1" />
+    <child
+      link="FL2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.01857394"
+      upper="0.992394006"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="FL3">
+    <inertial>
+      <origin
+        xyz="0.403849283027509 0.00884450082497601 0.0202591920293842"
+        rpy="0 0 0" />
+      <mass
+        value="206.927499974577" />
+      <inertia
+        ixx="1.89460606906688"
+        ixy="0.237455532714261"
+        ixz="0.224713275975807"
+        iyy="16.5407632570303"
+        iyz="-2.0810167270656E-09"
+        izz="15.3463454146161" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLJ3"
+    type="revolute">
+    <origin
+      xyz="1.4 0 0"
+      rpy="0 0 -1.5707963267949" />
+    <parent
+      link="FL2" />
+    <child
+      link="FL3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.975289783"
+      upper="0.982445632"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="FLD4">
+    <inertial>
+      <origin
+        xyz="3.23498738907801E-09 -1.6052328133398E-08 -0.250941161143142"
+        rpy="0 0 0" />
+      <mass
+        value="0.0484065203426613" />
+      <inertia
+        ixx="3.11595409070479E-05"
+        ixy="5.73731104007265E-12"
+        ixz="6.42243073948048E-12"
+        iyy="3.11595281826415E-05"
+        iyz="9.89554468733294E-12"
+        izz="5.8434311686023E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLDJ4"
+    type="revolute">
+    <origin
+      xyz="1 0 0"
+      rpy="0 0 1.5707963267949" />
+    <parent
+      link="FL3" />
+    <child
+      link="FLD4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FLJ2"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="FL4">
+    <inertial>
+      <origin
+        xyz="0.00633119903826529 -0.161878312808093 -0.0100516528307369"
+        rpy="0 0 0" />
+      <mass
+        value="187.864815771025" />
+      <inertia
+        ixx="5.05383682352257"
+        ixy="-0.129732650500879"
+        ixz="0.00849924561792191"
+        iyy="8.23516849998477"
+        iyz="0.0299203686712987"
+        izz="4.00703028852517" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLJ4"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="FLD4" />
+    <child
+      link="FL4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FLJ3"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="FL5">
+    <inertial>
+      <origin
+        xyz="8.15524092701025E-10 0.41728441010573 -0.161549721989125"
+        rpy="0 0 0" />
+      <mass
+        value="326.115437835974" />
+      <inertia
+        ixx="14.1813876510716"
+        ixy="-6.27064008032897E-05"
+        ixz="4.14127669302889E-09"
+        iyy="8.78135622437335"
+        iyz="0.237891556920385"
+        izz="17.0328532648538" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FL5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLJ5"
+    type="revolute">
+    <origin
+      xyz="0.0149999999999997 -0.287999999999998 0"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="FL4" />
+    <child
+      link="FL5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="FLW">
+    <inertial>
+      <origin
+        xyz="0 0 -2.849162731966E-06"
+        rpy="0 0 0" />
+      <mass
+        value="475.923535529741" />
+      <inertia
+        ixx="72.7913659579209"
+        ixy="9.70575928615729E-15"
+        ixz="-9.35844904372917E-14"
+        iyy="72.7913659579209"
+        iyz="4.44230723953293E-14"
+        izz="129.608494595731" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLW.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLJW"
+    type="continuous">
+    <origin
+      xyz="0 0.665059999999999 -0.170999999999937"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="FL5" />
+    <child
+      link="FLW" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="3" />
+  </joint>
+  <link
+    name="FLD12">
+    <inertial>
+      <origin
+        xyz="0.0386746768091397 0.0386746768091427 0.0108410042625084"
+        rpy="0 0 0" />
+      <mass
+        value="45.64191363018" />
+      <inertia
+        ixx="0.900744401606928"
+        ixy="0.0647672905166525"
+        ixz="-0.0232789906173659"
+        iyy="0.900744401608999"
+        iyz="-0.0232789906177382"
+        izz="0.409620752958472" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLDJ12"
+    type="revolute">
+    <origin
+      xyz="1.4 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="FL2" />
+    <child
+      link="FLD12" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FLJ2"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="FLD02">
+    <inertial>
+      <origin
+        xyz="-1.98907557091843E-12 9.74437197598377E-12 0.246231808128307"
+        rpy="0 0 0" />
+      <mass
+        value="0.0090294791414402" />
+      <inertia
+        ixx="2.13279094226571E-06"
+        ixy="-1.27353408762809E-20"
+        ixz="-1.10494950772058E-16"
+        iyy="2.13279094226571E-06"
+        iyz="5.44767632015706E-16"
+        izz="4.17724891907245E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD02.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD02.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLDJ02"
+    type="revolute">
+    <origin
+      xyz="0.210000000000004 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="FLD12" />
+    <child
+      link="FLD02" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FLJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="FLD2">
+    <inertial>
+      <origin
+        xyz="0.0219455809875857 -0.511713919410217 -0.000357629054546837"
+        rpy="0 0 0" />
+      <mass
+        value="48.8026848925813" />
+      <inertia
+        ixx="3.43904251824678"
+        ixy="9.60338139113196E-15"
+        ixz="9.56673434084827E-15"
+        iyy="0.470038432115329"
+        iyz="2.78800533276291E-16"
+        izz="3.022641012269" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLDJ2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="FLD02" />
+    <child
+      link="FLD2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FLJ3"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="FLD1">
+    <inertial>
+      <origin
+        xyz="0.697878663223252 -1.54126711393587E-13 0.000844984157025497"
+        rpy="0 0 0" />
+      <mass
+        value="50.3137878010323" />
+      <inertia
+        ixx="0.0331656803161509"
+        ixy="1.16166875578424E-07"
+        ixz="-6.75648805342179E-16"
+        iyy="7.96245558184898"
+        iyz="2.56109388500149E-15"
+        izz="7.99148945338518" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/FLD1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FLDJ1"
+    type="revolute">
+    <origin
+      xyz="0.337000000000443 0 0.125000000002697"
+      rpy="1.57079632679489 0 0" />
+    <parent
+      link="FL1" />
+    <child
+      link="FLD1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="FLJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="RL1">
+    <inertial>
+      <origin
+        xyz="0.152686462572633 0.0133901096510266 0.0152396265586011"
+        rpy="0 0 0" />
+      <mass
+        value="195.80111686527" />
+      <inertia
+        ixx="8.95500191408741"
+        ixy="-0.249959048951576"
+        ixz="-0.232017782828263"
+        iyy="6.05011153631522"
+        iyz="-0.178320706467394"
+        izz="9.30186157065793" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLJ1"
+    type="revolute">
+    <origin
+      xyz="1.36680494558673 -0.914500169639266 -0.180696809544843"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RL1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.855385688"
+      upper="0.504225516"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="RL2">
+    <inertial>
+      <origin
+        xyz="-0.721597940461164 0.0715237778894793 -0.00726563239533395"
+        rpy="0 0 0" />
+      <mass
+        value="369.433498958061" />
+      <inertia
+        ixx="4.72980371893781"
+        ixy="0.527111827394118"
+        ixz="0.389656702861379"
+        iyy="39.8229530183077"
+        iyz="0.00219033922427238"
+        izz="38.9659994429663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLJ2"
+    type="revolute">
+    <origin
+      xyz="0.337000000002036 0 -0.0849999999973036"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="RL1" />
+    <child
+      link="RL2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.01857394"
+      upper="0.992394006"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="RL3">
+    <inertial>
+      <origin
+        xyz="-0.00884450082497468 -0.403849283027509 -0.0202591920293842"
+        rpy="0 0 0" />
+      <mass
+        value="206.927499974577" />
+      <inertia
+        ixx="16.5407632570303"
+        ixy="0.237455532714293"
+        ixz="-2.08101806111357E-09"
+        iyy="1.89460606906687"
+        iyz="0.224713275975808"
+        izz="15.3463454146161" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLJ3"
+    type="revolute">
+    <origin
+      xyz="-1.4 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RL2" />
+    <child
+      link="RL3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.975289783"
+      upper="0.982445632"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="RLD4">
+    <inertial>
+      <origin
+        xyz="1.49498626811351E-08 -6.68186461716402E-09 0.25094116114314"
+        rpy="0 0 0" />
+      <mass
+        value="0.0484065203426596" />
+      <inertia
+        ixx="3.11595312552719E-05"
+        ixy="7.91031554746863E-12"
+        ixz="1.1064538266992E-11"
+        iyy="3.11595378344159E-05"
+        iyz="4.09211572632276E-12"
+        izz="5.84343116860215E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLDJ4"
+    type="revolute">
+    <origin
+      xyz="0 -0.999999999999981 0"
+      rpy="0 0 0" />
+    <parent
+      link="RL3" />
+    <child
+      link="RLD4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RLJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="RL4">
+    <inertial>
+      <origin
+        xyz="-0.00633119903820356 -0.161878312810033 0.0100516528478075"
+        rpy="0 0 0" />
+      <mass
+        value="187.864815771099" />
+      <inertia
+        ixx="5.05383682360227"
+        ixy="0.129732650600941"
+        ixz="0.00849924495794114"
+        iyy="8.23516849999121"
+        iyz="-0.0299203686235615"
+        izz="4.00703028860806" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLJ4"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RLD4" />
+    <child
+      link="RL4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RLJ3"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="RL5">
+    <inertial>
+      <origin
+        xyz="-8.15522760433396E-10 -0.41728441010573 -0.161549721989124"
+        rpy="0 0 0" />
+      <mass
+        value="326.115437835974" />
+      <inertia
+        ixx="14.1813876510716"
+        ixy="-6.2706400795334E-05"
+        ixz="-4.14127679157596E-09"
+        iyy="8.78135622437334"
+        iyz="-0.237891556920377"
+        izz="17.0328532648538" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RL5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLJ5"
+    type="revolute">
+    <origin
+      xyz="-0.0150000000001089 -0.287999999999994 0"
+      rpy="1.5707963267949 0 3.14159265358942" />
+    <parent
+      link="RL4" />
+    <child
+      link="RL5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="RLW">
+    <inertial>
+      <origin
+        xyz="0 2.22044604925031E-16 -2.84916273174396E-06"
+        rpy="0 0 0" />
+      <mass
+        value="475.923535529741" />
+      <inertia
+        ixx="72.7913659579209"
+        ixy="-1.33948008862628E-14"
+        ixz="-7.0826223929254E-14"
+        iyy="72.7913659579209"
+        iyz="6.85772309588851E-14"
+        izz="129.608494595731" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLW.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLJW"
+    type="continuous">
+    <origin
+      xyz="0 -0.665060000000006 -0.171000000000086"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="RL5" />
+    <child
+      link="RLW" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="3" />
+  </joint>
+  <link
+    name="RLD12">
+    <inertial>
+      <origin
+        xyz="0.038674676809122 0.038674676809155 0.010841004262497"
+        rpy="0 0 0" />
+      <mass
+        value="45.64191363018" />
+      <inertia
+        ixx="0.900744401607915"
+        ixy="0.0647672905166531"
+        ixz="-0.0232789906175441"
+        iyy="0.900744401608012"
+        iyz="-0.0232789906175607"
+        izz="0.409620752958473" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLDJ12"
+    type="revolute">
+    <origin
+      xyz="-1.4 0 0"
+      rpy="-3.14159265358979 0 3.14159265358979" />
+    <parent
+      link="RL2" />
+    <child
+      link="RLD12" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RLJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="RLD02">
+    <inertial>
+      <origin
+        xyz="9.68825020208897E-12 -2.18947082686327E-12 0.246231808128308"
+        rpy="0 0 0" />
+      <mass
+        value="0.00902947914144031" />
+      <inertia
+        ixx="2.13279094226572E-06"
+        ixy="2.19179828662057E-20"
+        ixz="5.4327884070068E-16"
+        iyy="2.13279094226574E-06"
+        iyz="-1.17586596855459E-16"
+        izz="4.17724891907249E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD02.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD02.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLDJ02"
+    type="revolute">
+    <origin
+      xyz="0.210000000000006 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RLD12" />
+    <child
+      link="RLD02" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RLJ2"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="RLD2">
+    <inertial>
+      <origin
+        xyz="0.0219455809875808 -0.511713919410215 -0.000357629054546837"
+        rpy="0 0 0" />
+      <mass
+        value="48.8026848925807" />
+      <inertia
+        ixx="3.43904251824677"
+        ixy="-5.53678007550985E-16"
+        ixz="1.0696520416879E-14"
+        iyy="0.470038432115318"
+        iyz="2.6791436381524E-15"
+        izz="3.02264101226901" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLDJ2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RLD02" />
+    <child
+      link="RLD2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RLJ3"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="RLD1">
+    <inertial>
+      <origin
+        xyz="0.697878663223251 -1.40318312524812E-13 0.000844984157024387"
+        rpy="0 0 0" />
+      <mass
+        value="50.3137878010323" />
+      <inertia
+        ixx="0.0331656803161507"
+        ixy="1.16166718962863E-07"
+        ixz="1.0039514503991E-14"
+        iyy="7.962455581849"
+        iyz="2.63146635099735E-15"
+        izz="7.99148945338519" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RLD1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RLDJ1"
+    type="revolute">
+    <origin
+      xyz="0.337000000000339 0 0.125000000002732"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="RL1" />
+    <child
+      link="RLD1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RLJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="RR1">
+    <inertial>
+      <origin
+        xyz="0.152686462572633 0.0133901096510269 0.0152396265586009"
+        rpy="0 0 0" />
+      <mass
+        value="195.80111686527" />
+      <inertia
+        ixx="8.95500191408741"
+        ixy="-0.249959048951586"
+        ixz="-0.232017782828265"
+        iyy="6.05011153631523"
+        iyz="-0.178320706467396"
+        izz="9.30186157065792" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRJ1"
+    type="revolute">
+    <origin
+      xyz="1.36680494558673 0.91049983036073 -0.180696809544843"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RR1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.504225516"
+      upper="0.855385688"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="RR2">
+    <inertial>
+      <origin
+        xyz="0.721597945601419 -0.071523726029826 -0.0072656323953344"
+        rpy="0 0 0" />
+      <mass
+        value="369.433498958061" />
+      <inertia
+        ixx="4.72980364317326"
+        ixy="0.527109305326829"
+        ixz="-0.389656702703963"
+        iyy="39.8229530940722"
+        iyz="-0.00219036722804012"
+        izz="38.9659994429663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRJ2"
+    type="revolute">
+    <origin
+      xyz="0.337000000002021 0 -0.0849999999972327"
+      rpy="-1.57079632679482 0 0" />
+    <parent
+      link="RR1" />
+    <child
+      link="RR2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.01857394"
+      upper="0.992394006"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="RR3">
+    <inertial>
+      <origin
+        xyz="-0.0088445008249769 -0.403849283027509 -0.0202591920293843"
+        rpy="0 0 0" />
+      <mass
+        value="206.927499974577" />
+      <inertia
+        ixx="16.5407632570303"
+        ixy="0.237455532714291"
+        ixz="-2.08101868938175E-09"
+        iyy="1.89460606906687"
+        iyz="0.224713275975808"
+        izz="15.3463454146161" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRJ3"
+    type="revolute">
+    <origin
+      xyz="1.4 0 0"
+      rpy="0 0 -3.14159265358979" />
+    <parent
+      link="RR2" />
+    <child
+      link="RR3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.975289783"
+      upper="0.982445632"
+      effort="0"
+      velocity="0.35" />
+  </joint>
+  <link
+    name="RRD4">
+    <inertial>
+      <origin
+        xyz="1.49498586843322E-08 -6.68180444307609E-09 0.250941161143138"
+        rpy="0 0 0" />
+      <mass
+        value="0.0484065203426592" />
+      <inertia
+        ixx="3.11595312552719E-05"
+        ixy="7.91031591008517E-12"
+        ixz="1.10645384017622E-11"
+        iyy="3.11595378344154E-05"
+        iyz="4.09211546008414E-12"
+        izz="5.8434311686021E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.756862745098039 0.768627450980392 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRDJ4"
+    type="revolute">
+    <origin
+      xyz="0 -1.00000000000002 0"
+      rpy="0 0 0" />
+    <parent
+      link="RR3" />
+    <child
+      link="RRD4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RRJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="RR4">
+    <inertial>
+      <origin
+        xyz="-0.00633119905728741 -0.161878312803647 0.0100516528574056"
+        rpy="0 0 0" />
+      <mass
+        value="187.864815756199" />
+      <inertia
+        ixx="5.0538368233185"
+        ixy="0.129732650509437"
+        ixz="0.00849924462028241"
+        iyy="8.2351684991836"
+        iyz="-0.0299203685692856"
+        izz="4.00703028790605" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRJ4"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RRD4" />
+    <child
+      link="RR4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RRJ3"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="RR5">
+    <inertial>
+      <origin
+        xyz="8.15522760433396E-10 0.41728441010573 -0.161549721989125"
+        rpy="0 0 0" />
+      <mass
+        value="326.115437835974" />
+      <inertia
+        ixx="14.1813876510716"
+        ixy="-6.27064007910762E-05"
+        ixz="4.14127282162126E-09"
+        iyy="8.78135622437334"
+        iyz="0.237891556920377"
+        izz="17.0328532648538" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RR5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRJ5"
+    type="revolute">
+    <origin
+      xyz="-0.0149999999999997 -0.287999999999999 0"
+      rpy="1.5707963267949 0 -3.14159265358979" />
+    <parent
+      link="RR4" />
+    <child
+      link="RR5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="RRW">
+    <inertial>
+      <origin
+        xyz="0 0 2.84916273174396E-06"
+        rpy="0 0 0" />
+      <mass
+        value="475.923535529741" />
+      <inertia
+        ixx="72.7913659579209"
+        ixy="-9.35168737119352E-15"
+        ixz="9.759470317903E-14"
+        iyy="72.7913659579209"
+        iyz="1.85015547600837E-15"
+        izz="129.608494595731" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRW.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRW.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRJW"
+    type="continuous">
+    <origin
+      xyz="0 0.665059999999994 -0.171000000000029"
+      rpy="-1.5707963267949 0 -3.14159265358979" />
+    <parent
+      link="RR5" />
+    <child
+      link="RRW" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="3" />
+  </joint>
+  <link
+    name="RRD12">
+    <inertial>
+      <origin
+        xyz="0.038674676809292 0.0386746768085513 0.0108410042625015"
+        rpy="0 0 0" />
+      <mass
+        value="45.6419136301798" />
+      <inertia
+        ixx="0.900744401607959"
+        ixy="0.0647672905166527"
+        ixz="-0.0232789906175519"
+        iyy="0.90074440160796"
+        iyz="-0.023278990617552"
+        izz="0.40962075295847" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRDJ12"
+    type="revolute">
+    <origin
+      xyz="1.4 0 0"
+      rpy="3.14159265358972 0 0" />
+    <parent
+      link="RR2" />
+    <child
+      link="RRD12" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RRJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="RRD02">
+    <inertial>
+      <origin
+        xyz="9.68203295315107E-12 -2.1520563109334E-12 0.246231808128309"
+        rpy="0 0 0" />
+      <mass
+        value="0.00902947914144016" />
+      <inertia
+        ixx="2.13279094226571E-06"
+        ixy="9.73251784489388E-21"
+        ixz="5.43281350597403E-16"
+        iyy="2.1327909422657E-06"
+        iyz="-1.17595805254754E-16"
+        izz="4.17724891907244E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD02.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD02.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRDJ02"
+    type="revolute">
+    <origin
+      xyz="0.210000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RRD12" />
+    <child
+      link="RRD02" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RRJ2"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="RRD2">
+    <inertial>
+      <origin
+        xyz="0.021945580987583 -0.511713919410215 -0.000357629054547504"
+        rpy="0 0 0" />
+      <mass
+        value="48.8026848925813" />
+      <inertia
+        ixx="3.43904251824679"
+        ixy="5.41640221460322E-15"
+        ixz="1.08446717733096E-14"
+        iyy="0.470038432115326"
+        iyz="1.55591887549403E-15"
+        izz="3.02264101226902" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRDJ2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RRD02" />
+    <child
+      link="RRD2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RRJ3"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+  <link
+    name="RRD1">
+    <inertial>
+      <origin
+        xyz="0.69787866322325 -5.01551586373772E-08 0.000844984157025608"
+        rpy="0 0 0" />
+      <mass
+        value="50.3137878010323" />
+      <inertia
+        ixx="0.0331656803162084"
+        ixy="6.86027499448236E-07"
+        ixz="-1.78317032601624E-17"
+        iyy="7.96245558184894"
+        iyz="4.32737479363923E-16"
+        izz="7.99148945338519" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/RRD1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RRDJ1"
+    type="revolute">
+    <origin
+      xyz="0.337000000000369 0 0.125000000002767"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="RR1" />
+    <child
+      link="RRD1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+    <mimic
+      joint="RRJ2"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="UP1">
+    <inertial>
+      <origin
+        xyz="-0.040075374956943 -0.0194464546507759 0.397556769885397"
+        rpy="0 0 0" />
+      <mass
+        value="1089.36308915561" />
+      <inertia
+        ixx="67.6513061578893"
+        ixy="0.000787620385694778"
+        ixz="17.0612223754315"
+        iyy="118.479924121331"
+        iyz="-0.00405410347473715"
+        izz="81.1792908324236" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ1"
+    type="continuous">
+    <origin
+      xyz="-0.370195054411909 -0.00200016963926852 0.345303190455213"
+      rpy="0 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="UP1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="UP2">
+    <inertial>
+      <origin
+        xyz="1.96227534393603 -0.0530702106917522 0.000513501612987154"
+        rpy="0 0 0" />
+      <mass
+        value="69.6789604825383" />
+      <inertia
+        ixx="0.652439617318437"
+        ixy="0.0680367157414575"
+        ixz="-2.3916737586643E-05"
+        iyy="59.1754248270674"
+        iyz="9.54076113619401E-05"
+        izz="59.4322381407244" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ2"
+    type="revolute">
+    <origin
+      xyz="-0.35 0.006485 1.402"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="UP1" />
+    <child
+      link="UP2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="1.05"
+      effort="0"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="UP3">
+    <inertial>
+      <origin
+        xyz="1.36179424392989 -0.033344052113333 -0.00020876131682814"
+        rpy="0 0 0" />
+      <mass
+        value="329.692051923496" />
+      <inertia
+        ixx="3.57129998443318"
+        ixy="0.429726947602866"
+        ixz="0.000640529654780952"
+        iyy="187.710878467417"
+        iyz="1.95950229973847E-08"
+        izz="186.602050284318" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ3"
+    type="revolute">
+    <origin
+      xyz="4 -0.0650000000000002 0.00192735026919154"
+      rpy="0 0 0" />
+    <parent
+      link="UP2" />
+    <child
+      link="UP3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.01"
+      upper="0"
+      effort="0"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="UP4">
+    <inertial>
+      <origin
+        xyz="0.000424178090018967 -0.00518709635526982 1.65538452919323"
+        rpy="0 0 0" />
+      <mass
+        value="195.721254726003" />
+      <inertia
+        ixx="106.033298755099"
+        ixy="7.97512493559237E-09"
+        ixz="-2.01616107708916E-09"
+        iyy="106.592792050442"
+        iyz="0.0221634887810824"
+        izz="1.36368093803689" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ4"
+    type="prismatic">
+    <origin
+      xyz="0.199999999999998 -0.0200000000000005 -0.000942350269189911"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="UP3" />
+    <child
+      link="UP4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="1.65"
+      effort="0"
+      velocity="0.5" />
+  </joint>
+  <link
+    name="UP5">
+    <inertial>
+      <origin
+        xyz="-0.0065204942786723 0.0924986974123172 0.00226760591283452"
+        rpy="0 0 0" />
+      <mass
+        value="13.9596633124947" />
+      <inertia
+        ixx="0.0456007064587492"
+        ixy="-0.000349046790785124"
+        ixz="0.000241802037076265"
+        iyy="0.0207497946363521"
+        iyz="1.25588612124982E-06"
+        izz="0.0484245720379488" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ5"
+    type="revolute">
+    <origin
+      xyz="-0.00226999999999946 -0.0658088570286148 3.158"
+      rpy="3.14159265358979 1.5707963267949 0" />
+    <parent
+      link="UP4" />
+    <child
+      link="UP5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="UP6">
+    <inertial>
+      <origin
+        xyz="-5.85809048839203E-11 0.17336720710831 2.66453525910038E-15"
+        rpy="0 0 0" />
+      <mass
+        value="71.3673205582859" />
+      <inertia
+        ixx="0.743252381753498"
+        ixy="-3.33146858874644E-10"
+        ixz="1.66456223986588E-14"
+        iyy="0.377291141871478"
+        iyz="4.9107056095941E-15"
+        izz="0.716572471046431" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/UP6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="UPJ6"
+    type="revolute">
+    <origin
+      xyz="0 0.160000000000002 -0.00227000000000289"
+      rpy="0 -1.5707963267949 0" />
+    <parent
+      link="UP5" />
+    <child
+      link="UP6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="0"
+      velocity="1" />
+  </joint>
+  <link
+    name="TOOL1">
+    <inertial>
+      <origin
+        xyz="-0.22834569487616 0.001025336586052 -0.336559356075617"
+        rpy="0 0 0" />
+      <mass
+        value="467.870425947015" />
+      <inertia
+        ixx="11.2705562342386"
+        ixy="-0.118019197279568"
+        ixz="-0.450536238886994"
+        iyy="8.46982559174913"
+        iyz="0.000245195720043517"
+        izz="7.00603021512078" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/TOOL1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_model_for_urdf.SLDASM/meshes/TOOL1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="TOOLJ1"
+    type="revolute">
+    <origin
+      xyz="0 0.342999999999996 0"
+      rpy="1.5707963267949 1.5707963267949 0" />
+    <parent
+      link="UP6" />
+    <child
+      link="TOOL1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

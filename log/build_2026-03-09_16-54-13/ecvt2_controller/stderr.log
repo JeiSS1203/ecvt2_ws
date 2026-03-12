@@ -1,0 +1,18 @@
+In file included from [01m[K/opt/openrobots/include/hpp/fcl/config.hh:1[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/serialization/eigen.hpp:20[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/serialization/fwd.hpp:11[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/multibody/model.hpp:17[m[K,
+                 from [01m[K/opt/openrobots/include/pinocchio/parsers/urdf.hpp:9[m[K,
+                 from [01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/live_upper_dynamics_node.cpp:5[m[K:
+[01m[K/opt/openrobots/include/hpp/fcl/coal.hpp:12:99:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS[m[K’
+   12 |     "Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS"[01;36m[K)[m[K
+      |                                                                                                   [01;36m[K^[m[K
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/live_upper_dynamics_node.cpp:[m[K In member function ‘[01m[Kvoid LiveUpperDynamicsNode::jointStateCallback(sensor_msgs::msg::JointState_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/live_upper_dynamics_node.cpp:304:70:[m[K [01;31m[Kerror: [m[K‘[01m[Kqdd_full[m[K’ was not declared in this scope
+  304 |     Eigen::VectorXd tau_rnea = pinocchio::rnea(model_, *data_, q, v, [01;31m[Kqdd_full[m[K);
+      |                                                                      [01;31m[K^~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/live_upper_dynamics_node.dir/build.make:76: CMakeFiles/live_upper_dynamics_node.dir/src/live_upper_dynamics_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:448: CMakeFiles/live_upper_dynamics_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

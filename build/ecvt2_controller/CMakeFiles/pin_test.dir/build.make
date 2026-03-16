@@ -146,9 +146,6 @@ pin_test: /opt/ros/humble/lib/libstatistics_msgs__rosidl_typesupport_c.so
 pin_test: /opt/ros/humble/lib/libstatistics_msgs__rosidl_generator_c.so
 pin_test: /opt/ros/humble/lib/libtracetools.so
 pin_test: /opt/ros/humble/lib/libament_index_cpp.so
-pin_test: /opt/openrobots/lib/libpinocchio_default.so
-pin_test: /opt/openrobots/lib/libpinocchio_parsers.so
-pin_test: /opt/openrobots/lib/libpinocchio_casadi.so
 pin_test: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 pin_test: /opt/ros/humble/lib/libgeometry_msgs__rosidl_typesupport_fastrtps_c.so
 pin_test: /opt/ros/humble/lib/libstd_msgs__rosidl_typesupport_fastrtps_c.so

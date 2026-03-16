@@ -158,6 +158,25 @@ install(TARGETS
 )
 # ====================================================
 
+# ================vp_sto_global_planner_node===============
+add_executable(vp_sto_global_planner_node
+  src/vp_sto_global_planner_node.cpp
+)
+ament_target_dependencies(vp_sto_global_planner_node
+  rclcpp
+  sensor_msgs
+  trajectory_msgs
+  std_msgs
+)
+target_link_libraries(vp_sto_global_planner_node
+  Eigen3::Eigen
+  pinocchio::pinocchio
+)
+install(TARGETS
+  vp_sto_global_planner_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # ================= install ====================
 install(DIRECTORY include/ DESTINATION include)
 install(TARGETS

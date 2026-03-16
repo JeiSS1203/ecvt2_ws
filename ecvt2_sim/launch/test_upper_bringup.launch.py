@@ -4,7 +4,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     upper_node = Node(
         package='ecvt2_sim',
-        executable='upper_node',
+        executable='test_upper_node',
         name='sim_ecvt_upper_node',
         output='screen'
     )

@@ -30,6 +30,7 @@ setup(
         'console_scripts': [
             'robot_node = ecvt2_sim.robot_node:main',
             'upper_node = ecvt2_sim.upper_node:main',
+            'test_upper_node = ecvt2_sim.test_upper_node:main',
             'test_robot_node = ecvt2_sim.test_robot_node:main',
             'sin_velocity_publisher = ecvt2_sim.sin_velocity_publisher:main',
         ],

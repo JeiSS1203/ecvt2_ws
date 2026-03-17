@@ -3,7 +3,7 @@
 
 import os
 import threading
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 
 import numpy as np
 import mujoco
@@ -34,6 +34,8 @@ class UnifiedUpperNode(Node):
 
         # -------- parameters --------
         self.declare_parameter('trajectory_topic', '/vp_sto_global_planner_node/actuated_reference')
+        self.declare_parameter('preview_trajectory_topic', '/vp_sto_global_planner_node/full_reference_preview')
+
         self.declare_parameter('traj_tracking_enabled', True)
         self.declare_parameter('traj_hold_last_point', True)
         self.declare_parameter('traj_use_position_feedback', True)
@@ -42,7 +44,15 @@ class UnifiedUpperNode(Node):
         self.declare_parameter('traj_acceleration_ff_scale', 0.0)
         self.declare_parameter('traj_override_velocity_cmd', True)
 
+        self.declare_parameter('trajectory_viz_enabled', True)
+        self.declare_parameter('trajectory_viz_body_name', 'UP5')
+        self.declare_parameter('planned_line_width', 0.004)
+        self.declare_parameter('actual_line_width', 0.003)
+        self.declare_parameter('max_actual_path_points', 400)
+
         self.trajectory_topic = self.get_parameter('trajectory_topic').get_parameter_value().string_value
+        self.preview_trajectory_topic = self.get_parameter('preview_trajectory_topic').get_parameter_value().string_value
+
         self.traj_tracking_enabled = self.get_parameter('traj_tracking_enabled').get_parameter_value().bool_value
         self.traj_hold_last_point = self.get_parameter('traj_hold_last_point').get_parameter_value().bool_value
         self.traj_use_position_feedback = self.get_parameter('traj_use_position_feedback').get_parameter_value().bool_value
@@ -50,6 +60,12 @@ class UnifiedUpperNode(Node):
         self.traj_velocity_ff_scale = self.get_parameter('traj_velocity_ff_scale').get_parameter_value().double_value
         self.traj_acceleration_ff_scale = self.get_parameter('traj_acceleration_ff_scale').get_parameter_value().double_value
         self.traj_override_velocity_cmd = self.get_parameter('traj_override_velocity_cmd').get_parameter_value().bool_value
+
+        self.trajectory_viz_enabled = self.get_parameter('trajectory_viz_enabled').get_parameter_value().bool_value
+        self.trajectory_viz_body_name = self.get_parameter('trajectory_viz_body_name').get_parameter_value().string_value
+        self.planned_line_width = self.get_parameter('planned_line_width').get_parameter_value().double_value
+        self.actual_line_width = self.get_parameter('actual_line_width').get_parameter_value().double_value
+        self.max_actual_path_points = self.get_parameter('max_actual_path_points').get_parameter_value().integer_value
 
         # -------- state for external velocity commands --------
         self.create_subscription(JointState, '/hanyang/velocity_cmd', self.velocity_callback, 10)
@@ -59,6 +75,13 @@ class UnifiedUpperNode(Node):
         self.active_traj: Optional[JointTrajectory] = None
         self.active_traj_start_time = None
         self.traj_is_active = False
+
+        # -------- state for trajectory visualization --------
+        self.create_subscription(JointTrajectory, self.preview_trajectory_topic, self.preview_trajectory_callback, 10)
+        self.preview_traj: Optional[JointTrajectory] = None
+        self.preview_traj_dirty = False
+        self.planned_path_points: List[np.ndarray] = []
+        self.actual_path_points: List[np.ndarray] = []
 
         # optional debug
         self.last_q_ref = None
@@ -97,7 +120,7 @@ class UnifiedUpperNode(Node):
         self.ctrl_array[:n_ctrl] = msg.velocity[:n_ctrl]
 
     # ------------------------------------------------------------------
-    # Planner trajectory callback
+    # Planner trajectory callback (tracking)
     # ------------------------------------------------------------------
     def trajectory_callback(self, msg: JointTrajectory):
         if not self.traj_tracking_enabled:
@@ -120,9 +143,29 @@ class UnifiedUpperNode(Node):
         self.active_traj_start_time = self.get_clock().now()
         self.traj_is_active = True
 
+        # 새 trajectory 시작 시 actual trajectory도 다시 그림
+        self.actual_path_points = []
+
         t_last = self._point_time_sec(msg.points[-1])
         self.get_logger().info(
             f"Received actuated reference trajectory: {len(msg.points)} points, duration={t_last:.3f}s"
+        )
+
+    # ------------------------------------------------------------------
+    # Preview trajectory callback (visualization)
+    # ------------------------------------------------------------------
+    def preview_trajectory_callback(self, msg: JointTrajectory):
+        if not self.trajectory_viz_enabled:
+            return
+
+        if len(msg.points) == 0:
+            self.get_logger().warn("Received empty preview JointTrajectory")
+            return
+
+        self.preview_traj = msg
+        self.preview_traj_dirty = True
+        self.get_logger().info(
+            f"Received preview trajectory for visualization: {len(msg.points)} points"
         )
 
     # ------------------------------------------------------------------
@@ -165,7 +208,6 @@ class UnifiedUpperNode(Node):
 
     # ------------------------------------------------------------------
     # Cubic Hermite interpolation between two trajectory points
-    # This is closer to a smooth spline playback than plain linear interpolation.
     # ------------------------------------------------------------------
     def _interpolate_segment(
         self,
@@ -183,7 +225,6 @@ class UnifiedUpperNode(Node):
         q0 = self._safe_array(p0.positions, n, fill=0.0)
         q1 = self._safe_array(p1.positions, n, fill=0.0)
 
-        # If velocities are not provided, approximate from neighboring points.
         if len(p0.velocities) == n and len(p1.velocities) == n:
             v0 = np.array(p0.velocities, dtype=float)
             v1 = np.array(p1.velocities, dtype=float)
@@ -192,7 +233,6 @@ class UnifiedUpperNode(Node):
             v0 = slope.copy()
             v1 = slope.copy()
 
-        # Cubic Hermite basis
         h00 = 2.0 * tau**3 - 3.0 * tau**2 + 1.0
         h10 = tau**3 - 2.0 * tau**2 + tau
         h01 = -2.0 * tau**3 + 3.0 * tau**2
@@ -200,7 +240,6 @@ class UnifiedUpperNode(Node):
 
         q = h00 * q0 + h10 * dt * v0 + h01 * q1 + h11 * dt * v1
 
-        # derivative wrt tau, then /dt
         dh00 = 6.0 * tau**2 - 6.0 * tau
         dh10 = 3.0 * tau**2 - 4.0 * tau + 1.0
         dh01 = -6.0 * tau**2 + 6.0 * tau
@@ -208,7 +247,6 @@ class UnifiedUpperNode(Node):
 
         qd = (dh00 * q0 + dh10 * dt * v0 + dh01 * q1 + dh11 * dt * v1) / dt
 
-        # second derivative
         d2h00 = 12.0 * tau - 6.0
         d2h10 = 6.0 * tau - 4.0
         d2h01 = -12.0 * tau + 6.0
@@ -258,8 +296,6 @@ class UnifiedUpperNode(Node):
 
     # ------------------------------------------------------------------
     # Build velocity reference from planner trajectory
-    # q_d(t), qd_d(t), qdd_d(t) are sampled from the global planner output.
-    # Then we form a tracking reference for the lower-level torque loop.
     # ------------------------------------------------------------------
     def _compute_trajectory_velocity_command(self) -> Optional[np.ndarray]:
         if not self.traj_tracking_enabled:
@@ -277,16 +313,11 @@ class UnifiedUpperNode(Node):
         q_ref, qd_ref, qdd_ref = sampled
         q_meas, qd_meas = self._read_torque_joint_state()
 
-        # Reference tracking law:
-        # v_des = qd_ref + Kp_traj * (q_ref - q_meas)
-        # This lets the existing torque loop keep doing the low-level work.
         v_des = self.traj_velocity_ff_scale * qd_ref
 
         if self.traj_use_position_feedback:
             v_des = v_des + self.traj_position_kp * (q_ref - q_meas)
 
-        # Optional small accel feed-forward can be introduced here if desired.
-        # For now it is mapped softly into velocity reference.
         if abs(self.traj_acceleration_ff_scale) > 0.0:
             v_des = v_des + self.traj_acceleration_ff_scale * qdd_ref
 
@@ -296,6 +327,130 @@ class UnifiedUpperNode(Node):
         self.last_v_des = v_des
 
         return v_des
+
+    # ------------------------------------------------------------------
+    # Trajectory visualization helpers
+    # ------------------------------------------------------------------
+    def _extract_world_point_from_data(self, data) -> Optional[np.ndarray]:
+        try:
+            p = np.array(data.body(self.trajectory_viz_body_name).xpos[:3], dtype=float)
+            if not np.all(np.isfinite(p)):
+                return None
+            return p
+        except Exception as e:
+            self.get_logger().warn(
+                f"Failed to get body position for '{self.trajectory_viz_body_name}': {e}"
+            )
+            return None
+
+    def _set_joint_position_in_data(self, data, joint_name: str, qval: float):
+        jid = mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_JOINT, joint_name)
+        if jid == -1:
+            return
+        qadr = int(self.model.jnt_qposadr[jid])
+        data.qpos[qadr] = float(qval)
+
+    def build_planned_path_points(self):
+        if not self.trajectory_viz_enabled:
+            return
+
+        if self.preview_traj is None or len(self.preview_traj.points) == 0:
+            self.planned_path_points = []
+            self.preview_traj_dirty = False
+            return
+
+        tmp = mujoco.MjData(self.model)
+        tmp.qpos[:] = self.data.qpos.copy()
+        tmp.qvel[:] = 0.0
+
+        joint_names = list(self.preview_traj.joint_names)
+        points_world: List[np.ndarray] = []
+
+        for pt in self.preview_traj.points:
+            tmp.qpos[:] = self.data.qpos.copy()
+            tmp.qvel[:] = 0.0
+
+            for jname, qval in zip(joint_names, pt.positions):
+                self._set_joint_position_in_data(tmp, jname, qval)
+
+            mujoco.mj_forward(self.model, tmp)
+            p = self._extract_world_point_from_data(tmp)
+            if p is not None and np.all(np.isfinite(p)):
+                points_world.append(p)
+
+        self.planned_path_points = points_world
+        self.preview_traj_dirty = False
+        self.get_logger().info(
+            f"Built planned path with {len(self.planned_path_points)} world points for body '{self.trajectory_viz_body_name}'"
+        )
+
+    def update_actual_path_points(self):
+        if not self.trajectory_viz_enabled:
+            return
+
+        p = self._extract_world_point_from_data(self.data)
+        if p is None or not np.all(np.isfinite(p)):
+            return
+
+        self.actual_path_points.append(p)
+        if len(self.actual_path_points) > self.max_actual_path_points:
+            self.actual_path_points = self.actual_path_points[-self.max_actual_path_points:]
+
+    def _draw_polyline(self, viewer, points: List[np.ndarray], rgba: np.ndarray, width: float, geom_start_index: int) -> int:
+        g = geom_start_index
+        if len(points) < 2:
+            return g
+
+        maxgeom = viewer.user_scn.maxgeom
+        for i in range(len(points) - 1):
+            if g >= maxgeom:
+                break
+
+            p0 = np.asarray(points[i], dtype=float)
+            p1 = np.asarray(points[i + 1], dtype=float)
+
+            if not (np.all(np.isfinite(p0)) and np.all(np.isfinite(p1))):
+                continue
+
+            mujoco.mjv_connector(
+                viewer.user_scn.geoms[g],
+                mujoco.mjtGeom.mjGEOM_CAPSULE,
+                float(width),
+                p0,
+                p1
+            )
+            viewer.user_scn.geoms[g].rgba[:] = rgba
+            g += 1
+
+        return g
+
+    def draw_trajectory_overlay(self, viewer):
+        if not self.trajectory_viz_enabled:
+            return
+
+        with viewer.lock():
+            viewer.user_scn.ngeom = 0
+            g = 0
+
+            # planned path: blue line
+            g = self._draw_polyline(
+                viewer,
+                self.planned_path_points,
+                np.array([0.1, 0.45, 1.0, 0.95], dtype=float),
+                self.planned_line_width,
+                g
+            )
+
+            # actual path: red line
+            g = self._draw_polyline(
+                viewer,
+                self.actual_path_points,
+                np.array([1.0, 0.1, 0.1, 0.95], dtype=float),
+                self.actual_line_width,
+                g
+            )
+
+            viewer.user_scn.ngeom = g
 
     # ------------------------------------------------------------------
     # Sensor publication
@@ -446,7 +601,6 @@ def main():
 
     threading.Thread(target=ros_spin, daemon=True).start()
 
-    # Wait until ROS node is ready
     while node_holder["node"] is None:
         pass
 
@@ -474,22 +628,18 @@ def main():
 
             mujoco.mj_forward(m, d)
 
-            # Gravity / bias feedforward
+            # 새 preview trajectory가 들어오면 planned path 재계산
+            if ros_node.preview_traj_dirty:
+                ros_node.build_planned_path_points()
+
             tau_ff = d.qfrc_bias[dof_ids].copy()
 
-            # ----------------------------------------------------------
-            # High-level reference source selection
-            # Priority:
-            # 1) Active planner trajectory tracking
-            # 2) External /hanyang/velocity_cmd
-            # ----------------------------------------------------------
             v_des = ctrl_array[:n_torque].copy()
 
             traj_v_des = ros_node._compute_trajectory_velocity_command()
             if traj_v_des is not None and ros_node.traj_override_velocity_cmd:
                 v_des = traj_v_des.copy()
 
-            # Existing low-level velocity-to-torque loop
             e = v_des - v_meas
             dedt_raw = (e - e_prev) / max(dt, 1e-9)
             dedt_filt = dedt_filt + alpha * (dedt_raw - dedt_filt)
@@ -518,6 +668,13 @@ def main():
             d.ctrl[:n_torque] = u_sat
 
             mujoco.mj_step(m, d)
+
+            # 실제 궤적 누적
+            ros_node.update_actual_path_points()
+
+            # MuJoCo overlay line draw
+            ros_node.draw_trajectory_overlay(viewer)
+
             viewer.sync()
 
 

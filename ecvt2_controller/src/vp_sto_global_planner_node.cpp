@@ -5,10 +5,6 @@
 #include <std_msgs/msg/float64_multi_array.hpp>
 
 #include <pinocchio/parsers/urdf.hpp>
-#include <pinocchio/algorithm/crba.hpp>
-#include <pinocchio/algorithm/rnea.hpp>
-#include <pinocchio/algorithm/compute-all-terms.hpp>
-#include <pinocchio/algorithm/kinematics.hpp>
 #include <pinocchio/algorithm/joint-configuration.hpp>
 
 #include <Eigen/Dense>
@@ -17,13 +13,12 @@
 #include <algorithm>
 #include <chrono>
 #include <cmath>
-#include <iomanip>
 #include <functional>
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <memory>
 #include <numeric>
-#include <optional>
 #include <random>
 #include <sstream>
 #include <stdexcept>
@@ -43,7 +38,6 @@ struct PlannerConfig
   int max_iterations{20};
   int elite_count{10};
   int cma_update_eig_every{5};
-  int passive_integration_substeps{4};
 
   double t_min{1.0};
   double t_max{40.0};
@@ -54,12 +48,9 @@ struct PlannerConfig
   double w_time{1.0};
   double w_smooth{1e-3};
   double w_terminal{1e4};
-  double w_passive{0.0};
   double w_via_regularization{1e-4};
 
   bool use_zero_boundary_slopes{true};
-  bool enable_pump_flow_constraint{false};
-  bool enable_passive_rollout{true};
   bool log_iteration{true};
 };
 
@@ -80,13 +71,6 @@ struct JointStateView
   Eigen::VectorXd vA;
   Eigen::VectorXd qP;
   Eigen::VectorXd vP;
-};
-
-struct DynamicsTerms
-{
-  Eigen::MatrixXd M;
-  Eigen::MatrixXd C;
-  Eigen::VectorXd g;
 };
 
 struct ActuatedKinematics
@@ -129,6 +113,7 @@ public:
     if (x.size() < 2 || x.size() != y.size()) {
       throw std::runtime_error("CubicSpline1D requires matching knot/value vectors with at least 2 entries");
     }
+
     x_ = x;
     a_ = y;
     const int n = static_cast<int>(x.size()) - 1;
@@ -169,6 +154,7 @@ public:
 
     Eigen::VectorXd cvec = A.fullPivLu().solve(rhs);
     for (int i = 0; i <= n; ++i) c_[i] = cvec(i);
+
     for (int i = 0; i < n; ++i) {
       b_[i] = (a_[i + 1] - a_[i]) / h[i] - h[i] * (2.0 * c_[i] + c_[i + 1]) / 3.0;
       d_[i] = (c_[i + 1] - c_[i]) / (3.0 * h[i]);
@@ -180,8 +166,10 @@ public:
     if (x_.empty()) {
       throw std::runtime_error("Spline not built");
     }
+
     const int seg = findSegment(x);
     const double dx = x - x_[seg];
+
     y = a_[seg] + b_[seg] * dx + c_[seg] * dx * dx + d_[seg] * dx * dx * dx;
     dydx = b_[seg] + 2.0 * c_[seg] * dx + 3.0 * d_[seg] * dx * dx;
     d2ydx2 = 2.0 * c_[seg] + 6.0 * d_[seg] * dx;
@@ -203,8 +191,6 @@ private:
 class MultiJointActuatedSpline
 {
 public:
-  MultiJointActuatedSpline() = default;
-
   void build(const Eigen::VectorXd& q_start,
              const Eigen::VectorXd& q_goal,
              const Eigen::VectorXd& via_flat,
@@ -212,6 +198,7 @@ public:
              bool zero_boundary_slopes)
   {
     nA_ = static_cast<int>(q_start.size());
+
     if (q_goal.size() != q_start.size()) {
       throw std::runtime_error("q_start and q_goal size mismatch");
     }
@@ -227,6 +214,7 @@ public:
 
     splines_.clear();
     splines_.resize(nA_);
+
     for (int j = 0; j < nA_; ++j) {
       std::vector<double> y(knots);
       y[0] = q_start[j];
@@ -244,6 +232,7 @@ public:
     out.qA = Eigen::VectorXd::Zero(nA_);
     out.dqdsA = Eigen::VectorXd::Zero(nA_);
     out.d2qds2A = Eigen::VectorXd::Zero(nA_);
+
     const double sc = std::min(1.0, std::max(0.0, s));
     for (int j = 0; j < nA_; ++j) {
       double y = 0.0, dy = 0.0, d2y = 0.0;
@@ -269,16 +258,12 @@ public:
   : actuated_joints_(actuated_joints), passive_joints_(passive_joints)
   {
     pinocchio::urdf::buildModel(urdf_path, model_);
-    data_ = std::make_unique<pinocchio::Data>(model_);
     registerJoints(actuated_joints_, idxA_q_, idxA_v_);
     registerJoints(passive_joints_, idxP_q_, idxP_v_);
   }
 
-  const pinocchio::Model& model() const { return model_; }
   const std::vector<std::string>& actuatedJointNames() const { return actuated_joints_; }
   const std::vector<std::string>& passiveJointNames() const { return passive_joints_; }
-  const std::vector<int>& actuatedVIdx() const { return idxA_v_; }
-  const std::vector<int>& passiveVIdx() const { return idxP_v_; }
   int nA() const { return static_cast<int>(idxA_v_.size()); }
   int nP() const { return static_cast<int>(idxP_v_.size()); }
 
@@ -287,8 +272,11 @@ public:
     if (msg.name.size() != msg.position.size() || msg.name.size() != msg.velocity.size()) {
       throw std::runtime_error("JointState arrays have inconsistent length");
     }
+
     std::unordered_map<std::string, size_t> ros_idx;
-    for (size_t i = 0; i < msg.name.size(); ++i) ros_idx[msg.name[i]] = i;
+    for (size_t i = 0; i < msg.name.size(); ++i) {
+      ros_idx[msg.name[i]] = i;
+    }
 
     JointStateView out;
     out.q = pinocchio::neutral(model_);
@@ -299,9 +287,11 @@ public:
       if (it_ros == ros_idx.end()) {
         throw std::runtime_error("Joint '" + name + "' missing in JointState");
       }
+
       const JointInfo& info = joint_info_.at(name);
       const double theta = msg.position[it_ros->second];
       const double dtheta = msg.velocity[it_ros->second];
+
       if (info.is_continuous) {
         out.q[info.idx_q] = std::cos(theta);
         out.q[info.idx_q + 1] = std::sin(theta);
@@ -322,6 +312,7 @@ public:
       out.qA[static_cast<int>(i)] = msg.position[it_ros->second];
       out.vA[static_cast<int>(i)] = msg.velocity[it_ros->second];
     }
+
     out.qP = Eigen::VectorXd::Zero(static_cast<int>(passive_joints_.size()));
     out.vP = Eigen::VectorXd::Zero(static_cast<int>(passive_joints_.size()));
     for (size_t i = 0; i < passive_joints_.size(); ++i) {
@@ -329,85 +320,7 @@ public:
       out.qP[static_cast<int>(i)] = msg.position[it_ros->second];
       out.vP[static_cast<int>(i)] = msg.velocity[it_ros->second];
     }
-    return out;
-  }
 
-  DynamicsTerms computeTerms(const Eigen::VectorXd& q, const Eigen::VectorXd& v)
-  {
-    pinocchio::computeAllTerms(model_, *data_, q, v);
-    pinocchio::crba(model_, *data_, q);
-    DynamicsTerms out;
-    out.M = data_->M;
-    out.M.triangularView<Eigen::StrictlyLower>() =
-      out.M.transpose().triangularView<Eigen::StrictlyLower>();
-    pinocchio::computeCoriolisMatrix(model_, *data_, q, v);
-    out.C = data_->C;
-    pinocchio::computeGeneralizedGravity(model_, *data_, q);
-    out.g = data_->g;
-    return out;
-  }
-
-  Eigen::VectorXd computePassiveAcceleration(const Eigen::VectorXd& q,
-                                             const Eigen::VectorXd& v,
-                                             const Eigen::VectorXd& qddA)
-  {
-    const DynamicsTerms terms = computeTerms(q, v);
-    Eigen::MatrixXd D_M = selectRowsCols(terms.M, idxP_v_, idxA_v_);
-    Eigen::MatrixXd D_P = selectRowsCols(terms.M, idxP_v_, idxP_v_);
-    std::vector<int> idx_all(model_.nv);
-    std::iota(idx_all.begin(), idx_all.end(), 0);
-    Eigen::MatrixXd C_P = selectRowsCols(terms.C, idxP_v_, idx_all);
-    Eigen::VectorXd c_P = C_P * v;
-    Eigen::VectorXd g_P = selectRows(terms.g, idxP_v_);
-    return -D_P.ldlt().solve(D_M * qddA + c_P + g_P);
-  }
-
-  void overwriteActuated(const Eigen::VectorXd& qA, const Eigen::VectorXd& vA,
-                         Eigen::VectorXd& q_full, Eigen::VectorXd& v_full) const
-  {
-    int kq = 0;
-    for (const auto& name : actuated_joints_) {
-      const JointInfo& info = joint_info_.at(name);
-      if (info.is_continuous) {
-        const double theta = qA[kq++];
-        q_full[info.idx_q] = std::cos(theta);
-        q_full[info.idx_q + 1] = std::sin(theta);
-      } else {
-        q_full[info.idx_q] = qA[kq++];
-      }
-    }
-    int kv = 0;
-    for (const auto& name : actuated_joints_) {
-      const JointInfo& info = joint_info_.at(name);
-      v_full[info.idx_v] = vA[kv++];
-    }
-  }
-
-  void overwritePassive(const Eigen::VectorXd& qP, const Eigen::VectorXd& vP,
-                        Eigen::VectorXd& q_full, Eigen::VectorXd& v_full) const
-  {
-    int kq = 0;
-    for (const auto& name : passive_joints_) {
-      const JointInfo& info = joint_info_.at(name);
-      if (info.is_continuous) {
-        const double theta = qP[kq++];
-        q_full[info.idx_q] = std::cos(theta);
-        q_full[info.idx_q + 1] = std::sin(theta);
-      } else {
-        q_full[info.idx_q] = qP[kq++];
-      }
-    }
-    int kv = 0;
-    for (const auto& name : passive_joints_) {
-      const JointInfo& info = joint_info_.at(name);
-      v_full[info.idx_v] = vP[kv++];
-    }
-  }
-
-  static Eigen::VectorXd selectRows(const Eigen::VectorXd& x, const std::vector<int>& rows)
-  {
-    Eigen::VectorXd out(rows.size());
-    for (size_t i = 0; i < rows.size(); ++i) out[static_cast<int>(i)] = x[rows[i]];
     return out;
   }
 
@@ -421,6 +334,7 @@ private:
       if (jid == 0) {
         throw std::runtime_error("Pinocchio joint not found: " + name);
       }
+
       const auto& jm = model_.joints[jid];
       JointInfo info;
       info.idx_q = static_cast<int>(jm.idx_q());
@@ -428,33 +342,21 @@ private:
       info.nq = static_cast<int>(jm.nq());
       info.nv = static_cast<int>(jm.nv());
       info.is_continuous = (info.nq == 2 && info.nv == 1);
+
       if (!((info.nq == 1 && info.nv == 1) || info.is_continuous)) {
         std::ostringstream oss;
-        oss << "Unsupported joint layout for " << name << ": nq=" << info.nq << ", nv=" << info.nv;
+        oss << "Unsupported joint layout for " << name
+            << ": nq=" << info.nq << ", nv=" << info.nv;
         throw std::runtime_error(oss.str());
       }
+
       joint_info_[name] = info;
       q_idx.push_back(info.idx_q);
       v_idx.push_back(info.idx_v);
     }
   }
 
-
-  static Eigen::MatrixXd selectRowsCols(const Eigen::MatrixXd& M,
-                                        const std::vector<int>& rows,
-                                        const std::vector<int>& cols)
-  {
-    Eigen::MatrixXd out(rows.size(), cols.size());
-    for (size_t i = 0; i < rows.size(); ++i) {
-      for (size_t j = 0; j < cols.size(); ++j) {
-        out(static_cast<int>(i), static_cast<int>(j)) = M(rows[i], cols[j]);
-      }
-    }
-    return out;
-  }
-
   pinocchio::Model model_;
-  std::unique_ptr<pinocchio::Data> data_;
   std::vector<std::string> actuated_joints_;
   std::vector<std::string> passive_joints_;
   std::unordered_map<std::string, JointInfo> joint_info_;
@@ -465,12 +367,8 @@ class TimeParameterizer
 {
 public:
   TimeParameterizer(Eigen::VectorXd vmax,
-                    Eigen::VectorXd amax,
-                    Eigen::VectorXd pump_coeff,
-                    double qmax,
-                    bool enable_pfr)
-  : vmax_(std::move(vmax)), amax_(std::move(amax)), pump_coeff_(std::move(pump_coeff)),
-    qmax_(qmax), enable_pfr_(enable_pfr) {}
+                    Eigen::VectorXd amax)
+  : vmax_(std::move(vmax)), amax_(std::move(amax)) {}
 
   double computeMinimumTime(const std::vector<ActuatedKinematics>& kin,
                             double t_min,
@@ -478,45 +376,33 @@ public:
   {
     double t_vel = t_min;
     double t_acc = t_min;
-    double t_pfr = t_min;
 
     for (const auto& k : kin) {
       for (int i = 0; i < k.qA.size(); ++i) {
         t_vel = std::max(t_vel, std::abs(k.dqdsA[i]) / std::max(1e-9, vmax_[i]));
         t_acc = std::max(t_acc, std::sqrt(std::abs(k.d2qds2A[i]) / std::max(1e-9, amax_[i])));
       }
-      if (enable_pfr_) {
-        double qreq = 0.0;
-        for (int i = 0; i < k.qA.size(); ++i) qreq += std::abs(k.dqdsA[i]) * pump_coeff_[i];
-        t_pfr = std::max(t_pfr, qreq / std::max(1e-9, qmax_));
-      }
     }
 
-    return std::min(t_max, std::max({t_min, t_vel, t_acc, t_pfr}));
+    return std::min(t_max, std::max(t_min, std::max(t_vel, t_acc)));
   }
 
 private:
   Eigen::VectorXd vmax_;
   Eigen::VectorXd amax_;
-  Eigen::VectorXd pump_coeff_;
-  double qmax_{0.0};
-  bool enable_pfr_{false};
 };
 
 class TrajectoryRolloutEvaluator
 {
 public:
   TrajectoryRolloutEvaluator(const PlannerConfig& cfg,
-                            CraneDynamicsModel* dyn,
-                            TimeParameterizer* time_param,
-                            Eigen::VectorXd q_goal_A,
-                            Eigen::VectorXd q_eq_P)
-  : cfg_(cfg), dyn_(dyn), time_param_(time_param), q_goal_A_(std::move(q_goal_A)), q_eq_P_(std::move(q_eq_P)) {}
+                             Eigen::VectorXd q_goal_A,
+                             Eigen::VectorXd q_preview_P)
+  : cfg_(cfg), q_goal_A_(std::move(q_goal_A)), q_preview_P_(std::move(q_preview_P)) {}
 
   CandidateEvaluation evaluate(const Eigen::VectorXd& via_flat,
                                const JointStateView& start,
-                               const Eigen::VectorXd& current_qP_scalar,
-                               const Eigen::VectorXd& current_vP) const
+                               TimeParameterizer* time_param) const
   {
     CandidateEvaluation result;
     result.via_flat = via_flat;
@@ -532,9 +418,10 @@ public:
       kin[k] = spline.eval(s);
     }
 
-    const double T = time_param_->computeMinimumTime(kin, cfg_.t_min, cfg_.t_max);
+    const double T = time_param->computeMinimumTime(kin, cfg_.t_min, cfg_.t_max);
     if (!(T > 0.0) || std::isnan(T) || std::isinf(T)) {
       result.cost = cfg_.infeasible_cost;
+      result.feasible = false;
       return result;
     }
 
@@ -542,67 +429,17 @@ public:
     traj.T = T;
     traj.feasible = true;
 
-    Eigen::VectorXd qP = current_qP_scalar;
-    Eigen::VectorXd vP = current_vP;
-
     double smooth_int = 0.0;
-    double passive_int = 0.0;
 
     for (int k = 0; k < cfg_.n_eval; ++k) {
       const double s = s_grid[k];
       const double t = s * T;
       const auto& kk = kin[k];
+
       const Eigen::VectorXd qdotA = kk.dqdsA / T;
       const Eigen::VectorXd qddA = kk.d2qds2A / (T * T);
 
-      Eigen::VectorXd qddP = Eigen::VectorXd::Zero(vP.size());
-      if (cfg_.enable_passive_rollout) {
-        const double ds = (k == 0) ? 0.0 : (s_grid[k] - s_grid[k - 1]);
-        const double dt = ds * T;
-        const int nsub = std::max(1, cfg_.passive_integration_substeps);
-        const double dt_sub = (dt > 0.0) ? (dt / static_cast<double>(nsub)) : 0.0;
-
-        for (int sub = 0; sub < nsub; ++sub) {
-            Eigen::VectorXd q_full = start.q;
-            Eigen::VectorXd v_full = start.v;
-
-            dyn_->overwriteActuated(kk.qA, qdotA, q_full, v_full);
-            dyn_->overwritePassive(qP, vP, q_full, v_full);
-
-            // Pinocchio 호출 전에 반드시 검사
-            if (!allFinite(q_full) || !allFinite(v_full) || !allFinite(qddA)) {
-            result.cost = cfg_.infeasible_cost;
-            result.feasible = false;
-            return result;
-            }
-
-            // 너무 큰 상태도 바로 탈락
-            if (qP.norm() > 1e3 || vP.norm() > 1e4 || qdotA.norm() > 1e4 || qddA.norm() > 1e5) {
-            result.cost = cfg_.infeasible_cost;
-            result.feasible = false;
-            return result;
-            }
-
-            qddP = dyn_->computePassiveAcceleration(q_full, v_full, qddA);
-
-            if (!allFinite(qddP) || qddP.norm() > 1e5) {
-            result.cost = cfg_.infeasible_cost;
-            result.feasible = false;
-            return result;
-            }
-
-            qP += dt_sub * vP;
-            vP += dt_sub * qddP;
-
-            if (!allFinite(qP) || !allFinite(vP)) {
-            result.cost = cfg_.infeasible_cost;
-            result.feasible = false;
-            return result;
-            }
-        }
-        }
-
-      if (!allFinite(kk.qA) || !allFinite(qdotA) || !allFinite(qddA) || !allFinite(qP) || !allFinite(vP) || !allFinite(qddP)) {
+      if (!allFinite(kk.qA) || !allFinite(qdotA) || !allFinite(qddA)) {
         result.cost = cfg_.infeasible_cost;
         result.feasible = false;
         return result;
@@ -612,23 +449,21 @@ public:
       traj.qA.push_back(kk.qA);
       traj.qdotA.push_back(qdotA);
       traj.qddA.push_back(qddA);
-      traj.qP.push_back(qP);
-      traj.qdotP.push_back(vP);
-      traj.qddP.push_back(qddP);
+
+      // global planner에서는 passive dynamics를 rollout하지 않음
+      traj.qP.push_back(q_preview_P_);
+      traj.qdotP.push_back(Eigen::VectorXd::Zero(q_preview_P_.size()));
+      traj.qddP.push_back(Eigen::VectorXd::Zero(q_preview_P_.size()));
 
       const double weight = (k == 0 || k == cfg_.n_eval - 1) ? 0.5 : 1.0;
       smooth_int += weight * qddA.squaredNorm();
-      if (cfg_.enable_passive_rollout && cfg_.w_passive > 0.0) {
-        passive_int += weight * (qP - q_eq_P_).squaredNorm();
-      }
     }
 
     const double dt_eval = T / static_cast<double>(std::max(1, cfg_.n_eval - 1));
     smooth_int *= dt_eval;
-    passive_int *= dt_eval;
 
     traj.smoothness_integral = smooth_int;
-    traj.passive_integral = passive_int;
+    traj.passive_integral = 0.0;
 
     const Eigen::VectorXd terminal_error = traj.qA.back() - q_goal_A_;
     const double via_reg = via_flat.squaredNorm();
@@ -636,8 +471,8 @@ public:
     result.cost = cfg_.w_time * T
                 + cfg_.w_smooth * smooth_int
                 + cfg_.w_terminal * terminal_error.squaredNorm()
-                + cfg_.w_passive * passive_int
                 + cfg_.w_via_regularization * via_reg;
+
     result.feasible = true;
     result.trajectory = std::move(traj);
     return result;
@@ -653,10 +488,8 @@ private:
   }
 
   PlannerConfig cfg_;
-  CraneDynamicsModel* dyn_{nullptr};
-  TimeParameterizer* time_param_{nullptr};
   Eigen::VectorXd q_goal_A_;
-  Eigen::VectorXd q_eq_P_;
+  Eigen::VectorXd q_preview_P_;
 };
 
 class CmaEsVpStoOptimizer
@@ -667,25 +500,28 @@ public:
 
   CandidateEvaluation optimize(const Eigen::VectorXd& mean_init,
                                const std::function<CandidateEvaluation(const Eigen::VectorXd&)>& eval_fn,
-                               rclcpp::Logger logger) 
+                               rclcpp::Logger logger)
   {
     const int dim = static_cast<int>(mean_init.size());
     const int lambda = cfg_.population;
     const int mu = std::min(cfg_.elite_count, lambda / 2);
-    if (mu <= 0) throw std::runtime_error("elite_count must be >= 1");
+    if (mu <= 0) {
+      throw std::runtime_error("elite_count must be >= 1");
+    }
 
     Eigen::VectorXd weights(mu);
     for (int i = 0; i < mu; ++i) {
       weights[i] = std::log(static_cast<double>(mu) + 0.5) - std::log(static_cast<double>(i + 1));
     }
     weights /= weights.sum();
-    const double mueff = 1.0 / weights.array().square().sum();
 
+    const double mueff = 1.0 / weights.array().square().sum();
     const double cs = (mueff + 2.0) / (dim + mueff + 5.0);
     const double ds = 1.0 + cs + 2.0 * std::max(0.0, std::sqrt((mueff - 1.0) / (dim + 1.0)) - 1.0);
     const double cc = (4.0 + mueff / dim) / (dim + 4.0 + 2.0 * mueff / dim);
     const double c1 = 2.0 / ((dim + 1.3) * (dim + 1.3) + mueff);
-    const double cmu = std::min(1.0 - c1,
+    const double cmu = std::min(
+      1.0 - c1,
       2.0 * (mueff - 2.0 + 1.0 / mueff) / ((dim + 2.0) * (dim + 2.0) + mueff));
     const double chiN = std::sqrt(static_cast<double>(dim)) *
       (1.0 - 1.0 / (4.0 * dim) + 1.0 / (21.0 * dim * dim));
@@ -711,13 +547,19 @@ public:
         invsqrtC = B * D.cwiseInverse().asDiagonal() * B.transpose();
       }
 
-      struct Sample { Eigen::VectorXd z, y, x; CandidateEvaluation eval; };
+      struct Sample {
+        Eigen::VectorXd z, y, x;
+        CandidateEvaluation eval;
+      };
+
       std::vector<Sample> samples;
       samples.reserve(lambda);
 
       for (int k = 0; k < lambda; ++k) {
         Eigen::VectorXd z(dim);
-        for (int i = 0; i < dim; ++i) z[i] = normal_(rng_);
+        for (int i = 0; i < dim; ++i) {
+          z[i] = normal_(rng_);
+        }
         Eigen::VectorXd y = B * D.asDiagonal() * z;
         Eigen::VectorXd x = mean + sigma * y;
         CandidateEvaluation e = eval_fn(x);
@@ -733,20 +575,26 @@ public:
 
       Eigen::VectorXd mean_old = mean;
       mean.setZero();
-      for (int i = 0; i < mu; ++i) mean += weights[i] * samples[i].x;
+      for (int i = 0; i < mu; ++i) {
+        mean += weights[i] * samples[i].x;
+      }
+
       const Eigen::VectorXd y_w = (mean - mean_old) / sigma;
       const Eigen::VectorXd z_w = invsqrtC * y_w;
 
       ps = (1.0 - cs) * ps + std::sqrt(cs * (2.0 - cs) * mueff) * z_w;
       const double norm_ps = ps.norm();
-      const bool hsig = norm_ps / std::sqrt(1.0 - std::pow(1.0 - cs, 2.0 * (iter + 1))) <
-                        (1.4 + 2.0 / (dim + 1.0)) * chiN;
+      const bool hsig =
+        norm_ps / std::sqrt(1.0 - std::pow(1.0 - cs, 2.0 * (iter + 1))) <
+        (1.4 + 2.0 / (dim + 1.0)) * chiN;
+
       pc = (1.0 - cc) * pc + (hsig ? 1.0 : 0.0) * std::sqrt(cc * (2.0 - cc) * mueff) * y_w;
 
       Eigen::MatrixXd rank_mu = Eigen::MatrixXd::Zero(dim, dim);
       for (int i = 0; i < mu; ++i) {
         rank_mu += weights[i] * (samples[i].y * samples[i].y.transpose());
       }
+
       const double delta_hsig = hsig ? 0.0 : cc * (2.0 - cc);
       C = (1.0 - c1 - cmu) * C
         + c1 * (pc * pc.transpose() + delta_hsig * C)
@@ -764,7 +612,9 @@ public:
         RCLCPP_INFO(logger, "%s", oss.str().c_str());
       }
 
-      if (sigma < cfg_.stop_sigma) break;
+      if (sigma < cfg_.stop_sigma) {
+        break;
+      }
     }
 
     return best_global;
@@ -784,15 +634,22 @@ public:
   {
     declare_parameter<std::string>("urdf_path", "/home/jin/harco/ecvt2_ws/forestry_robot_mjcf/ecvt_v2_upper.urdf");
     declare_parameter<std::string>("joint_state_topic", "/joint_states");
-    declare_parameter<std::vector<std::string>>("actuated_joints", std::vector<std::string>{"UPJ1", "UPJ2", "UPJ3", "UPJ4", "TOOLJ1"});
-    declare_parameter<std::vector<std::string>>("passive_joints", std::vector<std::string>{"UPJ5", "UPJ6"});
+    declare_parameter<std::vector<std::string>>(
+      "actuated_joints",
+      std::vector<std::string>{"UPJ1", "UPJ2", "UPJ3", "UPJ4", "TOOLJ1"});
+    declare_parameter<std::vector<std::string>>(
+      "passive_joints",
+      std::vector<std::string>{"UPJ5", "UPJ6"});
 
-    declare_parameter<std::vector<double>>("goal_actuated", std::vector<double>{0.2, 0.8, -0.7, 0.9, 0.0});
-    declare_parameter<std::vector<double>>("velocity_limits", std::vector<double>{0.8, 0.8, 0.8, 0.4, 0.6});
-    declare_parameter<std::vector<double>>("acceleration_limits", std::vector<double>{1.5, 1.5, 1.5, 1.0, 1.2});
-    declare_parameter<std::vector<double>>("pump_flow_coeff", std::vector<double>{1.0, 1.0, 1.0, 1.0, 1.0});
-    declare_parameter<double>("pump_flow_qmax", 1.0);
-    declare_parameter<bool>("enable_pump_flow_constraint", false);
+    declare_parameter<std::vector<double>>(
+      "goal_actuated",
+      std::vector<double>{0.2, 0.8, -0.7, 0.9, 0.0});
+    declare_parameter<std::vector<double>>(
+      "velocity_limits",
+      std::vector<double>{0.8, 0.8, 0.8, 0.4, 0.6});
+    declare_parameter<std::vector<double>>(
+      "acceleration_limits",
+      std::vector<double>{1.5, 1.5, 1.5, 1.0, 1.2});
 
     declare_parameter<int>("n_via", 5);
     declare_parameter<int>("n_eval", 81);
@@ -805,9 +662,7 @@ public:
     declare_parameter<double>("w_time", 1.0);
     declare_parameter<double>("w_smooth", 1e-3);
     declare_parameter<double>("w_terminal", 1e4);
-    declare_parameter<double>("w_passive", 0.0);
     declare_parameter<double>("w_via_regularization", 1e-4);
-    declare_parameter<bool>("enable_passive_rollout", true);
     declare_parameter<bool>("auto_plan_on_first_state", true);
     declare_parameter<bool>("replan_periodic", false);
     declare_parameter<double>("replan_period_sec", 5.0);
@@ -828,23 +683,30 @@ public:
     cfg_.w_time = get_parameter("w_time").as_double();
     cfg_.w_smooth = get_parameter("w_smooth").as_double();
     cfg_.w_terminal = get_parameter("w_terminal").as_double();
-    cfg_.w_passive = get_parameter("w_passive").as_double();
     cfg_.w_via_regularization = get_parameter("w_via_regularization").as_double();
-    cfg_.enable_passive_rollout = get_parameter("enable_passive_rollout").as_bool();
-    cfg_.enable_pump_flow_constraint = get_parameter("enable_pump_flow_constraint").as_bool();
 
     q_goal_A_ = toEigen(get_parameter("goal_actuated").as_double_array());
     const Eigen::VectorXd vlim = toEigen(get_parameter("velocity_limits").as_double_array());
     const Eigen::VectorXd alim = toEigen(get_parameter("acceleration_limits").as_double_array());
-    const Eigen::VectorXd pump_coeff = toEigen(get_parameter("pump_flow_coeff").as_double_array());
-    const double qmax = get_parameter("pump_flow_qmax").as_double();
 
     if (q_goal_A_.size() != static_cast<int>(actuated.size())) {
       throw std::runtime_error("goal_actuated size must match actuated_joints size");
     }
+    if (vlim.size() != static_cast<int>(actuated.size())) {
+      std::ostringstream oss;
+      oss << "velocity_limits size (" << vlim.size()
+          << ") must match actuated_joints size (" << actuated.size() << ")";
+      throw std::runtime_error(oss.str());
+    }
+    if (alim.size() != static_cast<int>(actuated.size())) {
+      std::ostringstream oss;
+      oss << "acceleration_limits size (" << alim.size()
+          << ") must match actuated_joints size (" << actuated.size() << ")";
+      throw std::runtime_error(oss.str());
+    }
 
     dynamics_ = std::make_unique<CraneDynamicsModel>(urdf_path, actuated, passive);
-    time_param_ = std::make_unique<TimeParameterizer>(vlim, alim, pump_coeff, qmax, cfg_.enable_pump_flow_constraint);
+    time_param_ = std::make_unique<TimeParameterizer>(vlim, alim);
 
     traj_pub_ = create_publisher<trajectory_msgs::msg::JointTrajectory>("~/actuated_reference", 10);
     preview_pub_ = create_publisher<trajectory_msgs::msg::JointTrajectory>("~/full_reference_preview", 10);
@@ -861,7 +723,8 @@ public:
 
     if (replan_periodic_) {
       timer_ = create_wall_timer(
-        std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::duration<double>(replan_period_sec)),
+        std::chrono::duration_cast<std::chrono::nanoseconds>(
+          std::chrono::duration<double>(replan_period_sec)),
         std::bind(&VpStoGlobalPlannerNode::planIfPossible, this));
     }
 
@@ -872,7 +735,9 @@ private:
   static Eigen::VectorXd toEigen(const std::vector<double>& x)
   {
     Eigen::VectorXd out(x.size());
-    for (size_t i = 0; i < x.size(); ++i) out[static_cast<int>(i)] = x[i];
+    for (size_t i = 0; i < x.size(); ++i) {
+      out[static_cast<int>(i)] = x[i];
+    }
     return out;
   }
 
@@ -905,15 +770,19 @@ private:
       mean_init.segment(k * nA, nA) = qk;
     }
 
-    Eigen::VectorXd q_eq_P = Eigen::VectorXd::Zero(dynamics_->nP());
-    if (start.qP.size() == q_eq_P.size()) q_eq_P = start.qP;
+    Eigen::VectorXd q_preview_P = Eigen::VectorXd::Zero(dynamics_->nP());
+    if (start.qP.size() == q_preview_P.size()) {
+      q_preview_P = start.qP;
+    }
 
-    TrajectoryRolloutEvaluator evaluator(cfg_, dynamics_.get(), time_param_.get(), q_goal_A_, q_eq_P);
+    TrajectoryRolloutEvaluator evaluator(cfg_, q_goal_A_, q_preview_P);
     CmaEsVpStoOptimizer optimizer(cfg_);
 
     const auto best = optimizer.optimize(
       mean_init,
-      [&](const Eigen::VectorXd& x) { return evaluator.evaluate(x, start, start.qP, start.vP); },
+      [&](const Eigen::VectorXd& x) {
+        return evaluator.evaluate(x, start, time_param_.get());
+      },
       get_logger());
 
     if (!best.feasible) {
@@ -926,12 +795,12 @@ private:
     publishDebug(best);
 
     planned_once_ = true;
+
     std::ostringstream oss;
     oss << std::fixed << std::setprecision(4)
         << "VP-STO solved: T=" << best.trajectory.T
         << ", cost=" << best.cost
-        << ", smooth=" << best.trajectory.smoothness_integral
-        << ", passive=" << best.trajectory.passive_integral;
+        << ", smooth=" << best.trajectory.smoothness_integral;
     RCLCPP_INFO(get_logger(), "%s", oss.str().c_str());
   }
 
@@ -940,12 +809,14 @@ private:
     trajectory_msgs::msg::JointTrajectory msg;
     msg.header.stamp = now();
     msg.joint_names = dynamics_->actuatedJointNames();
+
     for (size_t k = 0; k < traj.t.size(); ++k) {
       trajectory_msgs::msg::JointTrajectoryPoint pt;
       pt.time_from_start = rclcpp::Duration::from_seconds(traj.t[k]);
       pt.positions.resize(traj.qA[k].size());
       pt.velocities.resize(traj.qdotA[k].size());
       pt.accelerations.resize(traj.qddA[k].size());
+
       for (int i = 0; i < traj.qA[k].size(); ++i) {
         pt.positions[static_cast<size_t>(i)] = traj.qA[k][i];
         pt.velocities[static_cast<size_t>(i)] = traj.qdotA[k][i];
@@ -953,6 +824,7 @@ private:
       }
       msg.points.push_back(std::move(pt));
     }
+
     traj_pub_->publish(msg);
   }
 
@@ -963,13 +835,16 @@ private:
     msg.joint_names = dynamics_->actuatedJointNames();
     const auto& pnames = dynamics_->passiveJointNames();
     msg.joint_names.insert(msg.joint_names.end(), pnames.begin(), pnames.end());
+
     for (size_t k = 0; k < traj.t.size(); ++k) {
       trajectory_msgs::msg::JointTrajectoryPoint pt;
       pt.time_from_start = rclcpp::Duration::from_seconds(traj.t[k]);
+
       const int n_all = traj.qA[k].size() + traj.qP[k].size();
       pt.positions.resize(n_all);
       pt.velocities.resize(n_all);
       pt.accelerations.resize(n_all);
+
       int off = 0;
       for (int i = 0; i < traj.qA[k].size(); ++i, ++off) {
         pt.positions[off] = traj.qA[k][i];
@@ -981,8 +856,10 @@ private:
         pt.velocities[off] = traj.qdotP[k][i];
         pt.accelerations[off] = traj.qddP[k][i];
       }
+
       msg.points.push_back(std::move(pt));
     }
+
     preview_pub_->publish(msg);
   }
 

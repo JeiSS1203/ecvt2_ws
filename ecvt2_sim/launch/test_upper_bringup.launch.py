@@ -21,10 +21,10 @@ def generate_launch_description():
             'goal_actuated': [0.2, 0.5, -0.8, 0.6, 0.0],
             'velocity_limits': [0.2, 0.2, 0.2, 0.2, 0.2],
             'acceleration_limits': [0.5, 0.5, 0.5, 0.5, 0.5],
-            'n_via': 5,
+            'n_via': 3,
             'n_eval': 100,
             'population': 40,
-            'max_iterations': 20
+            'max_iterations': 100
         }]
     )
     # dynamics_node = Node(

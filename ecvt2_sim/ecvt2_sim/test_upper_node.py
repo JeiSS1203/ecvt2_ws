@@ -46,8 +46,8 @@ class UnifiedUpperNode(Node):
 
         self.declare_parameter('trajectory_viz_enabled', True)
         self.declare_parameter('trajectory_viz_body_name', 'UP5')
-        self.declare_parameter('planned_line_width', 0.004)
-        self.declare_parameter('actual_line_width', 0.003)
+        self.declare_parameter('planned_line_width', 0.02)
+        self.declare_parameter('actual_line_width', 0.02)
         self.declare_parameter('max_actual_path_points', 400)
 
         self.trajectory_topic = self.get_parameter('trajectory_topic').get_parameter_value().string_value
@@ -623,6 +623,13 @@ def main():
     E_INT = 0.01
 
     with mujoco.viewer.launch_passive(m, d) as viewer:
+        cam_id = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_CAMERA, "trajectory")
+        if cam_id == -1:
+            print("[경고] camera 'trajectory' not found")
+        else:
+            with viewer.lock():
+                viewer.cam.type = mujoco.mjtCamera.mjCAMERA_FIXED
+                viewer.cam.fixedcamid = cam_id
         while viewer.is_running():
             dt = m.opt.timestep
 

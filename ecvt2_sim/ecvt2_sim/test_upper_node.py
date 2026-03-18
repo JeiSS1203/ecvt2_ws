@@ -34,7 +34,6 @@ class UnifiedUpperNode(Node):
 
         # -------- parameters --------
         self.declare_parameter('trajectory_topic', '/vp_sto_global_planner_node/actuated_reference')
-        self.declare_parameter('preview_trajectory_topic', '/vp_sto_global_planner_node/full_reference_preview')
 
         self.declare_parameter('traj_tracking_enabled', True)
         self.declare_parameter('traj_hold_last_point', True)
@@ -51,7 +50,6 @@ class UnifiedUpperNode(Node):
         self.declare_parameter('max_actual_path_points', 400)
 
         self.trajectory_topic = self.get_parameter('trajectory_topic').get_parameter_value().string_value
-        self.preview_trajectory_topic = self.get_parameter('preview_trajectory_topic').get_parameter_value().string_value
 
         self.traj_tracking_enabled = self.get_parameter('traj_tracking_enabled').get_parameter_value().bool_value
         self.traj_hold_last_point = self.get_parameter('traj_hold_last_point').get_parameter_value().bool_value
@@ -70,18 +68,16 @@ class UnifiedUpperNode(Node):
         # -------- state for external velocity commands --------
         self.create_subscription(JointState, '/hanyang/velocity_cmd', self.velocity_callback, 10)
 
-        # -------- state for planner trajectory tracking --------
+        # -------- state for planner trajectory tracking / visualization --------
         self.create_subscription(JointTrajectory, self.trajectory_topic, self.trajectory_callback, 10)
         self.active_traj: Optional[JointTrajectory] = None
         self.active_traj_start_time = None
         self.traj_is_active = False
 
         # -------- state for trajectory visualization --------
-        self.create_subscription(JointTrajectory, self.preview_trajectory_topic, self.preview_trajectory_callback, 10)
-        self.preview_traj: Optional[JointTrajectory] = None
-        self.preview_traj_dirty = False
         self.planned_path_points: List[np.ndarray] = []
         self.actual_path_points: List[np.ndarray] = []
+        self.planned_path_dirty = False
 
         # optional debug
         self.last_q_ref = None
@@ -120,7 +116,7 @@ class UnifiedUpperNode(Node):
         self.ctrl_array[:n_ctrl] = msg.velocity[:n_ctrl]
 
     # ------------------------------------------------------------------
-    # Planner trajectory callback (tracking)
+    # Planner trajectory callback (tracking + planned-line source)
     # ------------------------------------------------------------------
     def trajectory_callback(self, msg: JointTrajectory):
         if not self.traj_tracking_enabled:
@@ -146,26 +142,12 @@ class UnifiedUpperNode(Node):
         # 새 trajectory 시작 시 actual trajectory도 다시 그림
         self.actual_path_points = []
 
+        # 새 planned path 재계산 플래그
+        self.planned_path_dirty = True
+
         t_last = self._point_time_sec(msg.points[-1])
         self.get_logger().info(
             f"Received actuated reference trajectory: {len(msg.points)} points, duration={t_last:.3f}s"
-        )
-
-    # ------------------------------------------------------------------
-    # Preview trajectory callback (visualization)
-    # ------------------------------------------------------------------
-    def preview_trajectory_callback(self, msg: JointTrajectory):
-        if not self.trajectory_viz_enabled:
-            return
-
-        if len(msg.points) == 0:
-            self.get_logger().warn("Received empty preview JointTrajectory")
-            return
-
-        self.preview_traj = msg
-        self.preview_traj_dirty = True
-        self.get_logger().info(
-            f"Received preview trajectory for visualization: {len(msg.points)} points"
         )
 
     # ------------------------------------------------------------------
@@ -350,24 +332,25 @@ class UnifiedUpperNode(Node):
         qadr = int(self.model.jnt_qposadr[jid])
         data.qpos[qadr] = float(qval)
 
-    def build_planned_path_points(self):
+    def build_planned_path_points_from_active_traj(self):
         if not self.trajectory_viz_enabled:
             return
 
-        if self.preview_traj is None or len(self.preview_traj.points) == 0:
+        if self.active_traj is None or len(self.active_traj.points) == 0:
             self.planned_path_points = []
-            self.preview_traj_dirty = False
+            self.planned_path_dirty = False
             return
 
         tmp = mujoco.MjData(self.model)
-        tmp.qpos[:] = self.data.qpos.copy()
-        tmp.qvel[:] = 0.0
-
-        joint_names = list(self.preview_traj.joint_names)
+        joint_names = list(self.active_traj.joint_names)
         points_world: List[np.ndarray] = []
 
-        for pt in self.preview_traj.points:
-            tmp.qpos[:] = self.data.qpos.copy()
+        # current full posture를 baseline으로 사용하고,
+        # actuated joints만 trajectory 값으로 덮어씀
+        base_qpos = self.data.qpos.copy()
+
+        for pt in self.active_traj.points:
+            tmp.qpos[:] = base_qpos
             tmp.qvel[:] = 0.0
 
             for jname, qval in zip(joint_names, pt.positions):
@@ -379,9 +362,9 @@ class UnifiedUpperNode(Node):
                 points_world.append(p)
 
         self.planned_path_points = points_world
-        self.preview_traj_dirty = False
+        self.planned_path_dirty = False
         self.get_logger().info(
-            f"Built planned path with {len(self.planned_path_points)} world points for body '{self.trajectory_viz_body_name}'"
+            f"Built planned path from actuated_reference with {len(self.planned_path_points)} world points for body '{self.trajectory_viz_body_name}'"
         )
 
     def update_actual_path_points(self):
@@ -630,14 +613,15 @@ def main():
             with viewer.lock():
                 viewer.cam.type = mujoco.mjtCamera.mjCAMERA_FIXED
                 viewer.cam.fixedcamid = cam_id
+
         while viewer.is_running():
             dt = m.opt.timestep
 
             mujoco.mj_forward(m, d)
 
-            # 새 preview trajectory가 들어오면 planned path 재계산
-            if ros_node.preview_traj_dirty:
-                ros_node.build_planned_path_points()
+            # 새 actuated_reference가 들어오면 planned path 재계산
+            if ros_node.planned_path_dirty:
+                ros_node.build_planned_path_points_from_active_traj()
 
             tau_ff = d.qfrc_bias[dof_ids].copy()
 

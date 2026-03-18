@@ -71,8 +71,10 @@ class UnifiedUpperNode(Node):
         # -------- state for planner trajectory tracking / visualization --------
         self.create_subscription(JointTrajectory, self.trajectory_topic, self.trajectory_callback, 10)
         self.active_traj: Optional[JointTrajectory] = None
-        self.active_traj_start_time = None
         self.traj_is_active = False
+
+        # MuJoCo simulation time 기준 elapsed
+        self.traj_elapsed_sim = 0.0
 
         # -------- state for trajectory visualization --------
         self.planned_path_points: List[np.ndarray] = []
@@ -84,6 +86,7 @@ class UnifiedUpperNode(Node):
         self.last_qd_ref = None
         self.last_qdd_ref = None
         self.last_v_des = None
+        self.last_elapsed_sim = 0.0
 
         # -------- publishers --------
         self.pub_joint_std = self.create_publisher(JointState, '/joint_states', 10)
@@ -136,8 +139,8 @@ class UnifiedUpperNode(Node):
             return
 
         self.active_traj = msg
-        self.active_traj_start_time = self.get_clock().now()
         self.traj_is_active = True
+        self.traj_elapsed_sim = 0.0
 
         # 새 trajectory 시작 시 actual trajectory도 다시 그림
         self.actual_path_points = []
@@ -284,10 +287,12 @@ class UnifiedUpperNode(Node):
             return None
         if not self.traj_is_active:
             return None
-        if self.active_traj is None or self.active_traj_start_time is None:
+        if self.active_traj is None:
             return None
 
-        elapsed = (self.get_clock().now() - self.active_traj_start_time).nanoseconds * 1e-9
+        elapsed = self.traj_elapsed_sim
+        self.last_elapsed_sim = elapsed
+
         sampled = self._sample_active_trajectory(elapsed)
         if sampled is None:
             return None
@@ -309,6 +314,22 @@ class UnifiedUpperNode(Node):
         self.last_v_des = v_des
 
         return v_des
+
+    # ------------------------------------------------------------------
+    # Advance trajectory time using MuJoCo simulation dt
+    # ------------------------------------------------------------------
+    def advance_traj_time(self, dt: float):
+        if not self.traj_is_active or self.active_traj is None or len(self.active_traj.points) == 0:
+            return
+
+        self.traj_elapsed_sim += float(dt)
+
+        t_last = self._point_time_sec(self.active_traj.points[-1])
+        if self.traj_elapsed_sim > t_last:
+            if self.traj_hold_last_point:
+                self.traj_elapsed_sim = t_last
+            else:
+                self.traj_is_active = False
 
     # ------------------------------------------------------------------
     # Trajectory visualization helpers
@@ -659,6 +680,9 @@ def main():
             d.ctrl[:n_torque] = u_sat
 
             mujoco.mj_step(m, d)
+
+            # MuJoCo simulation time 기준으로 trajectory 시간 진행
+            ros_node.advance_traj_time(dt)
 
             # 실제 궤적 누적
             ros_node.update_actual_path_points()

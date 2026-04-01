@@ -10,6 +10,7 @@ import mujoco
 import mujoco.viewer
 import rclpy
 from rclpy.node import Node
+from rclpy.executors import MultiThreadedExecutor
 from sensor_msgs.msg import JointState, Imu
 from geometry_msgs.msg import Vector3Stamped, TransformStamped
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
@@ -98,6 +99,9 @@ class UnifiedUpperNode(Node):
         self.tf_broadcaster = TransformBroadcaster(self)
         self.create_timer(0.01, self.publish_sensor_data)
 
+        # ROS 콜백 스레드와 메인 루프 간 공유 상태 보호용 락
+        self._state_lock = threading.Lock()
+
     # ------------------------------------------------------------------
     # External velocity command callback
     # ------------------------------------------------------------------
@@ -105,18 +109,20 @@ class UnifiedUpperNode(Node):
         n_ctrl = len(self.ctrl_array)
         if len(msg.name) == len(msg.velocity) and len(msg.name) > 0:
             name_to_vel = dict(zip(msg.name, msg.velocity))
-            matched = False
-            for i, joint_name in enumerate(self.torque_joint_names):
-                if joint_name in name_to_vel:
-                    self.ctrl_array[i] = name_to_vel[joint_name]
-                    matched = True
+            with self._state_lock:
+                matched = False
+                for i, joint_name in enumerate(self.torque_joint_names):
+                    if joint_name in name_to_vel:
+                        self.ctrl_array[i] = name_to_vel[joint_name]
+                        matched = True
             if matched:
                 return
 
         if len(msg.velocity) < n_ctrl:
             self.get_logger().warn(f"Expected at least {n_ctrl} velocities, got {len(msg.velocity)}")
             return
-        self.ctrl_array[:n_ctrl] = msg.velocity[:n_ctrl]
+        with self._state_lock:
+            self.ctrl_array[:n_ctrl] = msg.velocity[:n_ctrl]
 
     # ------------------------------------------------------------------
     # Planner trajectory callback (tracking + planned-line source)
@@ -138,15 +144,14 @@ class UnifiedUpperNode(Node):
             )
             return
 
-        self.active_traj = msg
-        self.traj_is_active = True
-        self.traj_elapsed_sim = 0.0
-
-        # 새 trajectory 시작 시 actual trajectory도 다시 그림
-        self.actual_path_points = []
-
-        # 새 planned path 재계산 플래그
-        self.planned_path_dirty = True
+        with self._state_lock:
+            self.active_traj = msg
+            self.traj_is_active = True
+            self.traj_elapsed_sim = 0.0
+            # 새 trajectory 시작 시 actual trajectory도 다시 그림
+            self.actual_path_points = []
+            # 새 planned path 재계산 플래그
+            self.planned_path_dirty = True
 
         t_last = self._point_time_sec(msg.points[-1])
         self.get_logger().info(
@@ -475,9 +480,6 @@ class UnifiedUpperNode(Node):
             qd.extend(vel_val)
             qd_by_name[name] = float(vel_val[0]) if len(vel_val) > 0 else 0.0
 
-        for i, name in enumerate(self.torque_joint_names):
-            v_meas[i] = qd_by_name.get(name, 0.0)
-
         joint_msg.position = [float(v) for v in q]
         joint_msg.velocity = [float(v) for v in qd]
         joint_msg.effort = [0.0] * len(self.joint_names)
@@ -599,7 +601,9 @@ def main():
         rclpy.init()
         node = UnifiedUpperNode(m, d, ctrl_array, joint_names, torque_joint_names, sensor_lookup)
         node_holder["node"] = node
-        rclpy.spin(node)
+        executor = MultiThreadedExecutor()
+        executor.add_node(node)
+        executor.spin()
         node.destroy_node()
         rclpy.shutdown()
 
@@ -640,15 +644,18 @@ def main():
 
             mujoco.mj_forward(m, d)
 
-            # 새 actuated_reference가 들어오면 planned path 재계산
-            if ros_node.planned_path_dirty:
-                ros_node.build_planned_path_points_from_active_traj()
-
             tau_ff = d.qfrc_bias[dof_ids].copy()
 
-            v_des = ctrl_array[:n_torque].copy()
+            with ros_node._state_lock:
+                dirty = ros_node.planned_path_dirty
+                v_des = ctrl_array[:n_torque].copy()
+                traj_v_des = ros_node._compute_trajectory_velocity_command()
+                ros_node.advance_traj_time(dt)
 
-            traj_v_des = ros_node._compute_trajectory_velocity_command()
+            # 새 actuated_reference가 들어오면 planned path 재계산 (시각화, 락 외부)
+            if dirty:
+                ros_node.build_planned_path_points_from_active_traj()
+
             if traj_v_des is not None and ros_node.traj_override_velocity_cmd:
                 v_des = traj_v_des.copy()
 
@@ -681,8 +688,8 @@ def main():
 
             mujoco.mj_step(m, d)
 
-            # MuJoCo simulation time 기준으로 trajectory 시간 진행
-            ros_node.advance_traj_time(dt)
+            # v_meas를 mj_step 직후 메인 루프에서 갱신 (500Hz, 스레드 안전)
+            v_meas[:] = d.qvel[dof_ids]
 
             # 실제 궤적 누적
             ros_node.update_actual_path_points()

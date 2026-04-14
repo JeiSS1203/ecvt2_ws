@@ -135,6 +135,8 @@ base_arm_task_controller: /opt/ros/humble/lib/libstatistics_msgs__rosidl_typesup
 base_arm_task_controller: /opt/ros/humble/lib/libstatistics_msgs__rosidl_generator_c.so
 base_arm_task_controller: /opt/ros/humble/lib/libtracetools.so
 base_arm_task_controller: /opt/ros/humble/lib/libament_index_cpp.so
+base_arm_task_controller: /opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_default.so
+base_arm_task_controller: /opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_parsers.so
 base_arm_task_controller: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 base_arm_task_controller: /opt/openrobots/lib/libpinocchio_parsers.so.3.9.0
 base_arm_task_controller: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so

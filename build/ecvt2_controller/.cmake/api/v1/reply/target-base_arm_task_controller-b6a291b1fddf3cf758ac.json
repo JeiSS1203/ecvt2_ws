@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "wbc_hqp"
+			"path" : "base_arm_task_controller"
 		}
 	],
 	"backtrace" : 1,
@@ -29,19 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 59,
+				"line" : 94,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 61,
+				"line" : 96,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 66,
+				"line" : 101,
 				"parent" : 0
 			},
 			{
@@ -339,7 +339,7 @@
 			"id" : "kdl_utils::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "wbc_hqp::@6890427a1f51a3e7e1df",
+	"id" : "base_arm_task_controller::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -349,7 +349,7 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/usr/local/lib:/opt/ros/humble/lib:/opt/openrobots/lib",
+				"fragment" : "-Wl,-rpath,/usr/local/lib:/opt/ros/humble/lib:/opt/openrobots/lib:/opt/ros/humble/lib/x86_64-linux-gnu",
 				"role" : "libraries"
 			},
 			{
@@ -532,6 +532,14 @@
 			},
 			{
 				"fragment" : "/opt/ros/humble/lib/libament_index_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_default.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_parsers.so",
 				"role" : "libraries"
 			},
 			{
@@ -811,8 +819,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "wbc_hqp",
-	"nameOnDisk" : "wbc_hqp",
+	"name" : "base_arm_task_controller",
+	"nameOnDisk" : "base_arm_task_controller",
 	"paths" : 
 	{
 		"build" : ".",
@@ -833,7 +841,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/wbc_hqp.cpp",
+			"path" : "src/base_arm_task_controller.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -45,7 +45,7 @@ class UnifiedUpperNode(Node):
         self.declare_parameter('traj_override_velocity_cmd', True)
 
         self.declare_parameter('trajectory_viz_enabled', True)
-        self.declare_parameter('trajectory_viz_body_name', 'UP5')
+        self.declare_parameter('trajectory_viz_body_name', 'TOOL1')
         self.declare_parameter('planned_line_width', 0.02)
         self.declare_parameter('actual_line_width', 0.02)
         self.declare_parameter('max_actual_path_points', 400)

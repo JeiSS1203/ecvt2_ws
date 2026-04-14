@@ -136,6 +136,8 @@ wbc_hqp_v2: /opt/ros/humble/lib/libstatistics_msgs__rosidl_typesupport_c.so
 wbc_hqp_v2: /opt/ros/humble/lib/libstatistics_msgs__rosidl_generator_c.so
 wbc_hqp_v2: /opt/ros/humble/lib/libtracetools.so
 wbc_hqp_v2: /opt/ros/humble/lib/libament_index_cpp.so
+wbc_hqp_v2: /opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_default.so
+wbc_hqp_v2: /opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_parsers.so
 wbc_hqp_v2: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 wbc_hqp_v2: /opt/openrobots/lib/libpinocchio_parsers.so.3.9.0
 wbc_hqp_v2: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so

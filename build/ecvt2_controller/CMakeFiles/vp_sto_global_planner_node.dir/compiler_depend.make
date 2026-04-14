@@ -2427,8 +2427,509 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
   /usr/include/boost/optional/detail/optional_relops.hpp \
   /usr/include/boost/optional/detail/optional_swap.hpp \
   /opt/openrobots/include/pinocchio/parsers/urdf/geometry.hxx \
+  /opt/openrobots/include/pinocchio/algorithm/rnea.hpp \
+  /opt/openrobots/include/pinocchio/multibody/data.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/contact-cholesky.hpp \
+  /opt/openrobots/include/pinocchio/math/triangular-matrix.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/contact-info.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/fwd.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/constraints/fwd.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/constraints/constraint-model-base.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/constraints/constraint-data-base.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/delassus-operator-base.hpp \
+  /opt/openrobots/include/pinocchio/math/eigenvalues.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/contact-cholesky.txx \
+  /opt/openrobots/include/pinocchio/algorithm/contact-cholesky.hxx \
+  /opt/openrobots/include/pinocchio/algorithm/check.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/check-model.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/check-base.hpp \
+  /usr/include/boost/fusion/container/list.hpp \
+  /usr/include/boost/fusion/container/list/list.hpp \
+  /usr/include/boost/fusion/container/list/detail/list_to_cons.hpp \
+  /usr/include/boost/fusion/container/list/convert.hpp \
+  /usr/include/boost/fusion/container/list/detail/build_cons.hpp \
+  /usr/include/boost/fusion/container/list/detail/convert_impl.hpp \
+  /usr/include/boost/fusion/container/generation/make_list.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/check-model.hxx \
+  /usr/include/boost/fusion/algorithm.hpp \
+  /usr/include/boost/fusion/algorithm/iteration.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/accumulate.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/accumulate_fwd.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/fold.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/fold_fwd.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/detail/preprocessed/fold.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/detail/segmented_fold.hpp \
+  /usr/include/boost/fusion/support/segmented_fold_until.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/for_each.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/detail/for_each.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/detail/segmented_for_each.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/for_each_fwd.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/iter_fold.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/iter_fold_fwd.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/detail/preprocessed/iter_fold.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/reverse_fold.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/reverse_fold_fwd.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/detail/preprocessed/reverse_fold.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/reverse_iter_fold.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/reverse_iter_fold_fwd.hpp \
+  /usr/include/boost/fusion/algorithm/iteration/detail/preprocessed/reverse_iter_fold.hpp \
+  /usr/include/boost/fusion/algorithm/query.hpp \
+  /usr/include/boost/fusion/algorithm/query/all.hpp \
+  /usr/include/boost/fusion/algorithm/query/detail/all.hpp \
+  /usr/include/boost/fusion/algorithm/query/any.hpp \
+  /usr/include/boost/fusion/algorithm/query/detail/any.hpp \
+  /usr/include/boost/fusion/algorithm/query/count.hpp \
+  /usr/include/boost/fusion/algorithm/query/count_if.hpp \
+  /usr/include/boost/fusion/algorithm/query/detail/count_if.hpp \
+  /usr/include/boost/fusion/algorithm/query/detail/count.hpp \
+  /usr/include/boost/fusion/algorithm/query/find.hpp \
+  /usr/include/boost/fusion/algorithm/query/find_if_fwd.hpp \
+  /usr/include/boost/fusion/algorithm/query/detail/find_if.hpp \
+  /usr/include/boost/fusion/algorithm/query/detail/segmented_find.hpp \
+  /usr/include/boost/fusion/algorithm/query/find_fwd.hpp \
+  /usr/include/boost/fusion/algorithm/query/find_if.hpp \
+  /usr/include/boost/fusion/algorithm/query/detail/segmented_find_if.hpp \
+  /usr/include/boost/fusion/algorithm/query/none.hpp \
+  /usr/include/boost/fusion/algorithm/transformation.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/clear.hpp \
+  /usr/include/boost/fusion/container/vector/vector10.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/erase.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/erase_key.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/filter.hpp \
+  /usr/include/boost/fusion/view/filter_view/filter_view.hpp \
+  /usr/include/boost/fusion/view/filter_view/filter_view_iterator.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/deref_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/next_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/value_of_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/equal_to_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/deref_data_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/value_of_data_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/key_of_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/begin_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/end_impl.hpp \
+  /usr/include/boost/fusion/view/filter_view/detail/size_impl.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/filter_if.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/insert.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/insert_range.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/join.hpp \
+  /usr/include/boost/fusion/view/joint_view.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/pop_back.hpp \
+  /usr/include/boost/fusion/iterator/iterator_adapter.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/pop_front.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/remove.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/remove_if.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/replace.hpp \
+  /usr/include/boost/fusion/view/transform_view/transform_view.hpp \
+  /usr/include/boost/fusion/view/transform_view/transform_view_iterator.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/deref_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/next_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/prior_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/value_of_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/advance_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/distance_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/equal_to_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/transform_view_fwd.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/begin_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/end_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/at_impl.hpp \
+  /usr/include/boost/fusion/view/transform_view/detail/value_at_impl.hpp \
+  /usr/include/boost/fusion/view/detail/strictest_traversal.hpp \
+  /usr/include/boost/fusion/mpl.hpp \
+  /usr/include/boost/fusion/iterator/mpl.hpp \
+  /usr/include/boost/fusion/adapted/mpl.hpp \
+  /usr/include/boost/fusion/adapted/mpl/detail/is_sequence_impl.hpp \
+  /usr/include/boost/fusion/adapted/mpl/detail/size_impl.hpp \
+  /usr/include/boost/fusion/adapted/mpl/detail/value_at_impl.hpp \
+  /usr/include/boost/fusion/adapted/mpl/detail/at_impl.hpp \
+  /usr/include/boost/fusion/adapted/mpl/detail/has_key_impl.hpp \
+  /usr/include/boost/mpl/has_key.hpp \
+  /usr/include/boost/mpl/has_key_fwd.hpp \
+  /usr/include/boost/mpl/aux_/has_key_impl.hpp \
+  /usr/include/boost/fusion/adapted/mpl/detail/category_of_impl.hpp \
+  /usr/include/boost/fusion/adapted/mpl/detail/is_view_impl.hpp \
+  /usr/include/boost/fusion/adapted/mpl/detail/empty_impl.hpp \
+  /usr/include/boost/fusion/mpl/at.hpp \
+  /usr/include/boost/fusion/mpl/back.hpp \
+  /usr/include/boost/mpl/back.hpp \
+  /usr/include/boost/mpl/aux_/back_impl.hpp \
+  /usr/include/boost/fusion/mpl/clear.hpp \
+  /usr/include/boost/fusion/mpl/detail/clear.hpp \
+  /usr/include/boost/fusion/container/map/map_fwd.hpp \
+  /usr/include/boost/fusion/container/set/set_fwd.hpp \
+  /usr/include/boost/fusion/container/deque/deque_fwd.hpp \
+  /usr/include/boost/fusion/mpl/empty.hpp \
+  /usr/include/boost/fusion/mpl/erase.hpp \
+  /usr/include/boost/mpl/erase.hpp \
+  /usr/include/boost/mpl/erase_fwd.hpp \
+  /usr/include/boost/mpl/aux_/erase_impl.hpp \
+  /usr/include/boost/fusion/sequence/convert.hpp \
+  /usr/include/boost/fusion/mpl/erase_key.hpp \
+  /usr/include/boost/mpl/erase_key.hpp \
+  /usr/include/boost/mpl/erase_key_fwd.hpp \
+  /usr/include/boost/mpl/aux_/erase_key_impl.hpp \
+  /usr/include/boost/fusion/mpl/front.hpp \
+  /usr/include/boost/fusion/mpl/has_key.hpp \
+  /usr/include/boost/fusion/sequence/intrinsic/has_key.hpp \
+  /usr/include/boost/fusion/mpl/insert.hpp \
+  /usr/include/boost/fusion/mpl/insert_range.hpp \
+  /usr/include/boost/fusion/mpl/pop_back.hpp \
+  /usr/include/boost/mpl/pop_back.hpp \
+  /usr/include/boost/mpl/aux_/pop_back_impl.hpp \
+  /usr/include/boost/fusion/mpl/pop_front.hpp \
+  /usr/include/boost/fusion/mpl/push_back.hpp \
+  /usr/include/boost/fusion/mpl/push_front.hpp \
+  /usr/include/boost/fusion/mpl/size.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/detail/replace.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/replace_if.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/detail/replace_if.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/reverse.hpp \
+  /usr/include/boost/fusion/view/reverse_view/reverse_view.hpp \
+  /usr/include/boost/fusion/view/reverse_view/reverse_view_iterator.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/deref_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/next_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/prior_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/advance_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/distance_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/value_of_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/deref_data_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/value_of_data_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/key_of_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/begin_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/end_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/at_impl.hpp \
+  /usr/include/boost/fusion/view/reverse_view/detail/value_at_impl.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/transform.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/zip.hpp \
+  /usr/include/boost/fusion/view/zip_view.hpp \
+  /usr/include/boost/fusion/view/zip_view/zip_view.hpp \
+  /usr/include/boost/fusion/support/unused.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/begin_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/zip_view_iterator_fwd.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/end_impl.hpp \
+  /usr/include/boost/mpl/min.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/size_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/at_impl.hpp \
+  /usr/include/boost/fusion/container/vector.hpp \
+  /usr/include/boost/fusion/container/vector/convert.hpp \
+  /usr/include/boost/fusion/container/vector/detail/as_vector.hpp \
+  /usr/include/boost/fusion/container/vector/detail/convert_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/value_at_impl.hpp \
+  /usr/include/boost/mpl/transform_view.hpp \
+  /usr/include/boost/mpl/aux_/transform_iter.hpp \
+  /usr/include/boost/fusion/view/zip_view/zip_view_iterator.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/deref_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/next_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/prior_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/advance_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/distance_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/value_of_impl.hpp \
+  /usr/include/boost/fusion/view/zip_view/detail/equal_to_impl.hpp \
+  /usr/include/boost/mpl/zip_view.hpp \
+  /usr/include/boost/mpl/unpack_args.hpp \
+  /usr/include/boost/fusion/support/detail/pp_round.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/detail/preprocessed/zip.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/detail/preprocessed/zip10.hpp \
+  /usr/include/boost/fusion/algorithm/transformation/flatten.hpp \
+  /usr/include/boost/fusion/view/flatten_view.hpp \
+  /usr/include/boost/fusion/view/flatten_view/flatten_view.hpp \
+  /usr/include/boost/mpl/single_view.hpp \
+  /usr/include/boost/mpl/aux_/single_element_iter.hpp \
+  /usr/include/boost/fusion/view/flatten_view/flatten_view_iterator.hpp \
+  /usr/include/boost/fusion/include/equal_to.hpp \
+  /usr/include/boost/fusion/sequence/comparison/equal_to.hpp \
+  /usr/include/boost/fusion/sequence/comparison/detail/equal_to.hpp \
+  /usr/include/boost/fusion/support/as_const.hpp \
+  /usr/include/boost/fusion/sequence/comparison/enable_comparison.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/check-data.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/check-data.hxx \
+  /usr/include/eigen3/Eigen/Cholesky \
+  /usr/include/eigen3/Eigen/src/Core/util/Constants.h \
+  /opt/openrobots/include/pinocchio/multibody/data.hxx \
+  /opt/openrobots/include/pinocchio/multibody/data.txx \
+  /opt/openrobots/include/pinocchio/algorithm/rnea.hxx \
+  /opt/openrobots/include/pinocchio/algorithm/rnea.txx \
   /usr/include/eigen3/Eigen/Eigenvalues
 
+
+/opt/openrobots/include/pinocchio/algorithm/rnea.hxx:
+
+/opt/openrobots/include/pinocchio/multibody/data.txx:
+
+/opt/openrobots/include/pinocchio/multibody/data.hxx:
+
+/opt/openrobots/include/pinocchio/algorithm/check-data.hpp:
+
+/usr/include/boost/fusion/sequence/comparison/enable_comparison.hpp:
+
+/usr/include/boost/fusion/sequence/comparison/equal_to.hpp:
+
+/usr/include/boost/fusion/view/flatten_view/flatten_view_iterator.hpp:
+
+/usr/include/boost/mpl/aux_/single_element_iter.hpp:
+
+/usr/include/boost/mpl/single_view.hpp:
+
+/usr/include/boost/fusion/view/flatten_view/flatten_view.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/detail/preprocessed/zip.hpp:
+
+/usr/include/boost/fusion/support/detail/pp_round.hpp:
+
+/usr/include/boost/fusion/view/zip_view/detail/equal_to_impl.hpp:
+
+/usr/include/boost/fusion/view/zip_view/detail/value_of_impl.hpp:
+
+/usr/include/boost/fusion/view/zip_view/detail/advance_impl.hpp:
+
+/usr/include/boost/fusion/view/zip_view/detail/next_impl.hpp:
+
+/usr/include/boost/fusion/view/zip_view/detail/deref_impl.hpp:
+
+/usr/include/boost/fusion/view/zip_view/zip_view_iterator.hpp:
+
+/usr/include/boost/mpl/aux_/transform_iter.hpp:
+
+/usr/include/boost/fusion/container/vector/detail/convert_impl.hpp:
+
+/usr/include/boost/fusion/view/zip_view/detail/size_impl.hpp:
+
+/usr/include/boost/fusion/view/zip_view/detail/end_impl.hpp:
+
+/usr/include/boost/fusion/view/zip_view/zip_view_iterator_fwd.hpp:
+
+/usr/include/boost/fusion/support/unused.hpp:
+
+/usr/include/boost/fusion/view/zip_view/zip_view.hpp:
+
+/usr/include/boost/fusion/view/zip_view.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/zip.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/transform.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/value_at_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/end_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/begin_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/deref_data_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/value_of_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/distance_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/advance_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/prior_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/next_impl.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/reverse_view_iterator.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/reverse_view.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/detail/replace_if.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/replace_if.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/detail/replace.hpp:
+
+/usr/include/boost/fusion/mpl/size.hpp:
+
+/usr/include/boost/fusion/mpl/push_front.hpp:
+
+/usr/include/boost/fusion/mpl/pop_front.hpp:
+
+/usr/include/boost/mpl/pop_back.hpp:
+
+/usr/include/boost/fusion/mpl/pop_back.hpp:
+
+/usr/include/boost/fusion/mpl/insert.hpp:
+
+/usr/include/boost/fusion/sequence/intrinsic/has_key.hpp:
+
+/usr/include/boost/fusion/mpl/front.hpp:
+
+/usr/include/boost/mpl/aux_/erase_key_impl.hpp:
+
+/usr/include/boost/mpl/erase_key_fwd.hpp:
+
+/usr/include/boost/mpl/erase_key.hpp:
+
+/usr/include/boost/fusion/mpl/erase_key.hpp:
+
+/usr/include/boost/mpl/aux_/erase_impl.hpp:
+
+/usr/include/boost/fusion/mpl/erase.hpp:
+
+/usr/include/boost/fusion/mpl/empty.hpp:
+
+/usr/include/boost/fusion/container/deque/deque_fwd.hpp:
+
+/usr/include/boost/fusion/container/set/set_fwd.hpp:
+
+/usr/include/boost/fusion/container/map/map_fwd.hpp:
+
+/usr/include/boost/fusion/mpl/detail/clear.hpp:
+
+/usr/include/boost/mpl/min.hpp:
+
+/usr/include/boost/fusion/mpl/clear.hpp:
+
+/usr/include/boost/mpl/aux_/back_impl.hpp:
+
+/usr/include/boost/fusion/mpl/back.hpp:
+
+/usr/include/boost/fusion/mpl/at.hpp:
+
+/usr/include/boost/fusion/adapted/mpl/detail/empty_impl.hpp:
+
+/usr/include/boost/mpl/aux_/has_key_impl.hpp:
+
+/usr/include/boost/fusion/adapted/mpl/detail/at_impl.hpp:
+
+/usr/include/boost/fusion/adapted/mpl/detail/value_at_impl.hpp:
+
+/usr/include/boost/fusion/adapted/mpl/detail/size_impl.hpp:
+
+/usr/include/boost/fusion/mpl.hpp:
+
+/usr/include/boost/fusion/view/transform_view/detail/begin_impl.hpp:
+
+/usr/include/boost/fusion/view/transform_view/detail/equal_to_impl.hpp:
+
+/usr/include/boost/fusion/view/transform_view/detail/distance_impl.hpp:
+
+/usr/include/boost/fusion/view/transform_view/detail/advance_impl.hpp:
+
+/usr/include/boost/fusion/view/transform_view/detail/prior_impl.hpp:
+
+/usr/include/boost/fusion/view/transform_view/transform_view_iterator.hpp:
+
+/usr/include/boost/fusion/view/transform_view/transform_view.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/replace.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/remove_if.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/remove.hpp:
+
+/usr/include/boost/fusion/iterator/iterator_adapter.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/pop_back.hpp:
+
+/usr/include/boost/fusion/view/joint_view.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/join.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/insert.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/filter_if.hpp:
+
+/usr/include/boost/fusion/view/filter_view/detail/size_impl.hpp:
+
+/usr/include/boost/fusion/view/filter_view/detail/end_impl.hpp:
+
+/usr/include/boost/fusion/view/filter_view/detail/key_of_impl.hpp:
+
+/usr/include/boost/fusion/view/filter_view/detail/value_of_data_impl.hpp:
+
+/usr/include/boost/fusion/view/filter_view/detail/value_of_impl.hpp:
+
+/usr/include/boost/fusion/view/filter_view/detail/next_impl.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/check-data.hxx:
+
+/usr/include/boost/fusion/view/filter_view/detail/deref_impl.hpp:
+
+/usr/include/boost/fusion/view/filter_view/filter_view_iterator.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/filter.hpp:
+
+/usr/include/boost/fusion/container/vector/vector10.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/clear.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation.hpp:
+
+/usr/include/boost/fusion/algorithm/query/none.hpp:
+
+/usr/include/boost/fusion/algorithm/query/detail/segmented_find_if.hpp:
+
+/usr/include/boost/fusion/algorithm/query/find_if.hpp:
+
+/usr/include/boost/fusion/algorithm/query/find_fwd.hpp:
+
+/usr/include/boost/fusion/algorithm/query/detail/segmented_find.hpp:
+
+/usr/include/boost/fusion/algorithm/query/detail/find_if.hpp:
+
+/usr/include/boost/fusion/algorithm/query/find.hpp:
+
+/usr/include/boost/fusion/algorithm/query/detail/count_if.hpp:
+
+/usr/include/boost/fusion/algorithm/query/count_if.hpp:
+
+/usr/include/boost/fusion/algorithm/query/count.hpp:
+
+/usr/include/boost/fusion/algorithm/query/detail/any.hpp:
+
+/usr/include/boost/fusion/algorithm/query/all.hpp:
+
+/usr/include/boost/fusion/algorithm/query.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/reverse_iter_fold_fwd.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/reverse_iter_fold.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/detail/preprocessed/reverse_fold.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/reverse_fold_fwd.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/reverse_fold.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/detail/preprocessed/iter_fold.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/iter_fold.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/detail/for_each.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/for_each.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/detail/preprocessed/fold.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/fold_fwd.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/accumulate_fwd.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/accumulate.hpp:
+
+/usr/include/boost/fusion/container/generation/make_list.hpp:
+
+/usr/include/boost/fusion/container/list/detail/convert_impl.hpp:
+
+/usr/include/boost/fusion/container/list/detail/list_to_cons.hpp:
+
+/usr/include/boost/fusion/container/list/list.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/check-base.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/check-model.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/check.hpp:
+
+/opt/openrobots/include/pinocchio/math/eigenvalues.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/constraints/constraint-model-base.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/constraints/fwd.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/fold.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/contact-cholesky.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/rnea.hpp:
 
 /usr/include/boost/optional/detail/optional_reference_spec.hpp:
 
@@ -2508,7 +3009,11 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/type_traits/has_negate.hpp:
 
+/opt/openrobots/include/pinocchio/algorithm/contact-cholesky.txx:
+
 /usr/include/boost/mpl/aux_/config/gcc.hpp:
+
+/usr/include/boost/mpl/erase.hpp:
 
 /usr/include/boost/numeric/conversion/bounds.hpp:
 
@@ -2648,6 +3153,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/eigen3/unsupported/Eigen/CXX11/src/util/CXX11Workarounds.h:
 
+/usr/include/boost/fusion/adapted/mpl/detail/is_view_impl.hpp:
+
 /usr/include/boost/fusion/view/joint_view/joint_view_fwd.hpp:
 
 /usr/include/eigen3/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsPacketMath.h:
@@ -2786,6 +3293,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/eigen3/Eigen/src/Core/Reverse.h:
 
+/usr/include/boost/fusion/algorithm/query/any.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/VectorwiseOp.h:
 
 /usr/include/eigen3/Eigen/src/Core/DenseStorage.h:
@@ -2812,11 +3321,17 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/type_traits/is_member_object_pointer.hpp:
 
+/usr/include/boost/fusion/algorithm/transformation/erase.hpp:
+
+/opt/openrobots/include/pinocchio/math/triangular-matrix.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/DiagonalProduct.h:
 
 /usr/include/eigen3/Eigen/src/SparseCore/SparseDiagonalProduct.h:
 
 /usr/include/c++/11/bits/stl_list.h:
+
+/usr/include/boost/fusion/algorithm/iteration/detail/segmented_for_each.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/Diagonal.h:
 
@@ -2885,6 +3400,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/Core/ArrayBase.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/typesupport_helpers.hpp:
+
+/usr/include/boost/fusion/view/filter_view/detail/deref_data_impl.hpp:
 
 /usr/include/boost/math/policies/policy.hpp:
 
@@ -2977,6 +3494,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/Core/MathFunctionsImpl.h:
 
 /usr/include/eigen3/Eigen/src/Core/GenericPacketMath.h:
+
+/usr/include/boost/fusion/algorithm/iteration/detail/preprocessed/reverse_iter_fold.hpp:
 
 /usr/include/eigen3/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsImpl.h:
 
@@ -3078,6 +3597,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /opt/ros/humble/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp:
 
+/opt/openrobots/include/pinocchio/algorithm/contact-cholesky.hxx:
+
 /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/float64_multi_array__builder.hpp:
 
 /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp:
@@ -3093,6 +3614,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/range/empty.hpp:
 
 /opt/ros/humble/include/trajectory_msgs/trajectory_msgs/msg/detail/joint_trajectory_point__builder.hpp:
+
+/usr/include/boost/fusion/view/transform_view/detail/deref_impl.hpp:
 
 /usr/include/boost/mpl/remove_if.hpp:
 
@@ -3159,6 +3682,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/dynamic_storage.hpp:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__traits.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/key_of_impl.hpp:
 
 /usr/include/boost/predef/architecture/x86.h:
 
@@ -3370,6 +3895,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/mpl/tag.hpp:
 
+/usr/include/boost/fusion/view/filter_view/detail/begin_impl.hpp:
+
 /usr/include/eigen3/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsArrayAPI.h:
 
 /opt/ros/humble/include/rcpputils/rcpputils/thread_safety_annotations.hpp:
@@ -3383,6 +3910,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/ros/humble/include/libstatistics_collector/libstatistics_collector/collector/collector.hpp:
 
 /usr/include/c++/11/bits/vector.tcc:
+
+/usr/include/boost/fusion/support/as_const.hpp:
 
 /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__struct.hpp:
 
@@ -3415,6 +3944,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/Core/arch/Default/TypeCasting.h:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__traits.hpp:
+
+/usr/include/boost/fusion/container/list/detail/build_cons.hpp:
 
 /usr/include/c++/11/bits/std_abs.h:
 
@@ -3476,6 +4007,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/mpl/vector/vector30.hpp:
 
+/usr/include/boost/fusion/container/vector/convert.hpp:
+
 /usr/include/boost/detail/select_type.hpp:
 
 /usr/include/boost/mpl/find.hpp:
@@ -3491,6 +4024,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/type_traits/is_nothrow_swappable.hpp:
 
 /usr/include/c++/11/locale:
+
+/usr/include/boost/fusion/view/filter_view/filter_view.hpp:
 
 /usr/include/c++/11/cctype:
 
@@ -3514,9 +4049,13 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /opt/ros/humble/include/rclcpp/rclcpp/experimental/buffers/intra_process_buffer.hpp:
 
+/usr/include/boost/fusion/view/zip_view/detail/at_impl.hpp:
+
 /usr/include/boost/mpl/aux_/msvc_never_true.hpp:
 
 /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/service_type_support.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/erase_key.hpp:
 
 /usr/include/asm-generic/errno-base.h:
 
@@ -3577,6 +4116,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/c++/11/ios:
 
 /opt/ros/humble/include/rclcpp/rclcpp/wait_set.hpp:
+
+/usr/include/boost/fusion/algorithm/query/find_if_fwd.hpp:
 
 /usr/include/boost/mpl/bind_fwd.hpp:
 
@@ -3692,6 +4233,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/eigen3/Eigen/IterativeLinearSolvers:
 
+/usr/include/boost/fusion/view/zip_view/detail/begin_impl.hpp:
+
 /opt/ros/humble/include/rmw/rmw/error_handling.h:
 
 /usr/include/eigen3/Eigen/src/SparseCore/SparseMatrixBase.h:
@@ -3703,6 +4246,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/usr/include/boost/fusion/mpl/has_key.hpp:
 
 /usr/include/c++/11/typeindex:
 
@@ -3749,6 +4294,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h:
 
 /usr/include/c++/11/bits/erase_if.h:
+
+/usr/include/boost/fusion/algorithm/query/detail/all.hpp:
 
 /opt/openrobots/include/pinocchio/deprecated.hpp:
 
@@ -3824,6 +4371,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
 
+/opt/openrobots/include/pinocchio/algorithm/rnea.txx:
+
 /usr/include/c++/11/bits/uses_allocator.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
@@ -3864,7 +4413,11 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/x86_64-linux-gnu/bits/ss_flags.h:
 
+/opt/openrobots/include/pinocchio/algorithm/constraints/constraint-data-base.hpp:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
+
+/usr/include/boost/fusion/view/transform_view/detail/end_impl.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/util/MKL_support.h:
 
@@ -3886,6 +4439,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/eigen3/Eigen/src/SparseCore/MappedSparseMatrix.h:
 
+/usr/include/boost/fusion/adapted/mpl/detail/is_sequence_impl.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/sigaction.h:
 
 /usr/include/math.h:
@@ -3905,6 +4460,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/SparseCore/SparseUtil.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_services_interface.hpp:
+
+/usr/include/boost/fusion/view/transform_view/detail/next_impl.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/CwiseUnaryOp.h:
 
@@ -3929,6 +4486,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/c++/11/streambuf:
 
 /usr/include/boost/iostreams/checked_operations.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/delassus-operator-base.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
 
@@ -4038,6 +4597,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/eigen3/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsFunctors.h:
 
+/usr/include/boost/mpl/has_key.hpp:
+
 /opt/openrobots/include/pinocchio/container/boost-container-limits.hpp:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
@@ -4085,6 +4646,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/service_type_support_struct.h:
 
 /usr/include/stdc-predef.h:
+
+/usr/include/boost/fusion/view/transform_view/detail/value_of_impl.hpp:
 
 /usr/include/boost/range/detail/misc_concept.hpp:
 
@@ -4164,6 +4727,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/iostreams/detail/functional.hpp:
 
+/usr/include/boost/mpl/unpack_args.hpp:
+
 /usr/include/c++/11/bits/memoryfwd.h:
 
 /usr/include/c++/11/tr1/poly_hermite.tcc:
@@ -4216,6 +4781,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/c++/11/bits/unique_ptr.h:
 
+/usr/include/boost/fusion/view/reverse_view/detail/at_impl.hpp:
+
 /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__builder.hpp:
 
 /usr/include/c++/11/bits/stl_relops.h:
@@ -4256,6 +4823,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/c++/11/ext/new_allocator.h:
 
+/usr/include/boost/mpl/erase_fwd.hpp:
+
 /usr/include/c++/11/bits/stl_uninitialized.h:
 
 /usr/include/boost/fusion/container/list/detail/equal_to_impl.hpp:
@@ -4263,6 +4832,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/ros/humble/include/rcl/rcl/init_options.h:
 
 /usr/include/c++/11/bits/codecvt.h:
+
+/usr/include/boost/fusion/view/transform_view/detail/value_at_impl.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
 
@@ -4286,6 +4857,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
 
+/usr/include/boost/fusion/algorithm/transformation/reverse.hpp:
+
 /usr/include/boost/math/tools/promotion.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/MathFunctions.h:
@@ -4298,6 +4871,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/eigen3/Eigen/src/Geometry/RotationBase.h:
 
+/usr/include/boost/fusion/algorithm/iteration/detail/segmented_fold.hpp:
+
 /usr/include/c++/11/tr1/beta_function.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
@@ -4305,6 +4880,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/c++/11/tr1/poly_laguerre.tcc:
 
 /usr/include/eigen3/Eigen/src/Core/BandMatrix.h:
+
+/usr/include/boost/fusion/container/vector/detail/as_vector.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/arch/SSE/MathFunctions.h:
 
@@ -4343,6 +4920,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/c++/11/bits/functexcept.h:
 
 /usr/include/eigen3/Eigen/src/Core/SolveTriangular.h:
+
+/usr/include/boost/fusion/algorithm/transformation/detail/preprocessed/zip10.hpp:
 
 /usr/include/boost/type_traits/has_less.hpp:
 
@@ -4456,6 +5035,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
+/usr/include/boost/fusion/algorithm/transformation/insert_range.hpp:
+
 /usr/include/c++/11/bits/locale_classes.tcc:
 
 /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_runtime_cpp/traits.hpp:
@@ -4498,6 +5079,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/c++/11/ostream:
 
+/opt/openrobots/include/pinocchio/multibody/data.hpp:
+
 /usr/include/boost/mpl/clear.hpp:
 
 /usr/include/boost/preprocessor/repetition/enum_shifted.hpp:
@@ -4533,6 +5116,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/mpl/arg.hpp:
 
 /usr/include/boost/type_traits/has_trivial_assign.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/iter_fold_fwd.hpp:
 
 /usr/include/boost/iostreams/detail/template_params.hpp:
 
@@ -4588,6 +5173,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/c++/11/map:
 
+/usr/include/boost/fusion/algorithm/iteration.hpp:
+
 /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:
 
 /usr/include/boost/fusion/view/joint_view/detail/deref_impl.hpp:
@@ -4641,6 +5228,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h:
 
 /opt/ros/humble/include/rmw/rmw/localhost.h:
+
+/usr/include/boost/fusion/algorithm.hpp:
 
 /usr/include/c++/11/tr1/modified_bessel_func.tcc:
 
@@ -4796,6 +5385,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /opt/ros/humble/include/rcl/rcl/node.h:
 
+/usr/include/boost/fusion/algorithm/query/detail/count.hpp:
+
 /usr/include/eigen3/Eigen/src/SparseCore/CompressedStorage.h:
 
 /usr/include/boost/iostreams/detail/iostream.hpp:
@@ -4860,6 +5451,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/iterator/detail/config_def.hpp:
 
+/usr/include/boost/fusion/mpl/insert_range.hpp:
+
 /opt/openrobots/include/coal/narrowphase/narrowphase_defaults.h:
 
 /opt/ros/humble/include/rcl/rcl/event_callback.h:
@@ -4899,6 +5492,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/mpl/iterator_category.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:
+
+/usr/include/boost/fusion/iterator/mpl.hpp:
 
 /opt/ros/humble/include/rmw/rmw/subscription_content_filter_options.h:
 
@@ -4988,6 +5583,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/mpl/aux_/lambda_arity_param.hpp:
 
+/usr/include/boost/fusion/view/zip_view/detail/value_at_impl.hpp:
+
 /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__struct.hpp:
 
 /opt/ros/humble/include/rosidl_runtime_c/rosidl_runtime_c/message_initialization.h:
@@ -4997,6 +5594,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/describe_parameters.hpp:
 
 /usr/include/boost/serialization/access.hpp:
+
+/usr/include/boost/fusion/algorithm/iteration/for_each_fwd.hpp:
 
 /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_gemm_kernel.h:
 
@@ -5019,6 +5618,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/openrobots/include/pinocchio/multibody/joint/joint-base.hpp:
 
 /usr/include/c++/11/bits/locale_facets_nonio.tcc:
+
+/usr/include/boost/fusion/adapted/mpl.hpp:
 
 /usr/include/c++/11/bits/stl_multiset.h:
 
@@ -5096,6 +5697,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/config/no_tr1/complex.hpp:
 
+/usr/include/boost/fusion/view/detail/strictest_traversal.hpp:
+
 /opt/openrobots/include/pinocchio/math/fwd.hpp:
 
 /opt/openrobots/include/pinocchio/spatial/force-dense.hpp:
@@ -5142,6 +5745,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:
 
+/usr/include/boost/fusion/algorithm/transformation/pop_front.hpp:
+
 /opt/ros/humble/include/rclcpp/rclcpp/parameter.hpp:
 
 /opt/openrobots/include/pinocchio/multibody/joint/fwd.hpp:
@@ -5177,6 +5782,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/iostreams/detail/config/wide_streams.hpp:
 
 /opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__traits.hpp:
+
+/usr/include/boost/fusion/view/zip_view/detail/prior_impl.hpp:
 
 /usr/include/boost/fusion/support/detail/access.hpp:
 
@@ -5386,11 +5993,15 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/preprocessor/enum_params.hpp:
 
+/usr/include/boost/fusion/support/segmented_fold_until.hpp:
+
 /usr/include/boost/preprocessor/repetition/enum_params.hpp:
 
 /usr/include/boost/mpl/greater.hpp:
 
 /opt/openrobots/include/coal/logging.h:
+
+/usr/include/boost/fusion/adapted/mpl/detail/has_key_impl.hpp:
 
 /usr/include/c++/11/math.h:
 
@@ -5431,6 +6042,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/preprocessor/list/fold_right.hpp:
 
 /usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp:
+
+/usr/include/boost/mpl/has_key_fwd.hpp:
 
 /usr/include/boost/integer/common_factor_ct.hpp:
 
@@ -5526,7 +6139,11 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/preprocessor/seq/rest_n.hpp:
 
+/usr/include/boost/fusion/container/list.hpp:
+
 /usr/include/boost/preprocessor/seq/size.hpp:
+
+/usr/include/boost/fusion/sequence/convert.hpp:
 
 /usr/include/boost/preprocessor/seq/fold_left.hpp:
 
@@ -5652,6 +6269,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/mpl/vector/aux_/begin_end.hpp:
 
+/usr/include/boost/fusion/container/list/convert.hpp:
+
 /opt/ros/humble/include/rmw/rmw/impl/config.h:
 
 /usr/include/boost/mpl/at.hpp:
@@ -5749,6 +6368,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h:
 
 /usr/include/boost/type_traits/detail/yes_no_type.hpp:
+
+/usr/include/boost/fusion/include/equal_to.hpp:
 
 /usr/include/c++/11/typeinfo:
 
@@ -5859,6 +6480,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/mpl/aux_/lambda_spec.hpp:
 
 /usr/include/boost/range/detail/implementation_help.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/contact-info.hpp:
 
 /usr/include/boost/serialization/tracking.hpp:
 
@@ -5992,6 +6615,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/fusion/view/iterator_range/detail/size_impl.hpp:
 
+/usr/include/boost/fusion/view/zip_view/detail/distance_impl.hpp:
+
 /usr/include/boost/lexical_cast/detail/is_character.hpp:
 
 /opt/openrobots/include/coal/collision_object.h:
@@ -6019,6 +6644,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/numeric/conversion/detail/int_float_mixture.hpp:
 
 /opt/openrobots/include/pinocchio/multibody/frame.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/check-model.hxx:
 
 /usr/include/c++/11/bits/random.h:
 
@@ -6117,6 +6744,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/ros/humble/include/rclcpp/rclcpp/create_generic_subscription.hpp:
 
 /usr/include/boost/predef/os/macos.h:
+
+/usr/include/boost/mpl/aux_/pop_back_impl.hpp:
 
 /usr/include/boost/serialization/void_cast.hpp:
 
@@ -6304,6 +6933,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/type_traits/is_list_constructible.hpp:
 
+/opt/openrobots/include/pinocchio/algorithm/fwd.hpp:
+
 /usr/include/c++/11/bits/ios_base.h:
 
 /usr/include/boost/fusion/support/detail/segmented_fold_until_impl.hpp:
@@ -6370,6 +7001,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/eigen3/Eigen/src/Geometry/OrthoMethods.h:
 
+/usr/include/boost/fusion/mpl/push_back.hpp:
+
 /usr/include/boost/iostreams/detail/bool_trait_def.hpp:
 
 /usr/include/eigen3/Eigen/src/Geometry/EulerAngles.h:
@@ -6395,6 +7028,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h:
 
 /usr/include/eigen3/Eigen/src/Eigenvalues/RealSchur.h:
+
+/usr/include/boost/fusion/adapted/mpl/detail/category_of_impl.hpp:
 
 /usr/include/eigen3/Eigen/src/Eigenvalues/HessenbergDecomposition.h:
 
@@ -6526,15 +7161,21 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/mpl/insert_fwd.hpp:
 
+/usr/include/boost/fusion/view/flatten_view.hpp:
+
 /usr/include/boost/mpl/aux_/insert_impl.hpp:
 
 /usr/include/boost/mpl/aux_/joint_iter.hpp:
 
 /usr/include/boost/mpl/aux_/iter_push_front.hpp:
 
+/usr/include/boost/fusion/view/filter_view/detail/equal_to_impl.hpp:
+
 /usr/include/boost/type_traits/same_traits.hpp:
 
 /usr/include/boost/mpl/max_element.hpp:
+
+/usr/include/boost/fusion/sequence/comparison/detail/equal_to.hpp:
 
 /usr/include/boost/mpl/transform.hpp:
 
@@ -6786,6 +7427,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/fusion/sequence/intrinsic/detail/segmented_begin_impl.hpp:
 
+/usr/include/boost/mpl/zip_view.hpp:
+
 /usr/include/boost/optional/detail/optional_relops.hpp:
 
 /usr/include/c++/11/cstdio:
@@ -6916,6 +7559,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/fusion/view/single_view/detail/end_impl.hpp:
 
+/usr/include/boost/mpl/transform_view.hpp:
+
 /usr/include/boost/fusion/sequence/intrinsic/value_at.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/publisher_base.hpp:
@@ -6951,6 +7596,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/iostreams/detail/adapter/output_iterator_adapter.hpp:
 
 /usr/include/boost/fusion/functional/invocation/limits.hpp:
+
+/usr/include/boost/fusion/view/reverse_view/detail/value_of_data_impl.hpp:
 
 /usr/include/boost/fusion/functional/invocation/detail/that_ptr.hpp:
 
@@ -7008,7 +7655,11 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/archive/detail/abi_suffix.hpp:
 
+/usr/include/boost/fusion/container/vector.hpp:
+
 /usr/include/boost/archive/detail/basic_pointer_iserializer.hpp:
+
+/usr/include/boost/fusion/algorithm/transformation/flatten.hpp:
 
 /usr/include/boost/variant/static_visitor.hpp:
 
@@ -7022,6 +7673,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/smart_ptr/bad_weak_ptr.hpp:
 
+/usr/include/boost/fusion/view/reverse_view/detail/deref_impl.hpp:
+
 /usr/include/boost/smart_ptr/detail/sp_has_gcc_intrinsics.hpp:
 
 /usr/include/boost/smart_ptr/detail/sp_typeinfo_.hpp:
@@ -7029,6 +7682,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
 
 /usr/include/boost/smart_ptr/detail/sp_convertible.hpp:
+
+/usr/include/boost/fusion/view/transform_view/detail/at_impl.hpp:
 
 /usr/include/boost/smart_ptr/detail/spinlock_pool.hpp:
 
@@ -7106,6 +7761,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 
 /usr/include/boost/archive/binary_iarchive_impl.hpp:
 
+/usr/include/boost/fusion/view/transform_view/transform_view_fwd.hpp:
+
 /usr/include/boost/archive/basic_binary_iprimitive.hpp:
 
 /usr/include/boost/asio/streambuf.hpp:
@@ -7181,6 +7838,8 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/iostreams/detail/config/unreachable_return.hpp:
 
 /usr/include/boost/iostreams/detail/push.hpp:
+
+/usr/include/boost/mpl/back.hpp:
 
 /usr/include/c++/11/variant:
 

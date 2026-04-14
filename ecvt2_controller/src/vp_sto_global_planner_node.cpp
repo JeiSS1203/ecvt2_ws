@@ -6,6 +6,8 @@
 
 #include <pinocchio/parsers/urdf.hpp>
 #include <pinocchio/algorithm/joint-configuration.hpp>
+#include <pinocchio/algorithm/rnea.hpp>
+#include <pinocchio/multibody/data.hpp>
 
 #include <Eigen/Dense>
 #include <Eigen/Eigenvalues>
@@ -46,8 +48,11 @@ struct PlannerConfig
   double infeasible_cost{1e12};
 
   double w_time{1.0};
-  double w_smooth{1e-3};
-  double w_terminal{1e4};
+  double w_smooth{1e-2};
+  double w_terminal{1};
+  double w_passive_track{20.0};
+  double w_passive_damping{1.0};
+  double w_passive_terminal{5e4};
   double w_via_regularization{1e-4};
 
   bool use_zero_boundary_slopes{true};
@@ -258,6 +263,7 @@ public:
   : actuated_joints_(actuated_joints), passive_joints_(passive_joints)
   {
     pinocchio::urdf::buildModel(urdf_path, model_);
+    data_ = std::make_unique<pinocchio::Data>(model_);
     registerJoints(actuated_joints_, idxA_q_, idxA_v_);
     registerJoints(passive_joints_, idxP_q_, idxP_v_);
   }
@@ -266,6 +272,63 @@ public:
   const std::vector<std::string>& passiveJointNames() const { return passive_joints_; }
   int nA() const { return static_cast<int>(idxA_v_.size()); }
   int nP() const { return static_cast<int>(idxP_v_.size()); }
+
+  bool solvePassiveEquilibrium(const Eigen::VectorXd& qA,
+                               const Eigen::VectorXd& qP_seed,
+                               Eigen::VectorXd& qP_eq,
+                               int max_iter = 12,
+                               double tol = 1e-4,
+                               double damping = 1e-4) const
+  {
+    if (qA.size() != nA() || qP_seed.size() != nP()) {
+      return false;
+    }
+    if (nP() == 0) {
+      qP_eq.resize(0);
+      return true;
+    }
+
+    Eigen::VectorXd qP = qP_seed;
+    for (int iter = 0; iter < max_iter; ++iter) {
+      const Eigen::VectorXd gP = passiveGravity(qA, qP);
+      if (!allFinite(gP)) {
+        return false;
+      }
+      if (gP.norm() < tol) {
+        qP_eq = qP;
+        return true;
+      }
+
+      Eigen::MatrixXd J = Eigen::MatrixXd::Zero(nP(), nP());
+      const double eps = 1e-5;
+      for (int j = 0; j < nP(); ++j) {
+        Eigen::VectorXd qP_eps = qP;
+        qP_eps[j] += eps;
+        const Eigen::VectorXd g_eps = passiveGravity(qA, qP_eps);
+        if (!allFinite(g_eps)) {
+          return false;
+        }
+        J.col(j) = (g_eps - gP) / eps;
+      }
+
+      const Eigen::MatrixXd H = J.transpose() * J + damping * Eigen::MatrixXd::Identity(nP(), nP());
+      const Eigen::VectorXd rhs = J.transpose() * gP;
+      const Eigen::VectorXd delta = H.ldlt().solve(rhs);
+      if (!allFinite(delta)) {
+        return false;
+      }
+
+      qP -= delta;
+      if (delta.norm() < tol) {
+        qP_eq = qP;
+        return true;
+      }
+    }
+
+    qP_eq = qP;
+    const Eigen::VectorXd gP = passiveGravity(qA, qP_eq);
+    return allFinite(gP) && (gP.norm() < 1e-3);
+  }
 
   JointStateView fromJointMsg(const sensor_msgs::msg::JointState& msg) const
   {
@@ -325,6 +388,51 @@ public:
   }
 
 private:
+  static bool allFinite(const Eigen::VectorXd& x)
+  {
+    for (int i = 0; i < x.size(); ++i) {
+      if (!std::isfinite(x[i])) return false;
+    }
+    return true;
+  }
+
+  void setJointScalar(Eigen::VectorXd& q_full, const JointInfo& info, double q_scalar) const
+  {
+    if (info.is_continuous) {
+      q_full[info.idx_q] = std::cos(q_scalar);
+      q_full[info.idx_q + 1] = std::sin(q_scalar);
+    } else {
+      q_full[info.idx_q] = q_scalar;
+    }
+  }
+
+  Eigen::VectorXd composeConfiguration(const Eigen::VectorXd& qA,
+                                       const Eigen::VectorXd& qP) const
+  {
+    Eigen::VectorXd q_full = pinocchio::neutral(model_);
+    for (size_t i = 0; i < actuated_joints_.size(); ++i) {
+      const auto& info = joint_info_.at(actuated_joints_[i]);
+      setJointScalar(q_full, info, qA[static_cast<int>(i)]);
+    }
+    for (size_t i = 0; i < passive_joints_.size(); ++i) {
+      const auto& info = joint_info_.at(passive_joints_[i]);
+      setJointScalar(q_full, info, qP[static_cast<int>(i)]);
+    }
+    return q_full;
+  }
+
+  Eigen::VectorXd passiveGravity(const Eigen::VectorXd& qA,
+                                 const Eigen::VectorXd& qP) const
+  {
+    const Eigen::VectorXd q_full = composeConfiguration(qA, qP);
+    const Eigen::VectorXd g = pinocchio::computeGeneralizedGravity(model_, *data_, q_full);
+    Eigen::VectorXd gP(nP());
+    for (int i = 0; i < nP(); ++i) {
+      gP[i] = g[idxP_v_[static_cast<size_t>(i)]];
+    }
+    return gP;
+  }
+
   void registerJoints(const std::vector<std::string>& names,
                       std::vector<int>& q_idx,
                       std::vector<int>& v_idx)
@@ -357,6 +465,7 @@ private:
   }
 
   pinocchio::Model model_;
+  mutable std::unique_ptr<pinocchio::Data> data_;
   std::vector<std::string> actuated_joints_;
   std::vector<std::string> passive_joints_;
   std::unordered_map<std::string, JointInfo> joint_info_;
@@ -397,8 +506,12 @@ class TrajectoryRolloutEvaluator
 public:
   TrajectoryRolloutEvaluator(const PlannerConfig& cfg,
                              Eigen::VectorXd q_goal_A,
-                             Eigen::VectorXd q_preview_P)
-  : cfg_(cfg), q_goal_A_(std::move(q_goal_A)), q_preview_P_(std::move(q_preview_P)) {}
+                             Eigen::VectorXd q_goal_P_eq,
+                             const CraneDynamicsModel* dynamics)
+  : cfg_(cfg),
+    q_goal_A_(std::move(q_goal_A)),
+    q_goal_P_eq_(std::move(q_goal_P_eq)),
+    dynamics_(dynamics) {}
 
   CandidateEvaluation evaluate(const Eigen::VectorXd& via_flat,
                                const JointStateView& start,
@@ -429,7 +542,25 @@ public:
     traj.T = T;
     traj.feasible = true;
 
+    if (dynamics_ == nullptr) {
+      result.cost = cfg_.infeasible_cost;
+      result.feasible = false;
+      return result;
+    }
+    if (start.qP.size() != dynamics_->nP() || q_goal_P_eq_.size() != dynamics_->nP()) {
+      result.cost = cfg_.infeasible_cost;
+      result.feasible = false;
+      return result;
+    }
+
+    const double dt_eval = T / static_cast<double>(std::max(1, cfg_.n_eval - 1));
+
     double smooth_int = 0.0;
+    double passive_track_int = 0.0;
+    double passive_vel_int = 0.0;
+
+    Eigen::VectorXd prev_qP = start.qP;
+    Eigen::VectorXd prev_qdotP = Eigen::VectorXd::Zero(start.qP.size());
 
     for (int k = 0; k < cfg_.n_eval; ++k) {
       const double s = s_grid[k];
@@ -450,27 +581,55 @@ public:
       traj.qdotA.push_back(qdotA);
       traj.qddA.push_back(qddA);
 
-      // global planner에서는 passive dynamics를 rollout하지 않음
-      traj.qP.push_back(q_preview_P_);
-      traj.qdotP.push_back(Eigen::VectorXd::Zero(q_preview_P_.size()));
-      traj.qddP.push_back(Eigen::VectorXd::Zero(q_preview_P_.size()));
+      Eigen::VectorXd qP_eq;
+      if (!dynamics_->solvePassiveEquilibrium(kk.qA, prev_qP, qP_eq)) {
+        result.cost = cfg_.infeasible_cost;
+        result.feasible = false;
+        return result;
+      }
+
+      Eigen::VectorXd qdotP = Eigen::VectorXd::Zero(qP_eq.size());
+      Eigen::VectorXd qddP = Eigen::VectorXd::Zero(qP_eq.size());
+      if (k > 0 && dt_eval > 1e-9) {
+        qdotP = (qP_eq - prev_qP) / dt_eval;
+      }
+      if (k > 1 && dt_eval > 1e-9) {
+        qddP = (qdotP - prev_qdotP) / dt_eval;
+      }
+
+      traj.qP.push_back(qP_eq);
+      traj.qdotP.push_back(qdotP);
+      traj.qddP.push_back(qddP);
 
       const double weight = (k == 0 || k == cfg_.n_eval - 1) ? 0.5 : 1.0;
       smooth_int += weight * qddA.squaredNorm();
+
+      const Eigen::VectorXd qP_ref = (1.0 - s) * start.qP + s * q_goal_P_eq_;
+      const Eigen::VectorXd passive_err = qP_eq - qP_ref;
+      passive_track_int += weight * passive_err.squaredNorm();
+      passive_vel_int += weight * qdotP.squaredNorm();
+
+      prev_qP = qP_eq;
+      prev_qdotP = qdotP;
     }
 
-    const double dt_eval = T / static_cast<double>(std::max(1, cfg_.n_eval - 1));
     smooth_int *= dt_eval;
+    passive_track_int *= dt_eval;
+    passive_vel_int *= dt_eval;
 
     traj.smoothness_integral = smooth_int;
-    traj.passive_integral = 0.0;
+    traj.passive_integral = passive_track_int + passive_vel_int;
 
     const Eigen::VectorXd terminal_error = traj.qA.back() - q_goal_A_;
+    const Eigen::VectorXd terminal_error_passive = traj.qP.back() - q_goal_P_eq_;
     const double via_reg = via_flat.squaredNorm();
 
     result.cost = cfg_.w_time * T
                 + cfg_.w_smooth * smooth_int
                 + cfg_.w_terminal * terminal_error.squaredNorm()
+                + cfg_.w_passive_track * passive_track_int
+                + cfg_.w_passive_damping * passive_vel_int
+                + cfg_.w_passive_terminal * terminal_error_passive.squaredNorm()
                 + cfg_.w_via_regularization * via_reg;
 
     result.feasible = true;
@@ -489,7 +648,8 @@ private:
 
   PlannerConfig cfg_;
   Eigen::VectorXd q_goal_A_;
-  Eigen::VectorXd q_preview_P_;
+  Eigen::VectorXd q_goal_P_eq_;
+  const CraneDynamicsModel* dynamics_{nullptr};
 };
 
 class CmaEsVpStoOptimizer
@@ -662,6 +822,9 @@ public:
     declare_parameter<double>("w_time", 1.0);
     declare_parameter<double>("w_smooth", 1e-3);
     declare_parameter<double>("w_terminal", 1e4);
+    declare_parameter<double>("w_passive_track", 200.0);
+    declare_parameter<double>("w_passive_damping", 10.0);
+    declare_parameter<double>("w_passive_terminal", 5e4);
     declare_parameter<double>("w_via_regularization", 1e-4);
     declare_parameter<bool>("auto_plan_on_first_state", true);
     declare_parameter<bool>("replan_periodic", false);
@@ -683,6 +846,9 @@ public:
     cfg_.w_time = get_parameter("w_time").as_double();
     cfg_.w_smooth = get_parameter("w_smooth").as_double();
     cfg_.w_terminal = get_parameter("w_terminal").as_double();
+    cfg_.w_passive_track = get_parameter("w_passive_track").as_double();
+    cfg_.w_passive_damping = get_parameter("w_passive_damping").as_double();
+    cfg_.w_passive_terminal = get_parameter("w_passive_terminal").as_double();
     cfg_.w_via_regularization = get_parameter("w_via_regularization").as_double();
 
     q_goal_A_ = toEigen(get_parameter("goal_actuated").as_double_array());
@@ -770,12 +936,17 @@ private:
       mean_init.segment(k * nA, nA) = qk;
     }
 
-    Eigen::VectorXd q_preview_P = Eigen::VectorXd::Zero(dynamics_->nP());
-    if (start.qP.size() == q_preview_P.size()) {
-      q_preview_P = start.qP;
+    Eigen::VectorXd q_goal_P_eq = Eigen::VectorXd::Zero(dynamics_->nP());
+    if (start.qP.size() == q_goal_P_eq.size()) {
+      q_goal_P_eq = start.qP;
+    }
+    if (dynamics_->nP() > 0 && !dynamics_->solvePassiveEquilibrium(q_goal_A_, q_goal_P_eq, q_goal_P_eq)) {
+      RCLCPP_WARN(
+        get_logger(),
+        "Failed to compute passive equilibrium at q_goal_A. Falling back to current passive state.");
     }
 
-    TrajectoryRolloutEvaluator evaluator(cfg_, q_goal_A_, q_preview_P);
+    TrajectoryRolloutEvaluator evaluator(cfg_, q_goal_A_, q_goal_P_eq, dynamics_.get());
     CmaEsVpStoOptimizer optimizer(cfg_);
 
     const auto best = optimizer.optimize(

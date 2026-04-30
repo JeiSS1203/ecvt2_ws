@@ -1,0 +1,35 @@
+In file included from /opt/openrobots/include/hpp/fcl/config.hh:1,
+                 from /opt/openrobots/include/pinocchio/serialization/eigen.hpp:20,
+                 from /opt/openrobots/include/pinocchio/serialization/fwd.hpp:11,
+                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14,
+                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9,
+                 from /opt/openrobots/include/pinocchio/multibody/model.hpp:17,
+                 from /opt/openrobots/include/pinocchio/parsers/urdf.hpp:9,
+                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_node.cpp:7:
+/opt/openrobots/include/hpp/fcl/coal.hpp:12:99: note: ‘#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS’
+   12 |     "Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS")
+      |                                                                                                   ^
+In file included from /opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_node.cpp:1:
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_node.cpp: In member function ‘void vpsto::VpStoGlobalPlannerNode::planIfPossible()’:
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_node.cpp:1003:31: warning: format ‘%u’ expects argument of type ‘unsigned int’, but argument 5 has type ‘std::mersenne_twister_engine<long unsigned int, 32, 624, 397, 31, 2567483615, 11, 4294967295, 7, 2636928640, 15, 4022730752, 18, 1812433253>::result_type’ {aka ‘long unsigned int’} [-Wformat=]
+ 1003 |     RCLCPP_INFO(get_logger(), "VP-STO optimizer seed=%u", optimizer.seed());
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~
+      |                                                                         |
+      |                                                                         std::mersenne_twister_engine<long unsigned int, 32, 624, 397, 31, 2567483615, 11, 4294967295, 7, 2636928640, 15, 4022730752, 18, 1812433253>::result_type {aka long unsigned int}
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_node.cpp:1003:55: note: format string is defined here
+ 1003 |     RCLCPP_INFO(get_logger(), "VP-STO optimizer seed=%u", optimizer.seed());
+      |                                                      ~^
+      |                                                       |
+      |                                                       unsigned int
+      |                                                      %lu

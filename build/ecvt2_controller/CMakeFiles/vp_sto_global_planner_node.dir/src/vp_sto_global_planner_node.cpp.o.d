@@ -2303,7 +2303,7 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
  /usr/include/boost/optional/detail/optional_relops.hpp \
  /usr/include/boost/optional/detail/optional_swap.hpp \
  /opt/openrobots/include/pinocchio/parsers/urdf/geometry.hxx \
- /opt/openrobots/include/pinocchio/algorithm/rnea.hpp \
+ /opt/openrobots/include/pinocchio/algorithm/crba.hpp \
  /opt/openrobots/include/pinocchio/multibody/data.hpp \
  /opt/openrobots/include/pinocchio/algorithm/contact-cholesky.hpp \
  /opt/openrobots/include/pinocchio/math/triangular-matrix.hpp \
@@ -2520,6 +2520,16 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
  /usr/include/eigen3/Eigen/src/Core/util/Constants.h \
  /opt/openrobots/include/pinocchio/multibody/data.hxx \
  /opt/openrobots/include/pinocchio/multibody/data.txx \
+ /opt/openrobots/include/pinocchio/algorithm/crba.hxx \
+ /opt/openrobots/include/pinocchio/algorithm/kinematics.hpp \
+ /opt/openrobots/include/pinocchio/algorithm/kinematics.hxx \
+ /opt/openrobots/include/pinocchio/algorithm/model.hpp \
+ /opt/openrobots/include/pinocchio/algorithm/kinematics.txx \
+ /opt/openrobots/include/pinocchio/algorithm/crba.txx \
+ /opt/openrobots/include/pinocchio/algorithm/energy.hpp \
+ /opt/openrobots/include/pinocchio/algorithm/energy.hxx \
+ /opt/openrobots/include/pinocchio/algorithm/energy.txx \
+ /opt/openrobots/include/pinocchio/algorithm/rnea.hpp \
  /opt/openrobots/include/pinocchio/algorithm/rnea.hxx \
  /opt/openrobots/include/pinocchio/algorithm/rnea.txx \
  /usr/include/eigen3/Eigen/Eigenvalues

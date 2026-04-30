@@ -6,6 +6,8 @@
 
 #include <pinocchio/parsers/urdf.hpp>
 #include <pinocchio/algorithm/joint-configuration.hpp>
+#include <pinocchio/algorithm/crba.hpp>
+#include <pinocchio/algorithm/energy.hpp>
 #include <pinocchio/algorithm/rnea.hpp>
 #include <pinocchio/multibody/data.hpp>
 
@@ -40,6 +42,7 @@ struct PlannerConfig
   int max_iterations{20};
   int elite_count{10};
   int cma_update_eig_every{5};
+  int random_seed{-1};
 
   double t_min{1.0};
   double t_max{40.0};
@@ -47,13 +50,13 @@ struct PlannerConfig
   double stop_sigma{1e-3};
   double infeasible_cost{1e12};
 
-  double w_time{20.0};
-  double w_smooth{1e-2};
-  double w_terminal{1};
+  double w_time{10.0};
+  double w_smooth{1.0};
+  double w_terminal{1.0};
   double w_passive_track{1.0};
-  double w_passive_damping{1.0};
-  double w_passive_terminal{100.0};
-  double w_passive_terminal_velocity{200.0};
+  double w_passive_damping{50.0};
+  double w_passive_terminal{1e4};
+  double w_passive_terminal_velocity{100.0};
   double w_via_regularization{1e-4};
 
   bool use_zero_boundary_slopes{true};
@@ -273,6 +276,42 @@ public:
   const std::vector<std::string>& passiveJointNames() const { return passive_joints_; }
   int nA() const { return static_cast<int>(idxA_v_.size()); }
   int nP() const { return static_cast<int>(idxP_v_.size()); }
+
+  double passiveTerminalEnergy(const Eigen::VectorXd& qA,
+                               const Eigen::VectorXd& qP,
+                               const Eigen::VectorXd& qdotP,
+                               const Eigen::VectorXd& qP_ref) const
+  {
+    if (qA.size() != nA() || qP.size() != nP() ||
+        qdotP.size() != nP() || qP_ref.size() != nP()) {
+      return std::numeric_limits<double>::infinity();
+    }
+    if (nP() == 0) {
+      return 0.0;
+    }
+
+    const Eigen::VectorXd q_full = composeConfiguration(qA, qP);
+    pinocchio::crba(model_, *data_, q_full);
+    Eigen::MatrixXd M = data_->M;
+    M.triangularView<Eigen::StrictlyLower>() =
+      M.transpose().triangularView<Eigen::StrictlyLower>();
+
+    Eigen::MatrixXd Mpp = Eigen::MatrixXd::Zero(nP(), nP());
+    for (int r = 0; r < nP(); ++r) {
+      for (int c = 0; c < nP(); ++c) {
+        Mpp(r, c) = M(idxP_v_[static_cast<size_t>(r)], idxP_v_[static_cast<size_t>(c)]);
+      }
+    }
+
+    const double kinetic = 0.5 * qdotP.transpose() * Mpp * qdotP;
+
+    const double potential = pinocchio::computePotentialEnergy(model_, *data_, q_full);
+    const Eigen::VectorXd q_ref_full = composeConfiguration(qA, qP_ref);
+    const double potential_ref = pinocchio::computePotentialEnergy(model_, *data_, q_ref_full);
+    const double potential_delta = std::max(0.0, potential - potential_ref);
+
+    return kinetic + potential_delta;
+  }
 
   bool solvePassiveEquilibrium(const Eigen::VectorXd& qA,
                                const Eigen::VectorXd& qP_seed,
@@ -623,7 +662,13 @@ public:
 
     const Eigen::VectorXd terminal_error = traj.qA.back() - q_goal_A_;
     const Eigen::VectorXd terminal_error_passive = traj.qP.back() - q_goal_P_eq_;
-    const Eigen::VectorXd terminal_velocity_passive = traj.qdotP.back();
+    const double terminal_passive_energy = dynamics_->passiveTerminalEnergy(
+      traj.qA.back(), traj.qP.back(), traj.qdotP.back(), q_goal_P_eq_);
+    if (!std::isfinite(terminal_passive_energy)) {
+      result.cost = cfg_.infeasible_cost;
+      result.feasible = false;
+      return result;
+    }
     const double via_reg = via_flat.squaredNorm();
 
     result.cost = cfg_.w_time * T
@@ -632,7 +677,7 @@ public:
                 + cfg_.w_passive_track * passive_track_int
                 + cfg_.w_passive_damping * passive_vel_int
                 + cfg_.w_passive_terminal * terminal_error_passive.squaredNorm()
-                + cfg_.w_passive_terminal_velocity * terminal_velocity_passive.squaredNorm()
+                + cfg_.w_passive_terminal_velocity * terminal_passive_energy
                 + cfg_.w_via_regularization * via_reg;
 
     result.feasible = true;
@@ -659,7 +704,12 @@ class CmaEsVpStoOptimizer
 {
 public:
   explicit CmaEsVpStoOptimizer(PlannerConfig cfg)
-  : cfg_(std::move(cfg)), rng_(std::random_device{}()), normal_(0.0, 1.0) {}
+  : cfg_(std::move(cfg)),
+    seed_(makeSeed(cfg_.random_seed)),
+    rng_(seed_),
+    normal_(0.0, 1.0) {}
+
+  std::mt19937::result_type seed() const { return seed_; }
 
   CandidateEvaluation optimize(const Eigen::VectorXd& mean_init,
                                const std::function<CandidateEvaluation(const Eigen::VectorXd&)>& eval_fn,
@@ -784,7 +834,16 @@ public:
   }
 
 private:
+  static std::mt19937::result_type makeSeed(int configured_seed)
+  {
+    if (configured_seed >= 0) {
+      return static_cast<std::mt19937::result_type>(configured_seed);
+    }
+    return std::random_device{}();
+  }
+
   PlannerConfig cfg_;
+  std::mt19937::result_type seed_{0};
   std::mt19937 rng_;
   std::normal_distribution<double> normal_;
 };
@@ -819,6 +878,7 @@ public:
     declare_parameter<int>("population", 40);
     declare_parameter<int>("max_iterations", 20);
     declare_parameter<int>("elite_count", 10);
+    declare_parameter<int>("random_seed", -1);
     declare_parameter<double>("sigma0", 0.20);
     declare_parameter<double>("t_min", 1.0);
     declare_parameter<double>("t_max", 40.0);
@@ -844,6 +904,7 @@ public:
     cfg_.population = get_parameter("population").as_int();
     cfg_.max_iterations = get_parameter("max_iterations").as_int();
     cfg_.elite_count = get_parameter("elite_count").as_int();
+    cfg_.random_seed = get_parameter("random_seed").as_int();
     cfg_.sigma0 = get_parameter("sigma0").as_double();
     cfg_.t_min = get_parameter("t_min").as_double();
     cfg_.t_max = get_parameter("t_max").as_double();
@@ -953,6 +1014,10 @@ private:
 
     TrajectoryRolloutEvaluator evaluator(cfg_, q_goal_A_, q_goal_P_eq, dynamics_.get());
     CmaEsVpStoOptimizer optimizer(cfg_);
+    const auto optimizer_seed = static_cast<unsigned long>(optimizer.seed());
+    RCLCPP_WARN(get_logger(), "VP-STO optimizer seed=%lu", optimizer_seed);
+    std::cout << "[vp_sto_global_planner_node] VP-STO optimizer seed="
+              << optimizer_seed << std::endl;
 
     const auto best = optimizer.optimize(
       mean_init,

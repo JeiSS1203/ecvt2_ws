@@ -23,10 +23,13 @@ def generate_launch_description():
             'acceleration_limits': [1.0, 1.0, 1.0, 1.0, 1.0],
             'n_via': 3,
             'n_eval': 61,
-            'population': 30,
-            'max_iterations': 500
+            'population': 200,
+            'max_iterations': 500,
+            'random_seed': -1
         }]
     )
+    # 608337449
+    # 2641194423
     # dynamics_node = Node(
     #     package='ecvt2_controller',
     #     executable='live_upper_dynamics_node',

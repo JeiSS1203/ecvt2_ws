@@ -21,9 +21,9 @@ def generate_launch_description():
             'goal_actuated': [0.4, 0.5, -0.5, 0.6, 0.0],
             'velocity_limits': [5.0, 5.0, 5.0, 5.0, 5.0],
             'acceleration_limits': [1.0, 1.0, 1.0, 1.0, 1.0],
-            'n_via': 4,
-            'n_eval': 500,
-            'population': 40,
+            'n_via': 3,
+            'n_eval': 61,
+            'population': 30,
             'max_iterations': 500
         }]
     )

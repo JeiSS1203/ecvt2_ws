@@ -47,12 +47,13 @@ struct PlannerConfig
   double stop_sigma{1e-3};
   double infeasible_cost{1e12};
 
-  double w_time{1.0};
+  double w_time{20.0};
   double w_smooth{1e-2};
   double w_terminal{1};
-  double w_passive_track{20.0};
+  double w_passive_track{1.0};
   double w_passive_damping{1.0};
-  double w_passive_terminal{5e4};
+  double w_passive_terminal{100.0};
+  double w_passive_terminal_velocity{200.0};
   double w_via_regularization{1e-4};
 
   bool use_zero_boundary_slopes{true};
@@ -622,6 +623,7 @@ public:
 
     const Eigen::VectorXd terminal_error = traj.qA.back() - q_goal_A_;
     const Eigen::VectorXd terminal_error_passive = traj.qP.back() - q_goal_P_eq_;
+    const Eigen::VectorXd terminal_velocity_passive = traj.qdotP.back();
     const double via_reg = via_flat.squaredNorm();
 
     result.cost = cfg_.w_time * T
@@ -630,6 +632,7 @@ public:
                 + cfg_.w_passive_track * passive_track_int
                 + cfg_.w_passive_damping * passive_vel_int
                 + cfg_.w_passive_terminal * terminal_error_passive.squaredNorm()
+                + cfg_.w_passive_terminal_velocity * terminal_velocity_passive.squaredNorm()
                 + cfg_.w_via_regularization * via_reg;
 
     result.feasible = true;
@@ -825,6 +828,7 @@ public:
     declare_parameter<double>("w_passive_track", 200.0);
     declare_parameter<double>("w_passive_damping", 10.0);
     declare_parameter<double>("w_passive_terminal", 5e4);
+    declare_parameter<double>("w_passive_terminal_velocity", 100.0);
     declare_parameter<double>("w_via_regularization", 1e-4);
     declare_parameter<bool>("auto_plan_on_first_state", true);
     declare_parameter<bool>("replan_periodic", false);
@@ -849,6 +853,7 @@ public:
     cfg_.w_passive_track = get_parameter("w_passive_track").as_double();
     cfg_.w_passive_damping = get_parameter("w_passive_damping").as_double();
     cfg_.w_passive_terminal = get_parameter("w_passive_terminal").as_double();
+    cfg_.w_passive_terminal_velocity = get_parameter("w_passive_terminal_velocity").as_double();
     cfg_.w_via_regularization = get_parameter("w_via_regularization").as_double();
 
     q_goal_A_ = toEigen(get_parameter("goal_actuated").as_double_array());

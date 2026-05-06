@@ -796,6 +796,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "ament_cmake_symlink_install_targets_1_.cmake"
   "ament_cmake_symlink_install_targets_2_.cmake"
   "ament_cmake_symlink_install_targets_3_.cmake"
+  "ament_cmake_symlink_install_targets_4_.cmake"
   "ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/ecvt2_controller"
   "ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/ecvt2_controller"
   "ament_cmake_index/share/ament_index/resource_index/packages/ecvt2_controller"
@@ -819,4 +820,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/pin_test.dir/DependInfo.cmake"
   "CMakeFiles/live_upper_dynamics_node.dir/DependInfo.cmake"
   "CMakeFiles/vp_sto_global_planner_node.dir/DependInfo.cmake"
+  "CMakeFiles/vp_sto_paper_global_planner_node.dir/DependInfo.cmake"
   )

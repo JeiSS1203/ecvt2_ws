@@ -23,11 +23,24 @@ def generate_launch_description():
             'acceleration_limits': [1.0, 1.0, 1.0, 1.0, 1.0],
             'n_via': 3,
             'n_eval': 61,
-            'population': 200,
-            'max_iterations': 500,
-            'random_seed': -1
+            'population': 60,
+            'max_iterations': 1000,
+            'random_seed': -1,
+            'sigma0': 0.2,
+            'w_time': 5.0,
+            'w_smooth': 1.0,
+            'w_terminal': 1.0,
+            'w_passive_track': 1.0,
+            'w_passive_damping': 10.0,
+            'w_post_terminal_track': 70.0,
+            'w_post_terminal_energy': 70.0,
+            'w_via_regularization': 1e-4,
+            'post_terminal_duration': 2.0,
+            'post_terminal_steps': 20
         }]
     )
+    
+    # 3457753494
     # 608337449
     # 2641194423
     # dynamics_node = Node(
@@ -49,5 +62,6 @@ def generate_launch_description():
     return LaunchDescription([
         upper_node,
         # dynamics_node,
+        # paper_planner_node,
         planner_node
     ])

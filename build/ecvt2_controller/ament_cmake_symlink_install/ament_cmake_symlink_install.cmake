@@ -319,11 +319,14 @@ include("/home/jin/harco/ecvt2_ws/build/ecvt2_controller/ament_cmake_symlink_ins
 # install("TARGETS" "vp_sto_global_planner_node" "DESTINATION" "lib/ecvt2_controller")
 include("/home/jin/harco/ecvt2_ws/build/ecvt2_controller/ament_cmake_symlink_install_targets_2_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
+# install("TARGETS" "vp_sto_paper_global_planner_node" "DESTINATION" "lib/ecvt2_controller")
+include("/home/jin/harco/ecvt2_ws/build/ecvt2_controller/ament_cmake_symlink_install_targets_3_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+
 # install(DIRECTORY "include/" "DESTINATION" "include")
 ament_cmake_symlink_install_directory("/home/jin/harco/ecvt2_ws/ecvt2_controller" DIRECTORY "include/" "DESTINATION" "include")
 
 # install("TARGETS" "kdl_utils" "wbc_hqp_lib" "base_opt_controller" "wbc_hqp" "wbc_hqp_v2" "wbc_hqp_v3" "base_arm_task_controller" "base_arm_task_controller_v2" "teleop_goal_publisher" "com_trajectory_publisher" "pin_test" "RUNTIME_DESTINATION" "lib/ecvt2_controller" "LIBRARY_DESTINATION" "lib" "ARCHIVE_DESTINATION" "lib")
-include("/home/jin/harco/ecvt2_ws/build/ecvt2_controller/ament_cmake_symlink_install_targets_3_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+include("/home/jin/harco/ecvt2_ws/build/ecvt2_controller/ament_cmake_symlink_install_targets_4_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
 # install(FILES "/home/jin/harco/ecvt2_ws/build/ecvt2_controller/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/ecvt2_controller" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/jin/harco/ecvt2_ws/ecvt2_controller" FILES "/home/jin/harco/ecvt2_ws/build/ecvt2_controller/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/ecvt2_controller" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

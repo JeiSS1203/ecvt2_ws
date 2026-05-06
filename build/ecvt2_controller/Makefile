@@ -366,6 +366,19 @@ vp_sto_global_planner_node/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_global_planner_node.dir/build.make CMakeFiles/vp_sto_global_planner_node.dir/build
 .PHONY : vp_sto_global_planner_node/fast
 
+#=============================================================================
+# Target rules for targets named vp_sto_paper_global_planner_node
+
+# Build rule for target.
+vp_sto_paper_global_planner_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vp_sto_paper_global_planner_node
+.PHONY : vp_sto_paper_global_planner_node
+
+# fast build rule for target.
+vp_sto_paper_global_planner_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_paper_global_planner_node.dir/build.make CMakeFiles/vp_sto_paper_global_planner_node.dir/build
+.PHONY : vp_sto_paper_global_planner_node/fast
+
 src/base_arm_task_controller.o: src/base_arm_task_controller.cpp.o
 .PHONY : src/base_arm_task_controller.o
 
@@ -582,6 +595,30 @@ src/vp_sto_global_planner_node.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_global_planner_node.dir/build.make CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.s
 .PHONY : src/vp_sto_global_planner_node.cpp.s
 
+src/vp_sto_paper_global_planner_node.o: src/vp_sto_paper_global_planner_node.cpp.o
+.PHONY : src/vp_sto_paper_global_planner_node.o
+
+# target to build an object file
+src/vp_sto_paper_global_planner_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_paper_global_planner_node.dir/build.make CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o
+.PHONY : src/vp_sto_paper_global_planner_node.cpp.o
+
+src/vp_sto_paper_global_planner_node.i: src/vp_sto_paper_global_planner_node.cpp.i
+.PHONY : src/vp_sto_paper_global_planner_node.i
+
+# target to preprocess a source file
+src/vp_sto_paper_global_planner_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_paper_global_planner_node.dir/build.make CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.i
+.PHONY : src/vp_sto_paper_global_planner_node.cpp.i
+
+src/vp_sto_paper_global_planner_node.s: src/vp_sto_paper_global_planner_node.cpp.s
+.PHONY : src/vp_sto_paper_global_planner_node.s
+
+# target to generate assembly for a file
+src/vp_sto_paper_global_planner_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_paper_global_planner_node.dir/build.make CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.s
+.PHONY : src/vp_sto_paper_global_planner_node.cpp.s
+
 src/wbc_hqp.o: src/wbc_hqp.cpp.o
 .PHONY : src/wbc_hqp.o
 
@@ -702,6 +739,7 @@ help:
 	@echo "... pin_test"
 	@echo "... teleop_goal_publisher"
 	@echo "... vp_sto_global_planner_node"
+	@echo "... vp_sto_paper_global_planner_node"
 	@echo "... wbc_hqp"
 	@echo "... wbc_hqp_lib"
 	@echo "... wbc_hqp_v2"
@@ -733,6 +771,9 @@ help:
 	@echo "... src/vp_sto_global_planner_node.o"
 	@echo "... src/vp_sto_global_planner_node.i"
 	@echo "... src/vp_sto_global_planner_node.s"
+	@echo "... src/vp_sto_paper_global_planner_node.o"
+	@echo "... src/vp_sto_paper_global_planner_node.i"
+	@echo "... src/vp_sto_paper_global_planner_node.s"
 	@echo "... src/wbc_hqp.o"
 	@echo "... src/wbc_hqp.i"
 	@echo "... src/wbc_hqp.s"

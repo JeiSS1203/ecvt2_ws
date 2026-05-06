@@ -2652,9 +2652,6 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
   /opt/openrobots/include/pinocchio/algorithm/model.hpp \
   /opt/openrobots/include/pinocchio/algorithm/kinematics.txx \
   /opt/openrobots/include/pinocchio/algorithm/crba.txx \
-  /opt/openrobots/include/pinocchio/algorithm/energy.hpp \
-  /opt/openrobots/include/pinocchio/algorithm/energy.hxx \
-  /opt/openrobots/include/pinocchio/algorithm/energy.txx \
   /opt/openrobots/include/pinocchio/algorithm/rnea.hpp \
   /opt/openrobots/include/pinocchio/algorithm/rnea.hxx \
   /opt/openrobots/include/pinocchio/algorithm/rnea.txx \
@@ -2664,8 +2661,6 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /opt/openrobots/include/pinocchio/algorithm/rnea.hxx:
 
 /opt/openrobots/include/pinocchio/algorithm/rnea.hpp:
-
-/opt/openrobots/include/pinocchio/algorithm/energy.txx:
 
 /opt/openrobots/include/pinocchio/algorithm/crba.txx:
 
@@ -3762,8 +3757,6 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/eigen3/Eigen/src/SVD/UpperBidiagonalization.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/experimental/executable_list.hpp:
-
-/opt/openrobots/include/pinocchio/algorithm/energy.hxx:
 
 /usr/include/boost/archive/basic_text_iarchive.hpp:
 
@@ -7726,8 +7719,6 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
 /usr/include/boost/smart_ptr/make_shared_array.hpp:
 
 /usr/include/boost/core/allocator_access.hpp:
-
-/opt/openrobots/include/pinocchio/algorithm/energy.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/any_subscription_callback.hpp:
 

@@ -58,35 +58,35 @@
 
   <worldbody>
     <body name="base_link" pos="0 0 2.4">
-      <inertial pos="-0.15979 0.0032587 0.016482"  mass="5233.5858073096" fullinertia="922.83227588664 979.828076421376 1749.10791681459 0.004429 -0.33231 -0.29594"/>
+      <inertial pos="-0.15979 0.0032587 0.016482"  mass="5233.5858073096" fullinertia="3681.44 5027.00 6024.86 6.68 721.33 -14.23"/>
       <geom type="mesh" rgba="0.65098 0.61961 0.58824 1" mesh="base_link" contype="0"/>
       <site name="imu_in_base" pos="0 0.002 0" size="0.1" rgba="1 0 1 1"/>
       <body name="UP1" pos="0.370195 0.00200017 0.345303">
-        <inertial pos="-0.15979 0.0032587 0.016482" quat="-0.000109313 0.706965 -0.000162725 0.707249" mass="5233.6" diaginertia="1749.1 979.83 922.83"/>
+        <inertial pos="-0.04 -0.02 0.40" mass="1089.36" fullinertia="227.88 276.45 190.53 10.57 45.05 -2.97"/>
         <joint name="UPJ1" pos="0 0 0" axis="0 0 1" frictionloss="50" damping="10"/>
         <geom type="mesh" rgba="0.65098 0.61961 0.58824 1" mesh="UP1" contype="0"/>
         <body name="UP2" pos="-0.35 0.006485 1.402" quat="0.707107 0.707107 0 0">
-          <inertial pos="1.96228 -0.0530702 0.000513502" quat="0.000542377 0.707107 -0.000279679 0.707107" mass="69.679" diaginertia="59.4322 59.1755 0.652361"/>
+          <inertial pos="1.96228 -0.0530702 0.000513502" mass="546.98" fullinertia="18.18 737.39 739.06 2.67 -0.04 -0.00"/>
           <joint name="UPJ2" pos="0 0 0" axis="0 0 1" range="0 1.0472" frictionloss="50" damping="10"/>
           <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="UP2" contype="0"/>
           <body name="UP3" pos="4 -0.065 0.00192735">
-            <inertial pos="1.36179 -0.0333441 -0.000208761" quat="0.500582 0.500584 0.499417 0.499415" mass="329.692" diaginertia="187.712 186.602 3.5703"/>
+            <inertial pos="1.36179 -0.0333441 -0.000208761" mass="329.692" fullinertia="7.73 333.48 335.12 -3.61 0.37 -0.04"/>
             <joint name="UPJ3" pos="0 0 0" axis="0 0 1" range="-2.0106193 0" frictionloss="50" damping="10"/>
             <geom type="mesh" rgba="0.65098 0.619608 0.588235 1" mesh="UP3" contype="0"/>
             <body name="UP4" pos="0.2 -0.02 -0.00094235" quat="0.707107 0 0.707107 0">
-              <inertial pos="0.000424178 -0.0051871 1.65538" quat="0.707107 7.44659e-05 -7.44659e-05 0.707107" mass="195.721" diaginertia="106.593 106.033 1.36368"/>
+              <inertial pos="0.000424178 -0.0051871 1.65538" mass="195.721" fullinertia="200.76 200.20 2.85 -0.00 -0.12 1.47"/>
               <joint name="UPJ4" pos="0 0 0" axis="0 0 1" type="slide" range="0 1.65" frictionloss="50" damping="10"/>
               <geom type="mesh" rgba="0.65098 0.619608 0.588235 1" mesh="UP4" contype="0"/>
               <body name="UP5" pos="-0.00227 -0.0658089 3.158" quat="0 0.707107 0 -0.707107">
-                <inertial pos="-0.00652049 0.0924987 0.00226761" quat="0.524167 0.517362 -0.481926 0.474693" mass="13.9597" diaginertia="0.0484452 0.045585 0.0207449"/>
+                <inertial pos="-0.00652049 0.0924987 0.00226761" mass="13.9597" fullinertia="0.07 0.03 0.08 -0.00 -0.00 0.01"/>
                 <joint name="UPJ5" pos="0 0 0" axis="0 0 1" range="-1.571 3.14159265358979" frictionloss="300" damping="50"/>
                 <geom type="mesh" rgba="0.65098 0.619608 0.588235 1" mesh="UP5" contype="0"/>
                 <body name="UP6" pos="0 0.16 -0.00227" quat="0.707107 0 -0.707107 0">
-                  <inertial pos="-5.85809e-11 0.173367 0" quat="0.707107 0.707107 0 0" mass="71.3673" diaginertia="0.743252 0.716572 0.377291"/>
+                  <inertial pos="-5.85809e-11 0.173367 0.0" mass="71.3673" fullinertia="0.74 0.38 0.72 0.00 0.00 0.00"/>
                   <joint name="UPJ6" pos="0 0 0" axis="0 0 1" range="-1.571 1.571" frictionloss="300" damping="50"/>
                   <geom type="mesh" rgba="0.65098 0.619608 0.588235 1" mesh="UP6" contype="0"/>
                   <body name="TOOL1" pos="0 0.343 0" quat="0.5 0.5 0.5 -0.5">
-                    <inertial pos="-0.228346 0.00102534 -0.336559" quat="0.998425 -0.00505242 0.0520484 -0.0203296" mass="467.87" diaginertia="11.3225 8.46509 6.95886"/>
+                    <inertial pos="-0.228346 0.00102534 -0.336559" mass="467.87" fullinertia="39.19 51.82 53.3 -0.35 -2.74 -0.21"/>
                     <joint name="TOOLJ1" pos="0 0 0" axis="0 0 1" frictionloss="50" damping="10"/>
                     <geom type="mesh" rgba="0.65098 0.619608 0.588235 1" mesh="TOOL1" contype="0"/>
                   </body>

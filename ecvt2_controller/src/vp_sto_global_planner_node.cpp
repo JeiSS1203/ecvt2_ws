@@ -7,7 +7,6 @@
 #include <pinocchio/parsers/urdf.hpp>
 #include <pinocchio/algorithm/joint-configuration.hpp>
 #include <pinocchio/algorithm/crba.hpp>
-#include <pinocchio/algorithm/energy.hpp>
 #include <pinocchio/algorithm/rnea.hpp>
 #include <pinocchio/multibody/data.hpp>
 
@@ -16,6 +15,7 @@
 
 #include <algorithm>
 #include <chrono>
+#include <cstdint>
 #include <cmath>
 #include <functional>
 #include <iomanip>
@@ -42,7 +42,7 @@ struct PlannerConfig
   int max_iterations{20};
   int elite_count{10};
   int cma_update_eig_every{5};
-  int random_seed{-1};
+  int64_t random_seed{-1};
 
   double t_min{1.0};
   double t_max{40.0};
@@ -54,10 +54,13 @@ struct PlannerConfig
   double w_smooth{1.0};
   double w_terminal{1.0};
   double w_passive_track{1.0};
-  double w_passive_damping{50.0};
-  double w_passive_terminal{1e4};
-  double w_passive_terminal_velocity{100.0};
+  double w_passive_damping{40.0};
+  double w_post_terminal_track{10.0};
+  double w_post_terminal_energy{10.0};
   double w_via_regularization{1e-4};
+
+  double post_terminal_duration{2.0};
+  int post_terminal_steps{40};
 
   bool use_zero_boundary_slopes{true};
   bool log_iteration{true};
@@ -277,13 +280,11 @@ public:
   int nA() const { return static_cast<int>(idxA_v_.size()); }
   int nP() const { return static_cast<int>(idxP_v_.size()); }
 
-  double passiveTerminalEnergy(const Eigen::VectorXd& qA,
-                               const Eigen::VectorXd& qP,
-                               const Eigen::VectorXd& qdotP,
-                               const Eigen::VectorXd& qP_ref) const
+  double passiveTerminalKineticEnergy(const Eigen::VectorXd& qA,
+                                      const Eigen::VectorXd& qP,
+                                      const Eigen::VectorXd& qdotP) const
   {
-    if (qA.size() != nA() || qP.size() != nP() ||
-        qdotP.size() != nP() || qP_ref.size() != nP()) {
+    if (qA.size() != nA() || qP.size() != nP() || qdotP.size() != nP()) {
       return std::numeric_limits<double>::infinity();
     }
     if (nP() == 0) {
@@ -303,14 +304,48 @@ public:
       }
     }
 
-    const double kinetic = 0.5 * qdotP.transpose() * Mpp * qdotP;
+    return 0.5 * qdotP.transpose() * Mpp * qdotP;
+  }
 
-    const double potential = pinocchio::computePotentialEnergy(model_, *data_, q_full);
-    const Eigen::VectorXd q_ref_full = composeConfiguration(qA, qP_ref);
-    const double potential_ref = pinocchio::computePotentialEnergy(model_, *data_, q_ref_full);
-    const double potential_delta = std::max(0.0, potential - potential_ref);
+  Eigen::VectorXd passiveAcceleration(const Eigen::VectorXd& qA,
+                                      const Eigen::VectorXd& qdotA,
+                                      const Eigen::VectorXd& qddA,
+                                      const Eigen::VectorXd& qP,
+                                      const Eigen::VectorXd& qdotP) const
+  {
+    if (qA.size() != nA() || qdotA.size() != nA() || qddA.size() != nA() ||
+        qP.size() != nP() || qdotP.size() != nP()) {
+      return Eigen::VectorXd::Constant(nP(), std::numeric_limits<double>::quiet_NaN());
+    }
+    if (nP() == 0) {
+      return Eigen::VectorXd::Zero(0);
+    }
 
-    return kinetic + potential_delta;
+    const Eigen::VectorXd q_full = composeConfiguration(qA, qP);
+    const Eigen::VectorXd v_full = composeVelocity(qdotA, qdotP);
+
+    pinocchio::crba(model_, *data_, q_full);
+    Eigen::MatrixXd M = data_->M;
+    M.triangularView<Eigen::StrictlyLower>() =
+      M.transpose().triangularView<Eigen::StrictlyLower>();
+
+    const Eigen::VectorXd nle = pinocchio::nonLinearEffects(model_, *data_, q_full, v_full);
+
+    Eigen::MatrixXd Mpp = Eigen::MatrixXd::Zero(nP(), nP());
+    Eigen::MatrixXd Mpa = Eigen::MatrixXd::Zero(nP(), nA());
+    Eigen::VectorXd nleP = Eigen::VectorXd::Zero(nP());
+    for (int r = 0; r < nP(); ++r) {
+      const int row = idxP_v_[static_cast<size_t>(r)];
+      nleP[r] = nle[row];
+      for (int c = 0; c < nP(); ++c) {
+        Mpp(r, c) = M(row, idxP_v_[static_cast<size_t>(c)]);
+      }
+      for (int c = 0; c < nA(); ++c) {
+        Mpa(r, c) = M(row, idxA_v_[static_cast<size_t>(c)]);
+      }
+    }
+
+    return Mpp.ldlt().solve(-(Mpa * qddA + nleP));
   }
 
   bool solvePassiveEquilibrium(const Eigen::VectorXd& qA,
@@ -459,6 +494,21 @@ private:
       setJointScalar(q_full, info, qP[static_cast<int>(i)]);
     }
     return q_full;
+  }
+
+  Eigen::VectorXd composeVelocity(const Eigen::VectorXd& qdotA,
+                                  const Eigen::VectorXd& qdotP) const
+  {
+    Eigen::VectorXd v_full = Eigen::VectorXd::Zero(model_.nv);
+    for (size_t i = 0; i < actuated_joints_.size(); ++i) {
+      const auto& info = joint_info_.at(actuated_joints_[i]);
+      v_full[info.idx_v] = qdotA[static_cast<int>(i)];
+    }
+    for (size_t i = 0; i < passive_joints_.size(); ++i) {
+      const auto& info = joint_info_.at(passive_joints_[i]);
+      v_full[info.idx_v] = qdotP[static_cast<int>(i)];
+    }
+    return v_full;
   }
 
   Eigen::VectorXd passiveGravity(const Eigen::VectorXd& qA,
@@ -657,18 +707,81 @@ public:
     passive_track_int *= dt_eval;
     passive_vel_int *= dt_eval;
 
+    double post_terminal_track_int = 0.0;
+    double post_terminal_energy_int = 0.0;
+    if (dynamics_->nP() > 0) {
+      const double tail_start_s =
+        static_cast<double>(cfg_.n_via) / static_cast<double>(cfg_.n_via + 1);
+      int tail_start_idx = 0;
+      while (tail_start_idx < cfg_.n_eval - 1 && s_grid[tail_start_idx] < tail_start_s) {
+        ++tail_start_idx;
+      }
+
+      Eigen::VectorXd qP_dyn = traj.qP[static_cast<size_t>(tail_start_idx)];
+      Eigen::VectorXd qdotP_dyn = traj.qdotP[static_cast<size_t>(tail_start_idx)];
+      for (int k = tail_start_idx; k < cfg_.n_eval; ++k) {
+        const Eigen::VectorXd qddP_dyn = dynamics_->passiveAcceleration(
+          traj.qA[static_cast<size_t>(k)],
+          traj.qdotA[static_cast<size_t>(k)],
+          traj.qddA[static_cast<size_t>(k)],
+          qP_dyn,
+          qdotP_dyn);
+        if (!allFinite(qddP_dyn)) {
+          result.cost = cfg_.infeasible_cost;
+          result.feasible = false;
+          return result;
+        }
+
+        if (k < cfg_.n_eval - 1 && dt_eval > 1e-9) {
+          qdotP_dyn += dt_eval * qddP_dyn;
+          qP_dyn += dt_eval * qdotP_dyn;
+        }
+      }
+
+      if (cfg_.post_terminal_duration > 0.0 && cfg_.post_terminal_steps > 0) {
+        const double post_dt =
+          cfg_.post_terminal_duration / static_cast<double>(cfg_.post_terminal_steps);
+        const Eigen::VectorXd qdotA_hold = Eigen::VectorXd::Zero(q_goal_A_.size());
+        const Eigen::VectorXd qddA_hold = Eigen::VectorXd::Zero(q_goal_A_.size());
+        Eigen::VectorXd qP_post = qP_dyn;
+        Eigen::VectorXd qdotP_post = qdotP_dyn;
+
+        for (int k = 0; k <= cfg_.post_terminal_steps; ++k) {
+          const double weight = (k == 0 || k == cfg_.post_terminal_steps) ? 0.5 : 1.0;
+          post_terminal_track_int += weight * (qP_post - q_goal_P_eq_).squaredNorm();
+
+          const double kinetic = dynamics_->passiveTerminalKineticEnergy(
+            q_goal_A_, qP_post, qdotP_post);
+          if (!std::isfinite(kinetic)) {
+            result.cost = cfg_.infeasible_cost;
+            result.feasible = false;
+            return result;
+          }
+          post_terminal_energy_int += weight * kinetic;
+
+          if (k < cfg_.post_terminal_steps) {
+            const Eigen::VectorXd qddP_post = dynamics_->passiveAcceleration(
+              q_goal_A_, qdotA_hold, qddA_hold, qP_post, qdotP_post);
+            if (!allFinite(qddP_post)) {
+              result.cost = cfg_.infeasible_cost;
+              result.feasible = false;
+              return result;
+            }
+
+            qdotP_post += post_dt * qddP_post;
+            qP_post += post_dt * qdotP_post;
+          }
+        }
+
+        post_terminal_track_int *= post_dt;
+        post_terminal_energy_int *= post_dt;
+      }
+    }
+
     traj.smoothness_integral = smooth_int;
     traj.passive_integral = passive_track_int + passive_vel_int;
 
     const Eigen::VectorXd terminal_error = traj.qA.back() - q_goal_A_;
-    const Eigen::VectorXd terminal_error_passive = traj.qP.back() - q_goal_P_eq_;
-    const double terminal_passive_energy = dynamics_->passiveTerminalEnergy(
-      traj.qA.back(), traj.qP.back(), traj.qdotP.back(), q_goal_P_eq_);
-    if (!std::isfinite(terminal_passive_energy)) {
-      result.cost = cfg_.infeasible_cost;
-      result.feasible = false;
-      return result;
-    }
     const double via_reg = via_flat.squaredNorm();
 
     result.cost = cfg_.w_time * T
@@ -676,8 +789,8 @@ public:
                 + cfg_.w_terminal * terminal_error.squaredNorm()
                 + cfg_.w_passive_track * passive_track_int
                 + cfg_.w_passive_damping * passive_vel_int
-                + cfg_.w_passive_terminal * terminal_error_passive.squaredNorm()
-                + cfg_.w_passive_terminal_velocity * terminal_passive_energy
+                + cfg_.w_post_terminal_track * post_terminal_track_int
+                + cfg_.w_post_terminal_energy * post_terminal_energy_int
                 + cfg_.w_via_regularization * via_reg;
 
     result.feasible = true;
@@ -834,7 +947,7 @@ public:
   }
 
 private:
-  static std::mt19937::result_type makeSeed(int configured_seed)
+  static std::mt19937::result_type makeSeed(int64_t configured_seed)
   {
     if (configured_seed >= 0) {
       return static_cast<std::mt19937::result_type>(configured_seed);
@@ -878,7 +991,7 @@ public:
     declare_parameter<int>("population", 40);
     declare_parameter<int>("max_iterations", 20);
     declare_parameter<int>("elite_count", 10);
-    declare_parameter<int>("random_seed", -1);
+    declare_parameter<int64_t>("random_seed", -1);
     declare_parameter<double>("sigma0", 0.20);
     declare_parameter<double>("t_min", 1.0);
     declare_parameter<double>("t_max", 40.0);
@@ -887,9 +1000,11 @@ public:
     declare_parameter<double>("w_terminal", 1e4);
     declare_parameter<double>("w_passive_track", 200.0);
     declare_parameter<double>("w_passive_damping", 10.0);
-    declare_parameter<double>("w_passive_terminal", 5e4);
-    declare_parameter<double>("w_passive_terminal_velocity", 100.0);
+    declare_parameter<double>("w_post_terminal_track", 10.0);
+    declare_parameter<double>("w_post_terminal_energy", 10.0);
     declare_parameter<double>("w_via_regularization", 1e-4);
+    declare_parameter<double>("post_terminal_duration", 2.0);
+    declare_parameter<int>("post_terminal_steps", 40);
     declare_parameter<bool>("auto_plan_on_first_state", true);
     declare_parameter<bool>("replan_periodic", false);
     declare_parameter<double>("replan_period_sec", 5.0);
@@ -913,9 +1028,11 @@ public:
     cfg_.w_terminal = get_parameter("w_terminal").as_double();
     cfg_.w_passive_track = get_parameter("w_passive_track").as_double();
     cfg_.w_passive_damping = get_parameter("w_passive_damping").as_double();
-    cfg_.w_passive_terminal = get_parameter("w_passive_terminal").as_double();
-    cfg_.w_passive_terminal_velocity = get_parameter("w_passive_terminal_velocity").as_double();
+    cfg_.w_post_terminal_track = get_parameter("w_post_terminal_track").as_double();
+    cfg_.w_post_terminal_energy = get_parameter("w_post_terminal_energy").as_double();
     cfg_.w_via_regularization = get_parameter("w_via_regularization").as_double();
+    cfg_.post_terminal_duration = get_parameter("post_terminal_duration").as_double();
+    cfg_.post_terminal_steps = get_parameter("post_terminal_steps").as_int();
 
     q_goal_A_ = toEigen(get_parameter("goal_actuated").as_double_array());
     const Eigen::VectorXd vlim = toEigen(get_parameter("velocity_limits").as_double_array());

@@ -2526,9 +2526,6 @@ CMakeFiles/vp_sto_global_planner_node.dir/src/vp_sto_global_planner_node.cpp.o: 
  /opt/openrobots/include/pinocchio/algorithm/model.hpp \
  /opt/openrobots/include/pinocchio/algorithm/kinematics.txx \
  /opt/openrobots/include/pinocchio/algorithm/crba.txx \
- /opt/openrobots/include/pinocchio/algorithm/energy.hpp \
- /opt/openrobots/include/pinocchio/algorithm/energy.hxx \
- /opt/openrobots/include/pinocchio/algorithm/energy.txx \
  /opt/openrobots/include/pinocchio/algorithm/rnea.hpp \
  /opt/openrobots/include/pinocchio/algorithm/rnea.hxx \
  /opt/openrobots/include/pinocchio/algorithm/rnea.txx \

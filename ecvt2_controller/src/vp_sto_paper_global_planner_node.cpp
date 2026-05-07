@@ -47,10 +47,7 @@ struct PlannerConfig
   double stop_sigma{1e-3};
   double infeasible_cost{1e12};
 
-  double w_time{1.0};
-  double w_smooth{1e-3};
-  double w_terminal{1e4};
-  double w_via_regularization{1e-4};
+  double joint_limit_penalty_gain{1e6};
 
   bool use_zero_boundary_slopes{true};
   bool log_iteration{true};
@@ -86,6 +83,8 @@ struct TrajectorySample
   std::vector<Eigen::VectorXd> qddA;
   double T{0.0};
   double smoothness_integral{0.0};
+  double collision_penalty{0.0};
+  double joint_limit_penalty{0.0};
   bool feasible{false};
 };
 
@@ -257,6 +256,8 @@ public:
 
   const std::vector<std::string>& actuatedJointNames() const { return actuated_joints_; }
   int nA() const { return static_cast<int>(actuated_joints_.size()); }
+  const Eigen::VectorXd& lowerLimits() const { return q_lower_; }
+  const Eigen::VectorXd& upperLimits() const { return q_upper_; }
 
   JointStateView fromJointMsg(const sensor_msgs::msg::JointState& msg) const
   {
@@ -288,7 +289,11 @@ public:
 private:
   void registerJoints(const std::vector<std::string>& names)
   {
-    for (const auto& name : names) {
+    q_lower_ = Eigen::VectorXd::Constant(static_cast<int>(names.size()), -std::numeric_limits<double>::infinity());
+    q_upper_ = Eigen::VectorXd::Constant(static_cast<int>(names.size()), std::numeric_limits<double>::infinity());
+
+    for (size_t i = 0; i < names.size(); ++i) {
+      const auto& name = names[i];
       const auto jid = model_.getJointId(name);
       if (jid == 0) {
         throw std::runtime_error("Pinocchio joint not found: " + name);
@@ -310,6 +315,11 @@ private:
       }
 
       joint_info_[name] = info;
+      const int out_idx = static_cast<int>(i);
+      if (!info.is_continuous) {
+        q_lower_[out_idx] = model_.lowerPositionLimit[info.idx_q];
+        q_upper_[out_idx] = model_.upperPositionLimit[info.idx_q];
+      }
     }
   }
 
@@ -317,6 +327,8 @@ private:
   std::unique_ptr<pinocchio::Data> data_;
   std::vector<std::string> actuated_joints_;
   std::unordered_map<std::string, JointInfo> joint_info_;
+  Eigen::VectorXd q_lower_;
+  Eigen::VectorXd q_upper_;
 };
 
 class TimeParameterizer
@@ -352,9 +364,13 @@ class TrajectoryRolloutEvaluator
 {
 public:
   TrajectoryRolloutEvaluator(const PlannerConfig& cfg,
-                             Eigen::VectorXd q_goal_A)
+                             Eigen::VectorXd q_goal_A,
+                             Eigen::VectorXd q_lower_A,
+                             Eigen::VectorXd q_upper_A)
   : cfg_(cfg),
-    q_goal_A_(std::move(q_goal_A)) {}
+    q_goal_A_(std::move(q_goal_A)),
+    q_lower_A_(std::move(q_lower_A)),
+    q_upper_A_(std::move(q_upper_A)) {}
 
   CandidateEvaluation evaluate(const Eigen::VectorXd& via_flat,
                                const JointStateView& start,
@@ -387,6 +403,7 @@ public:
 
     const double dt_eval = T / static_cast<double>(std::max(1, cfg_.n_eval - 1));
     double smooth_int = 0.0;
+    double joint_limit_penalty = 0.0;
 
     for (int k = 0; k < cfg_.n_eval; ++k) {
       const double s = s_grid[k];
@@ -409,18 +426,18 @@ public:
 
       const double weight = (k == 0 || k == cfg_.n_eval - 1) ? 0.5 : 1.0;
       smooth_int += weight * qddA.squaredNorm();
+      joint_limit_penalty += weight * jointLimitViolation(kk.qA);
     }
 
     smooth_int *= dt_eval;
+    joint_limit_penalty *= dt_eval;
     traj.smoothness_integral = smooth_int;
+    traj.collision_penalty = 0.0;
+    traj.joint_limit_penalty = cfg_.joint_limit_penalty_gain * joint_limit_penalty;
 
-    const Eigen::VectorXd terminal_error = traj.qA.back() - q_goal_A_;
-    const double via_reg = via_flat.squaredNorm();
-
-    result.cost = cfg_.w_time * T
-                + cfg_.w_smooth * smooth_int
-                + cfg_.w_terminal * terminal_error.squaredNorm()
-                + cfg_.w_via_regularization * via_reg;
+    result.cost = T
+                + traj.collision_penalty
+                + traj.joint_limit_penalty;
 
     result.feasible = true;
     result.trajectory = std::move(traj);
@@ -436,8 +453,26 @@ private:
     return true;
   }
 
+  double jointLimitViolation(const Eigen::VectorXd& qA) const
+  {
+    double penalty = 0.0;
+    for (int i = 0; i < qA.size(); ++i) {
+      if (std::isfinite(q_lower_A_[i]) && qA[i] < q_lower_A_[i]) {
+        const double v = q_lower_A_[i] - qA[i];
+        penalty += v * v;
+      }
+      if (std::isfinite(q_upper_A_[i]) && qA[i] > q_upper_A_[i]) {
+        const double v = qA[i] - q_upper_A_[i];
+        penalty += v * v;
+      }
+    }
+    return penalty;
+  }
+
   PlannerConfig cfg_;
   Eigen::VectorXd q_goal_A_;
+  Eigen::VectorXd q_lower_A_;
+  Eigen::VectorXd q_upper_A_;
 };
 
 class CmaEsVpStoOptimizer
@@ -557,15 +592,21 @@ public:
 
       if (cfg_.log_iteration) {
         std::ostringstream oss;
-        oss << std::fixed << std::setprecision(4)
+        oss << std::fixed << std::setprecision(6)
             << "[VP-STO paper] iter=" << iter
             << " best=" << samples.front().eval.cost
             << " T=" << samples.front().eval.trajectory.T
-            << " sigma=" << sigma;
+            << " sigma=" << sigma
+            << " stop_sigma=" << cfg_.stop_sigma;
         RCLCPP_INFO(logger, "%s", oss.str().c_str());
       }
 
-      if (sigma < cfg_.stop_sigma) {
+      if (sigma <= cfg_.stop_sigma) {
+        RCLCPP_INFO(
+          logger,
+          "[VP-STO paper] stopping: sigma %.6g <= stop_sigma %.6g",
+          sigma,
+          cfg_.stop_sigma);
         break;
       }
     }
@@ -616,12 +657,10 @@ public:
     declare_parameter<int>("elite_count", 10);
     declare_parameter<int64_t>("random_seed", -1);
     declare_parameter<double>("sigma0", 0.20);
+    declare_parameter<double>("stop_sigma", 1e-3);
     declare_parameter<double>("t_min", 1.0);
     declare_parameter<double>("t_max", 40.0);
-    declare_parameter<double>("w_time", 1.0);
-    declare_parameter<double>("w_smooth", 1e-3);
-    declare_parameter<double>("w_terminal", 1e4);
-    declare_parameter<double>("w_via_regularization", 1e-4);
+    declare_parameter<double>("joint_limit_penalty_gain", 1e6);
     declare_parameter<bool>("auto_plan_on_first_state", true);
     declare_parameter<bool>("replan_periodic", false);
     declare_parameter<double>("replan_period_sec", 5.0);
@@ -637,12 +676,10 @@ public:
     cfg_.elite_count = get_parameter("elite_count").as_int();
     cfg_.random_seed = get_parameter("random_seed").as_int();
     cfg_.sigma0 = get_parameter("sigma0").as_double();
+    cfg_.stop_sigma = get_parameter("stop_sigma").as_double();
     cfg_.t_min = get_parameter("t_min").as_double();
     cfg_.t_max = get_parameter("t_max").as_double();
-    cfg_.w_time = get_parameter("w_time").as_double();
-    cfg_.w_smooth = get_parameter("w_smooth").as_double();
-    cfg_.w_terminal = get_parameter("w_terminal").as_double();
-    cfg_.w_via_regularization = get_parameter("w_via_regularization").as_double();
+    cfg_.joint_limit_penalty_gain = get_parameter("joint_limit_penalty_gain").as_double();
 
     q_goal_A_ = toEigen(get_parameter("goal_actuated").as_double_array());
     const Eigen::VectorXd vlim = toEigen(get_parameter("velocity_limits").as_double_array());
@@ -722,7 +759,11 @@ private:
       mean_init.segment(k * nA, nA) = qk;
     }
 
-    TrajectoryRolloutEvaluator evaluator(cfg_, q_goal_A_);
+    TrajectoryRolloutEvaluator evaluator(
+      cfg_,
+      q_goal_A_,
+      joint_model_->lowerLimits(),
+      joint_model_->upperLimits());
     CmaEsVpStoOptimizer optimizer(cfg_);
     const auto optimizer_seed = static_cast<unsigned long>(optimizer.seed());
     RCLCPP_WARN(get_logger(), "VP-STO paper optimizer seed=%lu", optimizer_seed);
@@ -750,7 +791,8 @@ private:
     oss << std::fixed << std::setprecision(4)
         << "VP-STO paper solved: T=" << best.trajectory.T
         << ", cost=" << best.cost
-        << ", smooth=" << best.trajectory.smoothness_integral;
+        << ", J_coll=" << best.trajectory.collision_penalty
+        << ", J_joint=" << best.trajectory.joint_limit_penalty;
     RCLCPP_INFO(get_logger(), "%s", oss.str().c_str());
   }
 
@@ -784,7 +826,8 @@ private:
     msg.data = {
       best.cost,
       best.trajectory.T,
-      best.trajectory.smoothness_integral,
+      best.trajectory.collision_penalty,
+      best.trajectory.joint_limit_penalty,
       static_cast<double>(best.trajectory.feasible ? 1.0 : 0.0)
     };
     cost_pub_->publish(msg);

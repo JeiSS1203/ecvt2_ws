@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import csv
 import threading
 from typing import Optional, Tuple, List
 
@@ -49,6 +50,8 @@ class UnifiedUpperNode(Node):
         self.declare_parameter('planned_line_width', 0.02)
         self.declare_parameter('actual_line_width', 0.02)
         self.declare_parameter('max_actual_path_points', 400)
+        self.declare_parameter('passive_csv_enabled', True)
+        self.declare_parameter('passive_csv_path', '/tmp/upj5_upj6_joint_states.csv')
 
         self.trajectory_topic = self.get_parameter('trajectory_topic').get_parameter_value().string_value
 
@@ -65,6 +68,8 @@ class UnifiedUpperNode(Node):
         self.planned_line_width = self.get_parameter('planned_line_width').get_parameter_value().double_value
         self.actual_line_width = self.get_parameter('actual_line_width').get_parameter_value().double_value
         self.max_actual_path_points = self.get_parameter('max_actual_path_points').get_parameter_value().integer_value
+        self.passive_csv_enabled = self.get_parameter('passive_csv_enabled').get_parameter_value().bool_value
+        self.passive_csv_path = self.get_parameter('passive_csv_path').get_parameter_value().string_value
 
         # -------- state for external velocity commands --------
         self.create_subscription(JointState, '/hanyang/velocity_cmd', self.velocity_callback, 10)
@@ -88,6 +93,8 @@ class UnifiedUpperNode(Node):
         self.last_qdd_ref = None
         self.last_v_des = None
         self.last_elapsed_sim = 0.0
+        self.passive_csv_file = None
+        self.passive_csv_writer = None
 
         # -------- publishers --------
         self.pub_joint_std = self.create_publisher(JointState, '/joint_states', 10)
@@ -101,6 +108,10 @@ class UnifiedUpperNode(Node):
 
         # ROS 콜백 스레드와 메인 루프 간 공유 상태 보호용 락
         self._state_lock = threading.Lock()
+
+    def destroy_node(self):
+        self._close_passive_csv()
+        super().destroy_node()
 
     # ------------------------------------------------------------------
     # External velocity command callback
@@ -167,6 +178,59 @@ class UnifiedUpperNode(Node):
             return [0.0]
         addr, dim = self.sensor_lookup[name]
         return self.data.sensordata[addr:addr + dim]
+
+    def _open_passive_csv_if_needed(self):
+        if not self.passive_csv_enabled or self.passive_csv_writer is not None:
+            return
+
+        csv_dir = os.path.dirname(self.passive_csv_path)
+        if csv_dir:
+            os.makedirs(csv_dir, exist_ok=True)
+
+        self.passive_csv_file = open(self.passive_csv_path, 'w', newline='')
+        self.passive_csv_writer = csv.writer(self.passive_csv_file)
+        self.passive_csv_writer.writerow([
+            'ros_time_sec',
+            'sim_time_sec',
+            'trajectory_elapsed_sec',
+            'UPJ5_position',
+            'UPJ5_velocity',
+            'UPJ6_position',
+            'UPJ6_velocity',
+        ])
+        self.passive_csv_file.flush()
+        self.get_logger().info(f"Recording passive joint CSV to: {self.passive_csv_path}")
+
+    def _close_passive_csv(self):
+        if self.passive_csv_file is not None:
+            self.passive_csv_file.flush()
+            self.passive_csv_file.close()
+            self.passive_csv_file = None
+            self.passive_csv_writer = None
+
+    def _record_passive_csv(self, stamp):
+        if not self.passive_csv_enabled or self.active_traj is None:
+            return
+
+        self._open_passive_csv_if_needed()
+        if self.passive_csv_writer is None:
+            return
+
+        upj5_pos = self._get_sensor('UPJ5_pos')
+        upj5_vel = self._get_sensor('UPJ5_vel')
+        upj6_pos = self._get_sensor('UPJ6_pos')
+        upj6_vel = self._get_sensor('UPJ6_vel')
+
+        self.passive_csv_writer.writerow([
+            float(stamp.sec) + float(stamp.nanosec) * 1e-9,
+            float(self.data.time),
+            float(self.traj_elapsed_sim),
+            float(upj5_pos[0]) if len(upj5_pos) > 0 else 0.0,
+            float(upj5_vel[0]) if len(upj5_vel) > 0 else 0.0,
+            float(upj6_pos[0]) if len(upj6_pos) > 0 else 0.0,
+            float(upj6_vel[0]) if len(upj6_vel) > 0 else 0.0,
+        ])
+        self.passive_csv_file.flush()
 
     def _compute_world_com(self):
         masses = np.asarray(self.model.body_mass, dtype=float)
@@ -485,6 +549,7 @@ class UnifiedUpperNode(Node):
         joint_msg.effort = [0.0] * len(self.joint_names)
         self.pub_joint_std.publish(joint_msg)
         self.pub_joint_hanyang.publish(joint_msg)
+        self._record_passive_csv(now)
 
         imu_msg = Imu()
         imu_msg.header.stamp = now

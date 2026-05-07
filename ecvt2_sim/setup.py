@@ -34,6 +34,7 @@ setup(
             'test_robot_node = ecvt2_sim.test_robot_node:main',
             'sin_velocity_publisher = ecvt2_sim.sin_velocity_publisher:main',
             'plot_passive_joints = ecvt2_sim.plot_passive_joints:main',
+            'plot_passive_csv = ecvt2_sim.plot_passive_csv:main',
         ],
     },
 )

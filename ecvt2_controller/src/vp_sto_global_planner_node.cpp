@@ -14,9 +14,12 @@
 #include <Eigen/Eigenvalues>
 
 #include <algorithm>
+#include <atomic>
 #include <chrono>
+#include <condition_variable>
 #include <cstdint>
 #include <cmath>
+#include <exception>
 #include <functional>
 #include <iomanip>
 #include <iostream>
@@ -27,6 +30,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <thread>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -42,6 +46,7 @@ struct PlannerConfig
   int max_iterations{20};
   int elite_count{10};
   int cma_update_eig_every{5};
+  int parallel_workers{1};
   int64_t random_seed{-1};
 
   double t_min{1.0};
@@ -111,6 +116,11 @@ struct CandidateEvaluation
 {
   double cost{std::numeric_limits<double>::infinity()};
   bool feasible{false};
+  double smooth_int{0.0};
+  double passive_vel_int{0.0};
+  double post_terminal_track_int{0.0};
+  double post_terminal_energy_int{0.0};
+  double via_reg{0.0};
   Eigen::VectorXd via_flat;
   FullTrajectorySample trajectory;
 };
@@ -786,13 +796,18 @@ public:
 
     result.cost = cfg_.w_time * T
                 + cfg_.w_smooth * smooth_int
-                + cfg_.w_terminal * terminal_error.squaredNorm()
-                + cfg_.w_passive_track * passive_track_int
                 + cfg_.w_passive_damping * passive_vel_int
                 + cfg_.w_post_terminal_track * post_terminal_track_int
                 + cfg_.w_post_terminal_energy * post_terminal_energy_int
                 + cfg_.w_via_regularization * via_reg;
-
+                // + cfg_.w_terminal * terminal_error.squaredNorm()
+                // + cfg_.w_passive_track * passive_track_int
+                // + cfg_.w_passive_damping * passive_vel_int
+    result.smooth_int = smooth_int;
+    result.passive_vel_int = passive_vel_int;
+    result.post_terminal_track_int = post_terminal_track_int;
+    result.post_terminal_energy_int = post_terminal_energy_int;
+    result.via_reg = via_reg;
     result.feasible = true;
     result.trajectory = std::move(traj);
     return result;
@@ -816,6 +831,8 @@ private:
 class CmaEsVpStoOptimizer
 {
 public:
+  using EvaluationFunction = std::function<CandidateEvaluation(int, const Eigen::VectorXd&)>;
+
   explicit CmaEsVpStoOptimizer(PlannerConfig cfg)
   : cfg_(std::move(cfg)),
     seed_(makeSeed(cfg_.random_seed)),
@@ -825,9 +842,14 @@ public:
   std::mt19937::result_type seed() const { return seed_; }
 
   CandidateEvaluation optimize(const Eigen::VectorXd& mean_init,
-                               const std::function<CandidateEvaluation(const Eigen::VectorXd&)>& eval_fn,
+                               const EvaluationFunction& eval_fn,
                                rclcpp::Logger logger)
   {
+    struct Sample {
+      Eigen::VectorXd z, y, x;
+      CandidateEvaluation eval;
+    };
+
     const int dim = static_cast<int>(mean_init.size());
     const int lambda = cfg_.population;
     const int mu = std::min(cfg_.elite_count, lambda / 2);
@@ -864,6 +886,111 @@ public:
     CandidateEvaluation best_global;
     best_global.cost = std::numeric_limits<double>::infinity();
 
+    const int worker_count = std::max(1, std::min(cfg_.parallel_workers, lambda));
+    std::vector<Sample>* active_samples = nullptr;
+    std::atomic<int> next_index{0};
+    std::mutex pool_mutex;
+    std::condition_variable pool_cv;
+    std::condition_variable done_cv;
+    std::exception_ptr first_exception = nullptr;
+    int generation = 0;
+    int completed_workers = 0;
+    bool stop_workers = false;
+
+    std::vector<std::thread> workers;
+    if (worker_count > 1) {
+      workers.reserve(static_cast<size_t>(worker_count));
+      for (int worker_id = 0; worker_id < worker_count; ++worker_id) {
+        workers.emplace_back([&, worker_id]() {
+          int seen_generation = 0;
+          while (true) {
+            std::vector<Sample>* samples = nullptr;
+            {
+              std::unique_lock<std::mutex> lock(pool_mutex);
+              pool_cv.wait(lock, [&]() {
+                return stop_workers || generation != seen_generation;
+              });
+              if (stop_workers) {
+                return;
+              }
+              seen_generation = generation;
+              samples = active_samples;
+            }
+
+            try {
+              while (true) {
+                const int k = next_index.fetch_add(1);
+                if (k >= lambda) {
+                  break;
+                }
+                (*samples)[static_cast<size_t>(k)].eval =
+                  eval_fn(worker_id, (*samples)[static_cast<size_t>(k)].x);
+              }
+            } catch (...) {
+              std::lock_guard<std::mutex> lock(pool_mutex);
+              if (!first_exception) {
+                first_exception = std::current_exception();
+              }
+            }
+
+            {
+              std::lock_guard<std::mutex> lock(pool_mutex);
+              ++completed_workers;
+              if (completed_workers == worker_count) {
+                done_cv.notify_one();
+              }
+            }
+          }
+        });
+      }
+    }
+
+    auto stop_pool = [&]() {
+      if (worker_count <= 1) {
+        return;
+      }
+      {
+        std::lock_guard<std::mutex> lock(pool_mutex);
+        stop_workers = true;
+      }
+      pool_cv.notify_all();
+      for (auto& worker : workers) {
+        if (worker.joinable()) {
+          worker.join();
+        }
+      }
+    };
+
+    auto evaluate_samples = [&](std::vector<Sample>& samples) {
+      if (worker_count == 1) {
+        for (int k = 0; k < lambda; ++k) {
+          samples[static_cast<size_t>(k)].eval =
+            eval_fn(0, samples[static_cast<size_t>(k)].x);
+        }
+        return;
+      }
+
+      {
+        std::lock_guard<std::mutex> lock(pool_mutex);
+        active_samples = &samples;
+        next_index.store(0);
+        completed_workers = 0;
+        first_exception = nullptr;
+        ++generation;
+      }
+      pool_cv.notify_all();
+
+      {
+        std::unique_lock<std::mutex> lock(pool_mutex);
+        done_cv.wait(lock, [&]() {
+          return completed_workers == worker_count;
+        });
+      }
+      if (first_exception) {
+        std::rethrow_exception(first_exception);
+      }
+    };
+
     for (int iter = 0; iter < cfg_.max_iterations; ++iter) {
       if (iter % cfg_.cma_update_eig_every == 0) {
         Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> es(C);
@@ -873,13 +1000,8 @@ public:
         invsqrtC = B * D.cwiseInverse().asDiagonal() * B.transpose();
       }
 
-      struct Sample {
-        Eigen::VectorXd z, y, x;
-        CandidateEvaluation eval;
-      };
-
       std::vector<Sample> samples;
-      samples.reserve(lambda);
+      samples.resize(lambda);
 
       for (int k = 0; k < lambda; ++k) {
         Eigen::VectorXd z(dim);
@@ -888,10 +1010,20 @@ public:
         }
         Eigen::VectorXd y = B * D.asDiagonal() * z;
         Eigen::VectorXd x = mean + sigma * y;
-        CandidateEvaluation e = eval_fn(x);
-        samples.push_back({z, y, x, std::move(e)});
-        if (samples.back().eval.cost < best_global.cost) {
-          best_global = samples.back().eval;
+        samples[static_cast<size_t>(k)].z = std::move(z);
+        samples[static_cast<size_t>(k)].y = std::move(y);
+        samples[static_cast<size_t>(k)].x = std::move(x);
+      }
+
+      try {
+        evaluate_samples(samples);
+      } catch (...) {
+        stop_pool();
+        throw;
+      }
+      for (const auto& sample : samples) {
+        if (sample.eval.cost < best_global.cost) {
+          best_global = sample.eval;
         }
       }
 
@@ -930,11 +1062,16 @@ public:
 
       if (cfg_.log_iteration) {
         std::ostringstream oss;
-        oss << std::fixed << std::setprecision(4)
-            << "[VP-STO] iter=" << iter
-            << " best=" << samples.front().eval.cost
-            << " T=" << samples.front().eval.trajectory.T
-            << " sigma=" << sigma;
+	        oss << std::fixed << std::setprecision(4)
+	            << "[VP-STO] iter=" << iter
+	            << " best=" << samples.front().eval.cost
+	            << " T=" << samples.front().eval.trajectory.T
+	            << " smooth=" << samples.front().eval.smooth_int
+	            << " passive_vel=" << samples.front().eval.passive_vel_int
+	            << " post_track=" << samples.front().eval.post_terminal_track_int
+	            << " post_energy=" << samples.front().eval.post_terminal_energy_int
+	            << " via_reg=" << samples.front().eval.via_reg
+	            << " sigma=" << sigma;
         RCLCPP_INFO(logger, "%s", oss.str().c_str());
       }
 
@@ -943,6 +1080,7 @@ public:
       }
     }
 
+    stop_pool();
     return best_global;
   }
 
@@ -991,6 +1129,7 @@ public:
     declare_parameter<int>("population", 40);
     declare_parameter<int>("max_iterations", 20);
     declare_parameter<int>("elite_count", 10);
+    declare_parameter<int>("parallel_workers", 1);
     declare_parameter<int64_t>("random_seed", -1);
     declare_parameter<double>("sigma0", 0.20);
     declare_parameter<double>("t_min", 1.0);
@@ -1019,6 +1158,10 @@ public:
     cfg_.population = get_parameter("population").as_int();
     cfg_.max_iterations = get_parameter("max_iterations").as_int();
     cfg_.elite_count = get_parameter("elite_count").as_int();
+    cfg_.parallel_workers = get_parameter("parallel_workers").as_int();
+    if (cfg_.parallel_workers <= 0) {
+      cfg_.parallel_workers = std::max(1, static_cast<int>(std::thread::hardware_concurrency()));
+    }
     cfg_.random_seed = get_parameter("random_seed").as_int();
     cfg_.sigma0 = get_parameter("sigma0").as_double();
     cfg_.t_min = get_parameter("t_min").as_double();
@@ -1054,7 +1197,11 @@ public:
       throw std::runtime_error(oss.str());
     }
 
-    dynamics_ = std::make_unique<CraneDynamicsModel>(urdf_path, actuated, passive);
+    urdf_path_ = urdf_path;
+    actuated_joints_ = actuated;
+    passive_joints_ = passive;
+
+    dynamics_ = std::make_unique<CraneDynamicsModel>(urdf_path_, actuated_joints_, passive_joints_);
     time_param_ = std::make_unique<TimeParameterizer>(vlim, alim);
 
     traj_pub_ = create_publisher<trajectory_msgs::msg::JointTrajectory>("~/actuated_reference", 10);
@@ -1129,23 +1276,51 @@ private:
         "Failed to compute passive equilibrium at q_goal_A. Falling back to current passive state.");
     }
 
-    TrajectoryRolloutEvaluator evaluator(cfg_, q_goal_A_, q_goal_P_eq, dynamics_.get());
+    const int worker_count = std::max(1, std::min(cfg_.parallel_workers, cfg_.population));
+    std::vector<std::unique_ptr<CraneDynamicsModel>> worker_dynamics;
+    std::vector<std::unique_ptr<TrajectoryRolloutEvaluator>> worker_evaluators;
+    worker_dynamics.reserve(static_cast<size_t>(worker_count));
+    worker_evaluators.reserve(static_cast<size_t>(worker_count));
+    for (int i = 0; i < worker_count; ++i) {
+      worker_dynamics.push_back(
+        std::make_unique<CraneDynamicsModel>(urdf_path_, actuated_joints_, passive_joints_));
+      worker_evaluators.push_back(
+        std::make_unique<TrajectoryRolloutEvaluator>(
+          cfg_, q_goal_A_, q_goal_P_eq, worker_dynamics.back().get()));
+    }
+
     CmaEsVpStoOptimizer optimizer(cfg_);
     const auto optimizer_seed = static_cast<unsigned long>(optimizer.seed());
-    RCLCPP_WARN(get_logger(), "VP-STO optimizer seed=%lu", optimizer_seed);
-    std::cout << "[vp_sto_global_planner_node] VP-STO optimizer seed="
-              << optimizer_seed << std::endl;
-
-    const auto best = optimizer.optimize(
-      mean_init,
-      [&](const Eigen::VectorXd& x) {
-        return evaluator.evaluate(x, start, time_param_.get());
-      },
-      get_logger());
-
-    if (!best.feasible) {
-      RCLCPP_WARN(get_logger(), "Planner did not find a feasible trajectory.");
-      return;
+    RCLCPP_WARN(
+      get_logger(),
+      "VP-STO optimizer seed=%lu, parallel_workers=%d",
+      optimizer_seed,
+      worker_count);
+	    std::cout << "[vp_sto_global_planner_node] VP-STO optimizer seed="
+	              << optimizer_seed << ", parallel_workers=" << worker_count << std::endl;
+	
+	    const auto plan_start_time = std::chrono::steady_clock::now();
+	    const auto best = optimizer.optimize(
+	      mean_init,
+	      [&](int worker_id, const Eigen::VectorXd& x) {
+	        return worker_evaluators[static_cast<size_t>(worker_id)]->evaluate(
+	          x, start, time_param_.get());
+	      },
+	      get_logger());
+	    const auto plan_end_time = std::chrono::steady_clock::now();
+	    const double planning_time_sec =
+	      std::chrono::duration<double>(plan_end_time - plan_start_time).count();
+	    RCLCPP_WARN(
+	      get_logger(),
+	      "VP-STO trajectory planning time: %.3f s",
+	      planning_time_sec);
+	    std::cout << "[vp_sto_global_planner_node] VP-STO trajectory planning time="
+	              << std::fixed << std::setprecision(3) << planning_time_sec
+	              << " s" << std::endl;
+	
+	    if (!best.feasible) {
+	      RCLCPP_WARN(get_logger(), "Planner did not find a feasible trajectory.");
+	      return;
     }
 
     publishActuatedTrajectory(best.trajectory);
@@ -1154,11 +1329,16 @@ private:
 
     planned_once_ = true;
 
-    std::ostringstream oss;
-    oss << std::fixed << std::setprecision(4)
-        << "VP-STO solved: T=" << best.trajectory.T
-        << ", cost=" << best.cost
-        << ", smooth=" << best.trajectory.smoothness_integral;
+	    std::ostringstream oss;
+		    oss << std::fixed << std::setprecision(4)
+		        << "VP-STO solved: T=" << best.trajectory.T
+		        << ", cost=" << best.cost
+		        << ", smooth=" << best.trajectory.smoothness_integral
+		        << ", passive_vel=" << best.passive_vel_int
+		        << ", post_track=" << best.post_terminal_track_int
+		        << ", post_energy=" << best.post_terminal_energy_int
+		        << ", via_reg=" << best.via_reg
+		        << ", planning_time=" << planning_time_sec << " s";
     RCLCPP_INFO(get_logger(), "%s", oss.str().c_str());
   }
 
@@ -1225,12 +1405,15 @@ private:
   {
     std_msgs::msg::Float64MultiArray msg;
     msg.data = {
-      best.cost,
-      best.trajectory.T,
-      best.trajectory.smoothness_integral,
-      best.trajectory.passive_integral,
-      static_cast<double>(best.trajectory.feasible ? 1.0 : 0.0)
-    };
+	      best.cost,
+	      best.trajectory.T,
+	      best.smooth_int,
+	      best.passive_vel_int,
+	      best.post_terminal_track_int,
+	      best.post_terminal_energy_int,
+	      best.via_reg,
+	      static_cast<double>(best.trajectory.feasible ? 1.0 : 0.0)
+	    };
     cost_pub_->publish(msg);
   }
 
@@ -1242,6 +1425,9 @@ private:
 
   sensor_msgs::msg::JointState latest_joint_state_;
   Eigen::VectorXd q_goal_A_;
+  std::string urdf_path_;
+  std::vector<std::string> actuated_joints_;
+  std::vector<std::string> passive_joints_;
 
   std::unique_ptr<CraneDynamicsModel> dynamics_;
   std::unique_ptr<TimeParameterizer> time_param_;

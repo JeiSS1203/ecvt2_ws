@@ -34,6 +34,9 @@ AMENT_CMAKE_UNINSTALL_TARGET:BOOL=ON
 //The path where test results are generated
 AMENT_TEST_RESULTS_DIR:PATH=/home/jin/harco/ecvt2_ws/build/ecvt2_controller/test_results
 
+//No help, variable specified on the command line.
+BUILD_SNOPT:UNINITIALIZED=OFF
+
 //Build the testing tree.
 BUILD_TESTING:BOOL=ON
 
@@ -433,6 +436,9 @@ geometry_msgs_DIR:PATH=/opt/ros/humble/share/geometry_msgs/cmake
 //The directory containing a CMake configuration file for hpp-fcl.
 hpp-fcl_DIR:PATH=/opt/openrobots/lib/cmake/hpp-fcl
 
+//The directory containing a CMake configuration file for ifopt.
+ifopt_DIR:PATH=/home/jin/harco/ecvt2_ws/install/ifopt/share/ifopt/cmake
+
 //Dependencies for the target
 kdl_utils_LIB_DEPENDS:STATIC=general;rclcpp::rclcpp;general;ament_index_cpp::ament_index_cpp;general;/opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_default.so;general;/opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_parsers.so;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;
 
@@ -830,7 +836,7 @@ _Python3_EXECUTABLE:INTERNAL=/usr/bin/python3
 _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;10;12;64;;cpython-310-x86_64-linux-gnu;/usr/lib/python3.10;/usr/lib/python3.10;/usr/lib/python3/dist-packages;/usr/lib/python3/dist-packages
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=0f3e53742e142b1d9e50e4ca5b901dd8
 //Index for unique symlink install targets
-__AMENT_CMAKE_SYMLINK_INSTALL_TARGETS_INDEX:INTERNAL=5
+__AMENT_CMAKE_SYMLINK_INSTALL_TARGETS_INDEX:INTERNAL=6
 __pkg_config_arguments__OPENSSL:INTERNAL=QUIET;openssl
 __pkg_config_checked__OPENSSL:INTERNAL=1
 //Result of TRY_COMPILE

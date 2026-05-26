@@ -1,0 +1,122 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"ifopt_core/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 45,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 50,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 74,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"ifopt_core/libifopt_core.so"
+			],
+			"targetId" : "ifopt_core::@7e9e64741fb31ce8eb6b",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ifopt",
+			"paths" : 
+			[
+				{
+					"from" : "ifopt_core/include/ifopt",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include/ifopt",
+			"paths" : 
+			[
+				"ifopt_core/test/ifopt/test_vars_constr_cost.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "share/ifopt/cmake",
+			"exportName" : "ifopt_core-targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "ifopt_core::@7e9e64741fb31ce8eb6b",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"ifopt_core/CMakeFiles/Export/share/ifopt/cmake/ifopt_core-targets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "lib/ifopt",
+			"paths" : 
+			[
+				"ifopt_core/ifopt_core-test"
+			],
+			"targetId" : "ifopt_core-test::@7e9e64741fb31ce8eb6b",
+			"targetIndex" : 1,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "ifopt_core",
+		"source" : "ifopt_core"
+	}
+}

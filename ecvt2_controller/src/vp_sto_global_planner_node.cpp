@@ -1105,7 +1105,7 @@ public:
   VpStoGlobalPlannerNode()
   : Node("vp_sto_global_planner_node")
   {
-    declare_parameter<std::string>("urdf_path", "/home/jin/harco/ecvt2_ws/forestry_robot_mjcf/ecvt_v2_upper.urdf");
+    declare_parameter<std::string>("urdf_path", "/home/jin/harco/ecvt2_ws/forestry_robot_mjcf/xml/ecvt_v2.urdf");
     declare_parameter<std::string>("joint_state_topic", "/joint_states");
     declare_parameter<std::vector<std::string>>(
       "actuated_joints",

@@ -1,1 +1,1 @@
-ament_cmake_symlink_install_targets("TARGET_FILES" "/home/jin/harco/ecvt2_ws/build/ecvt2_controller/vp_sto_paper_global_planner_node" "TARGETS" "vp_sto_paper_global_planner_node" "DESTINATION" "lib/ecvt2_controller")
+ament_cmake_symlink_install_targets("TARGET_FILES" "/home/jin/harco/ecvt2_ws/build/ecvt2_controller/vp_sto_global_planner_full_node" "TARGETS" "vp_sto_global_planner_full_node" "DESTINATION" "lib/ecvt2_controller")

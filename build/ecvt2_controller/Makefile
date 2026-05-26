@@ -302,6 +302,19 @@ base_arm_task_controller_v2/fast:
 .PHONY : base_arm_task_controller_v2/fast
 
 #=============================================================================
+# Target rules for targets named base_arm_task_controller_full
+
+# Build rule for target.
+base_arm_task_controller_full: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 base_arm_task_controller_full
+.PHONY : base_arm_task_controller_full
+
+# fast build rule for target.
+base_arm_task_controller_full/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/base_arm_task_controller_full.dir/build.make CMakeFiles/base_arm_task_controller_full.dir/build
+.PHONY : base_arm_task_controller_full/fast
+
+#=============================================================================
 # Target rules for targets named teleop_goal_publisher
 
 # Build rule for target.
@@ -367,6 +380,19 @@ vp_sto_global_planner_node/fast:
 .PHONY : vp_sto_global_planner_node/fast
 
 #=============================================================================
+# Target rules for targets named vp_sto_global_planner_full_node
+
+# Build rule for target.
+vp_sto_global_planner_full_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vp_sto_global_planner_full_node
+.PHONY : vp_sto_global_planner_full_node
+
+# fast build rule for target.
+vp_sto_global_planner_full_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_global_planner_full_node.dir/build.make CMakeFiles/vp_sto_global_planner_full_node.dir/build
+.PHONY : vp_sto_global_planner_full_node/fast
+
+#=============================================================================
 # Target rules for targets named vp_sto_paper_global_planner_node
 
 # Build rule for target.
@@ -402,6 +428,30 @@ src/base_arm_task_controller.s: src/base_arm_task_controller.cpp.s
 src/base_arm_task_controller.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/base_arm_task_controller.dir/build.make CMakeFiles/base_arm_task_controller.dir/src/base_arm_task_controller.cpp.s
 .PHONY : src/base_arm_task_controller.cpp.s
+
+src/base_arm_task_controller_full.o: src/base_arm_task_controller_full.cpp.o
+.PHONY : src/base_arm_task_controller_full.o
+
+# target to build an object file
+src/base_arm_task_controller_full.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/base_arm_task_controller_full.dir/build.make CMakeFiles/base_arm_task_controller_full.dir/src/base_arm_task_controller_full.cpp.o
+.PHONY : src/base_arm_task_controller_full.cpp.o
+
+src/base_arm_task_controller_full.i: src/base_arm_task_controller_full.cpp.i
+.PHONY : src/base_arm_task_controller_full.i
+
+# target to preprocess a source file
+src/base_arm_task_controller_full.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/base_arm_task_controller_full.dir/build.make CMakeFiles/base_arm_task_controller_full.dir/src/base_arm_task_controller_full.cpp.i
+.PHONY : src/base_arm_task_controller_full.cpp.i
+
+src/base_arm_task_controller_full.s: src/base_arm_task_controller_full.cpp.s
+.PHONY : src/base_arm_task_controller_full.s
+
+# target to generate assembly for a file
+src/base_arm_task_controller_full.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/base_arm_task_controller_full.dir/build.make CMakeFiles/base_arm_task_controller_full.dir/src/base_arm_task_controller_full.cpp.s
+.PHONY : src/base_arm_task_controller_full.cpp.s
 
 src/base_arm_task_controller_v2.o: src/base_arm_task_controller_v2.cpp.o
 .PHONY : src/base_arm_task_controller_v2.o
@@ -571,6 +621,30 @@ src/teleop_goal_publisher.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/teleop_goal_publisher.dir/build.make CMakeFiles/teleop_goal_publisher.dir/src/teleop_goal_publisher.cpp.s
 .PHONY : src/teleop_goal_publisher.cpp.s
 
+src/vp_sto_global_planner_full_node.o: src/vp_sto_global_planner_full_node.cpp.o
+.PHONY : src/vp_sto_global_planner_full_node.o
+
+# target to build an object file
+src/vp_sto_global_planner_full_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_global_planner_full_node.dir/build.make CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.o
+.PHONY : src/vp_sto_global_planner_full_node.cpp.o
+
+src/vp_sto_global_planner_full_node.i: src/vp_sto_global_planner_full_node.cpp.i
+.PHONY : src/vp_sto_global_planner_full_node.i
+
+# target to preprocess a source file
+src/vp_sto_global_planner_full_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_global_planner_full_node.dir/build.make CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.i
+.PHONY : src/vp_sto_global_planner_full_node.cpp.i
+
+src/vp_sto_global_planner_full_node.s: src/vp_sto_global_planner_full_node.cpp.s
+.PHONY : src/vp_sto_global_planner_full_node.s
+
+# target to generate assembly for a file
+src/vp_sto_global_planner_full_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vp_sto_global_planner_full_node.dir/build.make CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.s
+.PHONY : src/vp_sto_global_planner_full_node.cpp.s
+
 src/vp_sto_global_planner_node.o: src/vp_sto_global_planner_node.cpp.o
 .PHONY : src/vp_sto_global_planner_node.o
 
@@ -731,6 +805,7 @@ help:
 	@echo "... ecvt2_controller_uninstall"
 	@echo "... uninstall"
 	@echo "... base_arm_task_controller"
+	@echo "... base_arm_task_controller_full"
 	@echo "... base_arm_task_controller_v2"
 	@echo "... base_opt_controller"
 	@echo "... com_trajectory_publisher"
@@ -738,6 +813,7 @@ help:
 	@echo "... live_upper_dynamics_node"
 	@echo "... pin_test"
 	@echo "... teleop_goal_publisher"
+	@echo "... vp_sto_global_planner_full_node"
 	@echo "... vp_sto_global_planner_node"
 	@echo "... vp_sto_paper_global_planner_node"
 	@echo "... wbc_hqp"
@@ -747,6 +823,9 @@ help:
 	@echo "... src/base_arm_task_controller.o"
 	@echo "... src/base_arm_task_controller.i"
 	@echo "... src/base_arm_task_controller.s"
+	@echo "... src/base_arm_task_controller_full.o"
+	@echo "... src/base_arm_task_controller_full.i"
+	@echo "... src/base_arm_task_controller_full.s"
 	@echo "... src/base_arm_task_controller_v2.o"
 	@echo "... src/base_arm_task_controller_v2.i"
 	@echo "... src/base_arm_task_controller_v2.s"
@@ -768,6 +847,9 @@ help:
 	@echo "... src/teleop_goal_publisher.o"
 	@echo "... src/teleop_goal_publisher.i"
 	@echo "... src/teleop_goal_publisher.s"
+	@echo "... src/vp_sto_global_planner_full_node.o"
+	@echo "... src/vp_sto_global_planner_full_node.i"
+	@echo "... src/vp_sto_global_planner_full_node.s"
 	@echo "... src/vp_sto_global_planner_node.o"
 	@echo "... src/vp_sto_global_planner_node.i"
 	@echo "... src/vp_sto_global_planner_node.s"

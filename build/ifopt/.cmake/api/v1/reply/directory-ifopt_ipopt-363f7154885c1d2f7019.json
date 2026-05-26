@@ -1,0 +1,106 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"ifopt_ipopt/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 51,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 60,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 65,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 69,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"ifopt_ipopt/libifopt_ipopt.so"
+			],
+			"targetId" : "ifopt_ipopt::@39b360f01347cd78fd79",
+			"targetIndex" : 2,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/ifopt",
+			"paths" : 
+			[
+				"ifopt_ipopt/ifopt_ipopt-example"
+			],
+			"targetId" : "ifopt_ipopt-example::@39b360f01347cd78fd79",
+			"targetIndex" : 3,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include/ifopt",
+			"paths" : 
+			[
+				{
+					"from" : "ifopt_ipopt/include/ifopt",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "share/ifopt/cmake",
+			"exportName" : "ifopt_ipopt-targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "ifopt_ipopt::@39b360f01347cd78fd79",
+					"index" : 2
+				}
+			],
+			"paths" : 
+			[
+				"ifopt_ipopt/CMakeFiles/Export/share/ifopt/cmake/ifopt_ipopt-targets.cmake"
+			],
+			"type" : "export"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "ifopt_ipopt",
+		"source" : "ifopt_ipopt"
+	}
+}

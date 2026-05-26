@@ -18,6 +18,7 @@ find_package(trajectory_msgs REQUIRED)
 find_package(osqp REQUIRED)
 find_package(OsqpEigen REQUIRED)
 find_package(pinocchio REQUIRED)
+find_package(ifopt REQUIRED)
 
 # ===================== kdl_utils 라이브러리 =====================
 add_library(kdl_utils src/kdl_utils.cpp)
@@ -112,6 +113,17 @@ target_link_libraries(base_arm_task_controller_v2
 ament_target_dependencies(base_arm_task_controller_v2 rclcpp geometry_msgs sensor_msgs std_msgs visualization_msgs)
 # ==============================================
 
+# ================base_arm_task_controller_full===============
+add_executable(base_arm_task_controller_full src/base_arm_task_controller_full.cpp)
+target_link_libraries(base_arm_task_controller_full
+  kdl_utils
+  wbc_hqp_lib
+  OsqpEigen::OsqpEigen
+  osqp::osqp
+)
+ament_target_dependencies(base_arm_task_controller_full rclcpp geometry_msgs sensor_msgs std_msgs visualization_msgs ament_index_cpp)
+# ==============================================
+
 # ================teleop_goal_publisher===============
 add_executable(teleop_goal_publisher src/teleop_goal_publisher.cpp)
 ament_target_dependencies(teleop_goal_publisher rclcpp geometry_msgs sensor_msgs std_msgs)
@@ -177,6 +189,27 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME}
 )
 
+# ================vp_sto_global_planner_full_node===============
+add_executable(vp_sto_global_planner_full_node
+  src/vp_sto_global_planner_full_node.cpp
+)
+ament_target_dependencies(vp_sto_global_planner_full_node
+  rclcpp
+  sensor_msgs
+  trajectory_msgs
+  std_msgs
+)
+target_link_libraries(vp_sto_global_planner_full_node
+  Eigen3::Eigen
+  pinocchio::pinocchio
+  ifopt::ifopt_core
+  ifopt::ifopt_ipopt
+)
+install(TARGETS
+  vp_sto_global_planner_full_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # ================vp_sto_paper_global_planner_node===============
 add_executable(vp_sto_paper_global_planner_node
   src/vp_sto_paper_global_planner_node.cpp
@@ -207,6 +240,7 @@ install(TARGETS
   wbc_hqp_v3
   base_arm_task_controller
   base_arm_task_controller_v2
+  base_arm_task_controller_full
   teleop_goal_publisher
   com_trajectory_publisher
   pin_test

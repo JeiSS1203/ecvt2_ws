@@ -1,0 +1,1 @@
+/home/jin/harco/ecvt2_ws/ecvt2_sim/launch/test_full_vp_sto_bringup.launch.py

@@ -1,0 +1,413 @@
+[0.123s] Invoking command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller': CMAKE_PREFIX_PATH=/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble LD_LIBRARY_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib:${LD_LIBRARY_PATH} PKG_CONFIG_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig /usr/bin/cmake /home/jin/harco/ecvt2_ws/ecvt2_controller -DCMAKE_INSTALL_PREFIX=/home/jin/harco/ecvt2_ws/install/ecvt2_controller
+[0.131s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.209s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.213s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[0.228s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.230s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.233s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.238s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.245s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.262s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.262s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.323s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.349s] -- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.355s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.363s] -- Found visualization_msgs: 4.9.0 (/opt/ros/humble/share/visualization_msgs/cmake)
+[0.374s] -- Found trajectory_msgs: 4.9.0 (/opt/ros/humble/share/trajectory_msgs/cmake)
+[0.384s] -- pinocchio_default FOUND. pinocchio_default at /opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_default.so
+[0.384s] -- pinocchio_parsers FOUND. pinocchio_parsers at /opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_parsers.so
+[0.385s] -- pinocchio_casadi not FOUND.
+[0.385s] -- boost_filesystem FOUND. boost_filesystem at /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+[0.390s] -- Found Boost: /usr/include (found version "1.74.0") found components: filesystem serialization 
+[0.391s] CMake Warning at /opt/openrobots/lib/cmake/hpp-fcl/hpp-fclConfig.cmake:4 (message):
+[0.391s]   Please update your CMake from 'hpp-fcl' to 'coal', or define
+[0.391s]   COAL_DISABLE_HPP_FCL_WARNINGS
+[0.391s] Call Stack (most recent call first):
+[0.391s]   /usr/share/cmake-3.22/Modules/CMakeFindDependencyMacro.cmake:47 (find_package)
+[0.391s]   /opt/openrobots/lib/cmake/pinocchio/pinocchioConfig.cmake:161 (find_dependency)
+[0.391s]   CMakeLists.txt:20 (find_package)
+[0.391s] 
+[0.391s] 
+[0.392s] -- coal not FOUND.
+[0.396s] -- Found Boost: /usr/include (found version "1.74.0") found components: serialization filesystem 
+[0.572s] -- Default C++ standard: 201703
+[0.572s] -- C++ standard sufficient: Minimal required 11, currently defined: 17
+[0.572s] -- CMAKE_CXX_STANDARD was not set: automatically set to currently defined standard 17
+[0.573s] -- C++ standard sufficient: Minimal required 11, currently defined: 17
+[0.586s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.637s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.638s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/jin/harco/ecvt2_ws/ecvt2_controller/include>
+[0.638s] -- Configured cppcheck exclude dirs and/or files: 
+[0.638s] -- Added test 'lint_cmake' to check CMake code style
+[0.639s] -- Added test 'uncrustify' to check C / C++ code style
+[0.639s] -- Configured uncrustify additional arguments: 
+[0.639s] -- Added test 'xmllint' to check XML markup files
+[0.639s] -- Configuring done
+[0.650s] CMake Warning at CMakeLists.txt:49 (add_executable):
+[0.650s]   Cannot generate a safe runtime search path for target base_opt_controller
+[0.650s]   because files in some directories may conflict with libraries in implicit
+[0.650s]   directories:
+[0.650s] 
+[0.650s]     runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.650s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.650s]     runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.650s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.650s]     runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.650s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.651s]     runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.651s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.651s]     runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.651s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.651s]     runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.651s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.651s] 
+[0.651s]   Some of these libraries may not be found correctly.
+[0.651s] 
+[0.651s] 
+[0.651s] CMake Warning at CMakeLists.txt:49 (add_executable):
+[0.651s]   Cannot generate a safe runtime search path for target base_opt_controller
+[0.651s]   because there is a cycle in the constraint graph:
+[0.651s] 
+[0.651s]     dir 0 is [/usr/local/lib]
+[0.651s]     dir 1 is [/opt/ros/humble/lib]
+[0.652s]     dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+[0.652s]       dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+[0.652s]     dir 3 is [/opt/openrobots/lib]
+[0.652s]       dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+[0.652s] 
+[0.652s]   Some of these libraries may not be found correctly.
+[0.652s] 
+[0.652s] 
+[0.652s] CMake Warning at CMakeLists.txt:60 (add_executable):
+[0.652s]   Cannot generate a safe runtime search path for target wbc_hqp because files
+[0.652s]   in some directories may conflict with libraries in implicit directories:
+[0.653s] 
+[0.653s]     runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.653s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.653s]     runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.653s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.653s]     runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.653s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.653s]     runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.653s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.653s]     runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.653s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.653s]     runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.653s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.653s] 
+[0.653s]   Some of these libraries may not be found correctly.
+[0.653s] 
+[0.653s] 
+[0.654s] CMake Warning at CMakeLists.txt:60 (add_executable):
+[0.654s]   Cannot generate a safe runtime search path for target wbc_hqp because there
+[0.654s]   is a cycle in the constraint graph:
+[0.654s] 
+[0.654s]     dir 0 is [/usr/local/lib]
+[0.654s]     dir 1 is [/opt/ros/humble/lib]
+[0.654s]     dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+[0.654s]       dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+[0.654s]     dir 3 is [/opt/openrobots/lib]
+[0.654s]       dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+[0.654s] 
+[0.654s]   Some of these libraries may not be found correctly.
+[0.654s] 
+[0.654s] 
+[0.655s] CMake Warning at CMakeLists.txt:71 (add_executable):
+[0.655s]   Cannot generate a safe runtime search path for target wbc_hqp_v2 because
+[0.655s]   files in some directories may conflict with libraries in implicit
+[0.655s]   directories:
+[0.655s] 
+[0.655s]     runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.655s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.655s]     runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.656s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.656s]     runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.656s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.656s]     runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.656s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.656s]     runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.656s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.656s]     runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.656s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.656s] 
+[0.656s]   Some of these libraries may not be found correctly.
+[0.656s] 
+[0.656s] 
+[0.656s] CMake Warning at CMakeLists.txt:71 (add_executable):
+[0.656s]   Cannot generate a safe runtime search path for target wbc_hqp_v2 because
+[0.656s]   there is a cycle in the constraint graph:
+[0.656s] 
+[0.657s]     dir 0 is [/usr/local/lib]
+[0.657s]     dir 1 is [/opt/ros/humble/lib]
+[0.657s]     dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+[0.657s]       dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+[0.657s]     dir 3 is [/opt/openrobots/lib]
+[0.657s]       dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+[0.657s] 
+[0.657s]   Some of these libraries may not be found correctly.
+[0.657s] 
+[0.657s] 
+[0.658s] CMake Warning at CMakeLists.txt:83 (add_executable):
+[0.658s]   Cannot generate a safe runtime search path for target wbc_hqp_v3 because
+[0.658s]   files in some directories may conflict with libraries in implicit
+[0.658s]   directories:
+[0.658s] 
+[0.658s]     runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.658s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.658s]     runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.658s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.658s]     runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.658s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.658s]     runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.658s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.659s]     runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.659s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.659s]     runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.659s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.659s] 
+[0.659s]   Some of these libraries may not be found correctly.
+[0.659s] 
+[0.659s] 
+[0.659s] CMake Warning at CMakeLists.txt:83 (add_executable):
+[0.659s]   Cannot generate a safe runtime search path for target wbc_hqp_v3 because
+[0.659s]   there is a cycle in the constraint graph:
+[0.659s] 
+[0.659s]     dir 0 is [/usr/local/lib]
+[0.659s]     dir 1 is [/opt/ros/humble/lib]
+[0.659s]     dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+[0.659s]       dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+[0.659s]     dir 3 is [/opt/openrobots/lib]
+[0.660s]       dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+[0.660s] 
+[0.660s]   Some of these libraries may not be found correctly.
+[0.660s] 
+[0.660s] 
+[0.660s] CMake Warning at CMakeLists.txt:95 (add_executable):
+[0.660s]   Cannot generate a safe runtime search path for target
+[0.660s]   base_arm_task_controller because files in some directories may conflict
+[0.660s]   with libraries in implicit directories:
+[0.661s] 
+[0.661s]     runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.661s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.661s]     runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.661s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.661s]     runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.661s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.661s]     runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.661s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.661s]     runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.661s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.661s]     runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.661s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.661s] 
+[0.661s]   Some of these libraries may not be found correctly.
+[0.661s] 
+[0.661s] 
+[0.662s] CMake Warning at CMakeLists.txt:95 (add_executable):
+[0.662s]   Cannot generate a safe runtime search path for target
+[0.662s]   base_arm_task_controller because there is a cycle in the constraint graph:
+[0.662s] 
+[0.662s]     dir 0 is [/usr/local/lib]
+[0.662s]     dir 1 is [/opt/ros/humble/lib]
+[0.662s]     dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+[0.662s]       dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+[0.662s]     dir 3 is [/opt/openrobots/lib]
+[0.662s]       dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+[0.662s] 
+[0.662s]   Some of these libraries may not be found correctly.
+[0.662s] 
+[0.662s] 
+[0.663s] CMake Warning at CMakeLists.txt:106 (add_executable):
+[0.663s]   Cannot generate a safe runtime search path for target
+[0.663s]   base_arm_task_controller_v2 because files in some directories may conflict
+[0.663s]   with libraries in implicit directories:
+[0.663s] 
+[0.663s]     runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.663s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.663s]     runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.663s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.664s]     runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.664s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.664s]     runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.664s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.664s]     runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.664s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.664s]     runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.664s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.664s] 
+[0.664s]   Some of these libraries may not be found correctly.
+[0.664s] 
+[0.664s] 
+[0.664s] CMake Warning at CMakeLists.txt:106 (add_executable):
+[0.664s]   Cannot generate a safe runtime search path for target
+[0.664s]   base_arm_task_controller_v2 because there is a cycle in the constraint
+[0.664s]   graph:
+[0.665s] 
+[0.665s]     dir 0 is [/usr/local/lib]
+[0.665s]     dir 1 is [/opt/ros/humble/lib]
+[0.665s]     dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+[0.665s]       dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+[0.665s]     dir 3 is [/opt/openrobots/lib]
+[0.665s]       dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+[0.665s] 
+[0.665s]   Some of these libraries may not be found correctly.
+[0.665s] 
+[0.665s] 
+[0.666s] CMake Warning at CMakeLists.txt:117 (add_executable):
+[0.666s]   Cannot generate a safe runtime search path for target
+[0.666s]   base_arm_task_controller_full because files in some directories may
+[0.666s]   conflict with libraries in implicit directories:
+[0.666s] 
+[0.666s]     runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.666s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.666s]     runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.666s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.666s]     runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.666s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.666s]     runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.666s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.667s]     runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.667s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.667s]     runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.667s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.667s] 
+[0.667s]   Some of these libraries may not be found correctly.
+[0.667s] 
+[0.667s] 
+[0.667s] CMake Warning at CMakeLists.txt:117 (add_executable):
+[0.667s]   Cannot generate a safe runtime search path for target
+[0.667s]   base_arm_task_controller_full because there is a cycle in the constraint
+[0.667s]   graph:
+[0.667s] 
+[0.667s]     dir 0 is [/usr/local/lib]
+[0.667s]     dir 1 is [/opt/ros/humble/lib]
+[0.667s]     dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+[0.668s]       dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+[0.668s]     dir 3 is [/opt/openrobots/lib]
+[0.668s]       dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+[0.668s] 
+[0.668s]   Some of these libraries may not be found correctly.
+[0.668s] 
+[0.668s] 
+[0.671s] CMake Warning at CMakeLists.txt:141 (add_executable):
+[0.671s]   Cannot generate a safe runtime search path for target pin_test because
+[0.671s]   files in some directories may conflict with libraries in implicit
+[0.671s]   directories:
+[0.671s] 
+[0.671s]     runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.671s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.671s]     runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.671s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.671s]     runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.671s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.671s]     runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.671s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.671s]     runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.671s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.671s]     runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+[0.671s]       /opt/ros/humble/lib/x86_64-linux-gnu
+[0.672s] 
+[0.672s]   Some of these libraries may not be found correctly.
+[0.672s] 
+[0.672s] 
+[0.672s] CMake Warning at CMakeLists.txt:141 (add_executable):
+[0.672s]   Cannot generate a safe runtime search path for target pin_test because
+[0.672s]   there is a cycle in the constraint graph:
+[0.672s] 
+[0.672s]     dir 0 is [/opt/ros/humble/lib]
+[0.672s]     dir 1 is [/opt/openrobots/lib]
+[0.672s]       dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+[0.672s]     dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+[0.672s]       dir 1 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+[0.672s] 
+[0.672s]   Some of these libraries may not be found correctly.
+[0.672s] 
+[0.672s] 
+[0.681s] -- Generating done
+[0.696s] -- Build files have been written to: /home/jin/harco/ecvt2_ws/build/ecvt2_controller
+[0.701s] Invoked command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller' returned '0': CMAKE_PREFIX_PATH=/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble LD_LIBRARY_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib:${LD_LIBRARY_PATH} PKG_CONFIG_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig /usr/bin/cmake /home/jin/harco/ecvt2_ws/ecvt2_controller -DCMAKE_INSTALL_PREFIX=/home/jin/harco/ecvt2_ws/install/ecvt2_controller
+[0.702s] Invoking command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller': CMAKE_PREFIX_PATH=/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble LD_LIBRARY_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib:${LD_LIBRARY_PATH} PKG_CONFIG_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig /usr/bin/cmake --build /home/jin/harco/ecvt2_ws/build/ecvt2_controller -- -j20 -l20
+[0.734s] Consolidate compiler generated dependencies of target wbc_hqp_lib
+[0.740s] Consolidate compiler generated dependencies of target com_trajectory_publisher
+[0.740s] Consolidate compiler generated dependencies of target teleop_goal_publisher
+[0.742s] [  6%] Built target com_trajectory_publisher
+[0.742s] Consolidate compiler generated dependencies of target live_upper_dynamics_node
+[0.742s] Consolidate compiler generated dependencies of target vp_sto_paper_global_planner_node
+[0.742s] Consolidate compiler generated dependencies of target vp_sto_global_planner_node
+[0.742s] [ 12%] Built target wbc_hqp_lib
+[0.743s] Consolidate compiler generated dependencies of target kdl_utils
+[0.746s] Consolidate compiler generated dependencies of target vp_sto_global_planner_full_node
+[0.748s] [ 18%] Built target teleop_goal_publisher
+[0.754s] [ 31%] Built target vp_sto_paper_global_planner_node
+[0.754s] [ 31%] Built target vp_sto_global_planner_node
+[0.756s] [ 37%] Built target kdl_utils
+[0.759s] [ 40%] Building CXX object CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.o
+[0.759s] [ 46%] Built target live_upper_dynamics_node
+[0.765s] Consolidate compiler generated dependencies of target wbc_hqp_v3
+[0.765s] Consolidate compiler generated dependencies of target base_arm_task_controller
+[0.765s] Consolidate compiler generated dependencies of target wbc_hqp
+[0.766s] Consolidate compiler generated dependencies of target base_arm_task_controller_full
+[0.768s] Consolidate compiler generated dependencies of target base_arm_task_controller_v2
+[0.769s] Consolidate compiler generated dependencies of target base_opt_controller
+[0.770s] Consolidate compiler generated dependencies of target wbc_hqp_v2
+[0.773s] [ 53%] Built target wbc_hqp_v3
+[0.773s] [ 59%] Built target wbc_hqp
+[0.776s] [ 65%] Built target base_arm_task_controller_full
+[0.777s] Consolidate compiler generated dependencies of target pin_test
+[0.778s] [ 71%] Built target base_opt_controller
+[0.778s] [ 78%] Built target base_arm_task_controller
+[0.779s] [ 84%] Built target base_arm_task_controller_v2
+[0.780s] [ 90%] Built target wbc_hqp_v2
+[0.790s] [ 96%] Built target pin_test
+[3.597s] In file included from /opt/openrobots/include/hpp/fcl/config.hh:1,
+[3.597s]                  from /opt/openrobots/include/pinocchio/serialization/eigen.hpp:20,
+[3.597s]                  from /opt/openrobots/include/pinocchio/serialization/fwd.hpp:11,
+[3.597s]                  from /opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14,
+[3.597s]                  from /opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9,
+[3.597s]                  from /opt/openrobots/include/pinocchio/multibody/model.hpp:17,
+[3.597s]                  from /opt/openrobots/include/pinocchio/parsers/urdf.hpp:9,
+[3.597s]                  from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:7:
+[3.597s] /opt/openrobots/include/hpp/fcl/coal.hpp:12:99: note: ‘#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS’
+[3.597s]    12 |     "Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS")
+[3.597s]       |                                                                                                   ^
+[35.246s] [100%] Linking CXX executable vp_sto_global_planner_full_node
+[36.436s] [100%] Built target vp_sto_global_planner_full_node
+[36.443s] Invoked command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller' returned '0': CMAKE_PREFIX_PATH=/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble LD_LIBRARY_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib:${LD_LIBRARY_PATH} PKG_CONFIG_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig /usr/bin/cmake --build /home/jin/harco/ecvt2_ws/build/ecvt2_controller -- -j20 -l20
+[36.449s] Invoking command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller': CMAKE_PREFIX_PATH=/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble LD_LIBRARY_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib:${LD_LIBRARY_PATH} PKG_CONFIG_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig /usr/bin/cmake --install /home/jin/harco/ecvt2_ws/build/ecvt2_controller
+[36.454s] -- Install configuration: ""
+[36.455s] -- Execute custom install script
+[36.455s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/teleop_goal_publisher
+[36.455s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/live_upper_dynamics_node
+[36.456s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_global_planner_node
+[36.456s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_global_planner_full_node
+[36.456s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_paper_global_planner_node
+[36.456s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/include/ecvt2_controller/kdl_utils.hpp
+[36.456s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/include/ecvt2_controller/wbc_hqp_lib.hpp
+[36.457s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/libkdl_utils.a
+[36.457s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/libwbc_hqp_lib.a
+[36.457s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_opt_controller
+[36.457s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp
+[36.457s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp_v2
+[36.457s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp_v3
+[36.457s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller_v2
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller_full
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/teleop_goal_publisher
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/com_trajectory_publisher
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/pin_test
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/package_run_dependencies/ecvt2_controller
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/parent_prefix_path/ecvt2_controller
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/ament_prefix_path.sh
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/ament_prefix_path.dsv
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/path.sh
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/path.dsv
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.bash
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.sh
+[36.458s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.zsh
+[36.459s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.dsv
+[36.459s] -- Symlinking: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/package.dsv
+[36.463s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/packages/ecvt2_controller
+[36.463s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/cmake/ecvt2_controllerConfig.cmake
+[36.463s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/cmake/ecvt2_controllerConfig-version.cmake
+[36.463s] -- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/package.xml
+[36.464s] Invoked command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller' returned '0': CMAKE_PREFIX_PATH=/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble LD_LIBRARY_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib:${LD_LIBRARY_PATH} PKG_CONFIG_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig /usr/bin/cmake --install /home/jin/harco/ecvt2_ws/build/ecvt2_controller

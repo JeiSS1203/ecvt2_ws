@@ -36,9 +36,9 @@ def generate_launch_description():
             'w_smooth': 0.01,
             # 'w_terminal': 1.0,
             # 'w_passive_track': 1.0,
-            'w_passive_damping': 10.0,
+            # 'w_passive_damping': 10.0,
             'w_post_terminal_track': 1.0,
-            'w_post_terminal_energy': 15.0,
+            'w_post_terminal_energy': 10.0,
             'w_via_regularization': 1e-4,
             'post_terminal_duration': 2.0,
             'post_terminal_steps': 50

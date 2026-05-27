@@ -2655,6 +2655,12 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
   /opt/openrobots/include/pinocchio/algorithm/rnea.hpp \
   /opt/openrobots/include/pinocchio/algorithm/rnea.hxx \
   /opt/openrobots/include/pinocchio/algorithm/rnea.txx \
+  /opt/openrobots/include/pinocchio/algorithm/frames.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/frames.hxx \
+  /opt/openrobots/include/pinocchio/algorithm/jacobian.hpp \
+  /opt/openrobots/include/pinocchio/algorithm/jacobian.hxx \
+  /opt/openrobots/include/pinocchio/algorithm/jacobian.txx \
+  /opt/openrobots/include/pinocchio/algorithm/frames.txx \
   /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/cost_term.h \
   /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/constraint_set.h \
   /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/composite.h \
@@ -2665,10 +2671,343 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
   /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/variable_set.h \
   /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/solver.h \
   /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/variable_set.h \
+  /opt/openrobots/include/casadi/casadi.hpp \
+  /opt/openrobots/include/casadi/core/core.hpp \
+  /opt/openrobots/include/casadi/core/sx_elem.hpp \
+  /opt/openrobots/include/casadi/core/printable.hpp \
+  /opt/openrobots/include/casadi/core/casadi_common.hpp \
+  /opt/openrobots/include/casadi/core/casadi_types.hpp \
+  /opt/openrobots/include/casadi/core/casadi_logger.hpp \
+  /opt/openrobots/include/casadi/core/casadi_export.h \
+  /opt/openrobots/include/casadi/core/exception.hpp \
+  /opt/openrobots/include/casadi/core/casadi_limits.hpp \
+  /opt/openrobots/include/casadi/core/matrix_fwd.hpp \
+  /opt/openrobots/include/casadi/core/casadi_misc.hpp \
+  /opt/openrobots/include/casadi/core/generic_expression.hpp \
+  /opt/openrobots/include/casadi/core/calculus.hpp \
+  /opt/openrobots/include/casadi/core/serializing_stream.hpp \
+  /opt/openrobots/include/casadi/core/polynomial.hpp \
+  /opt/openrobots/include/casadi/core/global_options.hpp \
+  /opt/openrobots/include/casadi/core/casadi_common.hpp \
+  /opt/openrobots/include/casadi/core/casadi_meta.hpp \
+  /opt/openrobots/include/casadi/core/sx.hpp \
+  /opt/openrobots/include/casadi/core/sx_fwd.hpp \
+  /opt/openrobots/include/casadi/core/matrix_decl.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_runtime.hpp \
+  /opt/openrobots/include/casadi/core/calculus.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_copy.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_cvx.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_swap.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_project.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_tri_project.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_densify.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_sparsify.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_scal.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_iamax.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_axpy.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_dot.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_kron.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_clear.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_clip_max.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_clip_min.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_fill.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_max_viol.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_mmin.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_mmax.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_vfmin.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_vfmax.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_vector_fmin.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_vector_fmax.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_sum_viol.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_mtimes.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_mv.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_trilsolve.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_triusolve.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_trans.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_norm_1.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_norm_2.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_norm_inf.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_masked_norm_inf.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_norm_inf_mul.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_bilin.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_rank1.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_low.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_flip.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_polyval.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_de_boor.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_nd_boor_eval.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_nd_boor_dual_eval.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_interpn_weights.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_interpn_interpolate.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_interpn.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_interpn_grad.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_mv_dense.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_finite_diff.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_file_slurp.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_ldl.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_qr.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_qp.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_qrqp.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_kkt.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_ipqp.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_oracle.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_nlp.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_sqpmethod.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_feasiblesqpmethod.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_bfgs.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_regularize.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_newton.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_bound_consistency.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_lsqr.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_dense_lsqr.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_cache.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_convexify.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_logsumexp.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_sum.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_sparsity.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_jac.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_oracle_callback.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_ocp_block.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_scaled_copy.hpp \
+  /opt/openrobots/include/casadi/core/generic_matrix.hpp \
+  /opt/openrobots/include/casadi/core/slice.hpp \
+  /opt/openrobots/include/casadi/core/generic_type.hpp \
+  /opt/openrobots/include/casadi/core/shared_object.hpp \
+  /opt/openrobots/include/casadi/core/generic_shared_internal.hpp \
+  /opt/openrobots/include/casadi/core/generic_shared.hpp \
+  /opt/openrobots/include/casadi/core/submatrix.hpp \
+  /opt/openrobots/include/casadi/core/nonzeros.hpp \
+  /opt/openrobots/include/casadi/core/sparsity.hpp \
+  /opt/openrobots/include/casadi/core/sparsity_interface.hpp \
+  /opt/openrobots/include/casadi/core/dm.hpp \
+  /opt/openrobots/include/casadi/core/dm_fwd.hpp \
+  /opt/openrobots/include/casadi/core/im.hpp \
+  /opt/openrobots/include/casadi/core/im_fwd.hpp \
+  /opt/openrobots/include/casadi/core/mx.hpp \
+  /opt/openrobots/include/casadi/core/code_generator.hpp \
+  /opt/openrobots/include/casadi/core/function.hpp \
+  /usr/include/c++/11/stack \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc \
+  /usr/include/c++/11/bits/stl_stack.h \
+  /opt/openrobots/include/casadi/core/casadi_interrupt.hpp \
+  /opt/openrobots/include/casadi/core/runtime/shared.hpp \
+  /opt/openrobots/include/casadi/core/runtime/casadi_runtime.hpp \
+  /opt/openrobots/include/casadi/core/casadi_misc.hpp \
+  /opt/openrobots/include/casadi/core/importer.hpp \
+  /opt/openrobots/include/casadi/core/callback.hpp \
+  /opt/openrobots/include/casadi/core/integrator.hpp \
+  /opt/openrobots/include/casadi/core/linsol.hpp \
+  /opt/openrobots/include/casadi/core/rootfinder.hpp \
+  /opt/openrobots/include/casadi/core/casadi_enum.hpp \
+  /opt/openrobots/include/casadi/core/conic.hpp \
+  /opt/openrobots/include/casadi/core/nlpsol.hpp \
+  /opt/openrobots/include/casadi/core/dple.hpp \
+  /opt/openrobots/include/casadi/core/expm.hpp \
+  /opt/openrobots/include/casadi/core/interpolant.hpp \
+  /opt/openrobots/include/casadi/core/external.hpp \
+  /opt/openrobots/include/casadi/core/blazing_spline.hpp \
+  /opt/openrobots/include/casadi/core/integration_tools.hpp \
+  /opt/openrobots/include/casadi/core/function.hpp \
+  /opt/openrobots/include/casadi/core/nlp_tools.hpp \
+  /opt/openrobots/include/casadi/core/nlp_builder.hpp \
+  /opt/openrobots/include/casadi/core/dae_builder.hpp \
+  /opt/openrobots/include/casadi/core/xml_file.hpp \
+  /opt/openrobots/include/casadi/core/xml_node.hpp \
+  /opt/openrobots/include/casadi/core/optistack.hpp \
+  /opt/openrobots/include/casadi/core/serializer.hpp \
+  /opt/openrobots/include/casadi/core/tools.hpp \
+  /opt/openrobots/include/casadi/core/resource.hpp \
+  /opt/openrobots/include/casadi/core/archiver.hpp \
+  /opt/openrobots/include/casadi/core/filesystem.hpp \
+  /opt/openrobots/include/casadi/core/options.hpp \
   /usr/include/eigen3/Eigen/Eigenvalues
 
 
+/opt/openrobots/include/casadi/core/options.hpp:
+
+/opt/openrobots/include/casadi/core/filesystem.hpp:
+
+/opt/openrobots/include/casadi/core/optistack.hpp:
+
+/opt/openrobots/include/casadi/core/nlp_builder.hpp:
+
+/opt/openrobots/include/casadi/core/nlp_tools.hpp:
+
+/opt/openrobots/include/casadi/core/external.hpp:
+
+/opt/openrobots/include/casadi/core/interpolant.hpp:
+
+/opt/openrobots/include/casadi/core/expm.hpp:
+
+/opt/openrobots/include/casadi/core/dple.hpp:
+
+/opt/openrobots/include/casadi/core/conic.hpp:
+
+/opt/openrobots/include/casadi/core/casadi_enum.hpp:
+
+/opt/openrobots/include/casadi/core/rootfinder.hpp:
+
+/opt/openrobots/include/casadi/core/integrator.hpp:
+
+/opt/openrobots/include/casadi/core/callback.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/shared.hpp:
+
+/opt/openrobots/include/casadi/core/casadi_interrupt.hpp:
+
+/usr/include/c++/11/deque:
+
+/usr/include/c++/11/stack:
+
+/opt/openrobots/include/casadi/core/code_generator.hpp:
+
+/opt/openrobots/include/casadi/core/mx.hpp:
+
+/opt/openrobots/include/casadi/core/dm_fwd.hpp:
+
+/opt/openrobots/include/casadi/core/sparsity_interface.hpp:
+
+/opt/openrobots/include/casadi/core/generic_shared.hpp:
+
+/opt/openrobots/include/casadi/core/shared_object.hpp:
+
+/opt/openrobots/include/casadi/core/generic_type.hpp:
+
+/opt/openrobots/include/casadi/core/slice.hpp:
+
+/opt/openrobots/include/casadi/core/generic_matrix.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_ocp_block.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_oracle_callback.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_convexify.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_dense_lsqr.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_lsqr.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_newton.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_bfgs.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_feasiblesqpmethod.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_sqpmethod.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_nlp.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_ipqp.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_mv_dense.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_interpn_interpolate.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_interpn_weights.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_nd_boor_dual_eval.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_de_boor.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_polyval.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_flip.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_rank1.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_bilin.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_norm_inf_mul.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_bound_consistency.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_masked_norm_inf.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_norm_inf.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_norm_2.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_norm_1.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_triusolve.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_trilsolve.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_mv.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_mtimes.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_sum_viol.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_interpn.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_vector_fmax.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_vector_fmin.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_vfmax.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_mmax.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_mmin.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_max_viol.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_clip_max.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_clear.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_dot.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_iamax.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_sparsify.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_densify.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_tri_project.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_project.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_swap.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_copy.hpp:
+
+/opt/openrobots/include/casadi/core/matrix_decl.hpp:
+
+/opt/openrobots/include/casadi/core/sx_fwd.hpp:
+
+/opt/openrobots/include/casadi/core/casadi_meta.hpp:
+
+/opt/openrobots/include/casadi/core/global_options.hpp:
+
+/opt/openrobots/include/casadi/core/serializing_stream.hpp:
+
+/opt/openrobots/include/casadi/core/calculus.hpp:
+
+/opt/openrobots/include/casadi/core/casadi_limits.hpp:
+
+/opt/openrobots/include/casadi/core/exception.hpp:
+
+/opt/openrobots/include/casadi/core/casadi_export.h:
+
+/opt/openrobots/include/casadi/core/casadi_logger.hpp:
+
+/opt/openrobots/include/casadi/core/matrix_fwd.hpp:
+
+/opt/openrobots/include/casadi/core/casadi_common.hpp:
+
+/opt/openrobots/include/casadi/core/printable.hpp:
+
+/opt/openrobots/include/casadi/core/core.hpp:
+
+/opt/openrobots/include/casadi/casadi.hpp:
+
 /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/solver.h:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_runtime.hpp:
 
 /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/variable_set.h:
 
@@ -2681,6 +3020,14 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/composite.h:
 
 /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/cost_term.h:
+
+/opt/openrobots/include/pinocchio/algorithm/jacobian.txx:
+
+/opt/openrobots/include/pinocchio/algorithm/jacobian.hxx:
+
+/opt/openrobots/include/pinocchio/algorithm/jacobian.hpp:
+
+/opt/openrobots/include/pinocchio/algorithm/frames.hpp:
 
 /opt/openrobots/include/pinocchio/algorithm/rnea.hxx:
 
@@ -2964,6 +3311,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /opt/openrobots/include/pinocchio/algorithm/constraints/fwd.hpp:
 
+/opt/openrobots/include/casadi/core/nlpsol.hpp:
+
 /usr/include/boost/fusion/algorithm/iteration/fold.hpp:
 
 /opt/openrobots/include/pinocchio/algorithm/contact-cholesky.hpp:
@@ -2999,6 +3348,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /opt/openrobots/include/pinocchio/algorithm/joint-configuration.hpp:
 
 /opt/openrobots/include/pinocchio/algorithm/model.hxx:
+
+/opt/openrobots/include/casadi/core/dae_builder.hpp:
 
 /usr/include/boost/bind/placeholders.hpp:
 
@@ -3046,6 +3397,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/type_traits/has_negate.hpp:
 
+/opt/openrobots/include/casadi/core/integration_tools.hpp:
+
 /opt/openrobots/include/pinocchio/algorithm/contact-cholesky.txx:
 
 /usr/include/boost/mpl/aux_/config/gcc.hpp:
@@ -3053,6 +3406,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/mpl/erase.hpp:
 
 /usr/include/boost/numeric/conversion/bounds.hpp:
+
+/usr/include/c++/11/bits/deque.tcc:
 
 /usr/include/eigen3/Eigen/src/Geometry/Translation.h:
 
@@ -3071,6 +3426,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/mpl/list/list0.hpp:
 
 /usr/include/boost/predef/architecture/x86/64.h:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_clip_min.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
@@ -3346,6 +3703,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__traits.hpp:
 
+/opt/openrobots/include/casadi/core/casadi_misc.hpp:
+
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
 
 /usr/include/boost/mpl/long_fwd.hpp:
@@ -3363,6 +3722,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /opt/openrobots/include/pinocchio/math/triangular-matrix.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/DiagonalProduct.h:
+
+/opt/openrobots/include/casadi/core/importer.hpp:
 
 /usr/include/eigen3/Eigen/src/SparseCore/SparseDiagonalProduct.h:
 
@@ -3588,6 +3949,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/type_traits/is_convertible.hpp:
 
+/opt/openrobots/include/casadi/core/casadi_types.hpp:
+
 /usr/include/boost/type_traits/has_plus.hpp:
 
 /opt/openrobots/include/pinocchio/algorithm/joint-configuration.hxx:
@@ -3798,6 +4161,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /opt/ros/humble/include/rclcpp/rclcpp/create_timer.hpp:
 
+/opt/openrobots/include/casadi/core/nonzeros.hpp:
+
 /usr/include/eigen3/unsupported/Eigen/CXX11/src/Tensor/TensorTraits.h:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__type_support.hpp:
@@ -3809,6 +4174,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/eigen3/Eigen/src/Core/GeneralProduct.h:
 
 /usr/include/boost/mpl/size_t.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_finite_diff.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/create_client.hpp:
 
@@ -3837,6 +4204,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/type_traits/is_object.hpp:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__traits.hpp:
+
+/usr/include/c++/11/bits/stl_deque.h:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_value__type_support.hpp:
 
@@ -3908,6 +4277,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__builder.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_kkt.hpp:
+
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/list_parameters_result__struct.hpp:
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/list_parameters_result.hpp:
@@ -3960,6 +4331,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/core/typeinfo.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_scaled_copy.hpp:
+
 /opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/get_node_topics_interface.hpp:
 
 /usr/include/boost/get_pointer.hpp:
@@ -3973,6 +4346,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/eigen3/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h:
 
 /opt/ros/humble/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp:
+
+/opt/openrobots/include/casadi/core/resource.hpp:
 
 /usr/include/boost/mpl/limits/list.hpp:
 
@@ -4002,6 +4377,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/c++/11/bits/basic_ios.tcc:
 
+/opt/openrobots/include/casadi/core/im_fwd.hpp:
+
 /usr/include/boost/bind/mem_fn.hpp:
 
 /usr/include/boost/mpl/inserter.hpp:
@@ -4019,6 +4396,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /opt/ros/humble/include/rcutils/rcutils/logging_macros.h:
 
 /opt/openrobots/include/pinocchio/deprecated-namespaces.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_logsumexp.hpp:
 
 /usr/include/stdio.h:
 
@@ -4110,6 +4489,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/eigen3/unsupported/Eigen/CXX11/src/Tensor/TensorVolumePatch.h:
 
+/opt/openrobots/include/casadi/core/tools.hpp:
+
 /usr/include/boost/mpl/aux_/config/arrays.hpp:
 
 /opt/openrobots/include/pinocchio/spatial/explog.hpp:
@@ -4126,6 +4507,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/mpl/aux_/fold_impl_body.hpp:
 
+/opt/openrobots/include/casadi/core/generic_expression.hpp:
+
 /usr/include/eigen3/Eigen/src/SparseLU/SparseLU_column_dfs.h:
 
 /usr/include/boost/preprocessor/repetition/repeat_from_to.hpp:
@@ -4133,6 +4516,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/mpl/aux_/full_lambda.hpp:
 
 /opt/ros/humble/include/rmw/rmw/security_options.h:
+
+/opt/openrobots/include/casadi/core/serializer.hpp:
 
 /usr/include/c++/11/cerrno:
 
@@ -4208,6 +4593,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/c++/11/bits/atomic_lockfree_defines.h:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_nd_boor_eval.hpp:
+
 /usr/include/c++/11/bits/parse_numbers.h:
 
 /usr/include/eigen3/unsupported/Eigen/CXX11/src/Tensor/TensorIO.h:
@@ -4255,6 +4642,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h:
+
+/opt/openrobots/include/casadi/core/generic_shared_internal.hpp:
 
 /usr/include/c++/11/mutex:
 
@@ -4450,6 +4839,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/c++/11/set:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_cache.hpp:
+
 /opt/ros/humble/include/std_msgs/std_msgs/msg/float64_multi_array.hpp:
 
 /usr/include/boost/config/detail/select_compiler_config.hpp:
@@ -4540,6 +4931,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/mpl/vector/aux_/iterator.hpp:
 
+/opt/openrobots/include/pinocchio/algorithm/frames.txx:
+
 /usr/include/boost/iostreams/stream_buffer.hpp:
 
 /usr/include/eigen3/unsupported/Eigen/CXX11/src/util/EmulateArray.h:
@@ -4553,6 +4946,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /opt/ros/humble/include/rclcpp/rclcpp/intra_process_buffer_type.hpp:
 
 /usr/include/boost/mpl/aux_/config/dtp.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_trans.hpp:
 
 /usr/include/boost/mpl/minus.hpp:
 
@@ -4650,11 +5045,15 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /opt/ros/humble/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__builder.hpp:
 
+/opt/openrobots/include/pinocchio/algorithm/frames.hxx:
+
 /usr/include/eigen3/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h:
 
 /opt/ros/humble/include/rmw/rmw/message_sequence.h:
 
 /usr/include/features.h:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_ldl.hpp:
 
 /usr/include/c++/11/bits/random.tcc:
 
@@ -4753,6 +5152,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/eigen3/Eigen/src/SparseCore/TriangularSolver.h:
 
 /usr/include/boost/iostreams/device/null.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_fill.hpp:
 
 /usr/include/c++/11/ext/atomicity.h:
 
@@ -4911,6 +5312,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/c++/11/array:
 
 /usr/include/eigen3/Eigen/src/Geometry/RotationBase.h:
+
+/usr/include/c++/11/bits/stl_stack.h:
 
 /usr/include/boost/fusion/algorithm/iteration/detail/segmented_fold.hpp:
 
@@ -5262,6 +5665,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/variant/detail/variant_io.hpp:
 
+/opt/openrobots/include/casadi/core/dm.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/Replicate.h:
 
 /usr/include/boost/preprocessor/detail/auto_rec.hpp:
@@ -5311,6 +5716,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/variant/recursive_variant.hpp:
 
 /usr/include/c++/11/stdlib.h:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_qp.hpp:
 
 /usr/include/boost/archive/basic_archive.hpp:
 
@@ -5600,6 +6007,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/function_types/detail/components_impl/arity10_1.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_qr.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_graph_interface.hpp:
@@ -5681,6 +6090,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /opt/ros/humble/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/message_type_support.hpp:
 
 /opt/ros/humble/include/rclcpp/rclcpp/exceptions.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_file_slurp.hpp:
 
 /usr/include/boost/preprocessor/enum_shifted_params.hpp:
 
@@ -5798,6 +6209,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /opt/ros/humble/include/rclcpp/rclcpp/detail/resolve_use_intra_process.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_kron.hpp:
+
 /usr/include/boost/math/special_functions/fpclassify.hpp:
 
 /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/joint_state.hpp:
@@ -5862,6 +6275,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/time.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_vfmin.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/boost/preprocessor/enum_params_with_a_default.hpp:
@@ -5888,6 +6303,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/mpl/aux_/preprocessor/params.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_jac.hpp:
+
 /usr/include/boost/variant/detail/enable_recursive_fwd.hpp:
 
 /usr/include/boost/preprocessor/control/if.hpp:
@@ -5907,6 +6324,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/preprocessor/debug/error.hpp:
 
 /usr/include/boost/preprocessor/logical/bitand.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_regularize.hpp:
 
 /opt/openrobots/include/pinocchio/algorithm/joint-configuration.txx:
 
@@ -5985,6 +6404,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/mpl/O1_size_fwd.hpp:
 
 /usr/include/boost/mpl/not.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_axpy.hpp:
 
 /usr/include/boost/mpl/aux_/nested_type_wknd.hpp:
 
@@ -6120,6 +6541,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/mpl/aux_/config/has_apply.hpp:
 
+/opt/openrobots/include/casadi/core/xml_node.hpp:
+
 /opt/ros/humble/include/rcl_yaml_param_parser/rcl_yaml_param_parser/visibility_control.h:
 
 /usr/include/boost/type_traits/remove_cv.hpp:
@@ -6183,6 +6606,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/fusion/container/list.hpp:
 
 /usr/include/boost/preprocessor/seq/size.hpp:
+
+/opt/openrobots/include/casadi/core/sx_elem.hpp:
 
 /usr/include/boost/fusion/sequence/convert.hpp:
 
@@ -6333,6 +6758,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /opt/openrobots/include/pinocchio/multibody/fwd.hpp:
 
 /usr/include/boost/mpl/size.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_sum.hpp:
 
 /usr/include/boost/mpl/aux_/common_name_wknd.hpp:
 
@@ -6512,6 +6939,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/range/const_iterator.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_oracle.hpp:
+
 /usr/include/boost/fusion/sequence/intrinsic/begin.hpp:
 
 /opt/openrobots/include/pinocchio/utils/string-generator.hpp:
@@ -6574,6 +7003,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/range/value_type.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_low.hpp:
+
 /opt/ros/humble/include/tracetools/tracetools/tracetools.h:
 
 /usr/include/boost/range/detail/has_member_size.hpp:
@@ -6595,6 +7026,10 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/mpl/aux_/iter_fold_impl.hpp:
 
 /usr/include/boost/preprocessor/seq/transform.hpp:
+
+/opt/openrobots/include/casadi/core/im.hpp:
+
+/opt/openrobots/include/casadi/core/submatrix.hpp:
 
 /usr/include/boost/lexical_cast/detail/lcast_char_constants.hpp:
 
@@ -6729,6 +7164,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/c++/11/bits/stl_multimap.h:
 
 /usr/include/boost/numeric/conversion/numeric_cast_traits.hpp:
+
+/opt/openrobots/include/casadi/core/polynomial.hpp:
 
 /usr/include/boost/mpl/aux_/config/adl.hpp:
 
@@ -6952,6 +7389,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/type_traits/has_unary_plus.hpp:
 
+/opt/openrobots/include/casadi/core/blazing_spline.hpp:
+
 /usr/include/boost/fusion/container/list/detail/empty_impl.hpp:
 
 /usr/include/boost/mpl/distance_fwd.hpp:
@@ -6989,6 +7428,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/type_traits/is_nothrow_move_constructible.hpp:
 
 /usr/include/boost/type_traits/is_unscoped_enum.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_cvx.hpp:
 
 /usr/include/boost/serialization/throw_exception.hpp:
 
@@ -7085,6 +7526,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/archive/codecvt_null.hpp:
 
 /opt/openrobots/include/pinocchio/spatial/motion-dense.hpp:
+
+/opt/openrobots/include/casadi/core/xml_file.hpp:
 
 /usr/include/c++/11/string:
 
@@ -7306,6 +7749,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /opt/openrobots/include/pinocchio/multibody/joint/joint-revolute-unaligned.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_sparsity.hpp:
+
 /opt/openrobots/include/pinocchio/multibody/joint/joint-spherical.hpp:
 
 /usr/include/boost/smart_ptr/detail/spinlock_gcc_atomic.hpp:
@@ -7333,6 +7778,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/serialization/level.hpp:
 
 /usr/include/boost/serialization/level_enum.hpp:
+
+/opt/openrobots/include/casadi/core/function.hpp:
 
 /usr/include/boost/serialization/tracking_enum.hpp:
 
@@ -7421,6 +7868,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/boost/preprocessor/punctuation/paren.hpp:
 
 /usr/include/boost/function_types/detail/encoding/def.hpp:
+
+/opt/openrobots/include/casadi/core/linsol.hpp:
 
 /usr/include/boost/preprocessor/repetition/enum_shifted_params.hpp:
 
@@ -7652,6 +8101,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/iostreams/device/array.hpp:
 
+/opt/openrobots/include/casadi/core/archiver.hpp:
+
 /usr/include/boost/fusion/container/vector/vector_iterator.hpp:
 
 /usr/include/boost/fusion/container/vector/detail/deref_impl.hpp:
@@ -7689,6 +8140,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /usr/include/c++/11/bits/sstream.tcc:
 
 /usr/include/boost/archive/archive_exception.hpp:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_qrqp.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/Assign.h:
 
@@ -7846,6 +8299,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/iostreams/traits.hpp:
 
+/opt/openrobots/include/casadi/core/sparsity.hpp:
+
 /usr/include/boost/preprocessor/control/expr_if.hpp:
 
 /usr/include/boost/iostreams/detail/is_iterator_range.hpp:
@@ -7890,6 +8345,8 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 
 /usr/include/boost/iostreams/pipeline.hpp:
 
+/opt/openrobots/include/casadi/core/runtime/casadi_interpn_grad.hpp:
+
 /usr/include/c++/11/bits/quoted_string.h:
 
 /opt/ros/humble/include/rclcpp/rclcpp/experimental/create_intra_process_buffer.hpp:
@@ -7929,6 +8386,10 @@ CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_no
 /opt/openrobots/include/coal/narrowphase/narrowphase.h:
 
 /opt/openrobots/include/coal/narrowphase/gjk.h:
+
+/opt/openrobots/include/casadi/core/runtime/casadi_scal.hpp:
+
+/opt/openrobots/include/casadi/core/sx.hpp:
 
 /opt/openrobots/include/coal/shape/geometric_shapes.h:
 

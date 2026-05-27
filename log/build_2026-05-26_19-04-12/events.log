@@ -1,0 +1,601 @@
+[0.000000] (-) TimerEvent: {}
+[0.000332] (ecvt2_sim) JobQueued: {'identifier': 'ecvt2_sim', 'dependencies': OrderedDict()}
+[0.000523] (forestry_robot_mjcf) JobQueued: {'identifier': 'forestry_robot_mjcf', 'dependencies': OrderedDict()}
+[0.000579] (ifopt) JobQueued: {'identifier': 'ifopt', 'dependencies': OrderedDict()}
+[0.000610] (ecvt2_controller) JobQueued: {'identifier': 'ecvt2_controller', 'dependencies': OrderedDict([('ifopt', '/home/jin/harco/ecvt2_ws/install/ifopt')])}
+[0.000660] (ifopt) JobStarted: {'identifier': 'ifopt'}
+[0.003415] (ecvt2_sim) JobStarted: {'identifier': 'ecvt2_sim'}
+[0.006123] (forestry_robot_mjcf) JobStarted: {'identifier': 'forestry_robot_mjcf'}
+[0.008393] (ifopt) JobProgress: {'identifier': 'ifopt', 'progress': 'cmake'}
+[0.008637] (ifopt) JobProgress: {'identifier': 'ifopt', 'progress': 'build'}
+[0.009032] (ifopt) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jin/harco/ecvt2_ws/build/ifopt', '--', '-j20', '-l20'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ifopt', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('CONDA_PROMPT_MODIFIER', ''), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('SYSTEMD_EXEC_PID', '2457'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('COLCON_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'jin'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CONDA_DEFAULT_ENV', ''), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ifopt'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('CONDA_PREFIX', ''), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble')]), 'shell': False}
+[0.099895] (-) TimerEvent: {}
+[0.131852] (ifopt) StdoutLine: {'line': b'[ 33%] Built target ifopt_core\n'}
+[0.131959] (ifopt) StdoutLine: {'line': b'[ 75%] Built target ifopt_core-test\n'}
+[0.131997] (ifopt) StdoutLine: {'line': b'[ 83%] Built target ifopt_ipopt\n'}
+[0.132027] (ifopt) StdoutLine: {'line': b'[100%] Built target ifopt_ipopt-example\n'}
+[0.132064] (forestry_robot_mjcf) JobProgress: {'identifier': 'forestry_robot_mjcf', 'progress': 'cmake'}
+[0.132528] (forestry_robot_mjcf) JobProgress: {'identifier': 'forestry_robot_mjcf', 'progress': 'build'}
+[0.132705] (forestry_robot_mjcf) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jin/harco/ecvt2_ws/build/forestry_robot_mjcf', '--', '-j20', '-l20'], 'cwd': '/home/jin/harco/ecvt2_ws/build/forestry_robot_mjcf', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('CONDA_PROMPT_MODIFIER', ''), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('SYSTEMD_EXEC_PID', '2457'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('COLCON_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'jin'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CONDA_DEFAULT_ENV', ''), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/forestry_robot_mjcf'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('CONDA_PREFIX', ''), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble')]), 'shell': False}
+[0.133787] (ifopt) CommandEnded: {'returncode': 0}
+[0.134157] (ifopt) JobProgress: {'identifier': 'ifopt', 'progress': 'install'}
+[0.140765] (ifopt) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/jin/harco/ecvt2_ws/build/ifopt'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ifopt', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('CONDA_PROMPT_MODIFIER', ''), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('SYSTEMD_EXEC_PID', '2457'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('COLCON_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'jin'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CONDA_DEFAULT_ENV', ''), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ifopt'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('CONDA_PREFIX', ''), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble')]), 'shell': False}
+[0.147030] (ifopt) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.147129] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/share/ifopt/cmake/ifopt-config.cmake\n'}
+[0.147162] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/share/ifopt/cmake/ifopt-config-version.cmake\n'}
+[0.147191] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/share/ifopt/package.xml\n'}
+[0.147464] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/lib/libifopt_core.so\n'}
+[0.147628] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt\n'}
+[0.147685] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/cost_term.h\n'}
+[0.147743] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/problem.h\n'}
+[0.147780] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/bounds.h\n'}
+[0.147823] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/composite.h\n'}
+[0.147849] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/constraint_set.h\n'}
+[0.147874] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/variable_set.h\n'}
+[0.147906] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/solver.h\n'}
+[0.147932] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/test_vars_constr_cost.h\n'}
+[0.148223] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/share/ifopt/cmake/ifopt_core-targets.cmake\n'}
+[0.148272] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/share/ifopt/cmake/ifopt_core-targets-noconfig.cmake\n'}
+[0.148302] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/lib/ifopt/ifopt_core-test\n'}
+[0.148557] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/lib/libifopt_ipopt.so\n'}
+[0.148650] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/lib/ifopt/ifopt_ipopt-example\n'}
+[0.148725] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt\n'}
+[0.148774] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/ipopt_adapter.h\n'}
+[0.148823] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/include/ifopt/ipopt_solver.h\n'}
+[0.148879] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/share/ifopt/cmake/ifopt_ipopt-targets.cmake\n'}
+[0.148914] (ifopt) StdoutLine: {'line': b'-- Up-to-date: /home/jin/harco/ecvt2_ws/install/ifopt/share/ifopt/cmake/ifopt_ipopt-targets-noconfig.cmake\n'}
+[0.149886] (ifopt) CommandEnded: {'returncode': 0}
+[0.162255] (ifopt) JobEnded: {'identifier': 'ifopt', 'rc': 0}
+[0.163182] (ecvt2_controller) JobStarted: {'identifier': 'ecvt2_controller'}
+[0.166630] (forestry_robot_mjcf) CommandEnded: {'returncode': 0}
+[0.167241] (forestry_robot_mjcf) JobProgress: {'identifier': 'forestry_robot_mjcf', 'progress': 'install'}
+[0.167553] (forestry_robot_mjcf) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/jin/harco/ecvt2_ws/build/forestry_robot_mjcf'], 'cwd': '/home/jin/harco/ecvt2_ws/build/forestry_robot_mjcf', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('CONDA_PROMPT_MODIFIER', ''), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('SYSTEMD_EXEC_PID', '2457'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('COLCON_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'jin'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CONDA_DEFAULT_ENV', ''), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/forestry_robot_mjcf'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('CONDA_PREFIX', ''), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble')]), 'shell': False}
+[0.168803] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'cmake'}
+[0.169129] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'build'}
+[0.169580] (ecvt2_controller) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', '--', '-j20', '-l20'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('CONDA_PROMPT_MODIFIER', ''), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('SYSTEMD_EXEC_PID', '2457'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('COLCON_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'jin'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CONDA_DEFAULT_ENV', ''), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('CONDA_PREFIX', ''), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble')]), 'shell': False}
+[0.172038] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.172256] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[0.172614] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FL1.STL\n'}
+[0.172708] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FL2.STL\n'}
+[0.172750] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FL3.STL\n'}
+[0.172780] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FL4.STL\n'}
+[0.172816] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FL5.STL\n'}
+[0.172858] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FLD02.STL\n'}
+[0.172886] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FLD1.STL\n'}
+[0.172919] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FLD12.STL\n'}
+[0.172955] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FLD2.STL\n'}
+[0.172990] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FLD4.STL\n'}
+[0.173025] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FLW.STL\n'}
+[0.173060] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FR1.STL\n'}
+[0.173097] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FR2.STL\n'}
+[0.173133] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FR3.STL\n'}
+[0.173167] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FR4.STL\n'}
+[0.173203] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FR5.STL\n'}
+[0.173239] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FRD02.STL\n'}
+[0.173277] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FRD1.STL\n'}
+[0.173320] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FRD12.STL\n'}
+[0.173359] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FRD2.STL\n'}
+[0.173398] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FRD4.STL\n'}
+[0.173435] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/FRW.STL\n'}
+[0.173471] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RL1.STL\n'}
+[0.173508] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RL2.STL\n'}
+[0.173541] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RL3.STL\n'}
+[0.173575] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RL4.STL\n'}
+[0.173608] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RL5.STL\n'}
+[0.173639] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RLD02.STL\n'}
+[0.173674] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RLD1.STL\n'}
+[0.173711] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RLD12.STL\n'}
+[0.173746] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RLD2.STL\n'}
+[0.173781] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RLD4.STL\n'}
+[0.173817] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RLW.STL\n'}
+[0.173855] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RR1.STL\n'}
+[0.173890] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RR2.STL\n'}
+[0.173929] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RR3.STL\n'}
+[0.173965] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RR4.STL\n'}
+[0.174002] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RR5.STL\n'}
+[0.174042] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RRD02.STL\n'}
+[0.174077] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RRD1.STL\n'}
+[0.174138] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RRD12.STL\n'}
+[0.174197] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RRD2.STL\n'}
+[0.174243] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RRD4.STL\n'}
+[0.174271] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/RRW.STL\n'}
+[0.174312] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/TOOL1.STL\n'}
+[0.174352] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/UP1.STL\n'}
+[0.174391] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/UP2.STL\n'}
+[0.174429] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/UP3.STL\n'}
+[0.174469] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/UP4.STL\n'}
+[0.174504] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/UP5.STL\n'}
+[0.174536] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/UP6.STL\n'}
+[0.174561] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//asset/base_link.STL\n'}
+[0.174681] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/ecvt_v2.urdf\n'}
+[0.174728] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/ecvt_v2.xml\n'}
+[0.174769] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/ecvt_v2_simplify.urdf\n'}
+[0.174813] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/ecvt_v2_upper.urdf\n'}
+[0.174850] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/ecvt_v2_upper.xml\n'}
+[0.174884] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/scene.xml\n'}
+[0.174921] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/scene2.xml\n'}
+[0.174979] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/scene2_upper.xml\n'}
+[0.175019] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/simple_model_for_urdf.SLDASM_back.urdf\n'}
+[0.175057] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/test_scene.xml\n'}
+[0.175098] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf//xml/tire_test.xml\n'}
+[0.175161] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/resource/forestry_robot_mjcf\n'}
+[0.175242] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/ament_index/resource_index/package_run_dependencies/forestry_robot_mjcf\n'}
+[0.175328] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/ament_index/resource_index/parent_prefix_path/forestry_robot_mjcf\n'}
+[0.175412] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/environment/ament_prefix_path.sh\n'}
+[0.175456] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/environment/ament_prefix_path.dsv\n'}
+[0.175506] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/environment/path.sh\n'}
+[0.175590] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/environment/path.dsv\n'}
+[0.175732] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/local_setup.bash\n'}
+[0.175834] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/local_setup.sh\n'}
+[0.175920] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/local_setup.zsh\n'}
+[0.175991] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/local_setup.dsv\n'}
+[0.176057] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Symlinking: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/package.dsv\n'}
+[0.180905] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/ament_index/resource_index/packages/forestry_robot_mjcf\n'}
+[0.181085] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/cmake/forestry_robot_mjcfConfig.cmake\n'}
+[0.181160] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/cmake/forestry_robot_mjcfConfig-version.cmake\n'}
+[0.181237] (forestry_robot_mjcf) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf/share/forestry_robot_mjcf/package.xml\n'}
+[0.182042] (forestry_robot_mjcf) CommandEnded: {'returncode': 0}
+[0.190160] (forestry_robot_mjcf) JobEnded: {'identifier': 'forestry_robot_mjcf', 'rc': 0}
+[0.199988] (-) TimerEvent: {}
+[0.202198] (ecvt2_controller) StdoutLine: {'line': b'[  6%] Built target wbc_hqp_lib\n'}
+[0.204008] (ecvt2_controller) StdoutLine: {'line': b'[ 12%] Built target teleop_goal_publisher\n'}
+[0.204217] (ecvt2_controller) StdoutLine: {'line': b'[ 18%] Built target com_trajectory_publisher\n'}
+[0.206024] (ecvt2_controller) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target vp_sto_global_planner_full_node\x1b[0m\n'}
+[0.212364] (ecvt2_controller) StdoutLine: {'line': b'[ 25%] Built target kdl_utils\n'}
+[0.213341] (ecvt2_controller) StdoutLine: {'line': b'[ 31%] Built target vp_sto_paper_global_planner_node\n'}
+[0.216642] (ecvt2_controller) StdoutLine: {'line': b'[ 37%] Built target live_upper_dynamics_node\n'}
+[0.225214] (ecvt2_controller) StdoutLine: {'line': b'[ 43%] Built target vp_sto_global_planner_node\n'}
+[0.227489] (ecvt2_controller) StdoutLine: {'line': b'[ 50%] Built target wbc_hqp\n'}
+[0.227977] (ecvt2_controller) StdoutLine: {'line': b'[ 56%] Built target wbc_hqp_v2\n'}
+[0.228396] (ecvt2_controller) StdoutLine: {'line': b'[ 62%] Built target base_arm_task_controller_full\n'}
+[0.230366] (ecvt2_controller) StdoutLine: {'line': b'[ 68%] Built target base_opt_controller\n'}
+[0.231276] (ecvt2_controller) StdoutLine: {'line': b'[ 75%] Built target base_arm_task_controller\n'}
+[0.231519] (ecvt2_controller) StdoutLine: {'line': b'[ 81%] Built target wbc_hqp_v3\n'}
+[0.232350] (ecvt2_controller) StdoutLine: {'line': b'[ 84%] \x1b[32mBuilding CXX object CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.o\x1b[0m\n'}
+[0.233204] (ecvt2_controller) StdoutLine: {'line': b'[ 90%] Built target base_arm_task_controller_v2\n'}
+[0.235938] (ecvt2_controller) StdoutLine: {'line': b'[ 96%] Built target pin_test\n'}
+[0.300091] (-) TimerEvent: {}
+[0.400302] (-) TimerEvent: {}
+[0.473632] (ecvt2_sim) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/build', '--no-deps', 'symlink_data'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'CONDA_PROMPT_MODIFIER': '', 'LANGUAGE': 'en', 'USER': 'jin', 'LC_TIME': 'ko_KR.UTF-8', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco', 'HOME': '/home/jin', 'CONDA_SHLVL': '0', 'OLDPWD': '/home/jin', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'ko_KR.UTF-8', 'MANAGERPID': '2041', 'SYSTEMD_EXEC_PID': '2457', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', '_CE_M': '', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f', '_CONDA_ROOT': '/home/jin/miniconda3', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3351', 'COLCON_PREFIX_PATH': '/home/jin/harco/ecvt2_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'jin', 'JOURNAL_STREAM': '8:28264', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'PKG_CONFIG_PATH': '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'jin', 'TERM': 'xterm-256color', 'GAZEBO_MODEL_PATH': ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', '_CE_CONDA': '', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282', 'INVOCATION_ID': '95b20f578bae49f893435a00dc03c7e0', 'PAPERSIZE': 'a4', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'ko_KR.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'IBUS_DISABLE_SNOOPER': '1', 'LC_TELEPHONE': 'ko_KR.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/opt/ros/humble', 'CONDA_PYTHON_EXE': '/home/jin/miniconda3/bin/python', 'SHELL': '/bin/bash', 'LC_NAME': 'ko_KR.UTF-8', 'TERMINATOR_UUID': 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CONDA_DEFAULT_ENV': '', 'LC_MEASUREMENT': 'ko_KR.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', '_CONDA_EXE': '/home/jin/miniconda3/bin/conda', 'LC_IDENTIFICATION': 'ko_KR.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim', 'TURTLEBOT3_MODEL': 'burger', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'CONDA_EXE': '/home/jin/miniconda3/bin/conda', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/home/jin/harco/ecvt2_ws/build/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'ko_KR.UTF-8', 'CONDA_PREFIX': '', 'LC_PAPER': 'ko_KR.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/jin/harco/ecvt2_ws/install/ifopt:/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_controller'}, 'shell': False}
+[0.500382] (-) TimerEvent: {}
+[0.600600] (-) TimerEvent: {}
+[0.660527] (ecvt2_sim) StdoutLine: {'line': b'running develop\n'}
+[0.700710] (-) TimerEvent: {}
+[0.784305] (ecvt2_sim) StdoutLine: {'line': b'running egg_info\n'}
+[0.793108] (ecvt2_sim) StdoutLine: {'line': b'writing ecvt2_sim.egg-info/PKG-INFO\n'}
+[0.793462] (ecvt2_sim) StdoutLine: {'line': b'writing dependency_links to ecvt2_sim.egg-info/dependency_links.txt\n'}
+[0.793605] (ecvt2_sim) StdoutLine: {'line': b'writing entry points to ecvt2_sim.egg-info/entry_points.txt\n'}
+[0.793758] (ecvt2_sim) StdoutLine: {'line': b'writing requirements to ecvt2_sim.egg-info/requires.txt\n'}
+[0.793824] (ecvt2_sim) StdoutLine: {'line': b'writing top-level names to ecvt2_sim.egg-info/top_level.txt\n'}
+[0.800775] (-) TimerEvent: {}
+[0.815231] (ecvt2_sim) StdoutLine: {'line': b"reading manifest file 'ecvt2_sim.egg-info/SOURCES.txt'\n"}
+[0.816109] (ecvt2_sim) StdoutLine: {'line': b"writing manifest file 'ecvt2_sim.egg-info/SOURCES.txt'\n"}
+[0.852510] (ecvt2_sim) StdoutLine: {'line': b'running build_ext\n'}
+[0.852673] (ecvt2_sim) StdoutLine: {'line': b'Creating /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2-sim.egg-link (link to .)\n'}
+[0.853135] (ecvt2_sim) StdoutLine: {'line': b'Installing plot_passive_csv script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.853270] (ecvt2_sim) StdoutLine: {'line': b'Installing plot_passive_joints script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.853345] (ecvt2_sim) StdoutLine: {'line': b'Installing robot_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.853413] (ecvt2_sim) StdoutLine: {'line': b'Installing sin_velocity_publisher script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.853474] (ecvt2_sim) StdoutLine: {'line': b'Installing test_robot_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.853534] (ecvt2_sim) StdoutLine: {'line': b'Installing test_upper_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.853583] (ecvt2_sim) StdoutLine: {'line': b'Installing upper_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.853649] (ecvt2_sim) StdoutLine: {'line': b'\n'}
+[0.853702] (ecvt2_sim) StdoutLine: {'line': b'Installed /home/jin/harco/ecvt2_ws/build/ecvt2_sim\n'}
+[0.853749] (ecvt2_sim) StdoutLine: {'line': b'running symlink_data\n'}
+[0.880001] (ecvt2_sim) CommandEnded: {'returncode': 0}
+[0.885308] (ecvt2_sim) JobEnded: {'identifier': 'ecvt2_sim', 'rc': 0}
+[0.900881] (-) TimerEvent: {}
+[1.001130] (-) TimerEvent: {}
+[1.101351] (-) TimerEvent: {}
+[1.201581] (-) TimerEvent: {}
+[1.301824] (-) TimerEvent: {}
+[1.402080] (-) TimerEvent: {}
+[1.502318] (-) TimerEvent: {}
+[1.602546] (-) TimerEvent: {}
+[1.702779] (-) TimerEvent: {}
+[1.803021] (-) TimerEvent: {}
+[1.903263] (-) TimerEvent: {}
+[2.003507] (-) TimerEvent: {}
+[2.103760] (-) TimerEvent: {}
+[2.203992] (-) TimerEvent: {}
+[2.304235] (-) TimerEvent: {}
+[2.404442] (-) TimerEvent: {}
+[2.504668] (-) TimerEvent: {}
+[2.605079] (-) TimerEvent: {}
+[2.705433] (-) TimerEvent: {}
+[2.805792] (-) TimerEvent: {}
+[2.906156] (-) TimerEvent: {}
+[3.006444] (-) TimerEvent: {}
+[3.106741] (-) TimerEvent: {}
+[3.207124] (-) TimerEvent: {}
+[3.219137] (ecvt2_controller) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/openrobots/include/hpp/fcl/config.hh:1\x1b[m\x1b[K,\n'}
+[3.219345] (ecvt2_controller) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/openrobots/include/pinocchio/serialization/eigen.hpp:20\x1b[m\x1b[K,\n'}
+[3.219417] (ecvt2_controller) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/openrobots/include/pinocchio/serialization/fwd.hpp:11\x1b[m\x1b[K,\n'}
+[3.219481] (ecvt2_controller) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14\x1b[m\x1b[K,\n'}
+[3.219544] (ecvt2_controller) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9\x1b[m\x1b[K,\n'}
+[3.219604] (ecvt2_controller) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/openrobots/include/pinocchio/multibody/model.hpp:17\x1b[m\x1b[K,\n'}
+[3.219665] (ecvt2_controller) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/openrobots/include/pinocchio/parsers/urdf.hpp:9\x1b[m\x1b[K,\n'}
+[3.219725] (ecvt2_controller) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:7\x1b[m\x1b[K:\n'}
+[3.219790] (ecvt2_controller) StderrLine: {'line': b"\x1b[01m\x1b[K/opt/openrobots/include/hpp/fcl/coal.hpp:12:99:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[K#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS\x1b[m\x1b[K\xe2\x80\x99\n"}
+[3.219853] (ecvt2_controller) StderrLine: {'line': b'   12 |     "Please update your includes from \'hpp/fcl\' to \'coal\' or define COAL_DISABLE_HPP_FCL_WARNINGS"\x1b[01;36m\x1b[K)\x1b[m\x1b[K\n'}
+[3.219913] (ecvt2_controller) StderrLine: {'line': b'      |                                                                                                   \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[3.307235] (-) TimerEvent: {}
+[3.407459] (-) TimerEvent: {}
+[3.507710] (-) TimerEvent: {}
+[3.607976] (-) TimerEvent: {}
+[3.708290] (-) TimerEvent: {}
+[3.808564] (-) TimerEvent: {}
+[3.908804] (-) TimerEvent: {}
+[4.009034] (-) TimerEvent: {}
+[4.109289] (-) TimerEvent: {}
+[4.209551] (-) TimerEvent: {}
+[4.309793] (-) TimerEvent: {}
+[4.410058] (-) TimerEvent: {}
+[4.510322] (-) TimerEvent: {}
+[4.610563] (-) TimerEvent: {}
+[4.710832] (-) TimerEvent: {}
+[4.811093] (-) TimerEvent: {}
+[4.911321] (-) TimerEvent: {}
+[5.011549] (-) TimerEvent: {}
+[5.111792] (-) TimerEvent: {}
+[5.212047] (-) TimerEvent: {}
+[5.312315] (-) TimerEvent: {}
+[5.412532] (-) TimerEvent: {}
+[5.512783] (-) TimerEvent: {}
+[5.613093] (-) TimerEvent: {}
+[5.713321] (-) TimerEvent: {}
+[5.813632] (-) TimerEvent: {}
+[5.913953] (-) TimerEvent: {}
+[6.014267] (-) TimerEvent: {}
+[6.114512] (-) TimerEvent: {}
+[6.214717] (-) TimerEvent: {}
+[6.315018] (-) TimerEvent: {}
+[6.415269] (-) TimerEvent: {}
+[6.515492] (-) TimerEvent: {}
+[6.615795] (-) TimerEvent: {}
+[6.716050] (-) TimerEvent: {}
+[6.816237] (-) TimerEvent: {}
+[6.916534] (-) TimerEvent: {}
+[7.016843] (-) TimerEvent: {}
+[7.117184] (-) TimerEvent: {}
+[7.217459] (-) TimerEvent: {}
+[7.317712] (-) TimerEvent: {}
+[7.418020] (-) TimerEvent: {}
+[7.518332] (-) TimerEvent: {}
+[7.618650] (-) TimerEvent: {}
+[7.718903] (-) TimerEvent: {}
+[7.819162] (-) TimerEvent: {}
+[7.919391] (-) TimerEvent: {}
+[8.019642] (-) TimerEvent: {}
+[8.119940] (-) TimerEvent: {}
+[8.220258] (-) TimerEvent: {}
+[8.320490] (-) TimerEvent: {}
+[8.420718] (-) TimerEvent: {}
+[8.521045] (-) TimerEvent: {}
+[8.621292] (-) TimerEvent: {}
+[8.721624] (-) TimerEvent: {}
+[8.821944] (-) TimerEvent: {}
+[8.922254] (-) TimerEvent: {}
+[9.022483] (-) TimerEvent: {}
+[9.122718] (-) TimerEvent: {}
+[9.223007] (-) TimerEvent: {}
+[9.323265] (-) TimerEvent: {}
+[9.423559] (-) TimerEvent: {}
+[9.523801] (-) TimerEvent: {}
+[9.624101] (-) TimerEvent: {}
+[9.724460] (-) TimerEvent: {}
+[9.824731] (-) TimerEvent: {}
+[9.924979] (-) TimerEvent: {}
+[10.025233] (-) TimerEvent: {}
+[10.125451] (-) TimerEvent: {}
+[10.225761] (-) TimerEvent: {}
+[10.326135] (-) TimerEvent: {}
+[10.426417] (-) TimerEvent: {}
+[10.526724] (-) TimerEvent: {}
+[10.627078] (-) TimerEvent: {}
+[10.727396] (-) TimerEvent: {}
+[10.827665] (-) TimerEvent: {}
+[10.927973] (-) TimerEvent: {}
+[11.028225] (-) TimerEvent: {}
+[11.128525] (-) TimerEvent: {}
+[11.228776] (-) TimerEvent: {}
+[11.329022] (-) TimerEvent: {}
+[11.429324] (-) TimerEvent: {}
+[11.529644] (-) TimerEvent: {}
+[11.629953] (-) TimerEvent: {}
+[11.730272] (-) TimerEvent: {}
+[11.830577] (-) TimerEvent: {}
+[11.930908] (-) TimerEvent: {}
+[12.031215] (-) TimerEvent: {}
+[12.131675] (-) TimerEvent: {}
+[12.231978] (-) TimerEvent: {}
+[12.332296] (-) TimerEvent: {}
+[12.432605] (-) TimerEvent: {}
+[12.532920] (-) TimerEvent: {}
+[12.633246] (-) TimerEvent: {}
+[12.733556] (-) TimerEvent: {}
+[12.833803] (-) TimerEvent: {}
+[12.934097] (-) TimerEvent: {}
+[13.034340] (-) TimerEvent: {}
+[13.134604] (-) TimerEvent: {}
+[13.234919] (-) TimerEvent: {}
+[13.335245] (-) TimerEvent: {}
+[13.435461] (-) TimerEvent: {}
+[13.535762] (-) TimerEvent: {}
+[13.636072] (-) TimerEvent: {}
+[13.736417] (-) TimerEvent: {}
+[13.836687] (-) TimerEvent: {}
+[13.936953] (-) TimerEvent: {}
+[14.037215] (-) TimerEvent: {}
+[14.137501] (-) TimerEvent: {}
+[14.237780] (-) TimerEvent: {}
+[14.338106] (-) TimerEvent: {}
+[14.438495] (-) TimerEvent: {}
+[14.538869] (-) TimerEvent: {}
+[14.639250] (-) TimerEvent: {}
+[14.739582] (-) TimerEvent: {}
+[14.839880] (-) TimerEvent: {}
+[14.940360] (-) TimerEvent: {}
+[15.040644] (-) TimerEvent: {}
+[15.140904] (-) TimerEvent: {}
+[15.241213] (-) TimerEvent: {}
+[15.341449] (-) TimerEvent: {}
+[15.441693] (-) TimerEvent: {}
+[15.542031] (-) TimerEvent: {}
+[15.642352] (-) TimerEvent: {}
+[15.742666] (-) TimerEvent: {}
+[15.842899] (-) TimerEvent: {}
+[15.943206] (-) TimerEvent: {}
+[16.043514] (-) TimerEvent: {}
+[16.143857] (-) TimerEvent: {}
+[16.244148] (-) TimerEvent: {}
+[16.344483] (-) TimerEvent: {}
+[16.444801] (-) TimerEvent: {}
+[16.545128] (-) TimerEvent: {}
+[16.645451] (-) TimerEvent: {}
+[16.745777] (-) TimerEvent: {}
+[16.846089] (-) TimerEvent: {}
+[16.946431] (-) TimerEvent: {}
+[17.046762] (-) TimerEvent: {}
+[17.147015] (-) TimerEvent: {}
+[17.247354] (-) TimerEvent: {}
+[17.347597] (-) TimerEvent: {}
+[17.447838] (-) TimerEvent: {}
+[17.548151] (-) TimerEvent: {}
+[17.648470] (-) TimerEvent: {}
+[17.748726] (-) TimerEvent: {}
+[17.849039] (-) TimerEvent: {}
+[17.949397] (-) TimerEvent: {}
+[18.049727] (-) TimerEvent: {}
+[18.150021] (-) TimerEvent: {}
+[18.250373] (-) TimerEvent: {}
+[18.350660] (-) TimerEvent: {}
+[18.450953] (-) TimerEvent: {}
+[18.551301] (-) TimerEvent: {}
+[18.651635] (-) TimerEvent: {}
+[18.751993] (-) TimerEvent: {}
+[18.852358] (-) TimerEvent: {}
+[18.952704] (-) TimerEvent: {}
+[19.053064] (-) TimerEvent: {}
+[19.153430] (-) TimerEvent: {}
+[19.253778] (-) TimerEvent: {}
+[19.354053] (-) TimerEvent: {}
+[19.454410] (-) TimerEvent: {}
+[19.554766] (-) TimerEvent: {}
+[19.655115] (-) TimerEvent: {}
+[19.755546] (-) TimerEvent: {}
+[19.855850] (-) TimerEvent: {}
+[19.956189] (-) TimerEvent: {}
+[20.056502] (-) TimerEvent: {}
+[20.156847] (-) TimerEvent: {}
+[20.257166] (-) TimerEvent: {}
+[20.357470] (-) TimerEvent: {}
+[20.457750] (-) TimerEvent: {}
+[20.558069] (-) TimerEvent: {}
+[20.658393] (-) TimerEvent: {}
+[20.758698] (-) TimerEvent: {}
+[20.859015] (-) TimerEvent: {}
+[20.959325] (-) TimerEvent: {}
+[21.059553] (-) TimerEvent: {}
+[21.159871] (-) TimerEvent: {}
+[21.260185] (-) TimerEvent: {}
+[21.360503] (-) TimerEvent: {}
+[21.460740] (-) TimerEvent: {}
+[21.561013] (-) TimerEvent: {}
+[21.661309] (-) TimerEvent: {}
+[21.761603] (-) TimerEvent: {}
+[21.861922] (-) TimerEvent: {}
+[21.962278] (-) TimerEvent: {}
+[22.062502] (-) TimerEvent: {}
+[22.162823] (-) TimerEvent: {}
+[22.263138] (-) TimerEvent: {}
+[22.363450] (-) TimerEvent: {}
+[22.463700] (-) TimerEvent: {}
+[22.563992] (-) TimerEvent: {}
+[22.664247] (-) TimerEvent: {}
+[22.764560] (-) TimerEvent: {}
+[22.864918] (-) TimerEvent: {}
+[22.965338] (-) TimerEvent: {}
+[23.065588] (-) TimerEvent: {}
+[23.165907] (-) TimerEvent: {}
+[23.266161] (-) TimerEvent: {}
+[23.366384] (-) TimerEvent: {}
+[23.466706] (-) TimerEvent: {}
+[23.567037] (-) TimerEvent: {}
+[23.667320] (-) TimerEvent: {}
+[23.767642] (-) TimerEvent: {}
+[23.867905] (-) TimerEvent: {}
+[23.968215] (-) TimerEvent: {}
+[24.068464] (-) TimerEvent: {}
+[24.168731] (-) TimerEvent: {}
+[24.269070] (-) TimerEvent: {}
+[24.369398] (-) TimerEvent: {}
+[24.469662] (-) TimerEvent: {}
+[24.569994] (-) TimerEvent: {}
+[24.670323] (-) TimerEvent: {}
+[24.770600] (-) TimerEvent: {}
+[24.870868] (-) TimerEvent: {}
+[24.971138] (-) TimerEvent: {}
+[25.071394] (-) TimerEvent: {}
+[25.171736] (-) TimerEvent: {}
+[25.271978] (-) TimerEvent: {}
+[25.372278] (-) TimerEvent: {}
+[25.472748] (-) TimerEvent: {}
+[25.573045] (-) TimerEvent: {}
+[25.673333] (-) TimerEvent: {}
+[25.773575] (-) TimerEvent: {}
+[25.873835] (-) TimerEvent: {}
+[25.974227] (-) TimerEvent: {}
+[26.074466] (-) TimerEvent: {}
+[26.174768] (-) TimerEvent: {}
+[26.275017] (-) TimerEvent: {}
+[26.375301] (-) TimerEvent: {}
+[26.475540] (-) TimerEvent: {}
+[26.575853] (-) TimerEvent: {}
+[26.676171] (-) TimerEvent: {}
+[26.776495] (-) TimerEvent: {}
+[26.876749] (-) TimerEvent: {}
+[26.977007] (-) TimerEvent: {}
+[27.077347] (-) TimerEvent: {}
+[27.177654] (-) TimerEvent: {}
+[27.277970] (-) TimerEvent: {}
+[27.378285] (-) TimerEvent: {}
+[27.478518] (-) TimerEvent: {}
+[27.578749] (-) TimerEvent: {}
+[27.679049] (-) TimerEvent: {}
+[27.779255] (-) TimerEvent: {}
+[27.879463] (-) TimerEvent: {}
+[27.979760] (-) TimerEvent: {}
+[28.080007] (-) TimerEvent: {}
+[28.180325] (-) TimerEvent: {}
+[28.280619] (-) TimerEvent: {}
+[28.380854] (-) TimerEvent: {}
+[28.481152] (-) TimerEvent: {}
+[28.581455] (-) TimerEvent: {}
+[28.681706] (-) TimerEvent: {}
+[28.782002] (-) TimerEvent: {}
+[28.882321] (-) TimerEvent: {}
+[28.982614] (-) TimerEvent: {}
+[29.082922] (-) TimerEvent: {}
+[29.183333] (-) TimerEvent: {}
+[29.283583] (-) TimerEvent: {}
+[29.383860] (-) TimerEvent: {}
+[29.484168] (-) TimerEvent: {}
+[29.584476] (-) TimerEvent: {}
+[29.684795] (-) TimerEvent: {}
+[29.785098] (-) TimerEvent: {}
+[29.885332] (-) TimerEvent: {}
+[29.985619] (-) TimerEvent: {}
+[30.085929] (-) TimerEvent: {}
+[30.186246] (-) TimerEvent: {}
+[30.286455] (-) TimerEvent: {}
+[30.386683] (-) TimerEvent: {}
+[30.486921] (-) TimerEvent: {}
+[30.587216] (-) TimerEvent: {}
+[30.687434] (-) TimerEvent: {}
+[30.787671] (-) TimerEvent: {}
+[30.887895] (-) TimerEvent: {}
+[30.988144] (-) TimerEvent: {}
+[31.088359] (-) TimerEvent: {}
+[31.188582] (-) TimerEvent: {}
+[31.288826] (-) TimerEvent: {}
+[31.389084] (-) TimerEvent: {}
+[31.489291] (-) TimerEvent: {}
+[31.589499] (-) TimerEvent: {}
+[31.689735] (-) TimerEvent: {}
+[31.789966] (-) TimerEvent: {}
+[31.890213] (-) TimerEvent: {}
+[31.990419] (-) TimerEvent: {}
+[32.090726] (-) TimerEvent: {}
+[32.191031] (-) TimerEvent: {}
+[32.291271] (-) TimerEvent: {}
+[32.391563] (-) TimerEvent: {}
+[32.491872] (-) TimerEvent: {}
+[32.592118] (-) TimerEvent: {}
+[32.692369] (-) TimerEvent: {}
+[32.792617] (-) TimerEvent: {}
+[32.892882] (-) TimerEvent: {}
+[32.993114] (-) TimerEvent: {}
+[33.093340] (-) TimerEvent: {}
+[33.193643] (-) TimerEvent: {}
+[33.293952] (-) TimerEvent: {}
+[33.394272] (-) TimerEvent: {}
+[33.494512] (-) TimerEvent: {}
+[33.594737] (-) TimerEvent: {}
+[33.695038] (-) TimerEvent: {}
+[33.795243] (-) TimerEvent: {}
+[33.895547] (-) TimerEvent: {}
+[33.995863] (-) TimerEvent: {}
+[34.096090] (-) TimerEvent: {}
+[34.196320] (-) TimerEvent: {}
+[34.296677] (-) TimerEvent: {}
+[34.396917] (-) TimerEvent: {}
+[34.497127] (-) TimerEvent: {}
+[34.597358] (-) TimerEvent: {}
+[34.697585] (-) TimerEvent: {}
+[34.797823] (-) TimerEvent: {}
+[34.898072] (-) TimerEvent: {}
+[34.998323] (-) TimerEvent: {}
+[35.098633] (-) TimerEvent: {}
+[35.198944] (-) TimerEvent: {}
+[35.299199] (-) TimerEvent: {}
+[35.399412] (-) TimerEvent: {}
+[35.499744] (-) TimerEvent: {}
+[35.595254] (ecvt2_controller) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable vp_sto_global_planner_full_node\x1b[0m\n'}
+[35.599887] (-) TimerEvent: {}
+[35.700148] (-) TimerEvent: {}
+[35.800380] (-) TimerEvent: {}
+[35.900611] (-) TimerEvent: {}
+[36.000899] (-) TimerEvent: {}
+[36.101144] (-) TimerEvent: {}
+[36.201366] (-) TimerEvent: {}
+[36.301603] (-) TimerEvent: {}
+[36.401934] (-) TimerEvent: {}
+[36.502233] (-) TimerEvent: {}
+[36.602543] (-) TimerEvent: {}
+[36.702824] (-) TimerEvent: {}
+[36.803069] (-) TimerEvent: {}
+[36.901096] (ecvt2_controller) StdoutLine: {'line': b'[100%] Built target vp_sto_global_planner_full_node\n'}
+[36.903156] (-) TimerEvent: {}
+[36.909509] (ecvt2_controller) CommandEnded: {'returncode': 0}
+[36.909954] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'install'}
+[36.910085] (ecvt2_controller) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('CONDA_PROMPT_MODIFIER', ''), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('SYSTEMD_EXEC_PID', '2457'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('COLCON_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'jin'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CONDA_DEFAULT_ENV', ''), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('CONDA_PREFIX', ''), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble')]), 'shell': False}
+[36.915270] (ecvt2_controller) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[36.915600] (ecvt2_controller) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[36.915696] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/teleop_goal_publisher\n'}
+[36.915817] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/live_upper_dynamics_node\n'}
+[36.915924] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_global_planner_node\n'}
+[36.916025] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_global_planner_full_node\n'}
+[36.916121] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_paper_global_planner_node\n'}
+[36.916282] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/include/ecvt2_controller/kdl_utils.hpp\n'}
+[36.916327] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/include/ecvt2_controller/wbc_hqp_lib.hpp\n'}
+[36.916456] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/libkdl_utils.a\n'}
+[36.916509] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/libwbc_hqp_lib.a\n'}
+[36.916569] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_opt_controller\n'}
+[36.916631] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp\n'}
+[36.916686] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp_v2\n'}
+[36.916740] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp_v3\n'}
+[36.916797] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller\n'}
+[36.916852] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller_v2\n'}
+[36.916905] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller_full\n'}
+[36.916959] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/teleop_goal_publisher\n'}
+[36.917012] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/com_trajectory_publisher\n'}
+[36.917070] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/pin_test\n'}
+[36.917150] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/package_run_dependencies/ecvt2_controller\n'}
+[36.917225] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/parent_prefix_path/ecvt2_controller\n'}
+[36.917291] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/ament_prefix_path.sh\n'}
+[36.917349] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/ament_prefix_path.dsv\n'}
+[36.917407] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/path.sh\n'}
+[36.917464] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/path.dsv\n'}
+[36.917522] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.bash\n'}
+[36.917579] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.sh\n'}
+[36.917633] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.zsh\n'}
+[36.917687] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.dsv\n'}
+[36.917727] (ecvt2_controller) StdoutLine: {'line': b'-- Symlinking: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/package.dsv\n'}
+[36.923234] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/packages/ecvt2_controller\n'}
+[36.923294] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/cmake/ecvt2_controllerConfig.cmake\n'}
+[36.923334] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/cmake/ecvt2_controllerConfig-version.cmake\n'}
+[36.923374] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/package.xml\n'}
+[36.924490] (ecvt2_controller) CommandEnded: {'returncode': 0}
+[36.934985] (ecvt2_controller) JobEnded: {'identifier': 'ecvt2_controller', 'rc': 0}
+[36.935369] (-) EventReactorShutdown: {}

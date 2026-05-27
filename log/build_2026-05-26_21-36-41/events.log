@@ -1,0 +1,589 @@
+[0.000000] (-) TimerEvent: {}
+[0.000147] (-) JobUnselected: {'identifier': 'ecvt2_sim'}
+[0.000301] (-) JobUnselected: {'identifier': 'forestry_robot_mjcf'}
+[0.000322] (-) JobUnselected: {'identifier': 'ifopt'}
+[0.000419] (ecvt2_controller) JobQueued: {'identifier': 'ecvt2_controller', 'dependencies': OrderedDict([('ifopt', '/home/jin/harco/ecvt2_ws/install/ifopt')])}
+[0.000433] (ecvt2_controller) JobStarted: {'identifier': 'ecvt2_controller'}
+[0.008686] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'cmake'}
+[0.009125] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'build'}
+[0.009845] (ecvt2_controller) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', '--', '-j20', '-l20'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/jin/harco'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'x11'), ('DEBUG', 'release'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CHROME_DESKTOP', 'code.desktop'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin/harco/ecvt2_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-d949732c-1.11-main.sock'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '2457'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('COLCON_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install'), ('APPLICATION_INSIGHTS_NO_STATSBEAT', 'true'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('USERNAME', 'jin'), ('TERM', 'dumb'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0SvFeVm:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.519.32039-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('NO_AT_BRIDGE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e6447-ea3f-78c3-bf9b-dbffbae399a9'), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'), ('VSCODE_CLI', '1'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('VSCODE_CODE_CACHE_PATH', '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/home/jin/harco/ecvt2_ws/install/forestry_robot_mjcf:/home/jin/harco/ecvt2_ws/install/ecvt2_controller:/home/jin/harco/ecvt2_ws/install/ecvt2_sim:/opt/ros/humble'), ('VSCODE_PID', '3752')]), 'shell': False}
+[0.044613] (ecvt2_controller) StdoutLine: {'line': b'[  6%] Built target wbc_hqp_lib\n'}
+[0.045818] (ecvt2_controller) StdoutLine: {'line': b'[ 12%] Built target teleop_goal_publisher\n'}
+[0.046191] (ecvt2_controller) StdoutLine: {'line': b'[ 18%] Built target com_trajectory_publisher\n'}
+[0.052802] (ecvt2_controller) StdoutLine: {'line': b'[ 25%] Built target kdl_utils\n'}
+[0.053040] (ecvt2_controller) StdoutLine: {'line': b'[ 31%] Built target live_upper_dynamics_node\n'}
+[0.057994] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target vp_sto_global_planner_full_node\n'}
+[0.058939] (ecvt2_controller) StdoutLine: {'line': b'[ 34%] Building CXX object CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o\n'}
+[0.061376] (ecvt2_controller) StdoutLine: {'line': b'[ 40%] Built target vp_sto_global_planner_node\n'}
+[0.070305] (ecvt2_controller) StdoutLine: {'line': b'[ 46%] Built target base_opt_controller\n'}
+[0.071552] (ecvt2_controller) StdoutLine: {'line': b'[ 53%] Built target wbc_hqp\n'}
+[0.071673] (ecvt2_controller) StdoutLine: {'line': b'[ 59%] Built target wbc_hqp_v3\n'}
+[0.071720] (ecvt2_controller) StdoutLine: {'line': b'[ 65%] Built target base_arm_task_controller\n'}
+[0.072472] (ecvt2_controller) StdoutLine: {'line': b'[ 71%] Built target base_arm_task_controller_full\n'}
+[0.072761] (ecvt2_controller) StdoutLine: {'line': b'[ 78%] Built target wbc_hqp_v2\n'}
+[0.075619] (ecvt2_controller) StdoutLine: {'line': b'[ 84%] Built target base_arm_task_controller_v2\n'}
+[0.079483] (ecvt2_controller) StdoutLine: {'line': b'[ 90%] Built target vp_sto_global_planner_full_node\n'}
+[0.084626] (ecvt2_controller) StdoutLine: {'line': b'[ 96%] Built target pin_test\n'}
+[0.099829] (-) TimerEvent: {}
+[0.199968] (-) TimerEvent: {}
+[0.300141] (-) TimerEvent: {}
+[0.400287] (-) TimerEvent: {}
+[0.500443] (-) TimerEvent: {}
+[0.600614] (-) TimerEvent: {}
+[0.700766] (-) TimerEvent: {}
+[0.800949] (-) TimerEvent: {}
+[0.901121] (-) TimerEvent: {}
+[1.001293] (-) TimerEvent: {}
+[1.101443] (-) TimerEvent: {}
+[1.201601] (-) TimerEvent: {}
+[1.301784] (-) TimerEvent: {}
+[1.401938] (-) TimerEvent: {}
+[1.502105] (-) TimerEvent: {}
+[1.602269] (-) TimerEvent: {}
+[1.702427] (-) TimerEvent: {}
+[1.802612] (-) TimerEvent: {}
+[1.902809] (-) TimerEvent: {}
+[2.003007] (-) TimerEvent: {}
+[2.103205] (-) TimerEvent: {}
+[2.203406] (-) TimerEvent: {}
+[2.303604] (-) TimerEvent: {}
+[2.403811] (-) TimerEvent: {}
+[2.504036] (-) TimerEvent: {}
+[2.604227] (-) TimerEvent: {}
+[2.704429] (-) TimerEvent: {}
+[2.804627] (-) TimerEvent: {}
+[2.904812] (-) TimerEvent: {}
+[3.005002] (-) TimerEvent: {}
+[3.105231] (-) TimerEvent: {}
+[3.205431] (-) TimerEvent: {}
+[3.305622] (-) TimerEvent: {}
+[3.405823] (-) TimerEvent: {}
+[3.446022] (ecvt2_controller) StderrLine: {'line': b'In file included from /opt/openrobots/include/hpp/fcl/config.hh:1,\n'}
+[3.446244] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/serialization/eigen.hpp:20,\n'}
+[3.446342] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/serialization/fwd.hpp:11,\n'}
+[3.446417] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14,\n'}
+[3.446489] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9,\n'}
+[3.446557] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/model.hpp:17,\n'}
+[3.446626] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/parsers/urdf.hpp:9,\n'}
+[3.446693] (ecvt2_controller) StderrLine: {'line': b'                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_paper_global_planner_node.cpp:7:\n'}
+[3.446761] (ecvt2_controller) StderrLine: {'line': b"/opt/openrobots/include/hpp/fcl/coal.hpp:12:99: note: \xe2\x80\x98#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS\xe2\x80\x99\n"}
+[3.446828] (ecvt2_controller) StderrLine: {'line': b'   12 |     "Please update your includes from \'hpp/fcl\' to \'coal\' or define COAL_DISABLE_HPP_FCL_WARNINGS")\n'}
+[3.446893] (ecvt2_controller) StderrLine: {'line': b'      |                                                                                                   ^\n'}
+[3.505921] (-) TimerEvent: {}
+[3.606132] (-) TimerEvent: {}
+[3.706353] (-) TimerEvent: {}
+[3.806549] (-) TimerEvent: {}
+[3.906755] (-) TimerEvent: {}
+[4.006966] (-) TimerEvent: {}
+[4.107169] (-) TimerEvent: {}
+[4.207348] (-) TimerEvent: {}
+[4.307542] (-) TimerEvent: {}
+[4.407779] (-) TimerEvent: {}
+[4.508032] (-) TimerEvent: {}
+[4.608182] (-) TimerEvent: {}
+[4.708327] (-) TimerEvent: {}
+[4.808479] (-) TimerEvent: {}
+[4.908630] (-) TimerEvent: {}
+[5.008778] (-) TimerEvent: {}
+[5.108921] (-) TimerEvent: {}
+[5.209072] (-) TimerEvent: {}
+[5.309246] (-) TimerEvent: {}
+[5.409401] (-) TimerEvent: {}
+[5.509549] (-) TimerEvent: {}
+[5.609697] (-) TimerEvent: {}
+[5.709866] (-) TimerEvent: {}
+[5.810015] (-) TimerEvent: {}
+[5.910259] (-) TimerEvent: {}
+[6.010417] (-) TimerEvent: {}
+[6.110566] (-) TimerEvent: {}
+[6.210737] (-) TimerEvent: {}
+[6.310893] (-) TimerEvent: {}
+[6.411080] (-) TimerEvent: {}
+[6.511253] (-) TimerEvent: {}
+[6.611405] (-) TimerEvent: {}
+[6.711563] (-) TimerEvent: {}
+[6.811717] (-) TimerEvent: {}
+[6.911885] (-) TimerEvent: {}
+[7.012037] (-) TimerEvent: {}
+[7.112206] (-) TimerEvent: {}
+[7.212361] (-) TimerEvent: {}
+[7.312506] (-) TimerEvent: {}
+[7.412661] (-) TimerEvent: {}
+[7.512820] (-) TimerEvent: {}
+[7.612984] (-) TimerEvent: {}
+[7.713133] (-) TimerEvent: {}
+[7.813317] (-) TimerEvent: {}
+[7.913491] (-) TimerEvent: {}
+[8.013665] (-) TimerEvent: {}
+[8.113839] (-) TimerEvent: {}
+[8.214022] (-) TimerEvent: {}
+[8.314209] (-) TimerEvent: {}
+[8.414326] (-) TimerEvent: {}
+[8.514470] (-) TimerEvent: {}
+[8.614642] (-) TimerEvent: {}
+[8.714823] (-) TimerEvent: {}
+[8.814999] (-) TimerEvent: {}
+[8.915172] (-) TimerEvent: {}
+[9.015342] (-) TimerEvent: {}
+[9.115488] (-) TimerEvent: {}
+[9.215666] (-) TimerEvent: {}
+[9.315833] (-) TimerEvent: {}
+[9.415982] (-) TimerEvent: {}
+[9.516153] (-) TimerEvent: {}
+[9.616335] (-) TimerEvent: {}
+[9.716484] (-) TimerEvent: {}
+[9.816656] (-) TimerEvent: {}
+[9.916833] (-) TimerEvent: {}
+[10.017052] (-) TimerEvent: {}
+[10.117270] (-) TimerEvent: {}
+[10.217488] (-) TimerEvent: {}
+[10.317648] (-) TimerEvent: {}
+[10.417819] (-) TimerEvent: {}
+[10.517991] (-) TimerEvent: {}
+[10.618160] (-) TimerEvent: {}
+[10.718339] (-) TimerEvent: {}
+[10.818488] (-) TimerEvent: {}
+[10.918647] (-) TimerEvent: {}
+[11.018826] (-) TimerEvent: {}
+[11.118993] (-) TimerEvent: {}
+[11.219147] (-) TimerEvent: {}
+[11.319303] (-) TimerEvent: {}
+[11.419454] (-) TimerEvent: {}
+[11.519606] (-) TimerEvent: {}
+[11.619780] (-) TimerEvent: {}
+[11.719932] (-) TimerEvent: {}
+[11.820104] (-) TimerEvent: {}
+[11.920256] (-) TimerEvent: {}
+[12.020440] (-) TimerEvent: {}
+[12.120589] (-) TimerEvent: {}
+[12.220738] (-) TimerEvent: {}
+[12.320915] (-) TimerEvent: {}
+[12.421088] (-) TimerEvent: {}
+[12.521266] (-) TimerEvent: {}
+[12.621462] (-) TimerEvent: {}
+[12.721659] (-) TimerEvent: {}
+[12.821862] (-) TimerEvent: {}
+[12.922065] (-) TimerEvent: {}
+[13.022255] (-) TimerEvent: {}
+[13.122448] (-) TimerEvent: {}
+[13.222629] (-) TimerEvent: {}
+[13.322820] (-) TimerEvent: {}
+[13.423011] (-) TimerEvent: {}
+[13.523205] (-) TimerEvent: {}
+[13.623420] (-) TimerEvent: {}
+[13.723634] (-) TimerEvent: {}
+[13.823832] (-) TimerEvent: {}
+[13.924061] (-) TimerEvent: {}
+[14.024292] (-) TimerEvent: {}
+[14.124489] (-) TimerEvent: {}
+[14.224706] (-) TimerEvent: {}
+[14.324899] (-) TimerEvent: {}
+[14.425098] (-) TimerEvent: {}
+[14.525296] (-) TimerEvent: {}
+[14.625484] (-) TimerEvent: {}
+[14.725678] (-) TimerEvent: {}
+[14.825898] (-) TimerEvent: {}
+[14.926081] (-) TimerEvent: {}
+[15.026230] (-) TimerEvent: {}
+[15.126386] (-) TimerEvent: {}
+[15.226546] (-) TimerEvent: {}
+[15.326736] (-) TimerEvent: {}
+[15.426893] (-) TimerEvent: {}
+[15.527051] (-) TimerEvent: {}
+[15.627224] (-) TimerEvent: {}
+[15.727430] (-) TimerEvent: {}
+[15.827615] (-) TimerEvent: {}
+[15.927831] (-) TimerEvent: {}
+[16.028026] (-) TimerEvent: {}
+[16.128246] (-) TimerEvent: {}
+[16.228447] (-) TimerEvent: {}
+[16.328639] (-) TimerEvent: {}
+[16.428832] (-) TimerEvent: {}
+[16.529025] (-) TimerEvent: {}
+[16.629221] (-) TimerEvent: {}
+[16.729429] (-) TimerEvent: {}
+[16.829637] (-) TimerEvent: {}
+[16.929850] (-) TimerEvent: {}
+[17.030041] (-) TimerEvent: {}
+[17.130233] (-) TimerEvent: {}
+[17.230443] (-) TimerEvent: {}
+[17.330647] (-) TimerEvent: {}
+[17.430834] (-) TimerEvent: {}
+[17.531048] (-) TimerEvent: {}
+[17.631253] (-) TimerEvent: {}
+[17.731450] (-) TimerEvent: {}
+[17.831664] (-) TimerEvent: {}
+[17.931861] (-) TimerEvent: {}
+[18.032058] (-) TimerEvent: {}
+[18.132245] (-) TimerEvent: {}
+[18.232435] (-) TimerEvent: {}
+[18.332621] (-) TimerEvent: {}
+[18.432830] (-) TimerEvent: {}
+[18.533041] (-) TimerEvent: {}
+[18.633227] (-) TimerEvent: {}
+[18.733420] (-) TimerEvent: {}
+[18.833603] (-) TimerEvent: {}
+[18.933792] (-) TimerEvent: {}
+[19.034007] (-) TimerEvent: {}
+[19.134214] (-) TimerEvent: {}
+[19.234398] (-) TimerEvent: {}
+[19.334547] (-) TimerEvent: {}
+[19.434788] (-) TimerEvent: {}
+[19.534967] (-) TimerEvent: {}
+[19.635153] (-) TimerEvent: {}
+[19.735303] (-) TimerEvent: {}
+[19.835452] (-) TimerEvent: {}
+[19.935600] (-) TimerEvent: {}
+[20.035772] (-) TimerEvent: {}
+[20.135920] (-) TimerEvent: {}
+[20.236089] (-) TimerEvent: {}
+[20.336262] (-) TimerEvent: {}
+[20.436441] (-) TimerEvent: {}
+[20.536588] (-) TimerEvent: {}
+[20.636760] (-) TimerEvent: {}
+[20.736913] (-) TimerEvent: {}
+[20.837079] (-) TimerEvent: {}
+[20.937253] (-) TimerEvent: {}
+[21.037460] (-) TimerEvent: {}
+[21.137683] (-) TimerEvent: {}
+[21.237881] (-) TimerEvent: {}
+[21.338096] (-) TimerEvent: {}
+[21.438311] (-) TimerEvent: {}
+[21.538495] (-) TimerEvent: {}
+[21.638661] (-) TimerEvent: {}
+[21.738836] (-) TimerEvent: {}
+[21.838991] (-) TimerEvent: {}
+[21.939173] (-) TimerEvent: {}
+[22.039369] (-) TimerEvent: {}
+[22.139558] (-) TimerEvent: {}
+[22.239749] (-) TimerEvent: {}
+[22.339942] (-) TimerEvent: {}
+[22.440154] (-) TimerEvent: {}
+[22.540367] (-) TimerEvent: {}
+[22.640560] (-) TimerEvent: {}
+[22.740779] (-) TimerEvent: {}
+[22.840930] (-) TimerEvent: {}
+[22.941121] (-) TimerEvent: {}
+[23.041326] (-) TimerEvent: {}
+[23.141530] (-) TimerEvent: {}
+[23.241756] (-) TimerEvent: {}
+[23.341948] (-) TimerEvent: {}
+[23.442141] (-) TimerEvent: {}
+[23.542357] (-) TimerEvent: {}
+[23.642539] (-) TimerEvent: {}
+[23.742720] (-) TimerEvent: {}
+[23.842891] (-) TimerEvent: {}
+[23.943061] (-) TimerEvent: {}
+[24.043229] (-) TimerEvent: {}
+[24.143379] (-) TimerEvent: {}
+[24.243526] (-) TimerEvent: {}
+[24.343700] (-) TimerEvent: {}
+[24.443869] (-) TimerEvent: {}
+[24.544015] (-) TimerEvent: {}
+[24.644168] (-) TimerEvent: {}
+[24.744351] (-) TimerEvent: {}
+[24.844495] (-) TimerEvent: {}
+[24.944668] (-) TimerEvent: {}
+[25.044834] (-) TimerEvent: {}
+[25.145013] (-) TimerEvent: {}
+[25.245181] (-) TimerEvent: {}
+[25.345347] (-) TimerEvent: {}
+[25.445493] (-) TimerEvent: {}
+[25.545642] (-) TimerEvent: {}
+[25.645818] (-) TimerEvent: {}
+[25.746001] (-) TimerEvent: {}
+[25.846171] (-) TimerEvent: {}
+[25.946323] (-) TimerEvent: {}
+[26.046468] (-) TimerEvent: {}
+[26.146614] (-) TimerEvent: {}
+[26.246787] (-) TimerEvent: {}
+[26.346936] (-) TimerEvent: {}
+[26.447100] (-) TimerEvent: {}
+[26.547269] (-) TimerEvent: {}
+[26.647427] (-) TimerEvent: {}
+[26.747574] (-) TimerEvent: {}
+[26.847741] (-) TimerEvent: {}
+[26.947907] (-) TimerEvent: {}
+[27.048060] (-) TimerEvent: {}
+[27.148230] (-) TimerEvent: {}
+[27.248374] (-) TimerEvent: {}
+[27.348518] (-) TimerEvent: {}
+[27.448687] (-) TimerEvent: {}
+[27.548857] (-) TimerEvent: {}
+[27.649026] (-) TimerEvent: {}
+[27.749194] (-) TimerEvent: {}
+[27.849354] (-) TimerEvent: {}
+[27.949501] (-) TimerEvent: {}
+[28.049665] (-) TimerEvent: {}
+[28.149832] (-) TimerEvent: {}
+[28.249996] (-) TimerEvent: {}
+[28.350166] (-) TimerEvent: {}
+[28.450345] (-) TimerEvent: {}
+[28.550510] (-) TimerEvent: {}
+[28.650687] (-) TimerEvent: {}
+[28.750843] (-) TimerEvent: {}
+[28.851016] (-) TimerEvent: {}
+[28.951193] (-) TimerEvent: {}
+[29.051330] (-) TimerEvent: {}
+[29.151488] (-) TimerEvent: {}
+[29.251637] (-) TimerEvent: {}
+[29.351791] (-) TimerEvent: {}
+[29.451947] (-) TimerEvent: {}
+[29.552097] (-) TimerEvent: {}
+[29.652258] (-) TimerEvent: {}
+[29.752427] (-) TimerEvent: {}
+[29.852578] (-) TimerEvent: {}
+[29.952754] (-) TimerEvent: {}
+[30.052899] (-) TimerEvent: {}
+[30.153073] (-) TimerEvent: {}
+[30.253260] (-) TimerEvent: {}
+[30.353422] (-) TimerEvent: {}
+[30.453591] (-) TimerEvent: {}
+[30.553763] (-) TimerEvent: {}
+[30.653914] (-) TimerEvent: {}
+[30.754089] (-) TimerEvent: {}
+[30.854276] (-) TimerEvent: {}
+[30.954440] (-) TimerEvent: {}
+[31.054595] (-) TimerEvent: {}
+[31.154769] (-) TimerEvent: {}
+[31.254938] (-) TimerEvent: {}
+[31.355088] (-) TimerEvent: {}
+[31.455232] (-) TimerEvent: {}
+[31.555390] (-) TimerEvent: {}
+[31.655542] (-) TimerEvent: {}
+[31.755701] (-) TimerEvent: {}
+[31.855859] (-) TimerEvent: {}
+[31.956019] (-) TimerEvent: {}
+[32.056175] (-) TimerEvent: {}
+[32.156328] (-) TimerEvent: {}
+[32.256479] (-) TimerEvent: {}
+[32.356634] (-) TimerEvent: {}
+[32.456801] (-) TimerEvent: {}
+[32.556980] (-) TimerEvent: {}
+[32.657118] (-) TimerEvent: {}
+[32.757311] (-) TimerEvent: {}
+[32.857533] (-) TimerEvent: {}
+[32.957689] (-) TimerEvent: {}
+[33.057863] (-) TimerEvent: {}
+[33.158039] (-) TimerEvent: {}
+[33.258204] (-) TimerEvent: {}
+[33.358327] (-) TimerEvent: {}
+[33.458475] (-) TimerEvent: {}
+[33.558630] (-) TimerEvent: {}
+[33.658796] (-) TimerEvent: {}
+[33.758948] (-) TimerEvent: {}
+[33.859124] (-) TimerEvent: {}
+[33.959291] (-) TimerEvent: {}
+[34.059430] (-) TimerEvent: {}
+[34.159562] (-) TimerEvent: {}
+[34.259712] (-) TimerEvent: {}
+[34.359859] (-) TimerEvent: {}
+[34.460029] (-) TimerEvent: {}
+[34.560193] (-) TimerEvent: {}
+[34.660356] (-) TimerEvent: {}
+[34.760505] (-) TimerEvent: {}
+[34.860669] (-) TimerEvent: {}
+[34.960846] (-) TimerEvent: {}
+[35.061013] (-) TimerEvent: {}
+[35.161177] (-) TimerEvent: {}
+[35.261353] (-) TimerEvent: {}
+[35.361492] (-) TimerEvent: {}
+[35.461654] (-) TimerEvent: {}
+[35.561818] (-) TimerEvent: {}
+[35.661986] (-) TimerEvent: {}
+[35.762163] (-) TimerEvent: {}
+[35.862337] (-) TimerEvent: {}
+[35.962478] (-) TimerEvent: {}
+[36.062616] (-) TimerEvent: {}
+[36.162783] (-) TimerEvent: {}
+[36.262945] (-) TimerEvent: {}
+[36.363110] (-) TimerEvent: {}
+[36.463269] (-) TimerEvent: {}
+[36.563416] (-) TimerEvent: {}
+[36.663558] (-) TimerEvent: {}
+[36.763717] (-) TimerEvent: {}
+[36.863897] (-) TimerEvent: {}
+[36.964071] (-) TimerEvent: {}
+[37.064241] (-) TimerEvent: {}
+[37.164396] (-) TimerEvent: {}
+[37.264537] (-) TimerEvent: {}
+[37.364677] (-) TimerEvent: {}
+[37.464843] (-) TimerEvent: {}
+[37.565014] (-) TimerEvent: {}
+[37.665165] (-) TimerEvent: {}
+[37.765353] (-) TimerEvent: {}
+[37.865521] (-) TimerEvent: {}
+[37.965676] (-) TimerEvent: {}
+[38.065823] (-) TimerEvent: {}
+[38.165989] (-) TimerEvent: {}
+[38.266156] (-) TimerEvent: {}
+[38.366327] (-) TimerEvent: {}
+[38.466469] (-) TimerEvent: {}
+[38.566581] (-) TimerEvent: {}
+[38.666720] (-) TimerEvent: {}
+[38.766884] (-) TimerEvent: {}
+[38.867026] (-) TimerEvent: {}
+[38.967168] (-) TimerEvent: {}
+[39.067369] (-) TimerEvent: {}
+[39.167475] (-) TimerEvent: {}
+[39.267613] (-) TimerEvent: {}
+[39.367753] (-) TimerEvent: {}
+[39.467909] (-) TimerEvent: {}
+[39.568095] (-) TimerEvent: {}
+[39.668266] (-) TimerEvent: {}
+[39.768408] (-) TimerEvent: {}
+[39.868573] (-) TimerEvent: {}
+[39.968742] (-) TimerEvent: {}
+[40.068891] (-) TimerEvent: {}
+[40.169065] (-) TimerEvent: {}
+[40.269235] (-) TimerEvent: {}
+[40.369377] (-) TimerEvent: {}
+[40.469530] (-) TimerEvent: {}
+[40.569707] (-) TimerEvent: {}
+[40.669850] (-) TimerEvent: {}
+[40.770014] (-) TimerEvent: {}
+[40.870181] (-) TimerEvent: {}
+[40.970353] (-) TimerEvent: {}
+[41.070503] (-) TimerEvent: {}
+[41.170653] (-) TimerEvent: {}
+[41.270820] (-) TimerEvent: {}
+[41.370989] (-) TimerEvent: {}
+[41.471161] (-) TimerEvent: {}
+[41.571330] (-) TimerEvent: {}
+[41.671491] (-) TimerEvent: {}
+[41.771667] (-) TimerEvent: {}
+[41.871831] (-) TimerEvent: {}
+[41.971997] (-) TimerEvent: {}
+[42.072164] (-) TimerEvent: {}
+[42.172339] (-) TimerEvent: {}
+[42.272480] (-) TimerEvent: {}
+[42.372619] (-) TimerEvent: {}
+[42.472761] (-) TimerEvent: {}
+[42.572909] (-) TimerEvent: {}
+[42.673057] (-) TimerEvent: {}
+[42.773210] (-) TimerEvent: {}
+[42.873323] (-) TimerEvent: {}
+[42.973468] (-) TimerEvent: {}
+[43.073612] (-) TimerEvent: {}
+[43.173787] (-) TimerEvent: {}
+[43.273960] (-) TimerEvent: {}
+[43.374114] (-) TimerEvent: {}
+[43.474302] (-) TimerEvent: {}
+[43.574450] (-) TimerEvent: {}
+[43.674622] (-) TimerEvent: {}
+[43.774787] (-) TimerEvent: {}
+[43.874966] (-) TimerEvent: {}
+[43.975143] (-) TimerEvent: {}
+[44.075312] (-) TimerEvent: {}
+[44.175499] (-) TimerEvent: {}
+[44.275651] (-) TimerEvent: {}
+[44.335872] (ecvt2_controller) StdoutLine: {'line': b'[100%] Linking CXX executable vp_sto_paper_global_planner_node\n'}
+[44.375768] (-) TimerEvent: {}
+[44.475920] (-) TimerEvent: {}
+[44.576095] (-) TimerEvent: {}
+[44.676269] (-) TimerEvent: {}
+[44.776480] (-) TimerEvent: {}
+[44.876685] (-) TimerEvent: {}
+[44.976907] (-) TimerEvent: {}
+[45.077090] (-) TimerEvent: {}
+[45.177273] (-) TimerEvent: {}
+[45.277470] (-) TimerEvent: {}
+[45.377695] (-) TimerEvent: {}
+[45.477890] (-) TimerEvent: {}
+[45.578090] (-) TimerEvent: {}
+[45.633528] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::GenericType::GenericType(int)':\n"}
+[45.633746] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi11GenericTypeC2Ei[_ZN6casadi11GenericTypeC5Ei]+0x24): undefined reference to `casadi::GenericType::GenericType(long long)'\n"}
+[45.636609] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::GenericType::operator bool() const':\n"}
+[45.636709] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZNK6casadi11GenericTypecvbEv[_ZNK6casadi11GenericTypecvbEv]+0x18): undefined reference to `casadi::GenericType::to_bool() const'\n"}
+[45.639473] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::GenericType::operator std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >() const':\n"}
+[45.639564] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZNK6casadi11GenericTypecvNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEv[_ZNK6casadi11GenericTypecvNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEv]+0x32): undefined reference to `casadi::GenericType::to_string[abi:cxx11]() const'\n"}
+[45.642421] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::Sparsity::scalar(bool)':\n"}
+[45.642528] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi8Sparsity6scalarEb[_ZN6casadi8Sparsity6scalarEb]+0x3c): undefined reference to `casadi::Sparsity::dense(long long, long long)'\n"}
+[45.644901] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi8Sparsity6scalarEb[_ZN6casadi8Sparsity6scalarEb]+0x54): undefined reference to `casadi::Sparsity::Sparsity(long long, long long)'\n"}
+[45.648484] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::Callback::get_jac_sparsity(long long, long long, bool) const':\n"}
+[45.648618] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZNK6casadi8Callback16get_jac_sparsityExxb[_ZNK6casadi8Callback16get_jac_sparsityExxb]+0x2f): undefined reference to `casadi::Sparsity::Sparsity(long long)'\n"}
+[45.651851] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::SharedObject::operator=(casadi::SharedObject&&)':\n"}
+[45.651960] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi12SharedObjectaSEOS0_[_ZN6casadi12SharedObjectaSEOS0_]+0x23): undefined reference to `casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal>::operator=(casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal> const&)'\n"}
+[45.654845] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `vpsto::CasadiVpStoCostCallback::CasadiVpStoCostCallback(long long, std::function<vpsto::CandidateEvaluation (Eigen::Matrix<double, -1, 1, 0, -1, 1> const&)>, double)':\n"}
+[45.654970] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto23CasadiVpStoCostCallbackC2ExSt8functionIFNS_19CandidateEvaluationERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEEEEd[_ZN5vpsto23CasadiVpStoCostCallbackC5ExSt8functionIFNS_19CandidateEvaluationERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEEEEd]+0x47): undefined reference to `casadi::Callback::Callback()'\n"}
+[45.657196] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto23CasadiVpStoCostCallbackC2ExSt8functionIFNS_19CandidateEvaluationERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEEEEd[_ZN5vpsto23CasadiVpStoCostCallbackC5ExSt8functionIFNS_19CandidateEvaluationERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEEEEd]+0xc0): undefined reference to `casadi::GenericType::GenericType(bool)'\n"}
+[45.659523] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto23CasadiVpStoCostCallbackC2ExSt8functionIFNS_19CandidateEvaluationERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEEEEd[_ZN5vpsto23CasadiVpStoCostCallbackC5ExSt8functionIFNS_19CandidateEvaluationERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEEEEd]+0x16f): undefined reference to `casadi::Callback::construct(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, casadi::GenericType, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::GenericType> > > const&)'\n"}
+[45.662208] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto23CasadiVpStoCostCallbackC2ExSt8functionIFNS_19CandidateEvaluationERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEEEEd[_ZN5vpsto23CasadiVpStoCostCallbackC5ExSt8functionIFNS_19CandidateEvaluationERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEEEEd]+0x241): undefined reference to `casadi::Callback::~Callback()'\n"}
+[45.665660] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `vpsto::CasadiVpStoCostCallback::get_sparsity_in(long long)':\n"}
+[45.665773] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto23CasadiVpStoCostCallback15get_sparsity_inEx[_ZN5vpsto23CasadiVpStoCostCallback15get_sparsity_inEx]+0x3f): undefined reference to `casadi::Sparsity::dense(long long, long long)'\n"}
+[45.668605] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `vpsto::CasadiVpStoCostCallback::eval(std::vector<casadi::Matrix<double>, std::allocator<casadi::Matrix<double> > > const&) const':\n"}
+[45.668678] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZNK5vpsto23CasadiVpStoCostCallback4evalERKSt6vectorIN6casadi6MatrixIdEESaIS4_EE[_ZNK5vpsto23CasadiVpStoCostCallback4evalERKSt6vectorIN6casadi6MatrixIdEESaIS4_EE]+0x50): undefined reference to `casadi::Matrix<double>::nonzeros() const'\n"}
+[45.670998] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZNK5vpsto23CasadiVpStoCostCallback4evalERKSt6vectorIN6casadi6MatrixIdEESaIS4_EE[_ZNK5vpsto23CasadiVpStoCostCallback4evalERKSt6vectorIN6casadi6MatrixIdEESaIS4_EE]+0x190): undefined reference to `casadi::Matrix<double>::Matrix(double)'\n"}
+[45.673875] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::SharedObject::operator=(casadi::SharedObject const&)':\n"}
+[45.673981] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi12SharedObjectaSERKS0_[_ZN6casadi12SharedObjectaSERKS0_]+0x23): undefined reference to `casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal>::operator=(casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal> const&)'\n"}
+[45.677014] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `vpsto::CasadiVpStoOptimizer::optimize(Eigen::Matrix<double, -1, 1, 0, -1, 1> const&, Eigen::Matrix<double, -1, 1, 0, -1, 1> const&, Eigen::Matrix<double, -1, 1, 0, -1, 1> const&, std::function<vpsto::CandidateEvaluation (Eigen::Matrix<double, -1, 1, 0, -1, 1> const&)> const&, rclcpp::Logger)':\n"}
+[45.677134] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x3f7): undefined reference to `casadi::Function::operator()(std::vector<casadi::MX, std::allocator<casadi::MX> > const&) const'\n"}
+[45.678150] (-) TimerEvent: {}
+[45.679991] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x4cf): undefined reference to `casadi::MX::~MX()'\n"}
+[45.682505] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x4f4): undefined reference to `casadi::GenericType::GenericType(bool)'\n"}
+[45.684894] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x597): undefined reference to `casadi::GenericType::GenericType(char const*)'\n"}
+[45.687377] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x63a): undefined reference to `casadi::GenericType::GenericType(char const*)'\n"}
+[45.689815] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x788): undefined reference to `casadi::GenericType::GenericType(double)'\n"}
+[45.692254] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x8d6): undefined reference to `casadi::GenericType::GenericType(double)'\n"}
+[45.695169] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x991): undefined reference to `casadi::GenericType::GenericType(double)'\n"}
+[45.697613] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0xad8): undefined reference to `casadi::GenericType::GenericType(double)'\n"}
+[45.700048] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0xd73): undefined reference to `casadi::nlpsol(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, casadi::MX, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::MX> > > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, casadi::GenericType, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::GenericType> > > const&)'\n"}
+[45.702541] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0xdf0): undefined reference to `casadi::Matrix<double>::Matrix(std::vector<double, std::allocator<double> > const&)'\n"}
+[45.704940] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0xe4d): undefined reference to `casadi::Matrix<double>::operator=(casadi::Matrix<double> const&)'\n"}
+[45.707288] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0xebb): undefined reference to `casadi::Matrix<double>::Matrix(std::vector<double, std::allocator<double> > const&)'\n"}
+[45.709863] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0xf18): undefined reference to `casadi::Matrix<double>::operator=(casadi::Matrix<double> const&)'\n"}
+[45.712681] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0xf86): undefined reference to `casadi::Matrix<double>::Matrix(std::vector<double, std::allocator<double> > const&)'\n"}
+[45.714967] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0xfe3): undefined reference to `casadi::Matrix<double>::operator=(casadi::Matrix<double> const&)'\n"}
+[45.717263] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x103f): undefined reference to `casadi::Function::operator()(std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, casadi::Matrix<double>, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::Matrix<double> > > > const&) const'\n"}
+[45.719662] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x105d): undefined reference to `casadi::Function::stats[abi:cxx11](int) const'\n"}
+[45.721954] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x13eb): undefined reference to `casadi::Matrix<double>::nonzeros() const'\n"}
+[45.724530] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x151b): undefined reference to `casadi::Function::~Function()'\n"}
+[45.727259] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x173a): undefined reference to `casadi::MX::~MX()'\n"}
+[45.729787] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x1871): undefined reference to `casadi::MX::~MX()'\n"}
+[45.732174] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x1df8): undefined reference to `casadi::Function::~Function()'\n"}
+[45.734491] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE[_ZN5vpsto20CasadiVpStoOptimizer8optimizeERKN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEES5_S5_RKSt8functionIFNS_19CandidateEvaluationES5_EEN6rclcpp6LoggerE]+0x1fdc): undefined reference to `casadi::MX::~MX()'\n"}
+[45.738141] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal>::~GenericShared()':\n"}
+[45.738324] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi13GenericSharedINS_12SharedObjectENS_20SharedObjectInternalEED2Ev[_ZN6casadi13GenericSharedINS_12SharedObjectENS_20SharedObjectInternalEED5Ev]+0x18): undefined reference to `casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal>::count_down()'\n"}
+[45.741374] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal>::GenericShared(casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal> const&)':\n"}
+[45.741527] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi13GenericSharedINS_12SharedObjectENS_20SharedObjectInternalEEC2ERKS3_[_ZN6casadi13GenericSharedINS_12SharedObjectENS_20SharedObjectInternalEEC5ERKS3_]+0x2a): undefined reference to `casadi::GenericShared<casadi::SharedObject, casadi::SharedObjectInternal>::count_up()'\n"}
+[45.744966] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::GenericMatrix<casadi::MX>::sym(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, long long, long long)':\n"}
+[45.745088] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi13GenericMatrixINS_2MXEE3symERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEExx[_ZN6casadi13GenericMatrixINS_2MXEE3symERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEExx]+0x3f): undefined reference to `casadi::Sparsity::dense(long long, long long)'\n"}
+[45.748783] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `casadi::GenericMatrix<casadi::MX>::sym(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, casadi::Sparsity const&)':\n"}
+[45.748946] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN6casadi13GenericMatrixINS_2MXEE3symERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS_8SparsityE[_ZN6casadi13GenericMatrixINS_2MXEE3symERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS_8SparsityE]+0x3a): undefined reference to `casadi::MX::_sym(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, casadi::Sparsity const&)'\n"}
+[45.753626] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `void std::_Destroy<casadi::MX>(casadi::MX*)':\n"}
+[45.753770] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZSt8_DestroyIN6casadi2MXEEvPT_[_ZSt8_DestroyIN6casadi2MXEEvPT_]+0x18): undefined reference to `casadi::MX::~MX()'\n"}
+[45.757710] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `void std::_Construct<casadi::Matrix<double>, casadi::Matrix<double> const&>(casadi::Matrix<double>*, casadi::Matrix<double> const&)':\n"}
+[45.757854] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZSt10_ConstructIN6casadi6MatrixIdEEJRKS2_EEvPT_DpOT0_[_ZSt10_ConstructIN6casadi6MatrixIdEEJRKS2_EEvPT_DpOT0_]+0x43): undefined reference to `casadi::Matrix<double>::Matrix(casadi::Matrix<double> const&)'\n"}
+[45.761443] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::MX>::~pair()':\n"}
+[45.761587] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZNSt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN6casadi2MXEED2Ev[_ZNSt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN6casadi2MXEED5Ev]+0x1c): undefined reference to `casadi::MX::~MX()'\n"}
+[45.765890] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::GenericType>::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, 0ul>(std::tuple<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&>&, std::tuple<>&, std::_Index_tuple<0ul>, std::_Index_tuple<>)':\n"}
+[45.766052] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZNSt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN6casadi11GenericTypeEEC2IJOS5_EJLm0EEJEJEEERSt5tupleIJDpT_EERSC_IJDpT1_EESt12_Index_tupleIJXspT0_EEESL_IJXspT2_EEE[_ZNSt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN6casadi11GenericTypeEEC5IJOS5_EJLm0EEJEJEEERSt5tupleIJDpT_EERSC_IJDpT1_EESt12_Index_tupleIJXspT0_EEESL_IJXspT2_EEE]+0x48): undefined reference to `casadi::GenericType::GenericType()'\n"}
+[45.768824] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::MX>::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, 0ul>(std::tuple<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&>&, std::tuple<>&, std::_Index_tuple<0ul>, std::_Index_tuple<>)':\n"}
+[45.768988] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZNSt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN6casadi2MXEEC2IJOS5_EJLm0EEJEJEEERSt5tupleIJDpT_EERSC_IJDpT1_EESt12_Index_tupleIJXspT0_EEESL_IJXspT2_EEE[_ZNSt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN6casadi2MXEEC5IJOS5_EJLm0EEJEJEEERSt5tupleIJDpT_EERSC_IJDpT1_EESt12_Index_tupleIJXspT0_EEESL_IJXspT2_EEE]+0x48): undefined reference to `casadi::MX::MX()'\n"}
+[45.771836] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::Matrix<double> >::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, 0ul>(std::tuple<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&>&, std::tuple<>&, std::_Index_tuple<0ul>, std::_Index_tuple<>)':\n"}
+[45.771947] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZNSt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN6casadi6MatrixIdEEEC2IJOS5_EJLm0EEJEJEEERSt5tupleIJDpT_EERSD_IJDpT1_EESt12_Index_tupleIJXspT0_EEESM_IJXspT2_EEE[_ZNSt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN6casadi6MatrixIdEEEC5IJOS5_EJLm0EEJEJEEERSt5tupleIJDpT_EERSD_IJDpT1_EESt12_Index_tupleIJXspT0_EEESM_IJXspT2_EEE]+0x48): undefined reference to `casadi::Matrix<double>::Matrix()'\n"}
+[45.778239] (-) TimerEvent: {}
+[45.802495] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x38): undefined reference to `casadi::Callback::eval_buffer(double const**, std::vector<long long, std::allocator<long long> > const&, double**, std::vector<long long, std::allocator<long long> > const&) const'\n"}
+[45.805939] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x40): undefined reference to `casadi::Callback::has_eval_buffer() const'\n"}
+[45.809015] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x68): undefined reference to `casadi::Callback::get_name_in[abi:cxx11](long long)'\n"}
+[45.812036] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x70): undefined reference to `casadi::Callback::get_name_out[abi:cxx11](long long)'\n"}
+[45.815055] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x78): undefined reference to `casadi::Callback::uses_output() const'\n"}
+[45.817946] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x80): undefined reference to `casadi::Callback::get_factory(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > > > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, casadi::GenericType, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::GenericType> > > const&) const'\n"}
+[45.821316] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x88): undefined reference to `casadi::Callback::has_jacobian() const'\n"}
+[45.824155] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x90): undefined reference to `casadi::Callback::get_jacobian(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, casadi::GenericType, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::GenericType> > > const&) const'\n"}
+[45.827124] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0x98): undefined reference to `casadi::Callback::has_forward(long long) const'\n"}
+[45.830112] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0xa0): undefined reference to `casadi::Callback::get_forward(long long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, casadi::GenericType, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::GenericType> > > const&) const'\n"}
+[45.832998] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0xa8): undefined reference to `casadi::Callback::has_reverse(long long) const'\n"}
+[45.836167] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTVN5vpsto23CasadiVpStoCostCallbackE[_ZTVN5vpsto23CasadiVpStoCostCallbackE]+0xb0): undefined reference to `casadi::Callback::get_reverse(long long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, casadi::GenericType, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, casadi::GenericType> > > const&) const'\n"}
+[45.839619] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o: in function `vpsto::CasadiVpStoCostCallback::~CasadiVpStoCostCallback()':\n"}
+[45.839744] (ecvt2_controller) StderrLine: {'line': b"vp_sto_paper_global_planner_node.cpp:(.text._ZN5vpsto23CasadiVpStoCostCallbackD2Ev[_ZN5vpsto23CasadiVpStoCostCallbackD5Ev]+0x36): undefined reference to `casadi::Callback::~Callback()'\n"}
+[45.842963] (ecvt2_controller) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/vp_sto_paper_global_planner_node.dir/src/vp_sto_paper_global_planner_node.cpp.o:(.data.rel.ro._ZTIN5vpsto23CasadiVpStoCostCallbackE[_ZTIN5vpsto23CasadiVpStoCostCallbackE]+0x10): undefined reference to `typeinfo for casadi::Callback'\n"}
+[45.878331] (-) TimerEvent: {}
+[45.963313] (ecvt2_controller) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[45.964623] (ecvt2_controller) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/vp_sto_paper_global_planner_node.dir/build.make:197: vp_sto_paper_global_planner_node] Error 1\n'}
+[45.964941] (ecvt2_controller) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:561: CMakeFiles/vp_sto_paper_global_planner_node.dir/all] Error 2\n'}
+[45.965011] (ecvt2_controller) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[45.966397] (ecvt2_controller) CommandEnded: {'returncode': 2}
+[45.977734] (ecvt2_controller) JobEnded: {'identifier': 'ecvt2_controller', 'rc': 2}
+[45.978391] (-) TimerEvent: {}
+[45.988067] (-) EventReactorShutdown: {}

@@ -104,6 +104,7 @@ vp_sto_paper_global_planner_node: /opt/ros/humble/lib/libtrajectory_msgs__rosidl
 vp_sto_paper_global_planner_node: /opt/ros/humble/lib/libtrajectory_msgs__rosidl_typesupport_introspection_cpp.so
 vp_sto_paper_global_planner_node: /opt/ros/humble/lib/libtrajectory_msgs__rosidl_typesupport_cpp.so
 vp_sto_paper_global_planner_node: /opt/ros/humble/lib/libtrajectory_msgs__rosidl_generator_py.so
+vp_sto_paper_global_planner_node: /opt/openrobots/lib/libcasadi.so.3.7
 vp_sto_paper_global_planner_node: /opt/ros/humble/lib/liblibstatistics_collector.so
 vp_sto_paper_global_planner_node: /opt/ros/humble/lib/librcl.so
 vp_sto_paper_global_planner_node: /opt/ros/humble/lib/librmw_implementation.so

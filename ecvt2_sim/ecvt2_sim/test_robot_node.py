@@ -141,7 +141,9 @@ class UnifiedRobotNode(Node):
             self.ctrl_array[:n_ctrl] = msg.velocity[:n_ctrl]
 
     # ============================================================
-    # 콜백: planner trajectory (/vp_sto_global_planner_full_node/actuated_reference)
+    # 콜백: planner trajectory
+    # - /actuated_reference: torque_joint_names 25개를 그대로 받음
+    # - /whole_body_reference: base_* 6개 + actuated joints에서 actuated 부분만 추출
     # ============================================================
     def trajectory_callback(self, msg: JointTrajectory):
         if not self.traj_tracking_enabled:
@@ -153,23 +155,57 @@ class UnifiedRobotNode(Node):
 
         expected = list(self.torque_joint_names)
         got = list(msg.joint_names)
-        if got != expected:
+        if got == expected:
+            tracking_msg = msg
+        else:
+            name_to_index = {name: i for i, name in enumerate(got)}
+            missing = [name for name in expected if name not in name_to_index]
+            if missing:
+                self.get_logger().warn(
+                    f"Trajectory joint names mismatch. missing={missing}, expected={expected}, got={got}"
+                )
+                return
+
+            tracking_msg = JointTrajectory()
+            tracking_msg.header = msg.header
+            tracking_msg.joint_names = expected
+            indices = [name_to_index[name] for name in expected]
+
+            for src_pt in msg.points:
+                dst_pt = JointTrajectoryPoint()
+                dst_pt.time_from_start = src_pt.time_from_start
+                dst_pt.positions = [
+                    float(src_pt.positions[i]) for i in indices
+                ] if len(src_pt.positions) == len(got) else []
+                dst_pt.velocities = [
+                    float(src_pt.velocities[i]) for i in indices
+                ] if len(src_pt.velocities) == len(got) else []
+                dst_pt.accelerations = [
+                    float(src_pt.accelerations[i]) for i in indices
+                ] if len(src_pt.accelerations) == len(got) else []
+                tracking_msg.points.append(dst_pt)
+
+            if len(tracking_msg.points) == 0:
+                self.get_logger().warn("Filtered whole-body trajectory has no points")
+                return
+
+        if list(tracking_msg.joint_names) != expected:
             self.get_logger().warn(
-                f"Trajectory joint names mismatch. expected={expected}, got={got}"
+                f"Filtered trajectory joint names mismatch. expected={expected}, got={tracking_msg.joint_names}"
             )
             return
 
         with self._state_lock:
-            self.active_traj = msg
+            self.active_traj = tracking_msg
             self.traj_is_active = True
             self.traj_elapsed_sim = 0.0
             self.passive_csv_prev_vel = None
             self.passive_csv_completed = False
             self._close_passive_csv()
 
-        t_last = self._point_time_sec(msg.points[-1])
+        t_last = self._point_time_sec(tracking_msg.points[-1])
         self.get_logger().info(
-            f"Received actuated reference trajectory: {len(msg.points)} points, duration={t_last:.3f}s"
+            f"Received planner trajectory on {self.trajectory_topic}: {len(tracking_msg.points)} points, duration={t_last:.3f}s"
         )
 
     # ============================================================

@@ -1,0 +1,83 @@
+[0.130s] Invoking command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller': CMAKE_PREFIX_PATH=/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble LD_LIBRARY_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib:${LD_LIBRARY_PATH} PKG_CONFIG_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig /usr/bin/cmake --build /home/jin/harco/ecvt2_ws/build/ecvt2_controller -- -j20 -l20
+[0.164s] [  6%] Built target wbc_hqp_lib
+[0.166s] [ 12%] Built target teleop_goal_publisher
+[0.169s] [ 18%] Built target com_trajectory_publisher
+[0.171s] Consolidate compiler generated dependencies of target vp_sto_paper_global_planner_node
+[0.172s] [ 31%] Built target kdl_utils
+[0.172s] [ 31%] Built target live_upper_dynamics_node
+[0.177s] [ 34%] Building CXX object CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.o
+[0.178s] [ 40%] Built target vp_sto_global_planner_node
+[0.188s] [ 46%] Built target vp_sto_paper_global_planner_node
+[0.188s] [ 53%] Built target wbc_hqp_v2
+[0.189s] [ 62%] Built target base_opt_controller
+[0.189s] [ 65%] Built target base_arm_task_controller_v2
+[0.189s] [ 71%] Built target base_arm_task_controller_full
+[0.190s] [ 78%] Built target wbc_hqp_v3
+[0.191s] [ 84%] Built target wbc_hqp
+[0.196s] [ 90%] Built target base_arm_task_controller
+[0.198s] [ 96%] Built target pin_test
+[3.181s] In file included from /opt/openrobots/include/hpp/fcl/config.hh:1,
+[3.181s]                  from /opt/openrobots/include/pinocchio/serialization/eigen.hpp:20,
+[3.181s]                  from /opt/openrobots/include/pinocchio/serialization/fwd.hpp:11,
+[3.181s]                  from /opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14,
+[3.181s]                  from /opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9,
+[3.181s]                  from /opt/openrobots/include/pinocchio/multibody/model.hpp:17,
+[3.181s]                  from /opt/openrobots/include/pinocchio/parsers/urdf.hpp:9,
+[3.181s]                  from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:7:
+[3.181s] /opt/openrobots/include/hpp/fcl/coal.hpp:12:99: note: ‘#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS’
+[3.181s]    12 |     "Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS")
+[3.181s]       |                                                                                                   ^
+[4.504s] /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp: In member function ‘double vpsto::TimeParameterizer::computeMinimumTime(const std::vector<vpsto::ActuatedKinematics>&, double, double, bool, double, double) const’:
+[4.505s] /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: error: no matching function for call to ‘max(int, Eigen::EigenBase<Eigen::Matrix<double, -1, 1> >::Index)’
+[4.505s]   877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+[4.505s]       |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+[4.505s] In file included from /usr/include/c++/11/memory:63,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+[4.505s]                  from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:1:
+[4.505s] /usr/include/c++/11/bits/stl_algobase.h:254:5: note: candidate: ‘template<class _Tp> constexpr const _Tp& std::max(const _Tp&, const _Tp&)’
+[4.505s]   254 |     max(const _Tp& __a, const _Tp& __b)
+[4.505s]       |     ^~~
+[4.505s] /usr/include/c++/11/bits/stl_algobase.h:254:5: note:   template argument deduction/substitution failed:
+[4.505s] /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: note:   deduced conflicting types for parameter ‘const _Tp’ (‘int’ and ‘Eigen::EigenBase<Eigen::Matrix<double, -1, 1> >::Index’ {aka ‘long int’})
+[4.505s]   877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+[4.505s]       |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+[4.505s] In file included from /usr/include/c++/11/memory:63,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+[4.505s]                  from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:1:
+[4.505s] /usr/include/c++/11/bits/stl_algobase.h:300:5: note: candidate: ‘template<class _Tp, class _Compare> constexpr const _Tp& std::max(const _Tp&, const _Tp&, _Compare)’
+[4.505s]   300 |     max(const _Tp& __a, const _Tp& __b, _Compare __comp)
+[4.505s]       |     ^~~
+[4.505s] /usr/include/c++/11/bits/stl_algobase.h:300:5: note:   template argument deduction/substitution failed:
+[4.505s] /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: note:   deduced conflicting types for parameter ‘const _Tp’ (‘int’ and ‘Eigen::EigenBase<Eigen::Matrix<double, -1, 1> >::Index’ {aka ‘long int’})
+[4.505s]   877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+[4.505s]       |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+[4.505s] In file included from /usr/include/c++/11/algorithm:62,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+[4.505s]                  from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:1:
+[4.505s] /usr/include/c++/11/bits/stl_algo.h:3461:5: note: candidate: ‘template<class _Tp> constexpr _Tp std::max(std::initializer_list<_Tp>)’
+[4.505s]  3461 |     max(initializer_list<_Tp> __l)
+[4.505s]       |     ^~~
+[4.505s] /usr/include/c++/11/bits/stl_algo.h:3461:5: note:   template argument deduction/substitution failed:
+[4.505s] /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: note:   mismatched types ‘std::initializer_list<_Tp>’ and ‘int’
+[4.505s]   877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+[4.505s]       |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+[4.505s] In file included from /usr/include/c++/11/algorithm:62,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+[4.505s]                  from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+[4.506s]                  from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+[4.506s]                  from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:1:
+[4.506s] /usr/include/c++/11/bits/stl_algo.h:3467:5: note: candidate: ‘template<class _Tp, class _Compare> constexpr _Tp std::max(std::initializer_list<_Tp>, _Compare)’
+[4.506s]  3467 |     max(initializer_list<_Tp> __l, _Compare __comp)
+[4.506s]       |     ^~~
+[4.506s] /usr/include/c++/11/bits/stl_algo.h:3467:5: note:   template argument deduction/substitution failed:
+[4.506s] /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: note:   mismatched types ‘std::initializer_list<_Tp>’ and ‘int’
+[4.506s]   877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+[4.506s]       |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+[25.253s] gmake[2]: *** [CMakeFiles/vp_sto_global_planner_full_node.dir/build.make:76: CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.o] Error 1
+[25.253s] gmake[1]: *** [CMakeFiles/Makefile2:535: CMakeFiles/vp_sto_global_planner_full_node.dir/all] Error 2
+[25.253s] gmake: *** [Makefile:146: all] Error 2
+[25.254s] Invoked command in '/home/jin/harco/ecvt2_ws/build/ecvt2_controller' returned '2': CMAKE_PREFIX_PATH=/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble LD_LIBRARY_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib:${LD_LIBRARY_PATH} PKG_CONFIG_PATH=/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig /usr/bin/cmake --build /home/jin/harco/ecvt2_ws/build/ecvt2_controller -- -j20 -l20

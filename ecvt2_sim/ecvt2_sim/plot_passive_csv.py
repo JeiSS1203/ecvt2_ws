@@ -171,6 +171,11 @@ def style_axis(ax):
         spine.set_linewidth(0.7)
 
 
+def show_time_axis(ax):
+    ax.set_xlabel("Time after trajectory start [s]")
+    ax.tick_params(axis="x", which="both", labelbottom=True)
+
+
 def make_summary(
     series: Dict[str, List[float]],
     terminal_time: float,
@@ -226,8 +231,8 @@ def plot_paper_figure(
     output_png: str,
 ):
     time = series["time"]
-    fig, axes = plt.subplots(3, 2, figsize=(7.1, 6.4), sharex=True)
-    fig.subplots_adjust(left=0.10, right=0.985, bottom=0.09, top=0.94, hspace=0.28, wspace=0.30)
+    fig, axes = plt.subplots(3, 2, figsize=(7.1, 7.1), sharex=True)
+    fig.subplots_adjust(left=0.10, right=0.985, bottom=0.085, top=0.945, hspace=0.45, wspace=0.30)
 
     colors = {
         "UPJ5": "#1f77b4",
@@ -250,24 +255,25 @@ def plot_paper_figure(
         ax_pos.set_title(f"({chr(ord('a') + col)}) {joint} position error", fontsize=10)
         ax_pos.set_ylabel(r"$q_P - q_{P,eq}$ [rad]")
         ax_pos.set_ylim(*padded_limits(pos_err))
+        show_time_axis(ax_pos)
         style_axis(ax_pos)
 
         ax_vel.plot(time, vel, color=colors[joint], linewidth=1.05)
         ax_vel.axhline(0.0, color="0.15", linewidth=0.75, linestyle="--", alpha=0.8)
         ax_vel.axvline(terminal_time, color="0.15", linewidth=0.8, linestyle=":", alpha=0.9)
         ax_vel.set_title(f"({chr(ord('c') + col)}) {joint} velocity damping", fontsize=10)
-        ax_vel.set_xlabel("Time after trajectory start [s]")
         ax_vel.set_ylabel(r"$\dot{q}_P$ [rad/s]")
         ax_vel.set_ylim(*padded_limits(vel))
+        show_time_axis(ax_vel)
         style_axis(ax_vel)
 
         ax_acc.plot(time, acc, color=colors[joint], linewidth=1.05)
         ax_acc.axhline(0.0, color="0.15", linewidth=0.75, linestyle="--", alpha=0.8)
         ax_acc.axvline(terminal_time, color="0.15", linewidth=0.8, linestyle=":", alpha=0.9)
         ax_acc.set_title(f"({chr(ord('e') + col)}) {joint} acceleration", fontsize=10)
-        ax_acc.set_xlabel("Time after trajectory start [s]")
         ax_acc.set_ylabel(r"$\ddot{q}_P$ [rad/s$^2$]")
         ax_acc.set_ylim(*padded_limits(acc))
+        show_time_axis(ax_acc)
         style_axis(ax_acc)
 
     fig.savefig(output_png, dpi=300, bbox_inches="tight")
@@ -299,8 +305,8 @@ def load_dataset(csv_path: str, label: str, args) -> Dict:
 
 
 def plot_compare_figure(datasets: List[Dict], output_png: str):
-    fig, axes = plt.subplots(2, 2, figsize=(7.3, 4.8), sharex=True)
-    fig.subplots_adjust(left=0.10, right=0.985, bottom=0.13, top=0.88, hspace=0.24, wspace=0.30)
+    fig, axes = plt.subplots(2, 2, figsize=(7.3, 5.2), sharex=True)
+    fig.subplots_adjust(left=0.10, right=0.985, bottom=0.12, top=0.88, hspace=0.42, wspace=0.30)
 
     colors = ["#4c72b0", "#c44e52", "#55a868", "#8172b3"]
     linestyles = ["-", "--", "-.", ":"]
@@ -354,12 +360,13 @@ def plot_compare_figure(datasets: List[Dict], output_png: str):
         ax_pos.set_title(f"({chr(ord('a') + col)}) {joint} position error", fontsize=10)
         ax_pos.set_ylabel(r"$q_P - q_{P,eq}$ [rad]")
         ax_pos.set_ylim(*padded_limits(pos_values))
+        show_time_axis(ax_pos)
         style_axis(ax_pos)
 
         ax_vel.set_title(f"({chr(ord('c') + col)}) {joint} velocity", fontsize=10)
-        ax_vel.set_xlabel("Time after trajectory start [s]")
         ax_vel.set_ylabel(r"$\dot{q}_P$ [rad/s]")
         ax_vel.set_ylim(*padded_limits(vel_values))
+        show_time_axis(ax_vel)
         style_axis(ax_vel)
 
     fig.legend(

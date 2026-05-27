@@ -8,12 +8,17 @@
 #include <pinocchio/algorithm/joint-configuration.hpp>
 #include <pinocchio/algorithm/crba.hpp>
 #include <pinocchio/algorithm/rnea.hpp>
+#include <pinocchio/algorithm/frames.hpp>
+#include <pinocchio/algorithm/jacobian.hpp>
 #include <pinocchio/multibody/data.hpp>
+#include <pinocchio/multibody/joint/joint-free-flyer.hpp>
 
 #include <ifopt/cost_term.h>
 #include <ifopt/ipopt_solver.h>
 #include <ifopt/problem.h>
 #include <ifopt/variable_set.h>
+
+#include <casadi/casadi.hpp>
 
 #include <Eigen/Dense>
 #include <Eigen/Eigenvalues>
@@ -30,6 +35,7 @@
 #include <iostream>
 #include <limits>
 #include <memory>
+#include <mutex>
 #include <numeric>
 #include <random>
 #include <sstream>
@@ -55,6 +61,7 @@ struct PlannerConfig
   int64_t random_seed{-1};
 
   int ipopt_print_level{5};
+  int ipopt_ma97_print_level{0};
 
   double t_min{1.0};
   double t_max{40.0};
@@ -65,7 +72,11 @@ struct PlannerConfig
   double ipopt_fd_step{1e-4};
   double ipopt_via_bound_margin{1.0};
   double ipopt_max_cpu_time{300.0};
-  double freeze_static_joint_tolerance{1e-5};
+  double freeze_static_joint_tolerance{-1.0};
+  std::string ipopt_linear_solver{"mumps"};
+  std::string ipopt_hsl_library;
+  std::string ipopt_ma97_order{"auto"};
+  std::string ipopt_ma97_scaling{"dynamic"};
 
   double w_time{10.0};
   double w_smooth{1.0};
@@ -75,6 +86,19 @@ struct PlannerConfig
   double w_post_terminal_track{10.0};
   double w_post_terminal_energy{10.0};
   double w_via_regularization{1e-4};
+  double w_base_regularization{1.0};
+
+  bool normalize_costs{false};
+  double cost_norm_eps{1e-6};
+  bool solver_friendly_cost{true};
+  bool smooth_time_parameterization{true};
+  double time_smooth_beta{20.0};
+  double time_smooth_eps{1e-6};
+
+  double foot_contact_tolerance{1e-3};
+
+  bool freeze_contact_legs_on_fixed_base{true};
+  double base_fixed_tolerance{1e-4};
 
   double post_terminal_duration{2.0};
   int post_terminal_steps{40};
@@ -291,7 +315,7 @@ public:
                      const std::vector<std::string>& passive_joints)
   : actuated_joints_(actuated_joints), passive_joints_(passive_joints)
   {
-    pinocchio::urdf::buildModel(urdf_path, model_);
+    pinocchio::urdf::buildModel(urdf_path, pinocchio::JointModelFreeFlyer(), model_);
     data_ = std::make_unique<pinocchio::Data>(model_);
     registerJoints(actuated_joints_, idxA_q_, idxA_v_);
     registerJoints(passive_joints_, idxP_q_, idxP_v_);
@@ -301,6 +325,20 @@ public:
   const std::vector<std::string>& passiveJointNames() const { return passive_joints_; }
   int nA() const { return static_cast<int>(idxA_v_.size()); }
   int nP() const { return static_cast<int>(idxP_v_.size()); }
+
+  pinocchio::FrameIndex frameId(const std::string& name) const
+  {
+    const auto id = model_.getFrameId(name);
+    if (id == static_cast<pinocchio::FrameIndex>(model_.nframes)) {
+      throw std::runtime_error("Pinocchio frame not found: " + name);
+    }
+    return id;
+  }
+
+  bool hasFreeFlyer() const
+  {
+    return model_.njoints > 1 && model_.joints[1].nq() == 7 && model_.joints[1].nv() == 6;
+  }
 
   double passiveTerminalKineticEnergy(const Eigen::VectorXd& qA,
                                       const Eigen::VectorXd& qP,
@@ -314,8 +352,9 @@ public:
     }
 
     const Eigen::VectorXd q_full = composeConfiguration(qA, qP);
-    pinocchio::crba(model_, *data_, q_full);
-    Eigen::MatrixXd M = data_->M;
+    pinocchio::Data data(model_);
+    pinocchio::crba(model_, data, q_full);
+    Eigen::MatrixXd M = data.M;
     M.triangularView<Eigen::StrictlyLower>() =
       M.transpose().triangularView<Eigen::StrictlyLower>();
 
@@ -346,12 +385,13 @@ public:
     const Eigen::VectorXd q_full = composeConfiguration(qA, qP);
     const Eigen::VectorXd v_full = composeVelocity(qdotA, qdotP);
 
-    pinocchio::crba(model_, *data_, q_full);
-    Eigen::MatrixXd M = data_->M;
+    pinocchio::Data data(model_);
+    pinocchio::crba(model_, data, q_full);
+    Eigen::MatrixXd M = data.M;
     M.triangularView<Eigen::StrictlyLower>() =
       M.transpose().triangularView<Eigen::StrictlyLower>();
 
-    const Eigen::VectorXd nle = pinocchio::nonLinearEffects(model_, *data_, q_full, v_full);
+    const Eigen::VectorXd nle = pinocchio::nonLinearEffects(model_, data, q_full, v_full);
 
     Eigen::MatrixXd Mpp = Eigen::MatrixXd::Zero(nP(), nP());
     Eigen::MatrixXd Mpa = Eigen::MatrixXd::Zero(nP(), nA());
@@ -386,8 +426,9 @@ public:
     }
 
     Eigen::VectorXd qP = qP_seed;
+    pinocchio::Data data(model_);
     for (int iter = 0; iter < max_iter; ++iter) {
-      const Eigen::VectorXd gP = passiveGravity(qA, qP);
+      const Eigen::VectorXd gP = passiveGravity(qA, qP, data);
       if (!allFinite(gP)) {
         return false;
       }
@@ -401,7 +442,7 @@ public:
       for (int j = 0; j < nP(); ++j) {
         Eigen::VectorXd qP_eps = qP;
         qP_eps[j] += eps;
-        const Eigen::VectorXd g_eps = passiveGravity(qA, qP_eps);
+        const Eigen::VectorXd g_eps = passiveGravity(qA, qP_eps, data);
         if (!allFinite(g_eps)) {
           return false;
         }
@@ -423,7 +464,7 @@ public:
     }
 
     qP_eq = qP;
-    const Eigen::VectorXd gP = passiveGravity(qA, qP_eq);
+    const Eigen::VectorXd gP = passiveGravity(qA, qP_eq, data);
     return allFinite(gP) && (gP.norm() < 1e-3);
   }
 
@@ -484,6 +525,185 @@ public:
     return out;
   }
 
+  Eigen::VectorXd composeConfigurationWithBase(const Eigen::VectorXd& base_xyzrpy,
+                                               const Eigen::VectorXd& qA,
+                                               const Eigen::VectorXd& qP) const
+  {
+    Eigen::VectorXd q_full = pinocchio::neutral(model_);
+    setBasePose(q_full, base_xyzrpy);
+    for (size_t i = 0; i < actuated_joints_.size(); ++i) {
+      const auto& info = joint_info_.at(actuated_joints_[i]);
+      setJointScalar(q_full, info, qA[static_cast<int>(i)]);
+    }
+    for (size_t i = 0; i < passive_joints_.size(); ++i) {
+      const auto& info = joint_info_.at(passive_joints_[i]);
+      setJointScalar(q_full, info, qP[static_cast<int>(i)]);
+    }
+    return q_full;
+  }
+
+  std::vector<Eigen::Vector3d> footPositions(const Eigen::VectorXd& base_xyzrpy,
+                                             const Eigen::VectorXd& qA,
+                                             const Eigen::VectorXd& qP,
+                                             const std::vector<pinocchio::FrameIndex>& frame_ids) const
+  {
+    std::vector<Eigen::Vector3d> out;
+    out.reserve(frame_ids.size());
+    const Eigen::VectorXd q_full = composeConfigurationWithBase(base_xyzrpy, qA, qP);
+    pinocchio::Data data(model_);
+    pinocchio::forwardKinematics(model_, data, q_full);
+    pinocchio::updateFramePlacements(model_, data);
+
+    for (const auto frame_id : frame_ids) {
+      out.push_back(data.oMf[frame_id].translation());
+    }
+    return out;
+  }
+
+  Eigen::VectorXd footPositionError(const Eigen::VectorXd& base_xyzrpy,
+                                    const Eigen::VectorXd& qA,
+                                    const Eigen::VectorXd& qP,
+                                    const std::vector<pinocchio::FrameIndex>& frame_ids,
+                                    const Eigen::VectorXd& foot_pos_ref) const
+  {
+    const auto positions = footPositions(base_xyzrpy, qA, qP, frame_ids);
+    Eigen::VectorXd err(static_cast<int>(positions.size()) * 3);
+    for (size_t i = 0; i < positions.size(); ++i) {
+      err.segment<3>(static_cast<int>(i) * 3) =
+        positions[i] - foot_pos_ref.segment<3>(static_cast<int>(i) * 3);
+    }
+    return err;
+  }
+
+  Eigen::MatrixXd footPositionJacobian(const Eigen::VectorXd& base_xyzrpy,
+                                       const Eigen::VectorXd& qA,
+                                       const Eigen::VectorXd& qP,
+                                       const std::vector<pinocchio::FrameIndex>& frame_ids) const
+  {
+    const int base_dim = 6;
+    if (base_xyzrpy.size() != base_dim || qA.size() != nA() || qP.size() != nP()) {
+      throw std::runtime_error("Foot Jacobian input size mismatch");
+    }
+
+    const Eigen::VectorXd q_full = composeConfigurationWithBase(base_xyzrpy, qA, qP);
+    pinocchio::Data data(model_);
+
+    Eigen::MatrixXd Jout =
+      Eigen::MatrixXd::Zero(static_cast<int>(frame_ids.size()) * 3, base_dim + nA());
+    const Eigen::Matrix3d rpy_to_world_omega = rpyRateToWorldAngular(base_xyzrpy.tail<3>());
+
+    for (size_t f = 0; f < frame_ids.size(); ++f) {
+      Eigen::Matrix<double, 6, Eigen::Dynamic> J6(6, model_.nv);
+      J6.setZero();
+      pinocchio::computeFrameJacobian(
+        model_,
+        data,
+        q_full,
+        frame_ids[f],
+        pinocchio::LOCAL_WORLD_ALIGNED,
+        J6);
+
+      const int row = static_cast<int>(f) * 3;
+      Jout.block(row, 0, 3, 3) = J6.block(0, 0, 3, 3);
+      Jout.block(row, 3, 3, 3) = J6.block(0, 3, 3, 3) * rpy_to_world_omega;
+      for (int j = 0; j < nA(); ++j) {
+        Jout.block(row, base_dim + j, 3, 1) = J6.block(0, idxA_v_[static_cast<size_t>(j)], 3, 1);
+      }
+    }
+
+    return Jout;
+  }
+
+  bool projectBaseAndActuatedToFootContact(Eigen::VectorXd& base_xyzrpy,
+                                           Eigen::VectorXd& qA,
+                                           const Eigen::VectorXd& qP,
+                                           const std::vector<pinocchio::FrameIndex>& frame_ids,
+                                           const Eigen::VectorXd& foot_pos_ref,
+                                           const Eigen::VectorXd& lower,
+                                           const Eigen::VectorXd& upper,
+                                           int max_iter = 10,
+                                           double tol = 1e-5,
+                                           double damping = 1e-5) const
+  {
+    const int base_dim = 6;
+    const int nA_local = nA();
+    const int nvar = base_dim + nA_local;
+    if (base_xyzrpy.size() != base_dim || qA.size() != nA_local ||
+        lower.size() != nvar || upper.size() != nvar) {
+      return false;
+    }
+
+    for (int iter = 0; iter < max_iter; ++iter) {
+      const Eigen::VectorXd err = footPositionError(base_xyzrpy, qA, qP, frame_ids, foot_pos_ref);
+      if (!allFinite(err)) {
+        return false;
+      }
+      if (err.norm() < tol) {
+        return true;
+      }
+
+      Eigen::MatrixXd J(err.size(), nvar);
+      const double eps = 1e-5;
+      for (int j = 0; j < nvar; ++j) {
+        Eigen::VectorXd base_eps = base_xyzrpy;
+        Eigen::VectorXd qA_eps = qA;
+        const double h = eps * (1.0 + std::abs(j < base_dim ? base_xyzrpy[j] : qA[j - base_dim]));
+        if (j < base_dim) {
+          base_eps[j] += h;
+        } else {
+          qA_eps[j - base_dim] += h;
+        }
+        const Eigen::VectorXd err_eps =
+          footPositionError(base_eps, qA_eps, qP, frame_ids, foot_pos_ref);
+        if (!allFinite(err_eps)) {
+          return false;
+        }
+        J.col(j) = (err_eps - err) / h;
+      }
+
+      const Eigen::MatrixXd H =
+        J.transpose() * J + damping * Eigen::MatrixXd::Identity(nvar, nvar);
+      const Eigen::VectorXd rhs = J.transpose() * err;
+      Eigen::VectorXd delta = H.ldlt().solve(rhs);
+      if (!allFinite(delta)) {
+        return false;
+      }
+
+      double alpha = 1.0;
+      bool accepted = false;
+      const double err_norm = err.norm();
+      for (int ls = 0; ls < 8; ++ls) {
+        Eigen::VectorXd base_trial = base_xyzrpy - alpha * delta.head(base_dim);
+        Eigen::VectorXd qA_trial = qA - alpha * delta.tail(nA_local);
+        for (int j = 0; j < nvar; ++j) {
+          if (j < base_dim) {
+            base_trial[j] = std::min(upper[j], std::max(lower[j], base_trial[j]));
+          } else {
+            const int ia = j - base_dim;
+            qA_trial[ia] = std::min(upper[j], std::max(lower[j], qA_trial[ia]));
+          }
+        }
+
+        const Eigen::VectorXd err_trial =
+          footPositionError(base_trial, qA_trial, qP, frame_ids, foot_pos_ref);
+        if (allFinite(err_trial) && err_trial.norm() < err_norm) {
+          base_xyzrpy = base_trial;
+          qA = qA_trial;
+          accepted = true;
+          break;
+        }
+        alpha *= 0.5;
+      }
+
+      if (!accepted) {
+        return false;
+      }
+    }
+
+    const Eigen::VectorXd err = footPositionError(base_xyzrpy, qA, qP, frame_ids, foot_pos_ref);
+    return allFinite(err) && err.norm() < std::max(tol, 1e-6);
+  }
+
 private:
   static bool allFinite(const Eigen::VectorXd& x)
   {
@@ -491,6 +711,23 @@ private:
       if (!std::isfinite(x[i])) return false;
     }
     return true;
+  }
+
+  static Eigen::Matrix3d rpyRateToWorldAngular(const Eigen::Vector3d& rpy)
+  {
+    const double roll = rpy[0];
+    const double pitch = rpy[1];
+    const double yaw = rpy[2];
+
+    const Eigen::AngleAxisd ry(pitch, Eigen::Vector3d::UnitY());
+    const Eigen::AngleAxisd rz(yaw, Eigen::Vector3d::UnitZ());
+
+    Eigen::Matrix3d E;
+    E.col(0) = (rz * ry).toRotationMatrix() * Eigen::Vector3d::UnitX();
+    E.col(1) = rz.toRotationMatrix() * Eigen::Vector3d::UnitY();
+    E.col(2) = Eigen::Vector3d::UnitZ();
+    (void)roll;
+    return E;
   }
 
   void setJointScalar(Eigen::VectorXd& q_full, const JointInfo& info, double q_scalar) const
@@ -522,6 +759,11 @@ private:
                                   const Eigen::VectorXd& qdotP) const
   {
     Eigen::VectorXd v_full = Eigen::VectorXd::Zero(model_.nv);
+    if (hasFreeFlyer() && v_full.size() >= 6) {
+      for (int i = 0; i < 6; ++i) {
+        v_full[i] = 0.0;
+      }
+    }
     for (size_t i = 0; i < actuated_joints_.size(); ++i) {
       const auto& info = joint_info_.at(actuated_joints_[i]);
       v_full[info.idx_v] = qdotA[static_cast<int>(i)];
@@ -536,8 +778,16 @@ private:
   Eigen::VectorXd passiveGravity(const Eigen::VectorXd& qA,
                                  const Eigen::VectorXd& qP) const
   {
+    pinocchio::Data data(model_);
+    return passiveGravity(qA, qP, data);
+  }
+
+  Eigen::VectorXd passiveGravity(const Eigen::VectorXd& qA,
+                                 const Eigen::VectorXd& qP,
+                                 pinocchio::Data& data) const
+  {
     const Eigen::VectorXd q_full = composeConfiguration(qA, qP);
-    const Eigen::VectorXd g = pinocchio::computeGeneralizedGravity(model_, *data_, q_full);
+    const Eigen::VectorXd g = pinocchio::computeGeneralizedGravity(model_, data, q_full);
     Eigen::VectorXd gP(nP());
     for (int i = 0; i < nP(); ++i) {
       gP[i] = g[idxP_v_[static_cast<size_t>(i)]];
@@ -582,6 +832,32 @@ private:
   std::vector<std::string> passive_joints_;
   std::unordered_map<std::string, JointInfo> joint_info_;
   std::vector<int> idxA_q_, idxA_v_, idxP_q_, idxP_v_;
+
+  void setBasePose(Eigen::VectorXd& q_full, const Eigen::VectorXd& base_xyzrpy) const
+  {
+    if (!hasFreeFlyer()) {
+      return;
+    }
+    if (base_xyzrpy.size() != 6 || q_full.size() < 7) {
+      throw std::runtime_error("Base pose must be size 6 for free-flyer configuration");
+    }
+
+    const double roll = base_xyzrpy[3];
+    const double pitch = base_xyzrpy[4];
+    const double yaw = base_xyzrpy[5];
+    const Eigen::AngleAxisd rx(roll, Eigen::Vector3d::UnitX());
+    const Eigen::AngleAxisd ry(pitch, Eigen::Vector3d::UnitY());
+    const Eigen::AngleAxisd rz(yaw, Eigen::Vector3d::UnitZ());
+    const Eigen::Quaterniond q = rz * ry * rx;
+
+    q_full[0] = base_xyzrpy[0];
+    q_full[1] = base_xyzrpy[1];
+    q_full[2] = base_xyzrpy[2];
+    q_full[3] = q.x();
+    q_full[4] = q.y();
+    q_full[5] = q.z();
+    q_full[6] = q.w();
+  }
 };
 
 class TimeParameterizer
@@ -593,8 +869,37 @@ public:
 
   double computeMinimumTime(const std::vector<ActuatedKinematics>& kin,
                             double t_min,
-                            double t_max) const
+                            double t_max,
+                            bool smooth_time = false,
+                            double smooth_beta = 20.0,
+                            double smooth_eps = 1e-6) const
   {
+    if (smooth_time) {
+      std::vector<double> candidates;
+      candidates.reserve(
+        1 + kin.size() * 2 * static_cast<size_t>(std::max<Eigen::Index>(1, vmax_.size())));
+      candidates.push_back(t_min);
+
+      const double eps = std::max(1e-12, smooth_eps);
+      for (const auto& k : kin) {
+        for (int i = 0; i < k.qA.size(); ++i) {
+          const double abs_dqds = std::sqrt(k.dqdsA[i] * k.dqdsA[i] + eps * eps);
+          const double abs_d2qds2 = std::sqrt(k.d2qds2A[i] * k.d2qds2A[i] + eps * eps);
+          candidates.push_back(abs_dqds / std::max(1e-9, vmax_[i]));
+          candidates.push_back(std::sqrt(abs_d2qds2 / std::max(1e-9, amax_[i])));
+        }
+      }
+
+      const double beta = std::max(1.0, smooth_beta);
+      const double m = *std::max_element(candidates.begin(), candidates.end());
+      double exp_sum = 0.0;
+      for (const double v : candidates) {
+        exp_sum += std::exp(beta * (v - m));
+      }
+      const double smooth_max = m + std::log(exp_sum) / beta;
+      return std::min(t_max, std::max(t_min, smooth_max));
+    }
+
     double t_vel = t_min;
     double t_acc = t_min;
 
@@ -616,6 +921,17 @@ private:
 class TrajectoryRolloutEvaluator
 {
 public:
+  struct CostNormalization
+  {
+    bool enabled{false};
+    double time{1.0};
+    double smooth{1.0};
+    double passive_vel{1.0};
+    double post_track{1.0};
+    double post_energy{1.0};
+    double via_reg{1.0};
+  };
+
   TrajectoryRolloutEvaluator(const PlannerConfig& cfg,
                              Eigen::VectorXd q_goal_A,
                              Eigen::VectorXd q_goal_P_eq,
@@ -624,6 +940,11 @@ public:
     q_goal_A_(std::move(q_goal_A)),
     q_goal_P_eq_(std::move(q_goal_P_eq)),
     dynamics_(dynamics) {}
+
+  void setNormalization(const CostNormalization& norm)
+  {
+    normalization_ = norm;
+  }
 
   CandidateEvaluation evaluate(const Eigen::VectorXd& via_flat,
                                const JointStateView& start,
@@ -643,7 +964,13 @@ public:
       kin[k] = spline.eval(s);
     }
 
-    const double T = time_param->computeMinimumTime(kin, cfg_.t_min, cfg_.t_max);
+    const double T = time_param->computeMinimumTime(
+      kin,
+      cfg_.t_min,
+      cfg_.t_max,
+      cfg_.smooth_time_parameterization,
+      cfg_.time_smooth_beta,
+      cfg_.time_smooth_eps);
     if (!(T > 0.0) || std::isnan(T) || std::isinf(T)) {
       result.cost = cfg_.infeasible_cost;
       result.feasible = false;
@@ -806,12 +1133,35 @@ public:
     const Eigen::VectorXd terminal_error = traj.qA.back() - q_goal_A_;
     const double via_reg = via_flat.squaredNorm();
 
-    result.cost = cfg_.w_time * T
-                + cfg_.w_smooth * smooth_int
-                + cfg_.w_passive_damping * passive_vel_int
-                + cfg_.w_post_terminal_track * post_terminal_track_int
-                + cfg_.w_post_terminal_energy * post_terminal_energy_int
-                + cfg_.w_via_regularization * via_reg;
+    double time_term = T;
+    double smooth_term = smooth_int;
+    double passive_vel_term = passive_vel_int;
+    double post_track_term = post_terminal_track_int;
+    double post_energy_term = post_terminal_energy_int;
+    double via_reg_term = via_reg;
+
+    if (normalization_.enabled) {
+      time_term /= normalization_.time;
+      smooth_term /= normalization_.smooth;
+      passive_vel_term /= normalization_.passive_vel;
+      post_track_term /= normalization_.post_track;
+      post_energy_term /= normalization_.post_energy;
+      via_reg_term /= normalization_.via_reg;
+    }
+
+    if (cfg_.solver_friendly_cost) {
+      time_term = std::log1p(std::max(0.0, time_term));
+      passive_vel_term = std::log1p(std::max(0.0, passive_vel_term));
+      post_track_term = std::log1p(std::max(0.0, post_track_term));
+      post_energy_term = std::log1p(std::max(0.0, post_energy_term));
+    }
+
+    result.cost = cfg_.w_time * time_term
+                + cfg_.w_smooth * smooth_term
+                + cfg_.w_passive_damping * passive_vel_term
+                + cfg_.w_post_terminal_track * post_track_term
+                + cfg_.w_post_terminal_energy * post_energy_term
+                + cfg_.w_via_regularization * via_reg_term;
                 // + cfg_.w_terminal * terminal_error.squaredNorm()
                 // + cfg_.w_passive_track * passive_track_int
                 // + cfg_.w_passive_damping * passive_vel_int
@@ -838,6 +1188,7 @@ private:
   Eigen::VectorXd q_goal_A_;
   Eigen::VectorXd q_goal_P_eq_;
   const CraneDynamicsModel* dynamics_{nullptr};
+  CostNormalization normalization_;
 };
 
 class CmaEsVpStoOptimizer
@@ -1111,13 +1462,13 @@ private:
   std::normal_distribution<double> normal_;
 };
 
-class IfoptViaPointVariables : public ifopt::VariableSet
+class WholeBodyViaVariables : public ifopt::VariableSet
 {
 public:
-  IfoptViaPointVariables(const Eigen::VectorXd& initial,
-                         const Eigen::VectorXd& lower,
-                         const Eigen::VectorXd& upper)
-  : ifopt::VariableSet(static_cast<int>(initial.size()), "via_points"),
+  WholeBodyViaVariables(const Eigen::VectorXd& initial,
+                        const Eigen::VectorXd& lower,
+                        const Eigen::VectorXd& upper)
+  : ifopt::VariableSet(static_cast<int>(initial.size()), "whole_body_via"),
     values_(initial),
     lower_(lower),
     upper_(upper)
@@ -1153,72 +1504,572 @@ private:
   Eigen::VectorXd upper_;
 };
 
+class CasadiActuatedSurrogateGradient
+{
+public:
+  CasadiActuatedSurrogateGradient(const PlannerConfig& cfg,
+                                  const Eigen::VectorXd& q_start,
+                                  const Eigen::VectorXd& q_goal,
+                                  const Eigen::VectorXd& velocity_limits,
+                                  const Eigen::VectorXd& acceleration_limits,
+                                  const TrajectoryRolloutEvaluator::CostNormalization& normalization)
+  : n_via_(cfg.n_via),
+    n_actuated_(static_cast<int>(q_start.size()))
+  {
+    if (q_goal.size() != q_start.size() ||
+        velocity_limits.size() != q_start.size() ||
+        acceleration_limits.size() != q_start.size()) {
+      throw std::runtime_error("CasADi surrogate gradient input size mismatch");
+    }
+
+    const int dim = n_via_ * n_actuated_;
+    const casadi::SX x = casadi::SX::sym("actuated_via", dim);
+
+    const auto basis = buildSplineBasis(cfg, q_start, q_goal);
+    const double dt_weight = 1.0 / static_cast<double>(std::max(1, cfg.n_eval - 1));
+    const double beta = std::max(1.0, cfg.time_smooth_beta);
+    const double eps = std::max(1e-12, cfg.time_smooth_eps);
+
+    std::vector<casadi::SX> time_candidates;
+    time_candidates.reserve(
+      1 + static_cast<size_t>(cfg.n_eval) * 2 * static_cast<size_t>(n_actuated_));
+    time_candidates.push_back(casadi::SX(cfg.t_min));
+
+    casadi::SX smooth_s_numer = casadi::SX(0.0);
+    for (int sample = 0; sample < cfg.n_eval; ++sample) {
+      const double trap = (sample == 0 || sample == cfg.n_eval - 1) ? 0.5 : 1.0;
+      for (int j = 0; j < n_actuated_; ++j) {
+        const int row = sample * n_actuated_ + j;
+        casadi::SX dqds = basis.dqds_const[row];
+        casadi::SX d2qds2 = basis.d2qds2_const[row];
+        for (int i = 0; i < dim; ++i) {
+          const double b1 = basis.dqds_basis(row, i);
+          const double b2 = basis.d2qds2_basis(row, i);
+          if (std::abs(b1) > 1e-14) {
+            dqds += b1 * x(i);
+          }
+          if (std::abs(b2) > 1e-14) {
+            d2qds2 += b2 * x(i);
+          }
+        }
+
+        const casadi::SX abs_dqds = casadi::SX::sqrt(dqds * dqds + eps * eps);
+        const casadi::SX abs_d2qds2 = casadi::SX::sqrt(d2qds2 * d2qds2 + eps * eps);
+        time_candidates.push_back(abs_dqds / std::max(1e-9, velocity_limits[j]));
+        time_candidates.push_back(
+          casadi::SX::sqrt(abs_d2qds2 / std::max(1e-9, acceleration_limits[j])));
+        smooth_s_numer += trap * d2qds2 * d2qds2;
+      }
+    }
+
+    casadi::SX max_candidate = time_candidates.front();
+    for (size_t i = 1; i < time_candidates.size(); ++i) {
+      max_candidate = casadi::SX::fmax(max_candidate, time_candidates[i]);
+    }
+    casadi::SX exp_sum = casadi::SX(0.0);
+    for (const auto& candidate : time_candidates) {
+      exp_sum += casadi::SX::exp(beta * (candidate - max_candidate));
+    }
+    const casadi::SX T = max_candidate + casadi::SX::log(exp_sum) / beta;
+    const casadi::SX smooth_int = smooth_s_numer * dt_weight / (T * T * T);
+    const casadi::SX via_reg = casadi::SX::dot(x, x);
+
+    casadi::SX time_term = T;
+    casadi::SX smooth_term = smooth_int;
+    casadi::SX via_reg_term = via_reg;
+    if (normalization.enabled) {
+      time_term /= std::max(1e-12, normalization.time);
+      smooth_term /= std::max(1e-12, normalization.smooth);
+      via_reg_term /= std::max(1e-12, normalization.via_reg);
+    }
+    if (cfg.solver_friendly_cost) {
+      time_term = casadi::SX::log(1.0 + time_term);
+    }
+
+    const casadi::SX surrogate_cost =
+      cfg.w_time * time_term +
+      cfg.w_smooth * smooth_term +
+      cfg.w_via_regularization * via_reg_term;
+    const casadi::SX grad = casadi::SX::gradient(surrogate_cost, x);
+    grad_fn_ = casadi::Function("vp_sto_actuated_surrogate_grad", {x}, {grad});
+    valid_ = true;
+  }
+
+  bool valid() const
+  {
+    return valid_;
+  }
+
+  Eigen::VectorXd evaluate(const Eigen::VectorXd& actuated_via) const
+  {
+    if (!valid_ || actuated_via.size() != n_via_ * n_actuated_) {
+      return Eigen::VectorXd::Zero(actuated_via.size());
+    }
+
+    std::vector<double> values(static_cast<size_t>(actuated_via.size()));
+    for (int i = 0; i < actuated_via.size(); ++i) {
+      values[static_cast<size_t>(i)] = actuated_via[i];
+    }
+    const auto out = grad_fn_(std::vector<casadi::DM>{casadi::DM(values)});
+    const std::vector<double> grad_values = out.at(0).nonzeros();
+    Eigen::VectorXd grad = Eigen::VectorXd::Zero(actuated_via.size());
+    for (int i = 0; i < grad.size() && i < static_cast<int>(grad_values.size()); ++i) {
+      grad[i] = std::isfinite(grad_values[static_cast<size_t>(i)])
+        ? grad_values[static_cast<size_t>(i)]
+        : 0.0;
+    }
+    return grad;
+  }
+
+private:
+  struct SplineBasis
+  {
+    Eigen::VectorXd dqds_const;
+    Eigen::VectorXd d2qds2_const;
+    Eigen::MatrixXd dqds_basis;
+    Eigen::MatrixXd d2qds2_basis;
+  };
+
+  static SplineBasis buildSplineBasis(const PlannerConfig& cfg,
+                                      const Eigen::VectorXd& q_start,
+                                      const Eigen::VectorXd& q_goal)
+  {
+    const int nA = static_cast<int>(q_start.size());
+    const int dim = cfg.n_via * nA;
+    const int rows = cfg.n_eval * nA;
+
+    SplineBasis basis;
+    basis.dqds_const = Eigen::VectorXd::Zero(rows);
+    basis.d2qds2_const = Eigen::VectorXd::Zero(rows);
+    basis.dqds_basis = Eigen::MatrixXd::Zero(rows, dim);
+    basis.d2qds2_basis = Eigen::MatrixXd::Zero(rows, dim);
+
+    MultiJointActuatedSpline spline;
+    const Eigen::VectorXd zero_via = Eigen::VectorXd::Zero(dim);
+    spline.build(q_start, q_goal, zero_via, cfg.n_via, cfg.use_zero_boundary_slopes);
+    for (int sample = 0; sample < cfg.n_eval; ++sample) {
+      const double s = static_cast<double>(sample) / static_cast<double>(cfg.n_eval - 1);
+      const auto kin = spline.eval(s);
+      for (int j = 0; j < nA; ++j) {
+        const int row = sample * nA + j;
+        basis.dqds_const[row] = kin.dqdsA[j];
+        basis.d2qds2_const[row] = kin.d2qds2A[j];
+      }
+    }
+
+    const Eigen::VectorXd zero_start = Eigen::VectorXd::Zero(nA);
+    const Eigen::VectorXd zero_goal = Eigen::VectorXd::Zero(nA);
+    for (int i = 0; i < dim; ++i) {
+      Eigen::VectorXd via = Eigen::VectorXd::Zero(dim);
+      via[i] = 1.0;
+      spline.build(zero_start, zero_goal, via, cfg.n_via, cfg.use_zero_boundary_slopes);
+      for (int sample = 0; sample < cfg.n_eval; ++sample) {
+        const double s = static_cast<double>(sample) / static_cast<double>(cfg.n_eval - 1);
+        const auto kin = spline.eval(s);
+        for (int j = 0; j < nA; ++j) {
+          const int row = sample * nA + j;
+          basis.dqds_basis(row, i) = kin.dqdsA[j];
+          basis.d2qds2_basis(row, i) = kin.d2qds2A[j];
+        }
+      }
+    }
+
+    return basis;
+  }
+
+  int n_via_{0};
+  int n_actuated_{0};
+  bool valid_{false};
+  casadi::Function grad_fn_;
+};
+
 class IfoptVpStoCost : public ifopt::CostTerm
 {
 public:
   using EvaluationFunction = std::function<CandidateEvaluation(const Eigen::VectorXd&)>;
 
   IfoptVpStoCost(EvaluationFunction eval_fn,
+                 Eigen::VectorXd lower,
+                 Eigen::VectorXd upper,
+                 Eigen::VectorXd base_ref,
+                 int n_via,
+                 int n_actuated,
+                 double w_base_regularization,
+                 int parallel_workers,
                  double finite_difference_step,
                  double infeasible_cost,
+                 std::shared_ptr<CasadiActuatedSurrogateGradient> casadi_gradient,
                  rclcpp::Logger logger)
   : ifopt::CostTerm("vp_sto_rollout_cost"),
     eval_fn_(std::move(eval_fn)),
+    lower_(std::move(lower)),
+    upper_(std::move(upper)),
+    base_ref_(std::move(base_ref)),
+    n_via_(n_via),
+    n_actuated_(n_actuated),
+    w_base_regularization_(w_base_regularization),
+    parallel_workers_(std::max(1, parallel_workers)),
     finite_difference_step_(finite_difference_step),
     infeasible_cost_(infeasible_cost),
-    logger_(logger) {}
+    casadi_gradient_(std::move(casadi_gradient)),
+    logger_(logger)
+  {
+    if (lower_.size() != upper_.size()) {
+      throw std::runtime_error("IFOPT cost bounds size mismatch");
+    }
+    if (base_ref_.size() != 6) {
+      throw std::runtime_error("Base reference must be size 6");
+    }
+  }
 
 private:
   double GetCost() const override
   {
     const Eigen::VectorXd x = currentViaPoints();
-    const CandidateEvaluation eval = eval_fn_(x);
-    if (eval.feasible && std::isfinite(eval.cost)) {
-      return eval.cost;
-    }
-    return infeasible_cost_;
+    Eigen::VectorXd base_via;
+    Eigen::VectorXd actuated_via;
+    splitVariables(x, base_via, actuated_via);
+
+    const CandidateEvaluation eval = eval_fn_(actuated_via);
+    double cost = (eval.feasible && std::isfinite(eval.cost)) ? eval.cost : infeasible_cost_;
+    cost += baseRegularization(base_via);
+    return cost;
   }
 
   void FillJacobianBlock(std::string var_set, Jacobian& jac_block) const override
   {
-    if (var_set != "via_points") {
+    if (var_set != "whole_body_via") {
       return;
     }
 
     const Eigen::VectorXd x = currentViaPoints();
     const int n = static_cast<int>(x.size());
+    const int base_dim = 6;
+    const int block = base_dim + n_actuated_;
     jac_block.resize(1, n);
     jac_block.reserve(Eigen::VectorXi::Constant(1, n));
 
-    const double f0 = GetCost();
-    for (int i = 0; i < n; ++i) {
-      Eigen::VectorXd xp = x;
-      const double h = finite_difference_step_ * (1.0 + std::abs(x[i]));
-      xp[i] += h;
-      const CandidateEvaluation eval_p = eval_fn_(xp);
-      const double fp =
-        (eval_p.feasible && std::isfinite(eval_p.cost)) ? eval_p.cost : infeasible_cost_;
-      double grad = (fp - f0) / h;
-      if (!std::isfinite(grad)) {
-        grad = 0.0;
+    Eigen::VectorXd base_via;
+    Eigen::VectorXd actuated_via;
+    splitVariables(x, base_via, actuated_via);
+
+    std::vector<double> grad(static_cast<size_t>(n), 0.0);
+    if (w_base_regularization_ > 0.0) {
+      for (int k = 0; k < n_via_; ++k) {
+        for (int j = 0; j < base_dim; ++j) {
+          const int col = k * block + j;
+          grad[static_cast<size_t>(col)] =
+            2.0 * w_base_regularization_ * (base_via[k * base_dim + j] - base_ref_[j]);
+        }
       }
-      jac_block.coeffRef(0, i) = grad;
+      for (int j = 0; j < base_dim; ++j) {
+        const int col = n_via_ * block + j;
+        grad[static_cast<size_t>(col)] =
+          2.0 * w_base_regularization_ * (base_via[n_via_ * base_dim + j] - base_ref_[j]);
+      }
+    }
+
+    bool used_casadi_gradient = false;
+    if (casadi_gradient_ && casadi_gradient_->valid()) {
+      const Eigen::VectorXd actuated_grad = casadi_gradient_->evaluate(actuated_via);
+      if (actuated_grad.size() == actuated_via.size()) {
+        for (int k = 0; k < n_via_; ++k) {
+          for (int j = 0; j < n_actuated_; ++j) {
+            const int full_col = k * block + base_dim + j;
+            const int actuated_col = k * n_actuated_ + j;
+            grad[static_cast<size_t>(full_col)] = actuated_grad[actuated_col];
+          }
+        }
+        used_casadi_gradient = true;
+      }
+      }
+
+    if (!used_casadi_gradient) {
+      std::vector<int> active_actuated_indices;
+      active_actuated_indices.reserve(static_cast<size_t>(n_via_ * n_actuated_));
+      for (int k = 0; k < n_via_; ++k) {
+        for (int j = 0; j < n_actuated_; ++j) {
+          const int full_col = k * block + base_dim + j;
+          if (full_col < lower_.size() && std::abs(upper_[full_col] - lower_[full_col]) <= 1e-12) {
+            continue;
+          }
+          active_actuated_indices.push_back(full_col);
+        }
+      }
+
+      const double f0 = GetCost();
+      const int worker_count = std::min<int>(
+        std::max(1, parallel_workers_),
+        std::max<int>(1, static_cast<int>(active_actuated_indices.size())));
+
+      auto eval_gradient_component = [&](int i) {
+        Eigen::VectorXd xp = x;
+        const double h = finite_difference_step_ * (1.0 + std::abs(x[i]));
+        xp[i] += h;
+        Eigen::VectorXd base_via_p;
+        Eigen::VectorXd actuated_via_p;
+        splitVariables(xp, base_via_p, actuated_via_p);
+        const CandidateEvaluation eval_p = eval_fn_(actuated_via_p);
+        double fp = (eval_p.feasible && std::isfinite(eval_p.cost)) ? eval_p.cost : infeasible_cost_;
+        fp += baseRegularization(base_via_p);
+        double gi = (fp - f0) / h;
+        if (!std::isfinite(gi)) {
+          gi = 0.0;
+        }
+        grad[static_cast<size_t>(i)] = gi;
+      };
+
+      if (worker_count <= 1 || active_actuated_indices.size() <= 1) {
+        for (const int i : active_actuated_indices) {
+          eval_gradient_component(i);
+        }
+      } else {
+        std::atomic<int> next{0};
+        std::exception_ptr first_exception = nullptr;
+        std::mutex exception_mutex;
+
+        auto worker = [&]() {
+          while (true) {
+            const int cursor = next.fetch_add(1);
+            if (cursor >= static_cast<int>(active_actuated_indices.size())) {
+              break;
+            }
+
+            try {
+              eval_gradient_component(active_actuated_indices[static_cast<size_t>(cursor)]);
+            } catch (...) {
+              std::lock_guard<std::mutex> lock(exception_mutex);
+              if (!first_exception) {
+                first_exception = std::current_exception();
+              }
+            }
+          }
+        };
+
+        std::vector<std::thread> threads;
+        threads.reserve(static_cast<size_t>(worker_count));
+        for (int w = 0; w < worker_count; ++w) {
+          threads.emplace_back(worker);
+        }
+        for (auto& thread : threads) {
+          thread.join();
+        }
+
+        if (first_exception) {
+          std::rethrow_exception(first_exception);
+        }
+      }
+    }
+
+    for (int i = 0; i < n; ++i) {
+      if (i < lower_.size() && std::abs(upper_[i] - lower_[i]) <= 1e-12) {
+        jac_block.coeffRef(0, i) = 0.0;
+        continue;
+      }
+      jac_block.coeffRef(0, i) = grad[static_cast<size_t>(i)];
     }
   }
 
   Eigen::VectorXd currentViaPoints() const
   {
-    const auto variables = GetVariables()->GetComponent<IfoptViaPointVariables>("via_points");
+    const auto variables = GetVariables()->GetComponent<WholeBodyViaVariables>("whole_body_via");
     if (!variables) {
-      throw std::runtime_error("IFOPT variable set 'via_points' not found");
+      throw std::runtime_error("IFOPT variable set 'whole_body_via' not found");
     }
     return variables->GetValues();
   }
 
+  void splitVariables(const Eigen::VectorXd& x,
+                      Eigen::VectorXd& base_via,
+                      Eigen::VectorXd& actuated_via) const
+  {
+    const int base_dim = 6;
+    const int block = base_dim + n_actuated_;
+    if (x.size() != n_via_ * block + base_dim) {
+      throw std::runtime_error("Whole-body decision vector has unexpected size");
+    }
+
+    base_via.resize((n_via_ + 1) * base_dim);
+    actuated_via.resize(n_via_ * n_actuated_);
+    for (int k = 0; k < n_via_; ++k) {
+      base_via.segment(k * base_dim, base_dim) = x.segment(k * block, base_dim);
+      actuated_via.segment(k * n_actuated_, n_actuated_) = x.segment(k * block + base_dim, n_actuated_);
+    }
+    base_via.segment(n_via_ * base_dim, base_dim) = x.segment(n_via_ * block, base_dim);
+  }
+
+  double baseRegularization(const Eigen::VectorXd& base_via) const
+  {
+    if (w_base_regularization_ <= 0.0) {
+      return 0.0;
+    }
+    double cost = 0.0;
+    for (int k = 0; k <= n_via_; ++k) {
+      const Eigen::VectorXd base_k = base_via.segment(k * 6, 6);
+      cost += (base_k - base_ref_).squaredNorm();
+    }
+    return w_base_regularization_ * cost;
+  }
+
   EvaluationFunction eval_fn_;
+  Eigen::VectorXd lower_;
+  Eigen::VectorXd upper_;
+  Eigen::VectorXd base_ref_;
+  int n_via_{0};
+  int n_actuated_{0};
+  double w_base_regularization_{0.0};
+  int parallel_workers_{1};
   double finite_difference_step_{1e-4};
   double infeasible_cost_{1e12};
+  std::shared_ptr<CasadiActuatedSurrogateGradient> casadi_gradient_;
   rclcpp::Logger logger_;
+};
+
+class FootContactConstraint : public ifopt::ConstraintSet
+{
+public:
+  FootContactConstraint(const CraneDynamicsModel* dynamics,
+                        std::vector<pinocchio::FrameIndex> foot_frames,
+                        Eigen::VectorXd qP_ref,
+                        Eigen::VectorXd qA_goal,
+                        Eigen::VectorXd foot_pos_ref,
+                        int n_via,
+                        int n_actuated,
+                        int parallel_workers,
+                        double finite_difference_step,
+                        double tolerance)
+  : ifopt::ConstraintSet((n_via + 1) * static_cast<int>(foot_frames.size()) * 3, "foot_contact"),
+    dynamics_(dynamics),
+    foot_frames_(std::move(foot_frames)),
+    qP_ref_(std::move(qP_ref)),
+    qA_goal_(std::move(qA_goal)),
+    foot_pos_ref_(std::move(foot_pos_ref)),
+    n_via_(n_via),
+    n_actuated_(n_actuated),
+    parallel_workers_(std::max(1, parallel_workers)),
+    finite_difference_step_(finite_difference_step),
+    tolerance_(std::max(0.0, tolerance))
+  {
+    if (!dynamics_) {
+      throw std::runtime_error("FootContactConstraint requires a dynamics model");
+    }
+    if (foot_pos_ref_.size() != static_cast<int>(foot_frames_.size()) * 3) {
+      throw std::runtime_error("Foot reference size mismatch");
+    }
+    if (qA_goal_.size() != n_actuated_) {
+      throw std::runtime_error("FootContactConstraint qA_goal size mismatch");
+    }
+  }
+
+  VecBound GetBounds() const override
+  {
+    VecBound bounds(GetRows());
+    for (auto& b : bounds) {
+      b = ifopt::Bounds(-tolerance_, tolerance_);
+    }
+    return bounds;
+  }
+
+  Eigen::VectorXd GetValues() const override
+  {
+    const Eigen::VectorXd x = currentViaPoints();
+    return evaluateConstraint(x);
+  }
+
+  void FillJacobianBlock(std::string var_set, Jacobian& jac_block) const override
+  {
+    if (var_set != "whole_body_via") {
+      return;
+    }
+
+    const Eigen::VectorXd x = currentViaPoints();
+    const int base_dim = 6;
+    const int block = base_dim + n_actuated_;
+    const int foot_rows = static_cast<int>(foot_frames_.size()) * 3;
+    const int rows = GetRows();
+    const int cols = static_cast<int>(x.size());
+    jac_block.resize(rows, cols);
+    jac_block.reserve(Eigen::VectorXi::Constant(rows, block));
+
+    auto fill_dense_block = [&](int row_offset, int col_offset, const Eigen::MatrixXd& Jdense) {
+      for (int r = 0; r < Jdense.rows(); ++r) {
+        for (int c = 0; c < Jdense.cols(); ++c) {
+          const double value = Jdense(r, c);
+          jac_block.coeffRef(row_offset + r, col_offset + c) =
+            std::isfinite(value) ? value : 0.0;
+        }
+      }
+    };
+
+    for (int k = 0; k < n_via_; ++k) {
+      const Eigen::VectorXd base_k = x.segment(k * block, base_dim);
+      const Eigen::VectorXd qA_k = x.segment(k * block + base_dim, n_actuated_);
+      const Eigen::MatrixXd Jdense =
+        dynamics_->footPositionJacobian(base_k, qA_k, qP_ref_, foot_frames_);
+      fill_dense_block(k * foot_rows, k * block, Jdense);
+    }
+
+    const Eigen::VectorXd base_terminal = x.segment(n_via_ * block, base_dim);
+    const Eigen::MatrixXd Jterminal =
+      dynamics_->footPositionJacobian(base_terminal, qA_goal_, qP_ref_, foot_frames_);
+    fill_dense_block(n_via_ * foot_rows, n_via_ * block, Jterminal.leftCols(base_dim));
+  }
+
+private:
+  Eigen::VectorXd currentViaPoints() const
+  {
+    const auto variables = GetVariables()->GetComponent<WholeBodyViaVariables>("whole_body_via");
+    if (!variables) {
+      throw std::runtime_error("IFOPT variable set 'whole_body_via' not found");
+    }
+    return variables->GetValues();
+  }
+
+  Eigen::VectorXd evaluateConstraint(const Eigen::VectorXd& x) const
+  {
+    const int base_dim = 6;
+    const int block = base_dim + n_actuated_;
+    if (x.size() != n_via_ * block + base_dim) {
+      throw std::runtime_error("Whole-body decision vector has unexpected size");
+    }
+
+    Eigen::VectorXd values((n_via_ + 1) * static_cast<int>(foot_frames_.size()) * 3);
+    int cursor = 0;
+    for (int k = 0; k < n_via_; ++k) {
+      const Eigen::VectorXd base_k = x.segment(k * block, base_dim);
+      const Eigen::VectorXd qA_k = x.segment(k * block + base_dim, n_actuated_);
+      const auto foot_positions = dynamics_->footPositions(base_k, qA_k, qP_ref_, foot_frames_);
+      for (size_t f = 0; f < foot_positions.size(); ++f) {
+        const Eigen::Vector3d err = foot_positions[f] - foot_pos_ref_.segment<3>(static_cast<int>(f) * 3);
+        values[cursor++] = err[0];
+        values[cursor++] = err[1];
+        values[cursor++] = err[2];
+      }
+    }
+
+    const Eigen::VectorXd base_terminal = x.segment(n_via_ * block, base_dim);
+    const auto terminal_foot_positions =
+      dynamics_->footPositions(base_terminal, qA_goal_, qP_ref_, foot_frames_);
+    for (size_t f = 0; f < terminal_foot_positions.size(); ++f) {
+      const Eigen::Vector3d err =
+        terminal_foot_positions[f] - foot_pos_ref_.segment<3>(static_cast<int>(f) * 3);
+      values[cursor++] = err[0];
+      values[cursor++] = err[1];
+      values[cursor++] = err[2];
+    }
+    return values;
+  }
+
+  const CraneDynamicsModel* dynamics_{nullptr};
+  std::vector<pinocchio::FrameIndex> foot_frames_;
+  Eigen::VectorXd qP_ref_;
+  Eigen::VectorXd qA_goal_;
+  Eigen::VectorXd foot_pos_ref_;
+  int n_via_{0};
+  int n_actuated_{0};
+  int parallel_workers_{1};
+  double finite_difference_step_{1e-4};
+  double tolerance_{1e-3};
 };
 
 class IfoptVpStoOptimizer
@@ -1226,22 +2077,75 @@ class IfoptVpStoOptimizer
 public:
   using EvaluationFunction = std::function<CandidateEvaluation(const Eigen::VectorXd&)>;
 
+  struct OptimizationResult
+  {
+    CandidateEvaluation eval;
+    Eigen::VectorXd solution;
+  };
+
   explicit IfoptVpStoOptimizer(PlannerConfig cfg)
   : cfg_(std::move(cfg)) {}
 
-  CandidateEvaluation optimize(const Eigen::VectorXd& initial,
-                               const Eigen::VectorXd& lower,
-                               const Eigen::VectorXd& upper,
-                               const EvaluationFunction& eval_fn,
-                               rclcpp::Logger logger)
+  OptimizationResult optimize(const Eigen::VectorXd& initial,
+                              const Eigen::VectorXd& lower,
+                              const Eigen::VectorXd& upper,
+                              const EvaluationFunction& eval_fn,
+                              const std::shared_ptr<FootContactConstraint>& foot_constraint,
+                              const Eigen::VectorXd& base_ref,
+                              int n_via,
+                              int n_actuated,
+                              double w_base_regularization,
+                              std::shared_ptr<CasadiActuatedSurrogateGradient> casadi_gradient,
+                              rclcpp::Logger logger)
   {
     ifopt::Problem nlp;
-    nlp.AddVariableSet(std::make_shared<IfoptViaPointVariables>(initial, lower, upper));
+    nlp.AddVariableSet(std::make_shared<WholeBodyViaVariables>(initial, lower, upper));
     nlp.AddCostSet(std::make_shared<IfoptVpStoCost>(
-      eval_fn, cfg_.ipopt_fd_step, cfg_.infeasible_cost, logger));
+      eval_fn,
+      lower,
+      upper,
+      base_ref,
+      n_via,
+      n_actuated,
+      w_base_regularization,
+      cfg_.parallel_workers,
+      cfg_.ipopt_fd_step,
+      cfg_.infeasible_cost,
+      casadi_gradient,
+      logger));
+
+    if (foot_constraint) {
+      nlp.AddConstraintSet(foot_constraint);
+    }
+
+    int fixed_variables = 0;
+    for (int i = 0; i < lower.size(); ++i) {
+      if (std::abs(upper[i] - lower[i]) <= 1e-12) {
+        ++fixed_variables;
+      }
+    }
+    RCLCPP_INFO(
+      logger,
+      "IFOPT variables: total=%d, fixed=%d, active=%d",
+      static_cast<int>(initial.size()),
+      fixed_variables,
+      static_cast<int>(initial.size()) - fixed_variables);
+    RCLCPP_INFO(
+      logger,
+      "IFOPT objective gradient: qA=%s, fallback finite-difference workers=%d",
+      (casadi_gradient && casadi_gradient->valid()) ? "CasADi surrogate" : "finite_difference",
+      std::max(1, cfg_.parallel_workers));
 
     ifopt::IpoptSolver solver;
-    solver.SetOption("linear_solver", "mumps");
+    solver.SetOption("linear_solver", cfg_.ipopt_linear_solver);
+    if (!cfg_.ipopt_hsl_library.empty()) {
+      solver.SetOption("hsllib", cfg_.ipopt_hsl_library);
+    }
+    if (cfg_.ipopt_linear_solver == "ma97" || cfg_.ipopt_linear_solver == "MA97") {
+      solver.SetOption("ma97_print_level", cfg_.ipopt_ma97_print_level);
+      solver.SetOption("ma97_order", cfg_.ipopt_ma97_order);
+      solver.SetOption("ma97_scaling", cfg_.ipopt_ma97_scaling);
+    }
     solver.SetOption("hessian_approximation", "limited-memory");
     solver.SetOption("jacobian_approximation", "exact");
     solver.SetOption("max_iter", cfg_.max_iterations);
@@ -1250,11 +2154,13 @@ public:
     solver.SetOption("max_cpu_time", cfg_.ipopt_max_cpu_time);
     solver.SetOption("acceptable_tol", 10.0 * cfg_.ipopt_tolerance);
     solver.SetOption("acceptable_iter", 3);
+    solver.SetOption("acceptable_obj_change_tol", 1e-3);
 
     RCLCPP_INFO(
       logger,
-      "Starting IFOPT/IPOPT solve: dim=%d, max_iter=%d, tol=%.3e, max_cpu_time=%.1f",
+      "Starting IFOPT/IPOPT solve: dim=%d, linear_solver=%s, max_iter=%d, tol=%.3e, max_cpu_time=%.1f",
       static_cast<int>(initial.size()),
+      cfg_.ipopt_linear_solver.c_str(),
       cfg_.max_iterations,
       cfg_.ipopt_tolerance,
       cfg_.ipopt_max_cpu_time);
@@ -1266,15 +2172,42 @@ public:
     }
 
     const Eigen::VectorXd solution = nlp.GetOptVariables()->GetValues();
-    CandidateEvaluation best = eval_fn(solution);
+    Eigen::VectorXd best_solution = solution;
+    Eigen::VectorXd base_via;
+    Eigen::VectorXd actuated_via;
+    splitVariables(solution, n_via, n_actuated, base_via, actuated_via);
+    CandidateEvaluation best = eval_fn(actuated_via);
     if (!best.feasible || !std::isfinite(best.cost)) {
       RCLCPP_WARN(logger, "IFOPT/IPOPT final solution infeasible. Falling back to initial trajectory.");
-      best = eval_fn(initial);
+      best_solution = initial;
+      splitVariables(initial, n_via, n_actuated, base_via, actuated_via);
+      best = eval_fn(actuated_via);
     }
-    return best;
+    return OptimizationResult{best, best_solution};
   }
 
 private:
+  static void splitVariables(const Eigen::VectorXd& x,
+                             int n_via,
+                             int n_actuated,
+                             Eigen::VectorXd& base_via,
+                             Eigen::VectorXd& actuated_via)
+  {
+    const int base_dim = 6;
+    const int block = base_dim + n_actuated;
+    if (x.size() != n_via * block + base_dim) {
+      throw std::runtime_error("Whole-body decision vector has unexpected size");
+    }
+
+    base_via.resize((n_via + 1) * base_dim);
+    actuated_via.resize(n_via * n_actuated);
+    for (int k = 0; k < n_via; ++k) {
+      base_via.segment(k * base_dim, base_dim) = x.segment(k * block, base_dim);
+      actuated_via.segment(k * n_actuated, n_actuated) = x.segment(k * block + base_dim, n_actuated);
+    }
+    base_via.segment(n_via * base_dim, base_dim) = x.segment(n_via * block, base_dim);
+  }
+
   PlannerConfig cfg_;
 };
 
@@ -1323,6 +2256,17 @@ public:
         1.0, 1.0, 1.0, 2.0, 4.0,
         1.5, 1.0, 1.0, 1.0, 1.2});
 
+    declare_parameter<std::vector<double>>(
+      "base_initial",
+      std::vector<double>{0.0, 0.0, 0.0, 0.0, 0.0, 0.0});
+    declare_parameter<std::vector<double>>(
+      "base_goal",
+      std::vector<double>{0.0, 0.0, 0.0, 0.0, 0.0, 0.0});
+    declare_parameter<double>("base_bound_margin", 0.2);
+    declare_parameter<std::vector<std::string>>(
+      "foot_frames",
+      std::vector<std::string>{"FRW", "FLW", "RRW", "RLW"});
+
     declare_parameter<int>("n_via", 5);
     declare_parameter<int>("n_eval", 81);
     declare_parameter<int>("population", 40);
@@ -1330,13 +2274,18 @@ public:
     declare_parameter<int>("elite_count", 10);
     declare_parameter<int>("parallel_workers", 1);
     declare_parameter<int>("ipopt_print_level", 5);
+    declare_parameter<int>("ipopt_ma97_print_level", 0);
     declare_parameter<int64_t>("random_seed", -1);
     declare_parameter<double>("sigma0", 0.20);
     declare_parameter<double>("ipopt_tolerance", 1e-3);
     declare_parameter<double>("ipopt_fd_step", 1e-4);
     declare_parameter<double>("ipopt_via_bound_margin", 1.0);
     declare_parameter<double>("ipopt_max_cpu_time", 300.0);
-    declare_parameter<double>("freeze_static_joint_tolerance", 1e-5);
+    declare_parameter<std::string>("ipopt_linear_solver", "mumps");
+    declare_parameter<std::string>("ipopt_hsl_library", "");
+    declare_parameter<std::string>("ipopt_ma97_order", "auto");
+    declare_parameter<std::string>("ipopt_ma97_scaling", "dynamic");
+    declare_parameter<double>("freeze_static_joint_tolerance", -1.0);
     declare_parameter<double>("t_min", 1.0);
     declare_parameter<double>("t_max", 40.0);
     declare_parameter<double>("w_time", 1.0);
@@ -1347,6 +2296,16 @@ public:
     declare_parameter<double>("w_post_terminal_track", 10.0);
     declare_parameter<double>("w_post_terminal_energy", 10.0);
     declare_parameter<double>("w_via_regularization", 1e-4);
+    declare_parameter<double>("w_base_regularization", 0.01);
+    declare_parameter<bool>("normalize_costs", false);
+    declare_parameter<double>("cost_norm_eps", 1e-6);
+    declare_parameter<bool>("solver_friendly_cost", true);
+    declare_parameter<bool>("smooth_time_parameterization", true);
+    declare_parameter<double>("time_smooth_beta", 20.0);
+    declare_parameter<double>("time_smooth_eps", 1e-6);
+    declare_parameter<double>("foot_contact_tolerance", 1e-3);
+    declare_parameter<bool>("freeze_contact_legs_on_fixed_base", true);
+    declare_parameter<double>("base_fixed_tolerance", 1e-4);
     declare_parameter<double>("post_terminal_duration", 2.0);
     declare_parameter<int>("post_terminal_steps", 40);
     declare_parameter<bool>("auto_plan_on_first_state", true);
@@ -1365,6 +2324,7 @@ public:
     cfg_.elite_count = get_parameter("elite_count").as_int();
     cfg_.parallel_workers = get_parameter("parallel_workers").as_int();
     cfg_.ipopt_print_level = get_parameter("ipopt_print_level").as_int();
+    cfg_.ipopt_ma97_print_level = get_parameter("ipopt_ma97_print_level").as_int();
     if (cfg_.parallel_workers <= 0) {
       cfg_.parallel_workers = std::max(1, static_cast<int>(std::thread::hardware_concurrency()));
     }
@@ -1374,6 +2334,10 @@ public:
     cfg_.ipopt_fd_step = get_parameter("ipopt_fd_step").as_double();
     cfg_.ipopt_via_bound_margin = get_parameter("ipopt_via_bound_margin").as_double();
     cfg_.ipopt_max_cpu_time = get_parameter("ipopt_max_cpu_time").as_double();
+    cfg_.ipopt_linear_solver = get_parameter("ipopt_linear_solver").as_string();
+    cfg_.ipopt_hsl_library = get_parameter("ipopt_hsl_library").as_string();
+    cfg_.ipopt_ma97_order = get_parameter("ipopt_ma97_order").as_string();
+    cfg_.ipopt_ma97_scaling = get_parameter("ipopt_ma97_scaling").as_string();
     cfg_.freeze_static_joint_tolerance = get_parameter("freeze_static_joint_tolerance").as_double();
     cfg_.t_min = get_parameter("t_min").as_double();
     cfg_.t_max = get_parameter("t_max").as_double();
@@ -1385,12 +2349,28 @@ public:
     cfg_.w_post_terminal_track = get_parameter("w_post_terminal_track").as_double();
     cfg_.w_post_terminal_energy = get_parameter("w_post_terminal_energy").as_double();
     cfg_.w_via_regularization = get_parameter("w_via_regularization").as_double();
+    cfg_.w_base_regularization = get_parameter("w_base_regularization").as_double();
+    cfg_.normalize_costs = get_parameter("normalize_costs").as_bool();
+    cfg_.cost_norm_eps = get_parameter("cost_norm_eps").as_double();
+    cfg_.solver_friendly_cost = get_parameter("solver_friendly_cost").as_bool();
+    cfg_.smooth_time_parameterization = get_parameter("smooth_time_parameterization").as_bool();
+    cfg_.time_smooth_beta = get_parameter("time_smooth_beta").as_double();
+    cfg_.time_smooth_eps = get_parameter("time_smooth_eps").as_double();
+    cfg_.foot_contact_tolerance = get_parameter("foot_contact_tolerance").as_double();
+    cfg_.freeze_contact_legs_on_fixed_base =
+      get_parameter("freeze_contact_legs_on_fixed_base").as_bool();
+    cfg_.base_fixed_tolerance = get_parameter("base_fixed_tolerance").as_double();
     cfg_.post_terminal_duration = get_parameter("post_terminal_duration").as_double();
     cfg_.post_terminal_steps = get_parameter("post_terminal_steps").as_int();
 
     q_goal_A_ = toEigen(get_parameter("goal_actuated").as_double_array());
     const Eigen::VectorXd vlim = toEigen(get_parameter("velocity_limits").as_double_array());
     const Eigen::VectorXd alim = toEigen(get_parameter("acceleration_limits").as_double_array());
+
+    base_start_ = toEigen(get_parameter("base_initial").as_double_array());
+    base_goal_ = toEigen(get_parameter("base_goal").as_double_array());
+    base_bound_margin_ = get_parameter("base_bound_margin").as_double();
+    foot_frame_names_ = get_parameter("foot_frames").as_string_array();
 
     if (q_goal_A_.size() != static_cast<int>(actuated.size())) {
       throw std::runtime_error("goal_actuated size must match actuated_joints size");
@@ -1407,15 +2387,21 @@ public:
           << ") must match actuated_joints size (" << actuated.size() << ")";
       throw std::runtime_error(oss.str());
     }
+    if (base_start_.size() != 6 || base_goal_.size() != 6) {
+      throw std::runtime_error("base_initial and base_goal must be size 6");
+    }
 
     urdf_path_ = urdf_path;
     actuated_joints_ = actuated;
     passive_joints_ = passive;
+    velocity_limits_ = vlim;
+    acceleration_limits_ = alim;
 
     dynamics_ = std::make_unique<CraneDynamicsModel>(urdf_path_, actuated_joints_, passive_joints_);
     time_param_ = std::make_unique<TimeParameterizer>(vlim, alim);
 
     traj_pub_ = create_publisher<trajectory_msgs::msg::JointTrajectory>("~/actuated_reference", 10);
+    whole_body_pub_ = create_publisher<trajectory_msgs::msg::JointTrajectory>("~/whole_body_reference", 10);
     preview_pub_ = create_publisher<trajectory_msgs::msg::JointTrajectory>("~/full_reference_preview", 10);
     cost_pub_ = create_publisher<std_msgs::msg::Float64MultiArray>("~/planner_debug", 10);
 
@@ -1448,6 +2434,102 @@ private:
     return out;
   }
 
+  static bool isLegJointName(const std::string& name)
+  {
+    return name.rfind("FR", 0) == 0 || name.rfind("FL", 0) == 0 ||
+           name.rfind("RR", 0) == 0 || name.rfind("RL", 0) == 0;
+  }
+
+  static void splitWholeBodyVariables(const Eigen::VectorXd& x,
+                                      int n_via,
+                                      int n_actuated,
+                                      Eigen::VectorXd& base_via,
+                                      Eigen::VectorXd& actuated_via)
+  {
+    const int base_dim = 6;
+    const int block = base_dim + n_actuated;
+    if (x.size() != n_via * block + base_dim) {
+      throw std::runtime_error("Whole-body decision vector has unexpected size");
+    }
+
+    base_via.resize((n_via + 1) * base_dim);
+    actuated_via.resize(n_via * n_actuated);
+    for (int k = 0; k < n_via; ++k) {
+      base_via.segment(k * base_dim, base_dim) = x.segment(k * block, base_dim);
+      actuated_via.segment(k * n_actuated, n_actuated) = x.segment(k * block + base_dim, n_actuated);
+    }
+    base_via.segment(n_via * base_dim, base_dim) = x.segment(n_via * block, base_dim);
+  }
+
+  void buildBaseTrajectorySamples(const Eigen::VectorXd& base_via,
+                                  const std::vector<double>& time_grid,
+                                  double total_time,
+                                  std::vector<Eigen::VectorXd>& base_traj) const
+  {
+    base_traj.clear();
+    if (time_grid.empty() || !(total_time > 0.0)) {
+      return;
+    }
+
+    if (base_via.size() != (cfg_.n_via + 1) * 6) {
+      throw std::runtime_error("Base trajectory variables must contain via bases plus terminal base");
+    }
+
+    const Eigen::VectorXd base_goal_opt = base_via.segment(cfg_.n_via * 6, 6);
+    const Eigen::VectorXd base_via_only = base_via.head(cfg_.n_via * 6);
+
+    MultiJointActuatedSpline base_spline;
+    base_spline.build(base_start_, base_goal_opt, base_via_only, cfg_.n_via, cfg_.use_zero_boundary_slopes);
+
+    for (const double t : time_grid) {
+      const double s = std::min(1.0, std::max(0.0, t / total_time));
+      const auto kin = base_spline.eval(s);
+      base_traj.push_back(kin.qA);
+    }
+  }
+
+  TrajectoryRolloutEvaluator::CostNormalization buildCostNormalization(
+    TrajectoryRolloutEvaluator& evaluator,
+    const Eigen::VectorXd& mean_init,
+    const JointStateView& start) const
+  {
+    TrajectoryRolloutEvaluator::CostNormalization norm;
+    norm.enabled = cfg_.normalize_costs;
+    if (!norm.enabled) {
+      return norm;
+    }
+
+    Eigen::VectorXd base_via;
+    Eigen::VectorXd actuated_via;
+    splitWholeBodyVariables(mean_init, cfg_.n_via, dynamics_->nA(), base_via, actuated_via);
+    const CandidateEvaluation baseline = evaluator.evaluate(actuated_via, start, time_param_.get());
+    if (!baseline.feasible || !std::isfinite(baseline.cost)) {
+      RCLCPP_WARN(get_logger(), "Cost normalization baseline infeasible. Disabling normalization.");
+      norm.enabled = false;
+      return norm;
+    }
+
+    const double eps = std::max(1e-12, cfg_.cost_norm_eps);
+    norm.time = std::max(baseline.trajectory.T, eps);
+    norm.smooth = std::max(baseline.smooth_int, eps);
+    norm.passive_vel = std::max(baseline.passive_vel_int, eps);
+    norm.post_track = std::max(baseline.post_terminal_track_int, eps);
+    norm.post_energy = std::max(baseline.post_terminal_energy_int, eps);
+    norm.via_reg = std::max(baseline.via_reg, eps);
+
+    RCLCPP_INFO(
+      get_logger(),
+      "Cost normalization enabled: time=%.3e smooth=%.3e passive_vel=%.3e post_track=%.3e post_energy=%.3e via_reg=%.3e",
+      norm.time,
+      norm.smooth,
+      norm.passive_vel,
+      norm.post_track,
+      norm.post_energy,
+      norm.via_reg);
+
+    return norm;
+  }
+
   void jointStateCallback(const sensor_msgs::msg::JointState::SharedPtr msg)
   {
     latest_joint_state_ = *msg;
@@ -1469,19 +2551,26 @@ private:
       return;
     }
 
+    Eigen::VectorXd q_goal_A_plan = q_goal_A_;
     const int nA = dynamics_->nA();
-    Eigen::VectorXd mean_init = Eigen::VectorXd::Zero(cfg_.n_via * nA);
+    const int base_dim = 6;
+    const int block = base_dim + nA;
+    const int terminal_base_offset = cfg_.n_via * block;
+    Eigen::VectorXd mean_init = Eigen::VectorXd::Zero(cfg_.n_via * block + base_dim);
     for (int k = 0; k < cfg_.n_via; ++k) {
       const double alpha = static_cast<double>(k + 1) / static_cast<double>(cfg_.n_via + 1);
-      Eigen::VectorXd qk = (1.0 - alpha) * start.qA + alpha * q_goal_A_;
-      mean_init.segment(k * nA, nA) = qk;
+      Eigen::VectorXd base_k = (1.0 - alpha) * base_start_ + alpha * base_goal_;
+      Eigen::VectorXd qk = (1.0 - alpha) * start.qA + alpha * q_goal_A_plan;
+      mean_init.segment(k * block, base_dim) = base_k;
+      mean_init.segment(k * block + base_dim, nA) = qk;
     }
+    mean_init.segment(terminal_base_offset, base_dim) = base_goal_;
 
     Eigen::VectorXd q_goal_P_eq = Eigen::VectorXd::Zero(dynamics_->nP());
     if (start.qP.size() == q_goal_P_eq.size()) {
       q_goal_P_eq = start.qP;
     }
-    if (dynamics_->nP() > 0 && !dynamics_->solvePassiveEquilibrium(q_goal_A_, q_goal_P_eq, q_goal_P_eq)) {
+    if (dynamics_->nP() > 0 && !dynamics_->solvePassiveEquilibrium(q_goal_A_plan, q_goal_P_eq, q_goal_P_eq)) {
       RCLCPP_WARN(
         get_logger(),
         "Failed to compute passive equilibrium at q_goal_A. Falling back to current passive state.");
@@ -1490,20 +2579,36 @@ private:
     Eigen::VectorXd lower = Eigen::VectorXd::Zero(mean_init.size());
     Eigen::VectorXd upper = Eigen::VectorXd::Zero(mean_init.size());
     const double margin = std::max(0.0, cfg_.ipopt_via_bound_margin);
+    const double base_margin = std::max(0.0, base_bound_margin_);
     int frozen_via_variables = 0;
     for (int k = 0; k < cfg_.n_via; ++k) {
+      for (int j = 0; j < base_dim; ++j) {
+        const int idx = k * block + j;
+        const double lo = std::min(base_start_[j], base_goal_[j]) - base_margin;
+        const double hi = std::max(base_start_[j], base_goal_[j]) + base_margin;
+        lower[idx] = lo;
+        upper[idx] = hi;
+      }
       for (int j = 0; j < nA; ++j) {
-        const int idx = k * nA + j;
-        if (std::abs(start.qA[j] - q_goal_A_[j]) <= cfg_.freeze_static_joint_tolerance) {
-          lower[idx] = q_goal_A_[j];
-          upper[idx] = q_goal_A_[j];
-          mean_init[idx] = q_goal_A_[j];
+        const int idx = k * block + base_dim + j;
+        if (cfg_.freeze_static_joint_tolerance >= 0.0 &&
+            std::abs(start.qA[j] - q_goal_A_plan[j]) <= cfg_.freeze_static_joint_tolerance) {
+          lower[idx] = q_goal_A_plan[j];
+          upper[idx] = q_goal_A_plan[j];
+          mean_init[idx] = q_goal_A_plan[j];
           ++frozen_via_variables;
         } else {
-          lower[idx] = std::min(start.qA[j], q_goal_A_[j]) - margin;
-          upper[idx] = std::max(start.qA[j], q_goal_A_[j]) + margin;
+          lower[idx] = std::min(start.qA[j], q_goal_A_plan[j]) - margin;
+          upper[idx] = std::max(start.qA[j], q_goal_A_plan[j]) + margin;
         }
       }
+    }
+    for (int j = 0; j < base_dim; ++j) {
+      const int idx = terminal_base_offset + j;
+      const double lo = std::min(base_start_[j], base_goal_[j]) - base_margin;
+      const double hi = std::max(base_start_[j], base_goal_[j]) + base_margin;
+      lower[idx] = lo;
+      upper[idx] = hi;
     }
     if (frozen_via_variables > 0) {
       RCLCPP_INFO(
@@ -1512,36 +2617,207 @@ private:
         frozen_via_variables);
     }
 
-    auto evaluator = std::make_unique<TrajectoryRolloutEvaluator>(
-      cfg_, q_goal_A_, q_goal_P_eq, dynamics_.get());
-
-    IfoptVpStoOptimizer optimizer(cfg_);
-	    const auto plan_start_time = std::chrono::steady_clock::now();
-	    const auto best = optimizer.optimize(
-	      mean_init,
-	      lower,
-	      upper,
-	      [&](const Eigen::VectorXd& x) {
-	        return evaluator->evaluate(x, start, time_param_.get());
-	      },
-	      get_logger());
-	    const auto plan_end_time = std::chrono::steady_clock::now();
-	    const double planning_time_sec =
-	      std::chrono::duration<double>(plan_end_time - plan_start_time).count();
-	    RCLCPP_WARN(
-	      get_logger(),
-	      "VP-STO trajectory planning time: %.3f s",
-	      planning_time_sec);
-	    std::cout << "[vp_sto_global_planner_full_node] VP-STO trajectory planning time="
-	              << std::fixed << std::setprecision(3) << planning_time_sec
-	              << " s" << std::endl;
-	
-	    if (!best.feasible) {
-	      RCLCPP_WARN(get_logger(), "Planner did not find a feasible trajectory.");
-	      return;
+    std::vector<pinocchio::FrameIndex> foot_frames;
+    foot_frames.reserve(foot_frame_names_.size());
+    for (const auto& name : foot_frame_names_) {
+      foot_frames.push_back(dynamics_->frameId(name));
+    }
+    const auto foot_positions = dynamics_->footPositions(base_start_, start.qA, start.qP, foot_frames);
+    Eigen::VectorXd foot_pos_ref(static_cast<int>(foot_positions.size()) * 3);
+    for (size_t i = 0; i < foot_positions.size(); ++i) {
+      foot_pos_ref.segment<3>(static_cast<int>(i) * 3) = foot_positions[i];
     }
 
+    double max_initial_foot_error = 0.0;
+    int projected_via_points = 0;
+    int failed_projection_points = 0;
+    for (int k = 0; k < cfg_.n_via; ++k) {
+      Eigen::VectorXd base_k = mean_init.segment(k * block, base_dim);
+      Eigen::VectorXd qA_k = mean_init.segment(k * block + base_dim, nA);
+      const Eigen::VectorXd lower_k = lower.segment(k * block, block);
+      const Eigen::VectorXd upper_k = upper.segment(k * block, block);
+
+      const bool projected = dynamics_->projectBaseAndActuatedToFootContact(
+        base_k,
+        qA_k,
+        start.qP,
+        foot_frames,
+        foot_pos_ref,
+        lower_k,
+        upper_k,
+        15,
+        std::max(1e-5, cfg_.foot_contact_tolerance),
+        1e-4);
+
+      if (projected) {
+        ++projected_via_points;
+        mean_init.segment(k * block, base_dim) = base_k;
+        mean_init.segment(k * block + base_dim, nA) = qA_k;
+      } else {
+        ++failed_projection_points;
+      }
+
+      const Eigen::VectorXd err =
+        dynamics_->footPositionError(base_k, qA_k, start.qP, foot_frames, foot_pos_ref);
+      if (err.size() > 0) {
+        max_initial_foot_error = std::max(max_initial_foot_error, err.cwiseAbs().maxCoeff());
+      }
+    }
+    {
+      Eigen::VectorXd base_terminal = mean_init.segment(terminal_base_offset, base_dim);
+      Eigen::VectorXd qA_terminal = q_goal_A_plan;
+      Eigen::VectorXd lower_terminal(block);
+      Eigen::VectorXd upper_terminal(block);
+      lower_terminal.head(base_dim) = lower.segment(terminal_base_offset, base_dim);
+      upper_terminal.head(base_dim) = upper.segment(terminal_base_offset, base_dim);
+      lower_terminal.tail(nA) = q_goal_A_plan;
+      upper_terminal.tail(nA) = q_goal_A_plan;
+
+      const bool projected = dynamics_->projectBaseAndActuatedToFootContact(
+        base_terminal,
+        qA_terminal,
+        start.qP,
+        foot_frames,
+        foot_pos_ref,
+        lower_terminal,
+        upper_terminal,
+        15,
+        std::max(1e-5, cfg_.foot_contact_tolerance),
+        1e-4);
+
+      if (projected) {
+        ++projected_via_points;
+        mean_init.segment(terminal_base_offset, base_dim) = base_terminal;
+      } else {
+        ++failed_projection_points;
+      }
+
+      const Eigen::VectorXd err =
+        dynamics_->footPositionError(base_terminal, q_goal_A_plan, start.qP, foot_frames, foot_pos_ref);
+      if (err.size() > 0) {
+        max_initial_foot_error = std::max(max_initial_foot_error, err.cwiseAbs().maxCoeff());
+      }
+    }
+    RCLCPP_INFO(
+      get_logger(),
+      "Initial foot-contact projection: projected=%d/%d, failed=%d, max_abs_error=%.3e, tolerance=%.3e",
+      projected_via_points,
+      cfg_.n_via + 1,
+      failed_projection_points,
+      max_initial_foot_error,
+      cfg_.foot_contact_tolerance);
+
+    auto evaluator = std::make_unique<TrajectoryRolloutEvaluator>(
+      cfg_, q_goal_A_plan, q_goal_P_eq, dynamics_.get());
+
+    const auto normalization = buildCostNormalization(*evaluator, mean_init, start);
+    evaluator->setNormalization(normalization);
+
+    std::shared_ptr<CasadiActuatedSurrogateGradient> casadi_gradient;
+    try {
+      casadi_gradient = std::make_shared<CasadiActuatedSurrogateGradient>(
+        cfg_,
+        start.qA,
+        q_goal_A_plan,
+        velocity_limits_,
+        acceleration_limits_,
+        normalization);
+      RCLCPP_INFO(
+        get_logger(),
+        "CasADi surrogate objective gradient enabled for qA via variables.");
+    } catch (const std::exception& e) {
+      RCLCPP_WARN(
+        get_logger(),
+        "CasADi surrogate objective gradient unavailable: %s. Falling back to finite difference.",
+        e.what());
+    }
+
+    auto foot_constraint = std::make_shared<FootContactConstraint>(
+      dynamics_.get(),
+      foot_frames,
+      start.qP,
+      q_goal_A_plan,
+      foot_pos_ref,
+      cfg_.n_via,
+      nA,
+      cfg_.parallel_workers,
+      cfg_.ipopt_fd_step,
+      cfg_.foot_contact_tolerance);
+
+    IfoptVpStoOptimizer optimizer(cfg_);
+    const auto plan_start_time = std::chrono::steady_clock::now();
+    const auto result = optimizer.optimize(
+      mean_init,
+      lower,
+      upper,
+      [&](const Eigen::VectorXd& x) {
+        return evaluator->evaluate(x, start, time_param_.get());
+      },
+      foot_constraint,
+      base_start_,
+      cfg_.n_via,
+      nA,
+      cfg_.w_base_regularization,
+      casadi_gradient,
+      get_logger());
+    const auto plan_end_time = std::chrono::steady_clock::now();
+    const double planning_time_sec =
+      std::chrono::duration<double>(plan_end_time - plan_start_time).count();
+    RCLCPP_WARN(
+      get_logger(),
+      "VP-STO trajectory planning time: %.3f s",
+      planning_time_sec);
+    std::cout << "[vp_sto_global_planner_full_node] VP-STO trajectory planning time="
+              << std::fixed << std::setprecision(3) << planning_time_sec
+              << " s" << std::endl;
+
+    const auto& best = result.eval;
+    if (!best.feasible) {
+      RCLCPP_WARN(get_logger(), "Planner did not find a feasible trajectory.");
+      return;
+    }
+
+    Eigen::VectorXd base_via;
+    Eigen::VectorXd actuated_via;
+    splitWholeBodyVariables(result.solution, cfg_.n_via, nA, base_via, actuated_via);
+    double max_solution_foot_error = 0.0;
+    for (int k = 0; k < cfg_.n_via; ++k) {
+      const Eigen::VectorXd base_k = base_via.segment(k * base_dim, base_dim);
+      const Eigen::VectorXd qA_k = actuated_via.segment(k * nA, nA);
+      const Eigen::VectorXd err =
+        dynamics_->footPositionError(base_k, qA_k, start.qP, foot_frames, foot_pos_ref);
+      if (err.size() > 0) {
+        max_solution_foot_error = std::max(max_solution_foot_error, err.cwiseAbs().maxCoeff());
+      }
+    }
+    const Eigen::VectorXd optimized_base_goal = base_via.segment(cfg_.n_via * base_dim, base_dim);
+    {
+      const Eigen::VectorXd err =
+        dynamics_->footPositionError(optimized_base_goal, q_goal_A_plan, start.qP, foot_frames, foot_pos_ref);
+      if (err.size() > 0) {
+        max_solution_foot_error = std::max(max_solution_foot_error, err.cwiseAbs().maxCoeff());
+      }
+    }
+    RCLCPP_INFO(
+      get_logger(),
+      "Optimized foot-contact max_abs_error=%.3e, tolerance=%.3e",
+      max_solution_foot_error,
+      cfg_.foot_contact_tolerance);
+    RCLCPP_INFO(
+      get_logger(),
+      "Optimized base goal: x=%.4f y=%.4f z=%.4f roll=%.4f pitch=%.4f yaw=%.4f",
+      optimized_base_goal[0],
+      optimized_base_goal[1],
+      optimized_base_goal[2],
+      optimized_base_goal[3],
+      optimized_base_goal[4],
+      optimized_base_goal[5]);
+
+    std::vector<Eigen::VectorXd> base_traj;
+    buildBaseTrajectorySamples(base_via, best.trajectory.t, best.trajectory.T, base_traj);
+
     publishActuatedTrajectory(best.trajectory);
+    publishWholeBodyTrajectory(base_traj, best.trajectory);
     publishPreviewTrajectory(best.trajectory);
     publishDebug(best);
 
@@ -1582,6 +2858,47 @@ private:
     }
 
     traj_pub_->publish(msg);
+  }
+
+  void publishWholeBodyTrajectory(const std::vector<Eigen::VectorXd>& base_traj,
+                                  const FullTrajectorySample& traj)
+  {
+    if (base_traj.size() != traj.t.size()) {
+      RCLCPP_WARN(get_logger(), "Base trajectory size mismatch. Skipping whole-body publish.");
+      return;
+    }
+
+    trajectory_msgs::msg::JointTrajectory msg;
+    msg.header.stamp = now();
+    const std::vector<std::string> base_joint_names{
+      "base_x", "base_y", "base_z", "base_roll", "base_pitch", "base_yaw"};
+    msg.joint_names = base_joint_names;
+    const auto& anames = dynamics_->actuatedJointNames();
+    msg.joint_names.insert(msg.joint_names.end(), anames.begin(), anames.end());
+
+    for (size_t k = 0; k < traj.t.size(); ++k) {
+      trajectory_msgs::msg::JointTrajectoryPoint pt;
+      pt.time_from_start = rclcpp::Duration::from_seconds(traj.t[k]);
+
+      const int n_all = static_cast<int>(base_joint_names.size()) + traj.qA[k].size();
+      pt.positions.resize(n_all);
+      pt.velocities.resize(n_all, 0.0);
+      pt.accelerations.resize(n_all, 0.0);
+
+      int off = 0;
+      for (int i = 0; i < base_traj[k].size(); ++i, ++off) {
+        pt.positions[off] = base_traj[k][i];
+      }
+      for (int i = 0; i < traj.qA[k].size(); ++i, ++off) {
+        pt.positions[off] = traj.qA[k][i];
+        pt.velocities[off] = traj.qdotA[k][i];
+        pt.accelerations[off] = traj.qddA[k][i];
+      }
+
+      msg.points.push_back(std::move(pt));
+    }
+
+    whole_body_pub_->publish(msg);
   }
 
   void publishPreviewTrajectory(const FullTrajectorySample& traj)
@@ -1643,15 +2960,22 @@ private:
 
   sensor_msgs::msg::JointState latest_joint_state_;
   Eigen::VectorXd q_goal_A_;
+  Eigen::VectorXd velocity_limits_;
+  Eigen::VectorXd acceleration_limits_;
+  Eigen::VectorXd base_start_;
+  Eigen::VectorXd base_goal_;
+  double base_bound_margin_{0.0};
   std::string urdf_path_;
   std::vector<std::string> actuated_joints_;
   std::vector<std::string> passive_joints_;
+  std::vector<std::string> foot_frame_names_;
 
   std::unique_ptr<CraneDynamicsModel> dynamics_;
   std::unique_ptr<TimeParameterizer> time_param_;
 
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_sub_;
   rclcpp::Publisher<trajectory_msgs::msg::JointTrajectory>::SharedPtr traj_pub_;
+  rclcpp::Publisher<trajectory_msgs::msg::JointTrajectory>::SharedPtr whole_body_pub_;
   rclcpp::Publisher<trajectory_msgs::msg::JointTrajectory>::SharedPtr preview_pub_;
   rclcpp::Publisher<std_msgs::msg::Float64MultiArray>::SharedPtr cost_pub_;
   rclcpp::TimerBase::SharedPtr timer_;

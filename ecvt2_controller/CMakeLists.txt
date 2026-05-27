@@ -19,6 +19,7 @@ find_package(osqp REQUIRED)
 find_package(OsqpEigen REQUIRED)
 find_package(pinocchio REQUIRED)
 find_package(ifopt REQUIRED)
+find_package(casadi REQUIRED)
 
 # ===================== kdl_utils 라이브러리 =====================
 add_library(kdl_utils src/kdl_utils.cpp)
@@ -204,6 +205,7 @@ target_link_libraries(vp_sto_global_planner_full_node
   pinocchio::pinocchio
   ifopt::ifopt_core
   ifopt::ifopt_ipopt
+  casadi::casadi
 )
 install(TARGETS
   vp_sto_global_planner_full_node
@@ -223,6 +225,7 @@ ament_target_dependencies(vp_sto_paper_global_planner_node
 target_link_libraries(vp_sto_paper_global_planner_node
   Eigen3::Eigen
   pinocchio::pinocchio
+  casadi::casadi
 )
 install(TARGETS
   vp_sto_paper_global_planner_node

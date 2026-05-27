@@ -1,0 +1,865 @@
+[0.000000] (-) TimerEvent: {}
+[0.000177] (-) JobUnselected: {'identifier': 'forestry_robot_mjcf'}
+[0.000372] (-) JobUnselected: {'identifier': 'ifopt'}
+[0.000481] (ecvt2_sim) JobQueued: {'identifier': 'ecvt2_sim', 'dependencies': OrderedDict()}
+[0.000590] (ecvt2_controller) JobQueued: {'identifier': 'ecvt2_controller', 'dependencies': OrderedDict([('ifopt', '/home/jin/harco/ecvt2_ws/install/ifopt')])}
+[0.000632] (ecvt2_sim) JobStarted: {'identifier': 'ecvt2_sim'}
+[0.005054] (ecvt2_controller) JobStarted: {'identifier': 'ecvt2_controller'}
+[0.099866] (-) TimerEvent: {}
+[0.128175] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'cmake'}
+[0.128814] (ecvt2_controller) Command: {'cmd': ['/usr/bin/cmake', '/home/jin/harco/ecvt2_ws/ecvt2_controller', '-DCMAKE_INSTALL_PREFIX=/home/jin/harco/ecvt2_ws/install/ecvt2_controller'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/jin/harco/ecvt2_ws'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'x11'), ('DEBUG', 'release'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CHROME_DESKTOP', 'code.desktop'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-d949732c-1.11-main.sock'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '2457'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('APPLICATION_INSIGHTS_NO_STATSBEAT', 'true'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('USERNAME', 'jin'), ('TERM', 'dumb'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0YND85R:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e62b8-f49c-7610-b91f-b066613692b7'), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'), ('VSCODE_CLI', '1'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('VSCODE_CODE_CACHE_PATH', '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('VSCODE_PID', '3752'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble')]), 'shell': False}
+[0.135952] (ecvt2_controller) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.199957] (-) TimerEvent: {}
+[0.215710] (ecvt2_controller) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.219248] (ecvt2_controller) StdoutLine: {'line': b'-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.234777] (ecvt2_controller) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.236013] (ecvt2_controller) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.239018] (ecvt2_controller) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.243940] (ecvt2_controller) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.250440] (ecvt2_controller) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.267068] (ecvt2_controller) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.267707] (ecvt2_controller) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.300046] (-) TimerEvent: {}
+[0.327903] (ecvt2_controller) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.353766] (ecvt2_controller) StdoutLine: {'line': b'-- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)\n'}
+[0.360095] (ecvt2_controller) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.369141] (ecvt2_controller) StdoutLine: {'line': b'-- Found visualization_msgs: 4.9.0 (/opt/ros/humble/share/visualization_msgs/cmake)\n'}
+[0.379416] (ecvt2_controller) StdoutLine: {'line': b'-- Found trajectory_msgs: 4.9.0 (/opt/ros/humble/share/trajectory_msgs/cmake)\n'}
+[0.389486] (ecvt2_controller) StdoutLine: {'line': b'-- pinocchio_default FOUND. pinocchio_default at /opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_default.so\n'}
+[0.389552] (ecvt2_controller) StdoutLine: {'line': b'-- pinocchio_parsers FOUND. pinocchio_parsers at /opt/ros/humble/lib/x86_64-linux-gnu/libpinocchio_parsers.so\n'}
+[0.390268] (ecvt2_controller) StdoutLine: {'line': b'-- pinocchio_casadi not FOUND.\n'}
+[0.390807] (ecvt2_controller) StdoutLine: {'line': b'-- boost_filesystem FOUND. boost_filesystem at /usr/lib/x86_64-linux-gnu/libboost_filesystem.so\n'}
+[0.395620] (ecvt2_controller) StdoutLine: {'line': b'-- Found Boost: /usr/include (found version "1.74.0") found components: filesystem serialization \n'}
+[0.396006] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at /opt/openrobots/lib/cmake/hpp-fcl/hpp-fclConfig.cmake:4 (message):\n'}
+[0.396113] (ecvt2_controller) StderrLine: {'line': b"  Please update your CMake from 'hpp-fcl' to 'coal', or define\n"}
+[0.396181] (ecvt2_controller) StderrLine: {'line': b'  COAL_DISABLE_HPP_FCL_WARNINGS\n'}
+[0.396242] (ecvt2_controller) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[0.396302] (ecvt2_controller) StderrLine: {'line': b'  /usr/share/cmake-3.22/Modules/CMakeFindDependencyMacro.cmake:47 (find_package)\n'}
+[0.396362] (ecvt2_controller) StderrLine: {'line': b'  /opt/openrobots/lib/cmake/pinocchio/pinocchioConfig.cmake:161 (find_dependency)\n'}
+[0.396422] (ecvt2_controller) StderrLine: {'line': b'  CMakeLists.txt:20 (find_package)\n'}
+[0.396480] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.396539] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.396845] (ecvt2_controller) StdoutLine: {'line': b'-- coal not FOUND.\n'}
+[0.400116] (-) TimerEvent: {}
+[0.400516] (ecvt2_controller) StdoutLine: {'line': b'-- Found Boost: /usr/include (found version "1.74.0") found components: serialization filesystem \n'}
+[0.500217] (-) TimerEvent: {}
+[0.584208] (ecvt2_controller) StdoutLine: {'line': b'-- Default C++ standard: 201703\n'}
+[0.584360] (ecvt2_sim) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--uninstall', '--editable', '--build-directory', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/build'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_CWD': '/home/jin/harco/ecvt2_ws', 'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess', 'CODEX_CI': '1', 'LANGUAGE': 'en', 'USER': 'jin', 'LC_TIME': 'ko_KR.UTF-8', 'CODEX_INTERNAL_ORIGINATOR_OVERRIDE': 'codex_vscode', 'VSCODE_NLS_CONFIG': '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}', 'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true', 'XDG_SESSION_TYPE': 'x11', 'DEBUG': 'release', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco', 'HOME': '/home/jin', 'CHROME_DESKTOP': 'code.desktop', 'CONDA_SHLVL': '0', 'OLDPWD': '/home/jin', 'DESKTOP_SESSION': 'ubuntu', 'VSCODE_IPC_HOOK': '/run/user/1000/vscode-d949732c-1.11-main.sock', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'LC_MONETARY': 'ko_KR.UTF-8', 'MANAGERPID': '2041', 'LC_CTYPE': 'C.UTF-8', 'SYSTEMD_EXEC_PID': '2457', 'NO_COLOR': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': '', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f', '_CONDA_ROOT': '/home/jin/miniconda3', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3351', 'VSCODE_CRASH_REPORTER_PROCESS_TYPE': 'extensionHost', 'APPLICATION_INSIGHTS_NO_STATSBEAT': 'true', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'jin', 'JOURNAL_STREAM': '8:28264', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'RUST_LOG': 'warn', 'USERNAME': 'jin', 'TERM': 'dumb', 'GAZEBO_MODEL_PATH': ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0YND85R:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64', 'SESSION_MANAGER': 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282', 'INVOCATION_ID': '95b20f578bae49f893435a00dc03c7e0', 'PAPERSIZE': 'a4', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'ko_KR.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1', 'CODEX_SANDBOX_NETWORK_DISABLED': '1', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'C.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'IBUS_DISABLE_SNOOPER': '1', 'LC_TELEPHONE': 'ko_KR.UTF-8', 'XMODIFIERS': '@im=ibus', 'GH_PAGER': 'cat', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'CONDA_PYTHON_EXE': '/home/jin/miniconda3/bin/python', 'SHELL': '/bin/bash', 'LC_NAME': 'ko_KR.UTF-8', 'TERMINATOR_UUID': 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd', 'QT_ACCESSIBILITY': '1', 'ELECTRON_RUN_AS_NODE': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CODEX_THREAD_ID': '019e62b8-f49c-7610-b91f-b066613692b7', 'LC_MEASUREMENT': 'ko_KR.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', '_CONDA_EXE': '/home/jin/miniconda3/bin/conda', 'LC_IDENTIFICATION': 'ko_KR.UTF-8', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim', 'VSCODE_CLI': '1', 'TURTLEBOT3_MODEL': 'burger', 'LC_ALL': 'C.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'CONDA_EXE': '/home/jin/miniconda3/bin/conda', 'VSCODE_CODE_CACHE_PATH': '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'ko_KR.UTF-8', 'LC_PAPER': 'ko_KR.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'ELECTRON_NO_ATTACH_CONSOLE': '1', 'VSCODE_PID': '3752'}, 'shell': False}
+[0.585359] (ecvt2_controller) StdoutLine: {'line': b'-- C++ standard sufficient: Minimal required 11, currently defined: 17\n'}
+[0.585410] (ecvt2_controller) StdoutLine: {'line': b'-- CMAKE_CXX_STANDARD was not set: automatically set to currently defined standard 17\n'}
+[0.585568] (ecvt2_controller) StdoutLine: {'line': b'-- C++ standard sufficient: Minimal required 11, currently defined: 17\n'}
+[0.600275] (-) TimerEvent: {}
+[0.605228] (ecvt2_controller) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[0.661434] (ecvt2_controller) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[0.661814] (ecvt2_controller) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/jin/harco/ecvt2_ws/ecvt2_controller/include>\n'}
+[0.661888] (ecvt2_controller) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[0.662143] (ecvt2_controller) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[0.662809] (ecvt2_controller) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[0.662840] (ecvt2_controller) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[0.662865] (ecvt2_controller) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[0.663416] (ecvt2_controller) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.674378] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:49 (add_executable):\n'}
+[0.674454] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target base_opt_controller\n'}
+[0.674485] (ecvt2_controller) StderrLine: {'line': b'  because files in some directories may conflict with libraries in implicit\n'}
+[0.674515] (ecvt2_controller) StderrLine: {'line': b'  directories:\n'}
+[0.674539] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.674564] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.674589] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.674612] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.674636] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.674659] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.674684] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.674706] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.674731] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.674755] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.674778] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.674802] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.674826] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.674851] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.674873] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.674896] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.674919] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.674941] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:49 (add_executable):\n'}
+[0.674963] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target base_opt_controller\n'}
+[0.674987] (ecvt2_controller) StderrLine: {'line': b'  because there is a cycle in the constraint graph:\n'}
+[0.675009] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.675037] (ecvt2_controller) StderrLine: {'line': b'    dir 0 is [/usr/local/lib]\n'}
+[0.675061] (ecvt2_controller) StderrLine: {'line': b'    dir 1 is [/opt/ros/humble/lib]\n'}
+[0.675083] (ecvt2_controller) StderrLine: {'line': b'    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]\n'}
+[0.675105] (ecvt2_controller) StderrLine: {'line': b'      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]\n'}
+[0.675127] (ecvt2_controller) StderrLine: {'line': b'    dir 3 is [/opt/openrobots/lib]\n'}
+[0.675149] (ecvt2_controller) StderrLine: {'line': b'      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]\n'}
+[0.675172] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.675195] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.675218] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.675240] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.677000] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:60 (add_executable):\n'}
+[0.677038] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target wbc_hqp because files\n'}
+[0.677068] (ecvt2_controller) StderrLine: {'line': b'  in some directories may conflict with libraries in implicit directories:\n'}
+[0.677097] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.677120] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.677144] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.677167] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.677189] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.677212] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.677235] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.677257] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.677279] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.677301] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.677325] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.677348] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.677370] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.677392] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.677414] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.677436] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.677458] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.677480] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:60 (add_executable):\n'}
+[0.677502] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target wbc_hqp because there\n'}
+[0.677525] (ecvt2_controller) StderrLine: {'line': b'  is a cycle in the constraint graph:\n'}
+[0.677546] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.677568] (ecvt2_controller) StderrLine: {'line': b'    dir 0 is [/usr/local/lib]\n'}
+[0.677589] (ecvt2_controller) StderrLine: {'line': b'    dir 1 is [/opt/ros/humble/lib]\n'}
+[0.677612] (ecvt2_controller) StderrLine: {'line': b'    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]\n'}
+[0.677633] (ecvt2_controller) StderrLine: {'line': b'      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]\n'}
+[0.677656] (ecvt2_controller) StderrLine: {'line': b'    dir 3 is [/opt/openrobots/lib]\n'}
+[0.677678] (ecvt2_controller) StderrLine: {'line': b'      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]\n'}
+[0.677701] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.677722] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.677744] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.677767] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.679684] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:71 (add_executable):\n'}
+[0.679721] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target wbc_hqp_v2 because\n'}
+[0.679746] (ecvt2_controller) StderrLine: {'line': b'  files in some directories may conflict with libraries in implicit\n'}
+[0.679769] (ecvt2_controller) StderrLine: {'line': b'  directories:\n'}
+[0.679792] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.679815] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.679841] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.679865] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.679888] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.679910] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.679934] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.679956] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.679979] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.680001] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.680024] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.680057] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.680080] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.680103] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.680126] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.680148] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.680170] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.680192] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:71 (add_executable):\n'}
+[0.680214] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target wbc_hqp_v2 because\n'}
+[0.680239] (ecvt2_controller) StderrLine: {'line': b'  there is a cycle in the constraint graph:\n'}
+[0.680261] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.680283] (ecvt2_controller) StderrLine: {'line': b'    dir 0 is [/usr/local/lib]\n'}
+[0.680305] (ecvt2_controller) StderrLine: {'line': b'    dir 1 is [/opt/ros/humble/lib]\n'}
+[0.680327] (ecvt2_controller) StderrLine: {'line': b'    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]\n'}
+[0.680349] (ecvt2_controller) StderrLine: {'line': b'      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]\n'}
+[0.680372] (ecvt2_controller) StderrLine: {'line': b'    dir 3 is [/opt/openrobots/lib]\n'}
+[0.680400] (ecvt2_controller) StderrLine: {'line': b'      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]\n'}
+[0.680424] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.680446] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.680469] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.680493] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.682371] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:83 (add_executable):\n'}
+[0.682407] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target wbc_hqp_v3 because\n'}
+[0.682435] (ecvt2_controller) StderrLine: {'line': b'  files in some directories may conflict with libraries in implicit\n'}
+[0.682460] (ecvt2_controller) StderrLine: {'line': b'  directories:\n'}
+[0.682485] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.682509] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.682532] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.682556] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.682579] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.682601] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.682624] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.682646] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.682668] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.682690] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.682712] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.682734] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.682757] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.682779] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.682802] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.682825] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.682847] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.682869] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:83 (add_executable):\n'}
+[0.682893] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target wbc_hqp_v3 because\n'}
+[0.682916] (ecvt2_controller) StderrLine: {'line': b'  there is a cycle in the constraint graph:\n'}
+[0.682941] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.682964] (ecvt2_controller) StderrLine: {'line': b'    dir 0 is [/usr/local/lib]\n'}
+[0.682987] (ecvt2_controller) StderrLine: {'line': b'    dir 1 is [/opt/ros/humble/lib]\n'}
+[0.683009] (ecvt2_controller) StderrLine: {'line': b'    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]\n'}
+[0.683037] (ecvt2_controller) StderrLine: {'line': b'      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]\n'}
+[0.683064] (ecvt2_controller) StderrLine: {'line': b'    dir 3 is [/opt/openrobots/lib]\n'}
+[0.683087] (ecvt2_controller) StderrLine: {'line': b'      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]\n'}
+[0.683109] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.683131] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.683154] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.683176] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.685067] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:95 (add_executable):\n'}
+[0.685141] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target\n'}
+[0.685170] (ecvt2_controller) StderrLine: {'line': b'  base_arm_task_controller because files in some directories may conflict\n'}
+[0.685207] (ecvt2_controller) StderrLine: {'line': b'  with libraries in implicit directories:\n'}
+[0.685242] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.685279] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.685322] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.685358] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.685395] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.685430] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.685454] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.685478] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.685501] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.685523] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.685548] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.685572] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.685599] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.685622] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.685644] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.685667] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.685692] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.685727] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:95 (add_executable):\n'}
+[0.685764] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target\n'}
+[0.685803] (ecvt2_controller) StderrLine: {'line': b'  base_arm_task_controller because there is a cycle in the constraint graph:\n'}
+[0.685840] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.685876] (ecvt2_controller) StderrLine: {'line': b'    dir 0 is [/usr/local/lib]\n'}
+[0.685925] (ecvt2_controller) StderrLine: {'line': b'    dir 1 is [/opt/ros/humble/lib]\n'}
+[0.685949] (ecvt2_controller) StderrLine: {'line': b'    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]\n'}
+[0.685972] (ecvt2_controller) StderrLine: {'line': b'      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]\n'}
+[0.685996] (ecvt2_controller) StderrLine: {'line': b'    dir 3 is [/opt/openrobots/lib]\n'}
+[0.686018] (ecvt2_controller) StderrLine: {'line': b'      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]\n'}
+[0.686049] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.686077] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.686113] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.686150] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.687815] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:106 (add_executable):\n'}
+[0.687858] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target\n'}
+[0.687883] (ecvt2_controller) StderrLine: {'line': b'  base_arm_task_controller_v2 because files in some directories may conflict\n'}
+[0.687908] (ecvt2_controller) StderrLine: {'line': b'  with libraries in implicit directories:\n'}
+[0.687932] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.687955] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.687978] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.688001] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.688024] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.688054] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.688077] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.688101] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.688124] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.688148] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.688172] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.688194] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.688216] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.688238] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.688260] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.688283] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.688304] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.688327] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:106 (add_executable):\n'}
+[0.688349] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target\n'}
+[0.688371] (ecvt2_controller) StderrLine: {'line': b'  base_arm_task_controller_v2 because there is a cycle in the constraint\n'}
+[0.688393] (ecvt2_controller) StderrLine: {'line': b'  graph:\n'}
+[0.688415] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.688439] (ecvt2_controller) StderrLine: {'line': b'    dir 0 is [/usr/local/lib]\n'}
+[0.688463] (ecvt2_controller) StderrLine: {'line': b'    dir 1 is [/opt/ros/humble/lib]\n'}
+[0.688485] (ecvt2_controller) StderrLine: {'line': b'    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]\n'}
+[0.688507] (ecvt2_controller) StderrLine: {'line': b'      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]\n'}
+[0.688531] (ecvt2_controller) StderrLine: {'line': b'    dir 3 is [/opt/openrobots/lib]\n'}
+[0.688553] (ecvt2_controller) StderrLine: {'line': b'      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]\n'}
+[0.688575] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.688597] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.688621] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.688643] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.690714] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:117 (add_executable):\n'}
+[0.690748] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target\n'}
+[0.690771] (ecvt2_controller) StderrLine: {'line': b'  base_arm_task_controller_full because files in some directories may\n'}
+[0.690796] (ecvt2_controller) StderrLine: {'line': b'  conflict with libraries in implicit directories:\n'}
+[0.690820] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.690844] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.690867] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.690892] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.690915] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.690937] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.690959] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.690981] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.691004] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.691025] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.691055] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.691078] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.691101] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.691123] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.691146] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.691168] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.691190] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.691212] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:117 (add_executable):\n'}
+[0.691235] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target\n'}
+[0.691257] (ecvt2_controller) StderrLine: {'line': b'  base_arm_task_controller_full because there is a cycle in the constraint\n'}
+[0.691280] (ecvt2_controller) StderrLine: {'line': b'  graph:\n'}
+[0.691302] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.691324] (ecvt2_controller) StderrLine: {'line': b'    dir 0 is [/usr/local/lib]\n'}
+[0.691347] (ecvt2_controller) StderrLine: {'line': b'    dir 1 is [/opt/ros/humble/lib]\n'}
+[0.691369] (ecvt2_controller) StderrLine: {'line': b'    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]\n'}
+[0.691392] (ecvt2_controller) StderrLine: {'line': b'      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]\n'}
+[0.691414] (ecvt2_controller) StderrLine: {'line': b'    dir 3 is [/opt/openrobots/lib]\n'}
+[0.691436] (ecvt2_controller) StderrLine: {'line': b'      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]\n'}
+[0.691458] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.691481] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.691504] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.691526] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.696138] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:141 (add_executable):\n'}
+[0.696173] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target pin_test because\n'}
+[0.696197] (ecvt2_controller) StderrLine: {'line': b'  files in some directories may conflict with libraries in implicit\n'}
+[0.696221] (ecvt2_controller) StderrLine: {'line': b'  directories:\n'}
+[0.696243] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.696266] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.696288] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.696311] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.696333] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.696356] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.696378] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.696399] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.696421] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.696443] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.696465] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.696488] (ecvt2_controller) StderrLine: {'line': b'    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:\n'}
+[0.696510] (ecvt2_controller) StderrLine: {'line': b'      /opt/ros/humble/lib/x86_64-linux-gnu\n'}
+[0.696532] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.696554] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.696575] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.696597] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.696618] (ecvt2_controller) StderrLine: {'line': b'CMake Warning at CMakeLists.txt:141 (add_executable):\n'}
+[0.696641] (ecvt2_controller) StderrLine: {'line': b'  Cannot generate a safe runtime search path for target pin_test because\n'}
+[0.696663] (ecvt2_controller) StderrLine: {'line': b'  there is a cycle in the constraint graph:\n'}
+[0.696686] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.696708] (ecvt2_controller) StderrLine: {'line': b'    dir 0 is [/opt/ros/humble/lib]\n'}
+[0.696729] (ecvt2_controller) StderrLine: {'line': b'    dir 1 is [/opt/openrobots/lib]\n'}
+[0.696751] (ecvt2_controller) StderrLine: {'line': b'      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]\n'}
+[0.696773] (ecvt2_controller) StderrLine: {'line': b'    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]\n'}
+[0.696797] (ecvt2_controller) StderrLine: {'line': b'      dir 1 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]\n'}
+[0.696819] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.696840] (ecvt2_controller) StderrLine: {'line': b'  Some of these libraries may not be found correctly.\n'}
+[0.696862] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.696884] (ecvt2_controller) StderrLine: {'line': b'\n'}
+[0.700335] (-) TimerEvent: {}
+[0.706379] (ecvt2_controller) StdoutLine: {'line': b'-- Generating done\n'}
+[0.721094] (ecvt2_controller) StdoutLine: {'line': b'-- Build files have been written to: /home/jin/harco/ecvt2_ws/build/ecvt2_controller\n'}
+[0.726841] (ecvt2_controller) CommandEnded: {'returncode': 0}
+[0.727268] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'build'}
+[0.727921] (ecvt2_controller) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', '--', '-j20', '-l20'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/jin/harco/ecvt2_ws'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'x11'), ('DEBUG', 'release'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CHROME_DESKTOP', 'code.desktop'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-d949732c-1.11-main.sock'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '2457'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('APPLICATION_INSIGHTS_NO_STATSBEAT', 'true'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('USERNAME', 'jin'), ('TERM', 'dumb'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0YND85R:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e62b8-f49c-7610-b91f-b066613692b7'), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'), ('VSCODE_CLI', '1'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('VSCODE_CODE_CACHE_PATH', '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('VSCODE_PID', '3752'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble')]), 'shell': False}
+[0.752525] (ecvt2_sim) StdoutLine: {'line': b'running develop\n'}
+[0.759575] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target wbc_hqp_lib\n'}
+[0.760522] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target teleop_goal_publisher\n'}
+[0.764821] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target com_trajectory_publisher\n'}
+[0.766227] (ecvt2_controller) StdoutLine: {'line': b'[  6%] Built target wbc_hqp_lib\n'}
+[0.766672] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target kdl_utils\n'}
+[0.767531] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target vp_sto_global_planner_node\n'}
+[0.767616] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target live_upper_dynamics_node\n'}
+[0.767659] (ecvt2_controller) StdoutLine: {'line': b'[ 12%] Built target teleop_goal_publisher\n'}
+[0.771820] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target vp_sto_paper_global_planner_node\n'}
+[0.771988] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target vp_sto_global_planner_full_node\n'}
+[0.775676] (ecvt2_controller) StdoutLine: {'line': b'[ 18%] Built target com_trajectory_publisher\n'}
+[0.777769] (ecvt2_controller) StdoutLine: {'line': b'[ 25%] Built target kdl_utils\n'}
+[0.782774] (ecvt2_controller) StdoutLine: {'line': b'[ 31%] Built target vp_sto_global_planner_node\n'}
+[0.784411] (ecvt2_controller) StdoutLine: {'line': b'[ 37%] Built target vp_sto_paper_global_planner_node\n'}
+[0.784783] (ecvt2_controller) StdoutLine: {'line': b'[ 43%] Built target live_upper_dynamics_node\n'}
+[0.786186] (ecvt2_controller) StdoutLine: {'line': b'[ 46%] Building CXX object CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.o\n'}
+[0.787251] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target wbc_hqp_v2\n'}
+[0.787761] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target base_opt_controller\n'}
+[0.788164] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target base_arm_task_controller\n'}
+[0.789374] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target base_arm_task_controller_v2\n'}
+[0.789490] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target wbc_hqp\n'}
+[0.790588] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target wbc_hqp_v3\n'}
+[0.791230] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target base_arm_task_controller_full\n'}
+[0.795573] (ecvt2_controller) StdoutLine: {'line': b'[ 53%] Built target wbc_hqp_v2\n'}
+[0.796022] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target pin_test\n'}
+[0.798068] (ecvt2_controller) StdoutLine: {'line': b'[ 59%] Built target base_arm_task_controller\n'}
+[0.798748] (ecvt2_controller) StdoutLine: {'line': b'[ 65%] Built target wbc_hqp\n'}
+[0.799152] (ecvt2_controller) StdoutLine: {'line': b'[ 71%] Built target base_opt_controller\n'}
+[0.799273] (ecvt2_controller) StdoutLine: {'line': b'[ 78%] Built target base_arm_task_controller_full\n'}
+[0.799589] (ecvt2_controller) StdoutLine: {'line': b'[ 84%] Built target wbc_hqp_v3\n'}
+[0.800431] (-) TimerEvent: {}
+[0.800735] (ecvt2_controller) StdoutLine: {'line': b'[ 90%] Built target base_arm_task_controller_v2\n'}
+[0.809280] (ecvt2_controller) StdoutLine: {'line': b'[ 96%] Built target pin_test\n'}
+[0.877633] (ecvt2_sim) StdoutLine: {'line': b'Removing /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2-sim.egg-link (link to .)\n'}
+[0.895184] (ecvt2_sim) CommandEnded: {'returncode': 0}
+[0.895861] (ecvt2_sim) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../build/ecvt2_sim', 'build', '--build-base', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/build', 'install', '--record', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/install.log', '--single-version-externally-managed', 'install_data', '--force'], 'cwd': '/home/jin/harco/ecvt2_ws/ecvt2_sim', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_CWD': '/home/jin/harco/ecvt2_ws', 'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess', 'CODEX_CI': '1', 'LANGUAGE': 'en', 'USER': 'jin', 'LC_TIME': 'ko_KR.UTF-8', 'CODEX_INTERNAL_ORIGINATOR_OVERRIDE': 'codex_vscode', 'VSCODE_NLS_CONFIG': '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}', 'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true', 'XDG_SESSION_TYPE': 'x11', 'DEBUG': 'release', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco', 'HOME': '/home/jin', 'CHROME_DESKTOP': 'code.desktop', 'CONDA_SHLVL': '0', 'OLDPWD': '/home/jin', 'DESKTOP_SESSION': 'ubuntu', 'VSCODE_IPC_HOOK': '/run/user/1000/vscode-d949732c-1.11-main.sock', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'LC_MONETARY': 'ko_KR.UTF-8', 'MANAGERPID': '2041', 'LC_CTYPE': 'C.UTF-8', 'SYSTEMD_EXEC_PID': '2457', 'NO_COLOR': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': '', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f', '_CONDA_ROOT': '/home/jin/miniconda3', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3351', 'VSCODE_CRASH_REPORTER_PROCESS_TYPE': 'extensionHost', 'APPLICATION_INSIGHTS_NO_STATSBEAT': 'true', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'jin', 'JOURNAL_STREAM': '8:28264', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'RUST_LOG': 'warn', 'USERNAME': 'jin', 'TERM': 'dumb', 'GAZEBO_MODEL_PATH': ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0YND85R:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64', 'SESSION_MANAGER': 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282', 'INVOCATION_ID': '95b20f578bae49f893435a00dc03c7e0', 'PAPERSIZE': 'a4', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'ko_KR.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1', 'CODEX_SANDBOX_NETWORK_DISABLED': '1', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'C.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'IBUS_DISABLE_SNOOPER': '1', 'LC_TELEPHONE': 'ko_KR.UTF-8', 'XMODIFIERS': '@im=ibus', 'GH_PAGER': 'cat', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'CONDA_PYTHON_EXE': '/home/jin/miniconda3/bin/python', 'SHELL': '/bin/bash', 'LC_NAME': 'ko_KR.UTF-8', 'TERMINATOR_UUID': 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd', 'QT_ACCESSIBILITY': '1', 'ELECTRON_RUN_AS_NODE': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CODEX_THREAD_ID': '019e62b8-f49c-7610-b91f-b066613692b7', 'LC_MEASUREMENT': 'ko_KR.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', '_CONDA_EXE': '/home/jin/miniconda3/bin/conda', 'LC_IDENTIFICATION': 'ko_KR.UTF-8', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim', 'VSCODE_CLI': '1', 'TURTLEBOT3_MODEL': 'burger', 'LC_ALL': 'C.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'CONDA_EXE': '/home/jin/miniconda3/bin/conda', 'VSCODE_CODE_CACHE_PATH': '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'ko_KR.UTF-8', 'LC_PAPER': 'ko_KR.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'ELECTRON_NO_ATTACH_CONSOLE': '1', 'VSCODE_PID': '3752'}, 'shell': False}
+[0.900500] (-) TimerEvent: {}
+[1.000645] (-) TimerEvent: {}
+[1.043545] (ecvt2_sim) StdoutLine: {'line': b'running egg_info\n'}
+[1.052098] (ecvt2_sim) StdoutLine: {'line': b'writing ../build/ecvt2_sim/ecvt2_sim.egg-info/PKG-INFO\n'}
+[1.052456] (ecvt2_sim) StdoutLine: {'line': b'writing dependency_links to ../build/ecvt2_sim/ecvt2_sim.egg-info/dependency_links.txt\n'}
+[1.052573] (ecvt2_sim) StdoutLine: {'line': b'writing entry points to ../build/ecvt2_sim/ecvt2_sim.egg-info/entry_points.txt\n'}
+[1.052717] (ecvt2_sim) StdoutLine: {'line': b'writing requirements to ../build/ecvt2_sim/ecvt2_sim.egg-info/requires.txt\n'}
+[1.052796] (ecvt2_sim) StdoutLine: {'line': b'writing top-level names to ../build/ecvt2_sim/ecvt2_sim.egg-info/top_level.txt\n'}
+[1.071511] (ecvt2_sim) StdoutLine: {'line': b"reading manifest file '../build/ecvt2_sim/ecvt2_sim.egg-info/SOURCES.txt'\n"}
+[1.072314] (ecvt2_sim) StdoutLine: {'line': b"writing manifest file '../build/ecvt2_sim/ecvt2_sim.egg-info/SOURCES.txt'\n"}
+[1.072388] (ecvt2_sim) StdoutLine: {'line': b'running build\n'}
+[1.072439] (ecvt2_sim) StdoutLine: {'line': b'running build_py\n'}
+[1.072569] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/robot_node.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[1.072701] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/sin_velocity_publisher.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[1.072780] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/upper_node.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[1.072858] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/test_upper_node.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[1.072948] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/plot_passive_csv.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[1.073039] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/test_robot_node.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[1.073135] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/__init__.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[1.073192] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/plot_passive_joints.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[1.073395] (ecvt2_sim) StdoutLine: {'line': b'running install\n'}
+[1.076100] (ecvt2_sim) StdoutLine: {'line': b'running install_lib\n'}
+[1.085279] (ecvt2_sim) StdoutLine: {'line': b'creating /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.085492] (ecvt2_sim) StdoutLine: {'line': b'copying /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim/robot_node.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.085638] (ecvt2_sim) StdoutLine: {'line': b'copying /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim/sin_velocity_publisher.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.085754] (ecvt2_sim) StdoutLine: {'line': b'copying /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim/upper_node.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.085833] (ecvt2_sim) StdoutLine: {'line': b'copying /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim/test_upper_node.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.085905] (ecvt2_sim) StdoutLine: {'line': b'copying /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim/plot_passive_csv.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.085969] (ecvt2_sim) StdoutLine: {'line': b'copying /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim/test_robot_node.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.086041] (ecvt2_sim) StdoutLine: {'line': b'copying /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim/__init__.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.086147] (ecvt2_sim) StdoutLine: {'line': b'copying /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim/plot_passive_joints.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim\n'}
+[1.086211] (ecvt2_sim) StdoutLine: {'line': b'byte-compiling /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim/robot_node.py to robot_node.cpython-310.pyc\n'}
+[1.088175] (ecvt2_sim) StdoutLine: {'line': b'byte-compiling /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim/sin_velocity_publisher.py to sin_velocity_publisher.cpython-310.pyc\n'}
+[1.088530] (ecvt2_sim) StdoutLine: {'line': b'byte-compiling /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim/upper_node.py to upper_node.cpython-310.pyc\n'}
+[1.089692] (ecvt2_sim) StdoutLine: {'line': b'byte-compiling /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim/test_upper_node.py to test_upper_node.cpython-310.pyc\n'}
+[1.092369] (ecvt2_sim) StdoutLine: {'line': b'byte-compiling /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim/plot_passive_csv.py to plot_passive_csv.cpython-310.pyc\n'}
+[1.094402] (ecvt2_sim) StdoutLine: {'line': b'byte-compiling /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim/test_robot_node.py to test_robot_node.cpython-310.pyc\n'}
+[1.097519] (ecvt2_sim) StdoutLine: {'line': b'byte-compiling /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim/__init__.py to __init__.cpython-310.pyc\n'}
+[1.097628] (ecvt2_sim) StdoutLine: {'line': b'byte-compiling /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim/plot_passive_joints.py to plot_passive_joints.cpython-310.pyc\n'}
+[1.098915] (ecvt2_sim) StdoutLine: {'line': b'running install_data\n'}
+[1.099036] (ecvt2_sim) StdoutLine: {'line': b'copying resource/ecvt2_sim -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ament_index/resource_index/packages\n'}
+[1.099167] (ecvt2_sim) StdoutLine: {'line': b'copying package.xml -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim\n'}
+[1.099261] (ecvt2_sim) StdoutLine: {'line': b'copying launch/test_upper_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[1.099343] (ecvt2_sim) StdoutLine: {'line': b'copying launch/test_full_vp_sto_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[1.099429] (ecvt2_sim) StdoutLine: {'line': b'copying launch/test_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[1.099531] (ecvt2_sim) StdoutLine: {'line': b'copying launch/bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[1.099614] (ecvt2_sim) StdoutLine: {'line': b'copying launch/upper_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[1.099714] (ecvt2_sim) StdoutLine: {'line': b'copying launch/test_full_wbc_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[1.099800] (ecvt2_sim) StdoutLine: {'line': b'copying rviz/ecvt.rviz -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/rviz\n'}
+[1.099856] (ecvt2_sim) StdoutLine: {'line': b'copying rviz/base_opt.rviz -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/rviz\n'}
+[1.099910] (ecvt2_sim) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.100711] (-) TimerEvent: {}
+[1.109197] (ecvt2_sim) StdoutLine: {'line': b'Copying ../build/ecvt2_sim/ecvt2_sim.egg-info to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim-0.0.1-py3.10.egg-info\n'}
+[1.109541] (ecvt2_sim) StdoutLine: {'line': b'running install_scripts\n'}
+[1.181535] (ecvt2_sim) StdoutLine: {'line': b'Installing plot_passive_csv script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[1.181809] (ecvt2_sim) StdoutLine: {'line': b'Installing plot_passive_joints script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[1.181874] (ecvt2_sim) StdoutLine: {'line': b'Installing robot_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[1.181932] (ecvt2_sim) StdoutLine: {'line': b'Installing sin_velocity_publisher script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[1.181992] (ecvt2_sim) StdoutLine: {'line': b'Installing test_robot_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[1.182096] (ecvt2_sim) StdoutLine: {'line': b'Installing test_upper_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[1.182161] (ecvt2_sim) StdoutLine: {'line': b'Installing upper_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[1.182217] (ecvt2_sim) StdoutLine: {'line': b"writing list of installed files to '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/install.log'\n"}
+[1.196326] (ecvt2_sim) CommandEnded: {'returncode': 0}
+[1.200861] (-) TimerEvent: {}
+[1.202355] (ecvt2_sim) JobEnded: {'identifier': 'ecvt2_sim', 'rc': 0}
+[1.300999] (-) TimerEvent: {}
+[1.401225] (-) TimerEvent: {}
+[1.501428] (-) TimerEvent: {}
+[1.601715] (-) TimerEvent: {}
+[1.701914] (-) TimerEvent: {}
+[1.802105] (-) TimerEvent: {}
+[1.902276] (-) TimerEvent: {}
+[2.002544] (-) TimerEvent: {}
+[2.102833] (-) TimerEvent: {}
+[2.203110] (-) TimerEvent: {}
+[2.303396] (-) TimerEvent: {}
+[2.403595] (-) TimerEvent: {}
+[2.503799] (-) TimerEvent: {}
+[2.604101] (-) TimerEvent: {}
+[2.704233] (-) TimerEvent: {}
+[2.804379] (-) TimerEvent: {}
+[2.904543] (-) TimerEvent: {}
+[3.004713] (-) TimerEvent: {}
+[3.104883] (-) TimerEvent: {}
+[3.205043] (-) TimerEvent: {}
+[3.305249] (-) TimerEvent: {}
+[3.405474] (-) TimerEvent: {}
+[3.505654] (-) TimerEvent: {}
+[3.605837] (-) TimerEvent: {}
+[3.683178] (ecvt2_controller) StderrLine: {'line': b'In file included from /opt/openrobots/include/hpp/fcl/config.hh:1,\n'}
+[3.683299] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/serialization/eigen.hpp:20,\n'}
+[3.683331] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/serialization/fwd.hpp:11,\n'}
+[3.683359] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14,\n'}
+[3.683384] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9,\n'}
+[3.683409] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/model.hpp:17,\n'}
+[3.683433] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/parsers/urdf.hpp:9,\n'}
+[3.683457] (ecvt2_controller) StderrLine: {'line': b'                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:7:\n'}
+[3.683481] (ecvt2_controller) StderrLine: {'line': b"/opt/openrobots/include/hpp/fcl/coal.hpp:12:99: note: \xe2\x80\x98#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS\xe2\x80\x99\n"}
+[3.683513] (ecvt2_controller) StderrLine: {'line': b'   12 |     "Please update your includes from \'hpp/fcl\' to \'coal\' or define COAL_DISABLE_HPP_FCL_WARNINGS")\n'}
+[3.683538] (ecvt2_controller) StderrLine: {'line': b'      |                                                                                                   ^\n'}
+[3.705993] (-) TimerEvent: {}
+[3.806219] (-) TimerEvent: {}
+[3.906450] (-) TimerEvent: {}
+[4.006690] (-) TimerEvent: {}
+[4.106915] (-) TimerEvent: {}
+[4.207154] (-) TimerEvent: {}
+[4.307402] (-) TimerEvent: {}
+[4.407567] (-) TimerEvent: {}
+[4.507799] (-) TimerEvent: {}
+[4.607974] (-) TimerEvent: {}
+[4.708141] (-) TimerEvent: {}
+[4.808295] (-) TimerEvent: {}
+[4.908464] (-) TimerEvent: {}
+[5.008647] (-) TimerEvent: {}
+[5.108835] (-) TimerEvent: {}
+[5.208981] (-) TimerEvent: {}
+[5.309130] (-) TimerEvent: {}
+[5.409289] (-) TimerEvent: {}
+[5.509564] (-) TimerEvent: {}
+[5.609802] (-) TimerEvent: {}
+[5.710037] (-) TimerEvent: {}
+[5.810269] (-) TimerEvent: {}
+[5.910514] (-) TimerEvent: {}
+[6.010756] (-) TimerEvent: {}
+[6.110991] (-) TimerEvent: {}
+[6.211174] (-) TimerEvent: {}
+[6.311326] (-) TimerEvent: {}
+[6.411557] (-) TimerEvent: {}
+[6.511736] (-) TimerEvent: {}
+[6.611915] (-) TimerEvent: {}
+[6.712171] (-) TimerEvent: {}
+[6.812408] (-) TimerEvent: {}
+[6.912649] (-) TimerEvent: {}
+[7.012870] (-) TimerEvent: {}
+[7.113121] (-) TimerEvent: {}
+[7.213359] (-) TimerEvent: {}
+[7.313583] (-) TimerEvent: {}
+[7.413843] (-) TimerEvent: {}
+[7.514089] (-) TimerEvent: {}
+[7.614355] (-) TimerEvent: {}
+[7.714598] (-) TimerEvent: {}
+[7.814791] (-) TimerEvent: {}
+[7.915032] (-) TimerEvent: {}
+[8.015266] (-) TimerEvent: {}
+[8.115503] (-) TimerEvent: {}
+[8.215743] (-) TimerEvent: {}
+[8.315979] (-) TimerEvent: {}
+[8.416214] (-) TimerEvent: {}
+[8.516455] (-) TimerEvent: {}
+[8.616712] (-) TimerEvent: {}
+[8.716954] (-) TimerEvent: {}
+[8.817199] (-) TimerEvent: {}
+[8.917353] (-) TimerEvent: {}
+[9.017502] (-) TimerEvent: {}
+[9.117669] (-) TimerEvent: {}
+[9.217905] (-) TimerEvent: {}
+[9.318143] (-) TimerEvent: {}
+[9.418295] (-) TimerEvent: {}
+[9.518530] (-) TimerEvent: {}
+[9.618706] (-) TimerEvent: {}
+[9.718885] (-) TimerEvent: {}
+[9.819072] (-) TimerEvent: {}
+[9.919311] (-) TimerEvent: {}
+[10.019561] (-) TimerEvent: {}
+[10.119797] (-) TimerEvent: {}
+[10.220025] (-) TimerEvent: {}
+[10.320266] (-) TimerEvent: {}
+[10.420445] (-) TimerEvent: {}
+[10.520622] (-) TimerEvent: {}
+[10.620764] (-) TimerEvent: {}
+[10.720927] (-) TimerEvent: {}
+[10.821088] (-) TimerEvent: {}
+[10.921340] (-) TimerEvent: {}
+[11.021530] (-) TimerEvent: {}
+[11.121701] (-) TimerEvent: {}
+[11.221865] (-) TimerEvent: {}
+[11.322105] (-) TimerEvent: {}
+[11.422356] (-) TimerEvent: {}
+[11.522529] (-) TimerEvent: {}
+[11.622677] (-) TimerEvent: {}
+[11.722811] (-) TimerEvent: {}
+[11.823018] (-) TimerEvent: {}
+[11.923177] (-) TimerEvent: {}
+[12.023408] (-) TimerEvent: {}
+[12.123656] (-) TimerEvent: {}
+[12.223920] (-) TimerEvent: {}
+[12.324165] (-) TimerEvent: {}
+[12.424326] (-) TimerEvent: {}
+[12.524508] (-) TimerEvent: {}
+[12.624645] (-) TimerEvent: {}
+[12.724787] (-) TimerEvent: {}
+[12.824968] (-) TimerEvent: {}
+[12.925149] (-) TimerEvent: {}
+[13.025318] (-) TimerEvent: {}
+[13.125560] (-) TimerEvent: {}
+[13.225736] (-) TimerEvent: {}
+[13.325928] (-) TimerEvent: {}
+[13.426113] (-) TimerEvent: {}
+[13.526262] (-) TimerEvent: {}
+[13.626428] (-) TimerEvent: {}
+[13.726611] (-) TimerEvent: {}
+[13.826764] (-) TimerEvent: {}
+[13.927001] (-) TimerEvent: {}
+[14.027209] (-) TimerEvent: {}
+[14.127454] (-) TimerEvent: {}
+[14.227679] (-) TimerEvent: {}
+[14.327957] (-) TimerEvent: {}
+[14.428225] (-) TimerEvent: {}
+[14.528397] (-) TimerEvent: {}
+[14.628571] (-) TimerEvent: {}
+[14.728748] (-) TimerEvent: {}
+[14.828997] (-) TimerEvent: {}
+[14.929156] (-) TimerEvent: {}
+[15.029322] (-) TimerEvent: {}
+[15.129555] (-) TimerEvent: {}
+[15.229804] (-) TimerEvent: {}
+[15.330045] (-) TimerEvent: {}
+[15.430285] (-) TimerEvent: {}
+[15.530478] (-) TimerEvent: {}
+[15.630715] (-) TimerEvent: {}
+[15.730952] (-) TimerEvent: {}
+[15.831209] (-) TimerEvent: {}
+[15.931477] (-) TimerEvent: {}
+[16.031659] (-) TimerEvent: {}
+[16.131921] (-) TimerEvent: {}
+[16.232162] (-) TimerEvent: {}
+[16.332310] (-) TimerEvent: {}
+[16.432539] (-) TimerEvent: {}
+[16.532723] (-) TimerEvent: {}
+[16.632889] (-) TimerEvent: {}
+[16.733037] (-) TimerEvent: {}
+[16.833240] (-) TimerEvent: {}
+[16.933431] (-) TimerEvent: {}
+[17.033591] (-) TimerEvent: {}
+[17.133743] (-) TimerEvent: {}
+[17.233905] (-) TimerEvent: {}
+[17.334040] (-) TimerEvent: {}
+[17.434180] (-) TimerEvent: {}
+[17.534346] (-) TimerEvent: {}
+[17.634535] (-) TimerEvent: {}
+[17.734725] (-) TimerEvent: {}
+[17.834966] (-) TimerEvent: {}
+[17.935183] (-) TimerEvent: {}
+[18.035346] (-) TimerEvent: {}
+[18.135523] (-) TimerEvent: {}
+[18.235705] (-) TimerEvent: {}
+[18.335892] (-) TimerEvent: {}
+[18.436060] (-) TimerEvent: {}
+[18.536209] (-) TimerEvent: {}
+[18.636368] (-) TimerEvent: {}
+[18.736625] (-) TimerEvent: {}
+[18.836812] (-) TimerEvent: {}
+[18.936996] (-) TimerEvent: {}
+[19.037242] (-) TimerEvent: {}
+[19.137420] (-) TimerEvent: {}
+[19.237603] (-) TimerEvent: {}
+[19.337777] (-) TimerEvent: {}
+[19.437962] (-) TimerEvent: {}
+[19.538143] (-) TimerEvent: {}
+[19.638373] (-) TimerEvent: {}
+[19.738623] (-) TimerEvent: {}
+[19.838873] (-) TimerEvent: {}
+[19.939077] (-) TimerEvent: {}
+[20.039281] (-) TimerEvent: {}
+[20.139489] (-) TimerEvent: {}
+[20.239724] (-) TimerEvent: {}
+[20.339961] (-) TimerEvent: {}
+[20.440225] (-) TimerEvent: {}
+[20.540445] (-) TimerEvent: {}
+[20.640620] (-) TimerEvent: {}
+[20.740816] (-) TimerEvent: {}
+[20.840997] (-) TimerEvent: {}
+[20.941187] (-) TimerEvent: {}
+[21.041367] (-) TimerEvent: {}
+[21.141570] (-) TimerEvent: {}
+[21.241776] (-) TimerEvent: {}
+[21.341963] (-) TimerEvent: {}
+[21.442127] (-) TimerEvent: {}
+[21.542303] (-) TimerEvent: {}
+[21.642513] (-) TimerEvent: {}
+[21.742714] (-) TimerEvent: {}
+[21.842893] (-) TimerEvent: {}
+[21.943112] (-) TimerEvent: {}
+[22.043295] (-) TimerEvent: {}
+[22.143495] (-) TimerEvent: {}
+[22.243676] (-) TimerEvent: {}
+[22.343878] (-) TimerEvent: {}
+[22.444066] (-) TimerEvent: {}
+[22.544247] (-) TimerEvent: {}
+[22.644437] (-) TimerEvent: {}
+[22.744634] (-) TimerEvent: {}
+[22.844815] (-) TimerEvent: {}
+[22.945077] (-) TimerEvent: {}
+[23.045260] (-) TimerEvent: {}
+[23.145456] (-) TimerEvent: {}
+[23.245667] (-) TimerEvent: {}
+[23.345882] (-) TimerEvent: {}
+[23.446168] (-) TimerEvent: {}
+[23.546350] (-) TimerEvent: {}
+[23.646637] (-) TimerEvent: {}
+[23.746924] (-) TimerEvent: {}
+[23.847223] (-) TimerEvent: {}
+[23.947408] (-) TimerEvent: {}
+[24.047688] (-) TimerEvent: {}
+[24.147983] (-) TimerEvent: {}
+[24.248171] (-) TimerEvent: {}
+[24.348310] (-) TimerEvent: {}
+[24.448472] (-) TimerEvent: {}
+[24.548632] (-) TimerEvent: {}
+[24.648770] (-) TimerEvent: {}
+[24.748936] (-) TimerEvent: {}
+[24.849093] (-) TimerEvent: {}
+[24.949286] (-) TimerEvent: {}
+[25.049467] (-) TimerEvent: {}
+[25.149666] (-) TimerEvent: {}
+[25.249845] (-) TimerEvent: {}
+[25.350005] (-) TimerEvent: {}
+[25.450189] (-) TimerEvent: {}
+[25.550335] (-) TimerEvent: {}
+[25.650489] (-) TimerEvent: {}
+[25.750609] (-) TimerEvent: {}
+[25.850754] (-) TimerEvent: {}
+[25.950901] (-) TimerEvent: {}
+[26.051048] (-) TimerEvent: {}
+[26.151174] (-) TimerEvent: {}
+[26.251277] (-) TimerEvent: {}
+[26.351425] (-) TimerEvent: {}
+[26.451582] (-) TimerEvent: {}
+[26.551734] (-) TimerEvent: {}
+[26.651890] (-) TimerEvent: {}
+[26.752051] (-) TimerEvent: {}
+[26.852216] (-) TimerEvent: {}
+[26.952339] (-) TimerEvent: {}
+[27.052466] (-) TimerEvent: {}
+[27.152562] (-) TimerEvent: {}
+[27.252685] (-) TimerEvent: {}
+[27.352809] (-) TimerEvent: {}
+[27.452941] (-) TimerEvent: {}
+[27.553095] (-) TimerEvent: {}
+[27.653238] (-) TimerEvent: {}
+[27.753377] (-) TimerEvent: {}
+[27.853474] (-) TimerEvent: {}
+[27.953605] (-) TimerEvent: {}
+[28.053738] (-) TimerEvent: {}
+[28.153866] (-) TimerEvent: {}
+[28.253992] (-) TimerEvent: {}
+[28.354086] (-) TimerEvent: {}
+[28.454194] (-) TimerEvent: {}
+[28.554339] (-) TimerEvent: {}
+[28.654491] (-) TimerEvent: {}
+[28.754638] (-) TimerEvent: {}
+[28.854799] (-) TimerEvent: {}
+[28.954970] (-) TimerEvent: {}
+[29.055152] (-) TimerEvent: {}
+[29.155296] (-) TimerEvent: {}
+[29.255538] (-) TimerEvent: {}
+[29.355773] (-) TimerEvent: {}
+[29.455938] (-) TimerEvent: {}
+[29.556096] (-) TimerEvent: {}
+[29.656234] (-) TimerEvent: {}
+[29.756460] (-) TimerEvent: {}
+[29.856620] (-) TimerEvent: {}
+[29.956755] (-) TimerEvent: {}
+[30.056910] (-) TimerEvent: {}
+[30.157080] (-) TimerEvent: {}
+[30.257215] (-) TimerEvent: {}
+[30.357371] (-) TimerEvent: {}
+[30.457532] (-) TimerEvent: {}
+[30.557679] (-) TimerEvent: {}
+[30.657831] (-) TimerEvent: {}
+[30.758017] (-) TimerEvent: {}
+[30.858299] (-) TimerEvent: {}
+[30.958529] (-) TimerEvent: {}
+[31.058763] (-) TimerEvent: {}
+[31.159004] (-) TimerEvent: {}
+[31.259237] (-) TimerEvent: {}
+[31.359391] (-) TimerEvent: {}
+[31.459522] (-) TimerEvent: {}
+[31.559682] (-) TimerEvent: {}
+[31.659835] (-) TimerEvent: {}
+[31.759986] (-) TimerEvent: {}
+[31.860119] (-) TimerEvent: {}
+[31.960353] (-) TimerEvent: {}
+[32.060584] (-) TimerEvent: {}
+[32.160746] (-) TimerEvent: {}
+[32.260994] (-) TimerEvent: {}
+[32.361161] (-) TimerEvent: {}
+[32.461318] (-) TimerEvent: {}
+[32.561478] (-) TimerEvent: {}
+[32.661661] (-) TimerEvent: {}
+[32.761817] (-) TimerEvent: {}
+[32.861976] (-) TimerEvent: {}
+[32.962154] (-) TimerEvent: {}
+[33.062302] (-) TimerEvent: {}
+[33.162548] (-) TimerEvent: {}
+[33.262741] (-) TimerEvent: {}
+[33.362907] (-) TimerEvent: {}
+[33.463140] (-) TimerEvent: {}
+[33.563376] (-) TimerEvent: {}
+[33.663574] (-) TimerEvent: {}
+[33.763814] (-) TimerEvent: {}
+[33.864080] (-) TimerEvent: {}
+[33.964229] (-) TimerEvent: {}
+[34.064395] (-) TimerEvent: {}
+[34.164567] (-) TimerEvent: {}
+[34.264744] (-) TimerEvent: {}
+[34.364974] (-) TimerEvent: {}
+[34.465142] (-) TimerEvent: {}
+[34.565403] (-) TimerEvent: {}
+[34.665577] (-) TimerEvent: {}
+[34.765812] (-) TimerEvent: {}
+[34.866051] (-) TimerEvent: {}
+[34.966212] (-) TimerEvent: {}
+[35.066448] (-) TimerEvent: {}
+[35.166632] (-) TimerEvent: {}
+[35.266875] (-) TimerEvent: {}
+[35.367121] (-) TimerEvent: {}
+[35.467289] (-) TimerEvent: {}
+[35.567522] (-) TimerEvent: {}
+[35.667760] (-) TimerEvent: {}
+[35.767982] (-) TimerEvent: {}
+[35.868147] (-) TimerEvent: {}
+[35.968312] (-) TimerEvent: {}
+[36.068537] (-) TimerEvent: {}
+[36.152840] (ecvt2_controller) StdoutLine: {'line': b'[100%] Linking CXX executable vp_sto_global_planner_full_node\n'}
+[36.168621] (-) TimerEvent: {}
+[36.268845] (-) TimerEvent: {}
+[36.369084] (-) TimerEvent: {}
+[36.469242] (-) TimerEvent: {}
+[36.569491] (-) TimerEvent: {}
+[36.669697] (-) TimerEvent: {}
+[36.769876] (-) TimerEvent: {}
+[36.870114] (-) TimerEvent: {}
+[36.970355] (-) TimerEvent: {}
+[37.070537] (-) TimerEvent: {}
+[37.170729] (-) TimerEvent: {}
+[37.270934] (-) TimerEvent: {}
+[37.371094] (-) TimerEvent: {}
+[37.442070] (ecvt2_controller) StdoutLine: {'line': b'[100%] Built target vp_sto_global_planner_full_node\n'}
+[37.450096] (ecvt2_controller) CommandEnded: {'returncode': 0}
+[37.450522] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'install'}
+[37.457832] (ecvt2_controller) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/jin/harco/ecvt2_ws'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'x11'), ('DEBUG', 'release'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CHROME_DESKTOP', 'code.desktop'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-d949732c-1.11-main.sock'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '2457'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('APPLICATION_INSIGHTS_NO_STATSBEAT', 'true'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('USERNAME', 'jin'), ('TERM', 'dumb'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0YND85R:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e62b8-f49c-7610-b91f-b066613692b7'), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'), ('VSCODE_CLI', '1'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('VSCODE_CODE_CACHE_PATH', '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('VSCODE_PID', '3752'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble')]), 'shell': False}
+[37.462603] (ecvt2_controller) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[37.462843] (ecvt2_controller) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[37.462989] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/teleop_goal_publisher\n'}
+[37.463111] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/live_upper_dynamics_node\n'}
+[37.463222] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_global_planner_node\n'}
+[37.463332] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_global_planner_full_node\n'}
+[37.463434] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_paper_global_planner_node\n'}
+[37.463593] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/include/ecvt2_controller/kdl_utils.hpp\n'}
+[37.463642] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/include/ecvt2_controller/wbc_hqp_lib.hpp\n'}
+[37.463767] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/libkdl_utils.a\n'}
+[37.463820] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/libwbc_hqp_lib.a\n'}
+[37.463885] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_opt_controller\n'}
+[37.463942] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp\n'}
+[37.463997] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp_v2\n'}
+[37.464068] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp_v3\n'}
+[37.464119] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller\n'}
+[37.464170] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller_v2\n'}
+[37.464225] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller_full\n'}
+[37.464278] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/teleop_goal_publisher\n'}
+[37.464333] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/com_trajectory_publisher\n'}
+[37.464387] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/pin_test\n'}
+[37.464473] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/package_run_dependencies/ecvt2_controller\n'}
+[37.464544] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/parent_prefix_path/ecvt2_controller\n'}
+[37.464610] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/ament_prefix_path.sh\n'}
+[37.464672] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/ament_prefix_path.dsv\n'}
+[37.464736] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/path.sh\n'}
+[37.464796] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/path.dsv\n'}
+[37.464856] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.bash\n'}
+[37.464912] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.sh\n'}
+[37.464969] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.zsh\n'}
+[37.465020] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.dsv\n'}
+[37.465072] (ecvt2_controller) StdoutLine: {'line': b'-- Symlinking: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/package.dsv\n'}
+[37.469597] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/packages/ecvt2_controller\n'}
+[37.469719] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/cmake/ecvt2_controllerConfig.cmake\n'}
+[37.469752] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/cmake/ecvt2_controllerConfig-version.cmake\n'}
+[37.469779] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/package.xml\n'}
+[37.470491] (ecvt2_controller) CommandEnded: {'returncode': 0}
+[37.471148] (-) TimerEvent: {}
+[37.477388] (ecvt2_controller) JobEnded: {'identifier': 'ecvt2_controller', 'rc': 0}
+[37.477692] (-) EventReactorShutdown: {}

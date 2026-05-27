@@ -606,7 +606,7 @@ class UnifiedUpperNode(Node):
 
 def main():
     package_path = get_package_share_directory('forestry_robot_mjcf')
-    xml_path = os.path.join(package_path, 'xml', 'scene.xml')
+    xml_path = os.path.join(package_path, 'xml', 'scene2_upper.xml')
 
     m = mujoco.MjModel.from_xml_path(xml_path)
     d = mujoco.MjData(m)

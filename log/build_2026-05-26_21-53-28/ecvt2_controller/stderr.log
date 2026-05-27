@@ -1,0 +1,64 @@
+In file included from /opt/openrobots/include/hpp/fcl/config.hh:1,
+                 from /opt/openrobots/include/pinocchio/serialization/eigen.hpp:20,
+                 from /opt/openrobots/include/pinocchio/serialization/fwd.hpp:11,
+                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14,
+                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9,
+                 from /opt/openrobots/include/pinocchio/multibody/model.hpp:17,
+                 from /opt/openrobots/include/pinocchio/parsers/urdf.hpp:9,
+                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:7:
+/opt/openrobots/include/hpp/fcl/coal.hpp:12:99: note: ‘#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS’
+   12 |     "Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS")
+      |                                                                                                   ^
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp: In member function ‘double vpsto::TimeParameterizer::computeMinimumTime(const std::vector<vpsto::ActuatedKinematics>&, double, double, bool, double, double) const’:
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: error: no matching function for call to ‘max(int, Eigen::EigenBase<Eigen::Matrix<double, -1, 1> >::Index)’
+  877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+      |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/memory:63,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:1:
+/usr/include/c++/11/bits/stl_algobase.h:254:5: note: candidate: ‘template<class _Tp> constexpr const _Tp& std::max(const _Tp&, const _Tp&)’
+  254 |     max(const _Tp& __a, const _Tp& __b)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algobase.h:254:5: note:   template argument deduction/substitution failed:
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: note:   deduced conflicting types for parameter ‘const _Tp’ (‘int’ and ‘Eigen::EigenBase<Eigen::Matrix<double, -1, 1> >::Index’ {aka ‘long int’})
+  877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+      |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/memory:63,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:1:
+/usr/include/c++/11/bits/stl_algobase.h:300:5: note: candidate: ‘template<class _Tp, class _Compare> constexpr const _Tp& std::max(const _Tp&, const _Tp&, _Compare)’
+  300 |     max(const _Tp& __a, const _Tp& __b, _Compare __comp)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algobase.h:300:5: note:   template argument deduction/substitution failed:
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: note:   deduced conflicting types for parameter ‘const _Tp’ (‘int’ and ‘Eigen::EigenBase<Eigen::Matrix<double, -1, 1> >::Index’ {aka ‘long int’})
+  877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+      |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/algorithm:62,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:1:
+/usr/include/c++/11/bits/stl_algo.h:3461:5: note: candidate: ‘template<class _Tp> constexpr _Tp std::max(std::initializer_list<_Tp>)’
+ 3461 |     max(initializer_list<_Tp> __l)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algo.h:3461:5: note:   template argument deduction/substitution failed:
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: note:   mismatched types ‘std::initializer_list<_Tp>’ and ‘int’
+  877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+      |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/algorithm:62,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:1:
+/usr/include/c++/11/bits/stl_algo.h:3467:5: note: candidate: ‘template<class _Tp, class _Compare> constexpr _Tp std::max(std::initializer_list<_Tp>, _Compare)’
+ 3467 |     max(initializer_list<_Tp> __l, _Compare __comp)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algo.h:3467:5: note:   template argument deduction/substitution failed:
+/home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:877:75: note:   mismatched types ‘std::initializer_list<_Tp>’ and ‘int’
+  877 |       candidates.reserve(1 + kin.size() * 2 * static_cast<size_t>(std::max(1, vmax_.size())));
+      |                                                                   ~~~~~~~~^~~~~~~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/vp_sto_global_planner_full_node.dir/build.make:76: CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:535: CMakeFiles/vp_sto_global_planner_full_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

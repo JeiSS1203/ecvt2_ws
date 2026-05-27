@@ -1,0 +1,289 @@
+[33mCMake Warning at /opt/openrobots/lib/cmake/hpp-fcl/hpp-fclConfig.cmake:4 (message):
+  Please update your CMake from 'hpp-fcl' to 'coal', or define
+  COAL_DISABLE_HPP_FCL_WARNINGS
+Call Stack (most recent call first):
+  /usr/share/cmake-3.22/Modules/CMakeFindDependencyMacro.cmake:47 (find_package)
+  /opt/openrobots/lib/cmake/pinocchio/pinocchioConfig.cmake:161 (find_dependency)
+  CMakeLists.txt:20 (find_package)
+
+[0m
+[33mCMake Warning at CMakeLists.txt:49 (add_executable):
+  Cannot generate a safe runtime search path for target base_opt_controller
+  because files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:49 (add_executable):
+  Cannot generate a safe runtime search path for target base_opt_controller
+  because there is a cycle in the constraint graph:
+
+    dir 0 is [/usr/local/lib]
+    dir 1 is [/opt/ros/humble/lib]
+    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+    dir 3 is [/opt/openrobots/lib]
+      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:60 (add_executable):
+  Cannot generate a safe runtime search path for target wbc_hqp because files
+  in some directories may conflict with libraries in implicit directories:
+
+    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:60 (add_executable):
+  Cannot generate a safe runtime search path for target wbc_hqp because there
+  is a cycle in the constraint graph:
+
+    dir 0 is [/usr/local/lib]
+    dir 1 is [/opt/ros/humble/lib]
+    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+    dir 3 is [/opt/openrobots/lib]
+      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:71 (add_executable):
+  Cannot generate a safe runtime search path for target wbc_hqp_v2 because
+  files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:71 (add_executable):
+  Cannot generate a safe runtime search path for target wbc_hqp_v2 because
+  there is a cycle in the constraint graph:
+
+    dir 0 is [/usr/local/lib]
+    dir 1 is [/opt/ros/humble/lib]
+    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+    dir 3 is [/opt/openrobots/lib]
+      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:83 (add_executable):
+  Cannot generate a safe runtime search path for target wbc_hqp_v3 because
+  files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:83 (add_executable):
+  Cannot generate a safe runtime search path for target wbc_hqp_v3 because
+  there is a cycle in the constraint graph:
+
+    dir 0 is [/usr/local/lib]
+    dir 1 is [/opt/ros/humble/lib]
+    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+    dir 3 is [/opt/openrobots/lib]
+      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:95 (add_executable):
+  Cannot generate a safe runtime search path for target
+  base_arm_task_controller because files in some directories may conflict
+  with libraries in implicit directories:
+
+    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:95 (add_executable):
+  Cannot generate a safe runtime search path for target
+  base_arm_task_controller because there is a cycle in the constraint graph:
+
+    dir 0 is [/usr/local/lib]
+    dir 1 is [/opt/ros/humble/lib]
+    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+    dir 3 is [/opt/openrobots/lib]
+      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:106 (add_executable):
+  Cannot generate a safe runtime search path for target
+  base_arm_task_controller_v2 because files in some directories may conflict
+  with libraries in implicit directories:
+
+    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:106 (add_executable):
+  Cannot generate a safe runtime search path for target
+  base_arm_task_controller_v2 because there is a cycle in the constraint
+  graph:
+
+    dir 0 is [/usr/local/lib]
+    dir 1 is [/opt/ros/humble/lib]
+    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+    dir 3 is [/opt/openrobots/lib]
+      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:117 (add_executable):
+  Cannot generate a safe runtime search path for target
+  base_arm_task_controller_full because files in some directories may
+  conflict with libraries in implicit directories:
+
+    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:117 (add_executable):
+  Cannot generate a safe runtime search path for target
+  base_arm_task_controller_full because there is a cycle in the constraint
+  graph:
+
+    dir 0 is [/usr/local/lib]
+    dir 1 is [/opt/ros/humble/lib]
+    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+      dir 3 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+    dir 3 is [/opt/openrobots/lib]
+      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:141 (add_executable):
+  Cannot generate a safe runtime search path for target pin_test because
+  files in some directories may conflict with libraries in implicit
+  directories:
+
+    runtime library [liburdfdom_sensor.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model_state.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_model.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liburdfdom_world.so.3.0] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomap.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+    runtime library [liboctomath.so.1.9] in /usr/lib/x86_64-linux-gnu may be hidden by files in:
+      /opt/ros/humble/lib/x86_64-linux-gnu
+
+  Some of these libraries may not be found correctly.
+
+[0m
+[33mCMake Warning at CMakeLists.txt:141 (add_executable):
+  Cannot generate a safe runtime search path for target pin_test because
+  there is a cycle in the constraint graph:
+
+    dir 0 is [/opt/ros/humble/lib]
+    dir 1 is [/opt/openrobots/lib]
+      dir 2 must precede it due to runtime library [libpinocchio_default.so.3.9.0]
+    dir 2 is [/opt/ros/humble/lib/x86_64-linux-gnu]
+      dir 1 must precede it due to runtime library [libpinocchio_parsers.so.3.9.0]
+
+  Some of these libraries may not be found correctly.
+
+[0m

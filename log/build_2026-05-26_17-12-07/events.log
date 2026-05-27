@@ -1,0 +1,615 @@
+[0.000000] (-) TimerEvent: {}
+[0.000157] (-) JobUnselected: {'identifier': 'forestry_robot_mjcf'}
+[0.000313] (-) JobUnselected: {'identifier': 'ifopt'}
+[0.000403] (ecvt2_sim) JobQueued: {'identifier': 'ecvt2_sim', 'dependencies': OrderedDict()}
+[0.000497] (ecvt2_controller) JobQueued: {'identifier': 'ecvt2_controller', 'dependencies': OrderedDict([('ifopt', '/home/jin/harco/ecvt2_ws/install/ifopt')])}
+[0.000529] (ecvt2_sim) JobStarted: {'identifier': 'ecvt2_sim'}
+[0.004392] (ecvt2_controller) JobStarted: {'identifier': 'ecvt2_controller'}
+[0.099816] (-) TimerEvent: {}
+[0.134689] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'cmake'}
+[0.135372] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'build'}
+[0.136023] (ecvt2_controller) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', '--', '-j20', '-l20'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/jin/harco/ecvt2_ws'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'x11'), ('DEBUG', 'release'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CHROME_DESKTOP', 'code.desktop'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-d949732c-1.11-main.sock'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '2457'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('APPLICATION_INSIGHTS_NO_STATSBEAT', 'true'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('USERNAME', 'jin'), ('TERM', 'dumb'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0YND85R:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e62b8-f49c-7610-b91f-b066613692b7'), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'), ('VSCODE_CLI', '1'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('VSCODE_CODE_CACHE_PATH', '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('VSCODE_PID', '3752'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble')]), 'shell': False}
+[0.175243] (ecvt2_controller) StdoutLine: {'line': b'[  6%] Built target com_trajectory_publisher\n'}
+[0.180053] (ecvt2_controller) StdoutLine: {'line': b'[ 18%] Built target wbc_hqp_lib\n'}
+[0.180180] (ecvt2_controller) StdoutLine: {'line': b'[ 18%] Built target teleop_goal_publisher\n'}
+[0.183436] (ecvt2_controller) StdoutLine: {'line': b'[ 25%] Built target kdl_utils\n'}
+[0.183601] (ecvt2_controller) StdoutLine: {'line': b'[ 31%] Built target live_upper_dynamics_node\n'}
+[0.183648] (ecvt2_controller) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target vp_sto_global_planner_full_node\n'}
+[0.189125] (ecvt2_controller) StdoutLine: {'line': b'[ 37%] Built target vp_sto_paper_global_planner_node\n'}
+[0.194557] (ecvt2_controller) StdoutLine: {'line': b'[ 43%] Built target vp_sto_global_planner_node\n'}
+[0.199906] (-) TimerEvent: {}
+[0.202545] (ecvt2_controller) StdoutLine: {'line': b'[ 53%] Built target base_opt_controller\n'}
+[0.202759] (ecvt2_controller) StdoutLine: {'line': b'[ 53%] Building CXX object CMakeFiles/vp_sto_global_planner_full_node.dir/src/vp_sto_global_planner_full_node.cpp.o\n'}
+[0.203823] (ecvt2_controller) StdoutLine: {'line': b'[ 59%] Built target base_arm_task_controller_full\n'}
+[0.204057] (ecvt2_controller) StdoutLine: {'line': b'[ 65%] Built target base_arm_task_controller_v2\n'}
+[0.204195] (ecvt2_controller) StdoutLine: {'line': b'[ 71%] Built target wbc_hqp_v2\n'}
+[0.204269] (ecvt2_controller) StdoutLine: {'line': b'[ 78%] Built target base_arm_task_controller\n'}
+[0.206452] (ecvt2_controller) StdoutLine: {'line': b'[ 84%] Built target wbc_hqp\n'}
+[0.208812] (ecvt2_controller) StdoutLine: {'line': b'[ 90%] Built target wbc_hqp_v3\n'}
+[0.213658] (ecvt2_controller) StdoutLine: {'line': b'[ 96%] Built target pin_test\n'}
+[0.299983] (-) TimerEvent: {}
+[0.400127] (-) TimerEvent: {}
+[0.482624] (ecvt2_sim) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../build/ecvt2_sim', 'build', '--build-base', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/build', 'install', '--record', '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/jin/harco/ecvt2_ws/ecvt2_sim', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_CWD': '/home/jin/harco/ecvt2_ws', 'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess', 'CODEX_CI': '1', 'LANGUAGE': 'en', 'USER': 'jin', 'LC_TIME': 'ko_KR.UTF-8', 'CODEX_INTERNAL_ORIGINATOR_OVERRIDE': 'codex_vscode', 'VSCODE_NLS_CONFIG': '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}', 'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true', 'XDG_SESSION_TYPE': 'x11', 'DEBUG': 'release', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco', 'HOME': '/home/jin', 'CHROME_DESKTOP': 'code.desktop', 'CONDA_SHLVL': '0', 'OLDPWD': '/home/jin', 'DESKTOP_SESSION': 'ubuntu', 'VSCODE_IPC_HOOK': '/run/user/1000/vscode-d949732c-1.11-main.sock', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'LC_MONETARY': 'ko_KR.UTF-8', 'MANAGERPID': '2041', 'LC_CTYPE': 'C.UTF-8', 'SYSTEMD_EXEC_PID': '2457', 'NO_COLOR': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': '', 'TERMINATOR_DBUS_NAME': 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f', '_CONDA_ROOT': '/home/jin/miniconda3', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3351', 'VSCODE_CRASH_REPORTER_PROCESS_TYPE': 'extensionHost', 'APPLICATION_INSIGHTS_NO_STATSBEAT': 'true', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'jin', 'JOURNAL_STREAM': '8:28264', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'RUST_LOG': 'warn', 'USERNAME': 'jin', 'TERM': 'dumb', 'GAZEBO_MODEL_PATH': ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0YND85R:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64', 'SESSION_MANAGER': 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282', 'INVOCATION_ID': '95b20f578bae49f893435a00dc03c7e0', 'PAPERSIZE': 'a4', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'ko_KR.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1', 'CODEX_SANDBOX_NETWORK_DISABLED': '1', 'TERMINATOR_DBUS_PATH': '/net/tenshu/Terminator2', 'LANG': 'C.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'IBUS_DISABLE_SNOOPER': '1', 'LC_TELEPHONE': 'ko_KR.UTF-8', 'XMODIFIERS': '@im=ibus', 'GH_PAGER': 'cat', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'CONDA_PYTHON_EXE': '/home/jin/miniconda3/bin/python', 'SHELL': '/bin/bash', 'LC_NAME': 'ko_KR.UTF-8', 'TERMINATOR_UUID': 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd', 'QT_ACCESSIBILITY': '1', 'ELECTRON_RUN_AS_NODE': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CODEX_THREAD_ID': '019e62b8-f49c-7610-b91f-b066613692b7', 'LC_MEASUREMENT': 'ko_KR.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', '_CONDA_EXE': '/home/jin/miniconda3/bin/conda', 'LC_IDENTIFICATION': 'ko_KR.UTF-8', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim', 'VSCODE_CLI': '1', 'TURTLEBOT3_MODEL': 'burger', 'LC_ALL': 'C.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'CONDA_EXE': '/home/jin/miniconda3/bin/conda', 'VSCODE_CODE_CACHE_PATH': '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'ko_KR.UTF-8', 'LC_PAPER': 'ko_KR.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'ELECTRON_NO_ATTACH_CONSOLE': '1', 'VSCODE_PID': '3752'}, 'shell': False}
+[0.500207] (-) TimerEvent: {}
+[0.600344] (-) TimerEvent: {}
+[0.638986] (ecvt2_sim) StdoutLine: {'line': b'running egg_info\n'}
+[0.647972] (ecvt2_sim) StdoutLine: {'line': b'writing ../build/ecvt2_sim/ecvt2_sim.egg-info/PKG-INFO\n'}
+[0.648353] (ecvt2_sim) StdoutLine: {'line': b'writing dependency_links to ../build/ecvt2_sim/ecvt2_sim.egg-info/dependency_links.txt\n'}
+[0.648463] (ecvt2_sim) StdoutLine: {'line': b'writing entry points to ../build/ecvt2_sim/ecvt2_sim.egg-info/entry_points.txt\n'}
+[0.648664] (ecvt2_sim) StdoutLine: {'line': b'writing requirements to ../build/ecvt2_sim/ecvt2_sim.egg-info/requires.txt\n'}
+[0.648806] (ecvt2_sim) StdoutLine: {'line': b'writing top-level names to ../build/ecvt2_sim/ecvt2_sim.egg-info/top_level.txt\n'}
+[0.668271] (ecvt2_sim) StdoutLine: {'line': b"reading manifest file '../build/ecvt2_sim/ecvt2_sim.egg-info/SOURCES.txt'\n"}
+[0.669113] (ecvt2_sim) StdoutLine: {'line': b"writing manifest file '../build/ecvt2_sim/ecvt2_sim.egg-info/SOURCES.txt'\n"}
+[0.669222] (ecvt2_sim) StdoutLine: {'line': b'running build\n'}
+[0.669314] (ecvt2_sim) StdoutLine: {'line': b'running build_py\n'}
+[0.669408] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/robot_node.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[0.669544] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/sin_velocity_publisher.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[0.669637] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/upper_node.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[0.669734] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/test_upper_node.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[0.669824] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/plot_passive_csv.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[0.669922] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/test_robot_node.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[0.670016] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/__init__.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[0.670105] (ecvt2_sim) StdoutLine: {'line': b'copying ecvt2_sim/plot_passive_joints.py -> /home/jin/harco/ecvt2_ws/build/ecvt2_sim/build/lib/ecvt2_sim\n'}
+[0.670260] (ecvt2_sim) StdoutLine: {'line': b'running install\n'}
+[0.673055] (ecvt2_sim) StdoutLine: {'line': b'running install_lib\n'}
+[0.683288] (ecvt2_sim) StdoutLine: {'line': b'running install_data\n'}
+[0.683485] (ecvt2_sim) StdoutLine: {'line': b'copying resource/ecvt2_sim -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ament_index/resource_index/packages\n'}
+[0.683555] (ecvt2_sim) StdoutLine: {'line': b'copying package.xml -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim\n'}
+[0.683667] (ecvt2_sim) StdoutLine: {'line': b'copying launch/test_upper_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[0.683761] (ecvt2_sim) StdoutLine: {'line': b'copying launch/test_full_vp_sto_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[0.683872] (ecvt2_sim) StdoutLine: {'line': b'copying launch/test_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[0.683960] (ecvt2_sim) StdoutLine: {'line': b'copying launch/bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[0.684069] (ecvt2_sim) StdoutLine: {'line': b'copying launch/upper_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[0.684158] (ecvt2_sim) StdoutLine: {'line': b'copying launch/test_full_wbc_bringup.launch.py -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/launch\n'}
+[0.684220] (ecvt2_sim) StdoutLine: {'line': b'copying rviz/ecvt.rviz -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/rviz\n'}
+[0.684284] (ecvt2_sim) StdoutLine: {'line': b'copying rviz/base_opt.rviz -> /home/jin/harco/ecvt2_ws/install/ecvt2_sim/share/ecvt2_sim/rviz\n'}
+[0.684346] (ecvt2_sim) StdoutLine: {'line': b'running install_egg_info\n'}
+[0.694044] (ecvt2_sim) StdoutLine: {'line': b"removing '/home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim-0.0.1-py3.10.egg-info' (and everything under it)\n"}
+[0.694214] (ecvt2_sim) StdoutLine: {'line': b'Copying ../build/ecvt2_sim/ecvt2_sim.egg-info to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/python3.10/site-packages/ecvt2_sim-0.0.1-py3.10.egg-info\n'}
+[0.694540] (ecvt2_sim) StdoutLine: {'line': b'running install_scripts\n'}
+[0.700444] (-) TimerEvent: {}
+[0.769370] (ecvt2_sim) StdoutLine: {'line': b'Installing plot_passive_csv script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.769599] (ecvt2_sim) StdoutLine: {'line': b'Installing plot_passive_joints script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.769723] (ecvt2_sim) StdoutLine: {'line': b'Installing robot_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.769790] (ecvt2_sim) StdoutLine: {'line': b'Installing sin_velocity_publisher script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.769874] (ecvt2_sim) StdoutLine: {'line': b'Installing test_robot_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.769966] (ecvt2_sim) StdoutLine: {'line': b'Installing test_upper_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.770030] (ecvt2_sim) StdoutLine: {'line': b'Installing upper_node script to /home/jin/harco/ecvt2_ws/install/ecvt2_sim/lib/ecvt2_sim\n'}
+[0.770090] (ecvt2_sim) StdoutLine: {'line': b"writing list of installed files to '/home/jin/harco/ecvt2_ws/build/ecvt2_sim/install.log'\n"}
+[0.786431] (ecvt2_sim) CommandEnded: {'returncode': 0}
+[0.792058] (ecvt2_sim) JobEnded: {'identifier': 'ecvt2_sim', 'rc': 0}
+[0.800548] (-) TimerEvent: {}
+[0.900717] (-) TimerEvent: {}
+[1.000893] (-) TimerEvent: {}
+[1.101035] (-) TimerEvent: {}
+[1.201184] (-) TimerEvent: {}
+[1.301379] (-) TimerEvent: {}
+[1.401553] (-) TimerEvent: {}
+[1.501716] (-) TimerEvent: {}
+[1.601891] (-) TimerEvent: {}
+[1.702036] (-) TimerEvent: {}
+[1.802218] (-) TimerEvent: {}
+[1.902391] (-) TimerEvent: {}
+[2.002538] (-) TimerEvent: {}
+[2.102715] (-) TimerEvent: {}
+[2.202897] (-) TimerEvent: {}
+[2.303052] (-) TimerEvent: {}
+[2.403236] (-) TimerEvent: {}
+[2.503405] (-) TimerEvent: {}
+[2.603574] (-) TimerEvent: {}
+[2.703758] (-) TimerEvent: {}
+[2.803986] (-) TimerEvent: {}
+[2.904153] (-) TimerEvent: {}
+[3.004364] (-) TimerEvent: {}
+[3.104563] (-) TimerEvent: {}
+[3.204749] (-) TimerEvent: {}
+[3.304958] (-) TimerEvent: {}
+[3.405161] (-) TimerEvent: {}
+[3.471545] (ecvt2_controller) StderrLine: {'line': b'In file included from /opt/openrobots/include/hpp/fcl/config.hh:1,\n'}
+[3.471791] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/serialization/eigen.hpp:20,\n'}
+[3.471913] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/serialization/fwd.hpp:11,\n'}
+[3.472001] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-composite.hpp:14,\n'}
+[3.472078] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/joint/joint-generic.hpp:9,\n'}
+[3.472157] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/multibody/model.hpp:17,\n'}
+[3.472236] (ecvt2_controller) StderrLine: {'line': b'                 from /opt/openrobots/include/pinocchio/parsers/urdf.hpp:9,\n'}
+[3.472309] (ecvt2_controller) StderrLine: {'line': b'                 from /home/jin/harco/ecvt2_ws/ecvt2_controller/src/vp_sto_global_planner_full_node.cpp:7:\n'}
+[3.472383] (ecvt2_controller) StderrLine: {'line': b"/opt/openrobots/include/hpp/fcl/coal.hpp:12:99: note: \xe2\x80\x98#pragma message: Please update your includes from 'hpp/fcl' to 'coal' or define COAL_DISABLE_HPP_FCL_WARNINGS\xe2\x80\x99\n"}
+[3.472459] (ecvt2_controller) StderrLine: {'line': b'   12 |     "Please update your includes from \'hpp/fcl\' to \'coal\' or define COAL_DISABLE_HPP_FCL_WARNINGS")\n'}
+[3.472532] (ecvt2_controller) StderrLine: {'line': b'      |                                                                                                   ^\n'}
+[3.505255] (-) TimerEvent: {}
+[3.605426] (-) TimerEvent: {}
+[3.705605] (-) TimerEvent: {}
+[3.805777] (-) TimerEvent: {}
+[3.905951] (-) TimerEvent: {}
+[4.006158] (-) TimerEvent: {}
+[4.106340] (-) TimerEvent: {}
+[4.206517] (-) TimerEvent: {}
+[4.306706] (-) TimerEvent: {}
+[4.406891] (-) TimerEvent: {}
+[4.507097] (-) TimerEvent: {}
+[4.607314] (-) TimerEvent: {}
+[4.707564] (-) TimerEvent: {}
+[4.807790] (-) TimerEvent: {}
+[4.908005] (-) TimerEvent: {}
+[5.008172] (-) TimerEvent: {}
+[5.108339] (-) TimerEvent: {}
+[5.208601] (-) TimerEvent: {}
+[5.308766] (-) TimerEvent: {}
+[5.409005] (-) TimerEvent: {}
+[5.509268] (-) TimerEvent: {}
+[5.609390] (-) TimerEvent: {}
+[5.709547] (-) TimerEvent: {}
+[5.809701] (-) TimerEvent: {}
+[5.909881] (-) TimerEvent: {}
+[6.010030] (-) TimerEvent: {}
+[6.110208] (-) TimerEvent: {}
+[6.210388] (-) TimerEvent: {}
+[6.310557] (-) TimerEvent: {}
+[6.410726] (-) TimerEvent: {}
+[6.510932] (-) TimerEvent: {}
+[6.611076] (-) TimerEvent: {}
+[6.711251] (-) TimerEvent: {}
+[6.811469] (-) TimerEvent: {}
+[6.911644] (-) TimerEvent: {}
+[7.011824] (-) TimerEvent: {}
+[7.111990] (-) TimerEvent: {}
+[7.212195] (-) TimerEvent: {}
+[7.312407] (-) TimerEvent: {}
+[7.412622] (-) TimerEvent: {}
+[7.512888] (-) TimerEvent: {}
+[7.613090] (-) TimerEvent: {}
+[7.713290] (-) TimerEvent: {}
+[7.813492] (-) TimerEvent: {}
+[7.913696] (-) TimerEvent: {}
+[8.013899] (-) TimerEvent: {}
+[8.114098] (-) TimerEvent: {}
+[8.214294] (-) TimerEvent: {}
+[8.314515] (-) TimerEvent: {}
+[8.414711] (-) TimerEvent: {}
+[8.514921] (-) TimerEvent: {}
+[8.615159] (-) TimerEvent: {}
+[8.715371] (-) TimerEvent: {}
+[8.815604] (-) TimerEvent: {}
+[8.915820] (-) TimerEvent: {}
+[9.016031] (-) TimerEvent: {}
+[9.116248] (-) TimerEvent: {}
+[9.216461] (-) TimerEvent: {}
+[9.316690] (-) TimerEvent: {}
+[9.416887] (-) TimerEvent: {}
+[9.517083] (-) TimerEvent: {}
+[9.617260] (-) TimerEvent: {}
+[9.717442] (-) TimerEvent: {}
+[9.817623] (-) TimerEvent: {}
+[9.917802] (-) TimerEvent: {}
+[10.018040] (-) TimerEvent: {}
+[10.118221] (-) TimerEvent: {}
+[10.218400] (-) TimerEvent: {}
+[10.318586] (-) TimerEvent: {}
+[10.418763] (-) TimerEvent: {}
+[10.518900] (-) TimerEvent: {}
+[10.619062] (-) TimerEvent: {}
+[10.719243] (-) TimerEvent: {}
+[10.819467] (-) TimerEvent: {}
+[10.919637] (-) TimerEvent: {}
+[11.019788] (-) TimerEvent: {}
+[11.119952] (-) TimerEvent: {}
+[11.220132] (-) TimerEvent: {}
+[11.320324] (-) TimerEvent: {}
+[11.420516] (-) TimerEvent: {}
+[11.520723] (-) TimerEvent: {}
+[11.620898] (-) TimerEvent: {}
+[11.721082] (-) TimerEvent: {}
+[11.821270] (-) TimerEvent: {}
+[11.921483] (-) TimerEvent: {}
+[12.021704] (-) TimerEvent: {}
+[12.121916] (-) TimerEvent: {}
+[12.222113] (-) TimerEvent: {}
+[12.322331] (-) TimerEvent: {}
+[12.422541] (-) TimerEvent: {}
+[12.522744] (-) TimerEvent: {}
+[12.622949] (-) TimerEvent: {}
+[12.723145] (-) TimerEvent: {}
+[12.823340] (-) TimerEvent: {}
+[12.923559] (-) TimerEvent: {}
+[13.023749] (-) TimerEvent: {}
+[13.123904] (-) TimerEvent: {}
+[13.224090] (-) TimerEvent: {}
+[13.324292] (-) TimerEvent: {}
+[13.424500] (-) TimerEvent: {}
+[13.524710] (-) TimerEvent: {}
+[13.624903] (-) TimerEvent: {}
+[13.725125] (-) TimerEvent: {}
+[13.825339] (-) TimerEvent: {}
+[13.925548] (-) TimerEvent: {}
+[14.025760] (-) TimerEvent: {}
+[14.125955] (-) TimerEvent: {}
+[14.226166] (-) TimerEvent: {}
+[14.326380] (-) TimerEvent: {}
+[14.426586] (-) TimerEvent: {}
+[14.526795] (-) TimerEvent: {}
+[14.626993] (-) TimerEvent: {}
+[14.727218] (-) TimerEvent: {}
+[14.827439] (-) TimerEvent: {}
+[14.927649] (-) TimerEvent: {}
+[15.027869] (-) TimerEvent: {}
+[15.128066] (-) TimerEvent: {}
+[15.228259] (-) TimerEvent: {}
+[15.328479] (-) TimerEvent: {}
+[15.428699] (-) TimerEvent: {}
+[15.528916] (-) TimerEvent: {}
+[15.629145] (-) TimerEvent: {}
+[15.729380] (-) TimerEvent: {}
+[15.829597] (-) TimerEvent: {}
+[15.929812] (-) TimerEvent: {}
+[16.030027] (-) TimerEvent: {}
+[16.130261] (-) TimerEvent: {}
+[16.230492] (-) TimerEvent: {}
+[16.330700] (-) TimerEvent: {}
+[16.430902] (-) TimerEvent: {}
+[16.531115] (-) TimerEvent: {}
+[16.631324] (-) TimerEvent: {}
+[16.731541] (-) TimerEvent: {}
+[16.831743] (-) TimerEvent: {}
+[16.931956] (-) TimerEvent: {}
+[17.032165] (-) TimerEvent: {}
+[17.132397] (-) TimerEvent: {}
+[17.232593] (-) TimerEvent: {}
+[17.332815] (-) TimerEvent: {}
+[17.433018] (-) TimerEvent: {}
+[17.533216] (-) TimerEvent: {}
+[17.633414] (-) TimerEvent: {}
+[17.733633] (-) TimerEvent: {}
+[17.833841] (-) TimerEvent: {}
+[17.934041] (-) TimerEvent: {}
+[18.034256] (-) TimerEvent: {}
+[18.134484] (-) TimerEvent: {}
+[18.234700] (-) TimerEvent: {}
+[18.334941] (-) TimerEvent: {}
+[18.435135] (-) TimerEvent: {}
+[18.535315] (-) TimerEvent: {}
+[18.635516] (-) TimerEvent: {}
+[18.735737] (-) TimerEvent: {}
+[18.835940] (-) TimerEvent: {}
+[18.936134] (-) TimerEvent: {}
+[19.036333] (-) TimerEvent: {}
+[19.136509] (-) TimerEvent: {}
+[19.236686] (-) TimerEvent: {}
+[19.336880] (-) TimerEvent: {}
+[19.437048] (-) TimerEvent: {}
+[19.537203] (-) TimerEvent: {}
+[19.637356] (-) TimerEvent: {}
+[19.737501] (-) TimerEvent: {}
+[19.837679] (-) TimerEvent: {}
+[19.937861] (-) TimerEvent: {}
+[20.038014] (-) TimerEvent: {}
+[20.138173] (-) TimerEvent: {}
+[20.238352] (-) TimerEvent: {}
+[20.338531] (-) TimerEvent: {}
+[20.438703] (-) TimerEvent: {}
+[20.538902] (-) TimerEvent: {}
+[20.639059] (-) TimerEvent: {}
+[20.739230] (-) TimerEvent: {}
+[20.839379] (-) TimerEvent: {}
+[20.939528] (-) TimerEvent: {}
+[21.039702] (-) TimerEvent: {}
+[21.139876] (-) TimerEvent: {}
+[21.240018] (-) TimerEvent: {}
+[21.340175] (-) TimerEvent: {}
+[21.440346] (-) TimerEvent: {}
+[21.540520] (-) TimerEvent: {}
+[21.640673] (-) TimerEvent: {}
+[21.740850] (-) TimerEvent: {}
+[21.840996] (-) TimerEvent: {}
+[21.941154] (-) TimerEvent: {}
+[22.041325] (-) TimerEvent: {}
+[22.141498] (-) TimerEvent: {}
+[22.241673] (-) TimerEvent: {}
+[22.341855] (-) TimerEvent: {}
+[22.442027] (-) TimerEvent: {}
+[22.542192] (-) TimerEvent: {}
+[22.642365] (-) TimerEvent: {}
+[22.742540] (-) TimerEvent: {}
+[22.842718] (-) TimerEvent: {}
+[22.942864] (-) TimerEvent: {}
+[23.043042] (-) TimerEvent: {}
+[23.143220] (-) TimerEvent: {}
+[23.243389] (-) TimerEvent: {}
+[23.343561] (-) TimerEvent: {}
+[23.443727] (-) TimerEvent: {}
+[23.543886] (-) TimerEvent: {}
+[23.644066] (-) TimerEvent: {}
+[23.744237] (-) TimerEvent: {}
+[23.844423] (-) TimerEvent: {}
+[23.944563] (-) TimerEvent: {}
+[24.044811] (-) TimerEvent: {}
+[24.145057] (-) TimerEvent: {}
+[24.245244] (-) TimerEvent: {}
+[24.345477] (-) TimerEvent: {}
+[24.445730] (-) TimerEvent: {}
+[24.545951] (-) TimerEvent: {}
+[24.646152] (-) TimerEvent: {}
+[24.746344] (-) TimerEvent: {}
+[24.846523] (-) TimerEvent: {}
+[24.946721] (-) TimerEvent: {}
+[25.046901] (-) TimerEvent: {}
+[25.147145] (-) TimerEvent: {}
+[25.247417] (-) TimerEvent: {}
+[25.347643] (-) TimerEvent: {}
+[25.447865] (-) TimerEvent: {}
+[25.548056] (-) TimerEvent: {}
+[25.648265] (-) TimerEvent: {}
+[25.748466] (-) TimerEvent: {}
+[25.848692] (-) TimerEvent: {}
+[25.948880] (-) TimerEvent: {}
+[26.049076] (-) TimerEvent: {}
+[26.149268] (-) TimerEvent: {}
+[26.249462] (-) TimerEvent: {}
+[26.349664] (-) TimerEvent: {}
+[26.449865] (-) TimerEvent: {}
+[26.550067] (-) TimerEvent: {}
+[26.650254] (-) TimerEvent: {}
+[26.750449] (-) TimerEvent: {}
+[26.850645] (-) TimerEvent: {}
+[26.950836] (-) TimerEvent: {}
+[27.051043] (-) TimerEvent: {}
+[27.151243] (-) TimerEvent: {}
+[27.251427] (-) TimerEvent: {}
+[27.351596] (-) TimerEvent: {}
+[27.451782] (-) TimerEvent: {}
+[27.551956] (-) TimerEvent: {}
+[27.652129] (-) TimerEvent: {}
+[27.752309] (-) TimerEvent: {}
+[27.852497] (-) TimerEvent: {}
+[27.952682] (-) TimerEvent: {}
+[28.052853] (-) TimerEvent: {}
+[28.153014] (-) TimerEvent: {}
+[28.253172] (-) TimerEvent: {}
+[28.353307] (-) TimerEvent: {}
+[28.453479] (-) TimerEvent: {}
+[28.553642] (-) TimerEvent: {}
+[28.653825] (-) TimerEvent: {}
+[28.754057] (-) TimerEvent: {}
+[28.854253] (-) TimerEvent: {}
+[28.954477] (-) TimerEvent: {}
+[29.054680] (-) TimerEvent: {}
+[29.154919] (-) TimerEvent: {}
+[29.255112] (-) TimerEvent: {}
+[29.355327] (-) TimerEvent: {}
+[29.455553] (-) TimerEvent: {}
+[29.555774] (-) TimerEvent: {}
+[29.656000] (-) TimerEvent: {}
+[29.756182] (-) TimerEvent: {}
+[29.856359] (-) TimerEvent: {}
+[29.956570] (-) TimerEvent: {}
+[30.056781] (-) TimerEvent: {}
+[30.156983] (-) TimerEvent: {}
+[30.257207] (-) TimerEvent: {}
+[30.357418] (-) TimerEvent: {}
+[30.457623] (-) TimerEvent: {}
+[30.557852] (-) TimerEvent: {}
+[30.658042] (-) TimerEvent: {}
+[30.758257] (-) TimerEvent: {}
+[30.858478] (-) TimerEvent: {}
+[30.958790] (-) TimerEvent: {}
+[31.059063] (-) TimerEvent: {}
+[31.159277] (-) TimerEvent: {}
+[31.259487] (-) TimerEvent: {}
+[31.359695] (-) TimerEvent: {}
+[31.459911] (-) TimerEvent: {}
+[31.560104] (-) TimerEvent: {}
+[31.660315] (-) TimerEvent: {}
+[31.760525] (-) TimerEvent: {}
+[31.860717] (-) TimerEvent: {}
+[31.960905] (-) TimerEvent: {}
+[32.061096] (-) TimerEvent: {}
+[32.161294] (-) TimerEvent: {}
+[32.261492] (-) TimerEvent: {}
+[32.361691] (-) TimerEvent: {}
+[32.461899] (-) TimerEvent: {}
+[32.562129] (-) TimerEvent: {}
+[32.662362] (-) TimerEvent: {}
+[32.762591] (-) TimerEvent: {}
+[32.862781] (-) TimerEvent: {}
+[32.962975] (-) TimerEvent: {}
+[33.063179] (-) TimerEvent: {}
+[33.163374] (-) TimerEvent: {}
+[33.263595] (-) TimerEvent: {}
+[33.363822] (-) TimerEvent: {}
+[33.464036] (-) TimerEvent: {}
+[33.564253] (-) TimerEvent: {}
+[33.664486] (-) TimerEvent: {}
+[33.764702] (-) TimerEvent: {}
+[33.864883] (-) TimerEvent: {}
+[33.965097] (-) TimerEvent: {}
+[34.065370] (-) TimerEvent: {}
+[34.165590] (-) TimerEvent: {}
+[34.265796] (-) TimerEvent: {}
+[34.365992] (-) TimerEvent: {}
+[34.466210] (-) TimerEvent: {}
+[34.566419] (-) TimerEvent: {}
+[34.666671] (-) TimerEvent: {}
+[34.766883] (-) TimerEvent: {}
+[34.867071] (-) TimerEvent: {}
+[34.967285] (-) TimerEvent: {}
+[35.067480] (-) TimerEvent: {}
+[35.167700] (-) TimerEvent: {}
+[35.267911] (-) TimerEvent: {}
+[35.368110] (-) TimerEvent: {}
+[35.468333] (-) TimerEvent: {}
+[35.568559] (-) TimerEvent: {}
+[35.668780] (-) TimerEvent: {}
+[35.768976] (-) TimerEvent: {}
+[35.869223] (-) TimerEvent: {}
+[35.969399] (-) TimerEvent: {}
+[36.069580] (-) TimerEvent: {}
+[36.169783] (-) TimerEvent: {}
+[36.269953] (-) TimerEvent: {}
+[36.370120] (-) TimerEvent: {}
+[36.470333] (-) TimerEvent: {}
+[36.570531] (-) TimerEvent: {}
+[36.670734] (-) TimerEvent: {}
+[36.770916] (-) TimerEvent: {}
+[36.871097] (-) TimerEvent: {}
+[36.971286] (-) TimerEvent: {}
+[37.071492] (-) TimerEvent: {}
+[37.171677] (-) TimerEvent: {}
+[37.271926] (-) TimerEvent: {}
+[37.372104] (-) TimerEvent: {}
+[37.472303] (-) TimerEvent: {}
+[37.572505] (-) TimerEvent: {}
+[37.672758] (-) TimerEvent: {}
+[37.772956] (-) TimerEvent: {}
+[37.873146] (-) TimerEvent: {}
+[37.973354] (-) TimerEvent: {}
+[38.073559] (-) TimerEvent: {}
+[38.173810] (-) TimerEvent: {}
+[38.274058] (-) TimerEvent: {}
+[38.374304] (-) TimerEvent: {}
+[38.474512] (-) TimerEvent: {}
+[38.574763] (-) TimerEvent: {}
+[38.674969] (-) TimerEvent: {}
+[38.775160] (-) TimerEvent: {}
+[38.875354] (-) TimerEvent: {}
+[38.975601] (-) TimerEvent: {}
+[39.075988] (-) TimerEvent: {}
+[39.176204] (-) TimerEvent: {}
+[39.276414] (-) TimerEvent: {}
+[39.376590] (-) TimerEvent: {}
+[39.476772] (-) TimerEvent: {}
+[39.576991] (-) TimerEvent: {}
+[39.677193] (-) TimerEvent: {}
+[39.777393] (-) TimerEvent: {}
+[39.877594] (-) TimerEvent: {}
+[39.977795] (-) TimerEvent: {}
+[40.078084] (-) TimerEvent: {}
+[40.178262] (-) TimerEvent: {}
+[40.278447] (-) TimerEvent: {}
+[40.378654] (-) TimerEvent: {}
+[40.478849] (-) TimerEvent: {}
+[40.579044] (-) TimerEvent: {}
+[40.679226] (-) TimerEvent: {}
+[40.779417] (-) TimerEvent: {}
+[40.879629] (-) TimerEvent: {}
+[40.979909] (-) TimerEvent: {}
+[41.080108] (-) TimerEvent: {}
+[41.180310] (-) TimerEvent: {}
+[41.280515] (-) TimerEvent: {}
+[41.380710] (-) TimerEvent: {}
+[41.480894] (-) TimerEvent: {}
+[41.581097] (-) TimerEvent: {}
+[41.681302] (-) TimerEvent: {}
+[41.781588] (-) TimerEvent: {}
+[41.881776] (-) TimerEvent: {}
+[41.981954] (-) TimerEvent: {}
+[42.082141] (-) TimerEvent: {}
+[42.182304] (-) TimerEvent: {}
+[42.282463] (-) TimerEvent: {}
+[42.382757] (-) TimerEvent: {}
+[42.482950] (-) TimerEvent: {}
+[42.583134] (-) TimerEvent: {}
+[42.683340] (-) TimerEvent: {}
+[42.783538] (-) TimerEvent: {}
+[42.883737] (-) TimerEvent: {}
+[42.983990] (-) TimerEvent: {}
+[43.084177] (-) TimerEvent: {}
+[43.184373] (-) TimerEvent: {}
+[43.284589] (-) TimerEvent: {}
+[43.384798] (-) TimerEvent: {}
+[43.484988] (-) TimerEvent: {}
+[43.585184] (-) TimerEvent: {}
+[43.685387] (-) TimerEvent: {}
+[43.785603] (-) TimerEvent: {}
+[43.885792] (-) TimerEvent: {}
+[43.985986] (-) TimerEvent: {}
+[44.086173] (-) TimerEvent: {}
+[44.186380] (-) TimerEvent: {}
+[44.286571] (-) TimerEvent: {}
+[44.386790] (-) TimerEvent: {}
+[44.486991] (-) TimerEvent: {}
+[44.587180] (-) TimerEvent: {}
+[44.687399] (-) TimerEvent: {}
+[44.787609] (-) TimerEvent: {}
+[44.887793] (-) TimerEvent: {}
+[44.988018] (-) TimerEvent: {}
+[45.088219] (-) TimerEvent: {}
+[45.188407] (-) TimerEvent: {}
+[45.288624] (-) TimerEvent: {}
+[45.388818] (-) TimerEvent: {}
+[45.489021] (-) TimerEvent: {}
+[45.589242] (-) TimerEvent: {}
+[45.689435] (-) TimerEvent: {}
+[45.789716] (-) TimerEvent: {}
+[45.889937] (-) TimerEvent: {}
+[45.990180] (-) TimerEvent: {}
+[46.090395] (-) TimerEvent: {}
+[46.190651] (-) TimerEvent: {}
+[46.290862] (-) TimerEvent: {}
+[46.391071] (-) TimerEvent: {}
+[46.491262] (-) TimerEvent: {}
+[46.591477] (-) TimerEvent: {}
+[46.691731] (-) TimerEvent: {}
+[46.791890] (-) TimerEvent: {}
+[46.892087] (-) TimerEvent: {}
+[46.992277] (-) TimerEvent: {}
+[47.092497] (-) TimerEvent: {}
+[47.192698] (-) TimerEvent: {}
+[47.240210] (ecvt2_controller) StdoutLine: {'line': b'[100%] Linking CXX executable vp_sto_global_planner_full_node\n'}
+[47.292786] (-) TimerEvent: {}
+[47.392973] (-) TimerEvent: {}
+[47.493174] (-) TimerEvent: {}
+[47.593393] (-) TimerEvent: {}
+[47.693587] (-) TimerEvent: {}
+[47.793805] (-) TimerEvent: {}
+[47.894019] (-) TimerEvent: {}
+[47.994243] (-) TimerEvent: {}
+[48.094458] (-) TimerEvent: {}
+[48.194632] (-) TimerEvent: {}
+[48.294863] (-) TimerEvent: {}
+[48.395059] (-) TimerEvent: {}
+[48.495248] (-) TimerEvent: {}
+[48.595461] (-) TimerEvent: {}
+[48.695694] (-) TimerEvent: {}
+[48.795877] (-) TimerEvent: {}
+[48.810032] (ecvt2_controller) StdoutLine: {'line': b'[100%] Built target vp_sto_global_planner_full_node\n'}
+[48.819552] (ecvt2_controller) CommandEnded: {'returncode': 0}
+[48.820081] (ecvt2_controller) JobProgress: {'identifier': 'ecvt2_controller', 'progress': 'install'}
+[48.825331] (ecvt2_controller) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'], 'cwd': '/home/jin/harco/ecvt2_ws/build/ecvt2_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/jin/harco/ecvt2_ws'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('LANGUAGE', 'en'), ('USER', 'jin'), ('LC_TIME', 'ko_KR.UTF-8'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'x11'), ('DEBUG', 'release'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/jin/.local/lib/python3.10/site-packages/mujoco'), ('HOME', '/home/jin'), ('CHROME_DESKTOP', 'code.desktop'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/jin'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-d949732c-1.11-main.sock'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('LC_MONETARY', 'ko_KR.UTF-8'), ('MANAGERPID', '2041'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '2457'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('_CONDA_ROOT', '/home/jin/miniconda3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3351'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('APPLICATION_INSIGHTS_NO_STATSBEAT', 'true'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'jin'), ('JOURNAL_STREAM', '8:28264'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('PKG_CONFIG_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt/lib/x86_64-linux-gnu/pkgconfig:/home/jin/harco/ecvt2_ws/install/ifopt/lib/pkgconfig'), ('USERNAME', 'jin'), ('TERM', 'dumb'), ('GAZEBO_MODEL_PATH', ':/home/jin/nav2_ws/src/turtlebot3_simulations/turtlebot3_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/jin/.local/bin:/home/jin/.codex/tmp/arg0/codex-arg0YND85R:/home/jin/miniconda3/condabin:/opt/ros/humble/bin:/home/jin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/jin/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/jin:@/tmp/.ICE-unix/2282,unix/jin:/tmp/.ICE-unix/2282'), ('INVOCATION_ID', '95b20f578bae49f893435a00dc03c7e0'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ko_KR.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'ko_KR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/jin/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ko_KR.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:f6644eb4-c857-49cb-b135-b95d7947cdfd'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e62b8-f49c-7610-b91f-b066613692b7'), ('LC_MEASUREMENT', 'ko_KR.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('_CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('LC_IDENTIFICATION', 'ko_KR.UTF-8'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/jin/harco/ecvt2_ws/build/ecvt2_controller'), ('VSCODE_CLI', '1'), ('TURTLEBOT3_MODEL', 'burger'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/jin/miniconda3/bin/conda'), ('VSCODE_CODE_CACHE_PATH', '/home/jin/.config/Code/CachedData/07ff9d6178ede9a1bd12ad3399074d726ebe6e43'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'ko_KR.UTF-8'), ('LC_PAPER', 'ko_KR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('VSCODE_PID', '3752'), ('CMAKE_PREFIX_PATH', '/home/jin/harco/ecvt2_ws/install/ifopt:/opt/ros/humble')]), 'shell': False}
+[48.832914] (ecvt2_controller) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[48.833283] (ecvt2_controller) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[48.833566] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/teleop_goal_publisher\n'}
+[48.833817] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/live_upper_dynamics_node\n'}
+[48.834075] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_global_planner_node\n'}
+[48.834293] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_global_planner_full_node\n'}
+[48.834543] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/vp_sto_paper_global_planner_node\n'}
+[48.834962] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/include/ecvt2_controller/kdl_utils.hpp\n'}
+[48.834999] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/include/ecvt2_controller/wbc_hqp_lib.hpp\n'}
+[48.835197] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/libkdl_utils.a\n'}
+[48.835306] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/libwbc_hqp_lib.a\n'}
+[48.835440] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_opt_controller\n'}
+[48.835570] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp\n'}
+[48.835699] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp_v2\n'}
+[48.835819] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/wbc_hqp_v3\n'}
+[48.835966] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller\n'}
+[48.836083] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller_v2\n'}
+[48.836204] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/base_arm_task_controller_full\n'}
+[48.836322] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/teleop_goal_publisher\n'}
+[48.836438] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/com_trajectory_publisher\n'}
+[48.836554] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/lib/ecvt2_controller/pin_test\n'}
+[48.836718] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/package_run_dependencies/ecvt2_controller\n'}
+[48.836863] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/parent_prefix_path/ecvt2_controller\n'}
+[48.837132] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/ament_prefix_path.sh\n'}
+[48.837163] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/ament_prefix_path.dsv\n'}
+[48.837214] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/path.sh\n'}
+[48.837265] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/environment/path.dsv\n'}
+[48.837321] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.bash\n'}
+[48.837379] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.sh\n'}
+[48.837436] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.zsh\n'}
+[48.837492] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/local_setup.dsv\n'}
+[48.837539] (ecvt2_controller) StdoutLine: {'line': b'-- Symlinking: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/package.dsv\n'}
+[48.843025] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ament_index/resource_index/packages/ecvt2_controller\n'}
+[48.843098] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/cmake/ecvt2_controllerConfig.cmake\n'}
+[48.843127] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/cmake/ecvt2_controllerConfig-version.cmake\n'}
+[48.843179] (ecvt2_controller) StdoutLine: {'line': b'-- Up-to-date symlink: /home/jin/harco/ecvt2_ws/install/ecvt2_controller/share/ecvt2_controller/package.xml\n'}
+[48.844055] (ecvt2_controller) CommandEnded: {'returncode': 0}
+[48.850790] (ecvt2_controller) JobEnded: {'identifier': 'ecvt2_controller', 'rc': 0}
+[48.851068] (-) EventReactorShutdown: {}
